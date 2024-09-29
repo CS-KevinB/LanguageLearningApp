@@ -1,0 +1,51 @@
+[
+    {
+        "uuid": "",
+        "nameOfLanguage": "",
+        "lessons": [
+            {
+                "uuid": "",
+                "exercises": [
+                    {
+                        "questions": [
+                            {
+                                "phrase": {
+                                    "englishPhrase": [
+                                        {
+                                            "englishWord": "",
+                                            "translatedWord": "",
+                                            "pronunciation": "",
+                                            "partOfSpeech": "NOUN"
+                                        }
+                                    ],
+                                    "translatedPhrase": [
+                                        {
+                                            "englishWord": "",
+                                            "translatedWord": "",
+                                            "pronunciation": "",
+                                            "partOfSpeech": "NOUN"
+                                        }
+                                    ],
+                                    "feedback": ""
+                                },
+                                "words": [
+                                    {
+                                        "englishWord": "",
+                                        "translatedWord": "",
+                                        "pronunciation": "",
+                                        "partOfSpeech": "NOUN"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "story": [
+                    {
+                        // figure this out
+                    }
+                ]
+            }
+        ]
+    }
+]

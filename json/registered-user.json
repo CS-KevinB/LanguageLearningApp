@@ -1,0 +1,75 @@
+[
+    {
+        "uuid": "a9fc5c37-053b-479e-9741-7f0bb0e525ae",
+        "firstName": "",
+        "lastName": "",
+        "username": "",
+        "password": "",
+        "emailAddress": "",
+        "birthday": "",
+        "avatar": {
+            "character": "LLAMA",
+            "hat": "SOMBRERO",
+            "avatarImagePath": ""
+        },
+        "languages": [
+            {
+                "uuid": "",
+                "nameOfLanguage": "",
+                "lessons": [
+                    {
+                        "uuid": "",
+                        "exercises": [
+                            {
+                                "questions": [
+                                    {
+                                        "phrase": {
+                                            "englishPhrase": [
+                                                {
+                                                    "englishWord": "",
+                                                    "translatedWord": "",
+                                                    "pronunciation": "",
+                                                    "partOfSpeech": "NOUN"
+                                                }
+                                            ],
+                                            "translatedPhrase": [
+                                                {
+                                                    "englishWord": "",
+                                                    "translatedWord": "",
+                                                    "pronunciation": "",
+                                                    "partOfSpeech": "NOUN"
+                                                }
+                                            ],
+                                            "feedback": ""
+                                        },
+                                        "words": [
+                                            {
+                                                "englishWord": "",
+                                                "translatedWord": "",
+                                                "pronunciation": "",
+                                                "partOfSpeech": "NOUN"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "story": [
+                            {
+                                // figure this out
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "friends": {
+            // figure this out
+        },
+        "points": 0,
+        "userProgress": {
+            "currentLesson": 0,
+            "currentExercise": 0
+        }
+    }
+]

@@ -1,21 +1,21 @@
 [
     {
         "uuid": "a9fc5c37-053b-479e-9741-7f0bb0e525ae",
-        "firstName": "John",
-        "lastName": "Griffen",
-        "username": "",
-        "password": "",
-        "emailAddress": "",
-        "birthday": "",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "username": "JDOE46",
+        "password": "Columb!aSC",
+        "emailAddress": "JaneDoe@gmail.com",
+        "birthday": "2003-05-14",
         "avatar": {
             "character": "LLAMA",
-            "hat": "SOMBRERO",
-            "avatarImagePath": ""
+            "hat": "NONE",
+            "avatarImagePath": "Image2.png"
         },
         "languages": [ "3085ad7f-139c-4d3e-85e6-52cc0d028a29" ],
         "friends": [
             {
-                "uuid": ""
+                "uuid": "c5c93174-01f6-4dfc-aba2-14aa61c6696b"
             }
         ],
         "points": 0,
@@ -25,22 +25,22 @@
         }
     },
     {
-        "uuid": "",
+        "uuid": "c5c93174-01f6-4dfc-aba2-14aa61c6696b",
         "firstName": "John",
         "lastName": "Griffen",
-        "username": "",
-        "password": "",
-        "emailAddress": "",
-        "birthday": "",
+        "username": "GriffenJ61",
+        "password": "J0hnG342",
+        "emailAddress": "JohnGriffen@gmail.com",
+        "birthday": "1961-08-21",
         "avatar": {
-            "character": "LLAMA",
-            "hat": "SOMBRERO",
-            "avatarImagePath": ""
+            "character": "GIRAFFE",
+            "hat": "NONE",
+            "avatarImagePath": "Image1.png"
         },
         "languages": [ "3085ad7f-139c-4d3e-85e6-52cc0d028a29" ],
         "friends": [
             {
-                "uuid": ""
+                "uuid": "a9fc5c37-053b-479e-9741-7f0bb0e525ae"
             }
         ],
         "points": 0,

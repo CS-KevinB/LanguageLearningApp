@@ -1,8 +1,33 @@
 [
     {
         "uuid": "a9fc5c37-053b-479e-9741-7f0bb0e525ae",
-        "firstName": "",
-        "lastName": "",
+        "firstName": "John",
+        "lastName": "Griffen",
+        "username": "",
+        "password": "",
+        "emailAddress": "",
+        "birthday": "",
+        "avatar": {
+            "character": "LLAMA",
+            "hat": "SOMBRERO",
+            "avatarImagePath": ""
+        },
+        "languages": [ "3085ad7f-139c-4d3e-85e6-52cc0d028a29" ],
+        "friends": [
+            {
+                "uuid": ""
+            }
+        ],
+        "points": 0,
+        "userProgress": {
+            "currentLesson": 0,
+            "currentExercise": 0
+        }
+    },
+    {
+        "uuid": "",
+        "firstName": "John",
+        "lastName": "Griffen",
         "username": "",
         "password": "",
         "emailAddress": "",

@@ -12,58 +12,7 @@
             "hat": "SOMBRERO",
             "avatarImagePath": ""
         },
-        "languages": [
-            {
-                "uuid": "",
-                "nameOfLanguage": "",
-                "lessons": [
-                    {
-                        "uuid": "",
-                        "exercises": [
-                            {
-                                "questions": [
-                                    {
-                                        "phrase": {
-                                            "englishPhrase": [
-                                                {
-                                                    "englishWord": "",
-                                                    "translatedWord": "",
-                                                    "pronunciation": "",
-                                                    "partOfSpeech": "NOUN"
-                                                }
-                                            ],
-                                            "translatedPhrase": [
-                                                {
-                                                    "englishWord": "",
-                                                    "translatedWord": "",
-                                                    "pronunciation": "",
-                                                    "partOfSpeech": "NOUN"
-                                                }
-                                            ],
-                                            "feedback": ""
-                                        },
-                                        "words": [
-                                            {
-                                                "englishWord": "",
-                                                "translatedWord": "",
-                                                "pronunciation": "",
-                                                "partOfSpeech": "NOUN"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "story": [
-                            {
-                                "title": "",
-                                "story": ""
-                            }
-                        ]
-                    }
-                ]
-            }
-        ],
+        "languages": [ "3085ad7f-139c-4d3e-85e6-52cc0d028a29" ],
         "friends": [
             {
                 "uuid": ""

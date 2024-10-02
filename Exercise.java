@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Exercise {
     private ArrayList<Question> questions;
 
-    public Exercise(Exercise exercise, Questions question){
+    public Exercise(Exercise exercise, Question question){
 
     }
 

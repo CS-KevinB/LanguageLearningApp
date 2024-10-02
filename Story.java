@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 /**
  * Story class will have list of stories
  * @author Risha Patel
@@ -15,20 +14,14 @@ public class Story {
         this.title = title;
         this.englishStory = new ArrayList<>();
         this.spanishStory = new ArrayList<>();
-
     }
 
     public void remvoveWords(){
-        englishStory.remove(word);
-        spanishStory.remove(word);
+        englishStory.clear();
+        spanishStory.clear();
     }
 
     public boolean isCorrect(String story){
         return this.title.equalsIgnoreCase(story);
     }
-
-
-
-
-    
 }

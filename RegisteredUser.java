@@ -1,0 +1,102 @@
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.UUID;
+
+/**
+ * The RegisteredUser class extends UserList and contains list of registered users for
+ * Language learning app
+ * @author Risha Patel 
+ */
+
+
+public class RegisteredUser extends UserList {
+    private UUID id;
+    private String firstName;
+    private String lastName;
+    private String username;
+    private String password;
+    private String emailAddress;
+    private Date birthday;
+    private Avatar avatar;
+    private ArrayList<Language> languages;
+    private ArrayList<RegisteredUser> friends;
+    private int points;
+    private UserProgress userProgress;
+
+    public RegisteredUser(UUID id, String firstName, String lastName, String username, 
+                          String emailAddress, Date birthday, Avatar avatar) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.emailAddress = emailAddress;
+        this.password = password;
+        this.birthday = birthday;
+        this.avatar = avatar;
+        this.languages = new ArrayList<>();
+        this.friends = new ArrayList<>();
+        this.points = 0;
+        this.userProgress = new UserProgress();
+    }
+
+    public void addLanguage(Language language) {
+        languages.add(language);
+    }
+
+    public void removeLanguage(Language language) {
+        languages.remove(language);
+    }
+
+    public void addFriend(RegisteredUser friend) {
+        friends.add(friend);
+    }
+
+    public void addPoints(int numOfPoints) {
+        points += numOfPoints;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public ArrayList<RegisteredUser> getFriends() {
+        return friends;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public UserProgress getUserProgress() {
+        return userProgress;
+    }
+
+    public void setAvatar(CharacterOption character, HatOptions hat) {
+        return avatar.setCharacter(character);
+      
+    }
+}

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class FileReader {
 
-    public ArrayList<User> getUsers() {
-        ArrayList<User> users = new ArrayList<>();
+    public ArrayList<UserList> getUsers() {
+        ArrayList<UserList> users = new ArrayList<>();
         return users;
     }
 

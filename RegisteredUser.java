@@ -95,8 +95,7 @@ public class RegisteredUser extends UserList {
         return userProgress;
     }
 
-    public void setAvatar(CharacterOption character, HatOptions hat) {
-        return avatar.setCharacter(character);
-      
+    public void setAvatar(CharacterOptions character, HatOptions hat) {
+        return;  
     }
 }

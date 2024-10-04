@@ -48,5 +48,32 @@
             "currentLesson": 0,
             "currentExercise": 0
         }
+    },
+
+    {
+        "uuid": "",
+        "firstName": "",
+        "lastName": "",
+        "username": "",
+        "password": "",
+        "emailAddress": "J",
+        "birthday": "",
+        "avatar": {
+            "character": "LIZARD",
+            "hat": "NONE",
+            "avatarImagePath": "Image3.png"
+        },
+        "languages": [ "3085ad7f-139c-4d3e-85e6-52cc0d028a29" ],
+        "friends": [
+            {
+                "uuid": "c5c93174-01f6-4dfc-aba2-14aa61c6696b",
+                "uuid": "a9fc5c37-053b-479e-9741-7f0bb0e525ae"
+            }
+        ],
+        "points": 0,
+        "userProgress": {
+            "currentLesson": 0,
+            "currentExercise": 0
+        }
     }
 ]

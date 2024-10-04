@@ -8,22 +8,23 @@ public class ListeningQuestion implements Question{
     private UUID id;
 
     public ListeningQuestion(Phrase phrase, UUID id){
-
+        this.phrase = phrase;
+        this.id = id;
     }
 
     public String getQuestion(){
-        return null;
+        return String.join(" ", phrase.getEnglishPhrase());
     }
 
     public String getAnswer(){
-        return null;
+        return String.join(" ", phrase.getTranslatedPhrase());
     }
 
     public boolean isCorrect(String answer){
-        return false;
+        return String.join(" ", phrase.getTranslatedPhrase()).equalsIgnoreCase(answer);
     }
     
     public void playAudio(){
-
+        
     }
 }

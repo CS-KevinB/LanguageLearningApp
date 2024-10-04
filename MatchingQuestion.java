@@ -10,7 +10,8 @@ public class MatchingQuestion implements Question{
     private UUID id;
 
     public MatchingQuestion(ArrayList<Word> words, UUID id){
-
+        this.words = words;
+        this.id = id;
     }
 
     public String getQuestion(){

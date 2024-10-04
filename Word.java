@@ -6,7 +6,11 @@ public class Word {
     private Gender gender;
 
     public Word(String englishWord, String translatedWord, String pronunciation, PartOfSpeech partOfSpeech, Gender gender){
-        
+        this.englishWord = englishWord;
+        this.translatedWord = translatedWord;
+        this.pronunciation = pronunciation;
+        this.partOfSpeech = partOfSpeech;
+        this.gender = gender;
     }
     
     public String getEnglishWord(){

@@ -10,10 +10,14 @@ public class Exercise {
     private ArrayList<Question> questions;
 
     public Exercise(Exercise exercise, Question question){
-
+        if(exercise != null){
+            this.questions = new ArrayList<>(exercise.getQuestion());
+        } else {
+            this.questions = new ArrayList<>();
+        }
     }
 
     public ArrayList<Question> getQuestions(){
-        return null;
+        return questions;
     }
 }

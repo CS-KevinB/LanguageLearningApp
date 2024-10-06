@@ -15,7 +15,7 @@
         "languages": [ "3085ad7f-139c-4d3e-85e6-52cc0d028a29" ],
         "friends": [
             {
-                "uuid": "c5c93174-01f6-4dfc-aba2-14aa61c6696b"
+                "uuid": "081a004b-3306-4975-9520-2437276c600a"
             }
         ],
         "points": 0,
@@ -40,7 +40,7 @@
         "languages": [ "3085ad7f-139c-4d3e-85e6-52cc0d028a29" ],
         "friends": [
             {
-                "uuid": "a9fc5c37-053b-479e-9741-7f0bb0e525ae"
+                "uuid": "081a004b-3306-4975-9520-2437276c600a"
             }
         ],
         "points": 0,
@@ -51,13 +51,13 @@
     },
 
     {
-        "uuid": "",
-        "firstName": "",
-        "lastName": "",
-        "username": "",
-        "password": "",
-        "emailAddress": "J",
-        "birthday": "",
+        "uuid": "081a004b-3306-4975-9520-2437276c600a",
+        "firstName": "Julie",
+        "lastName": "Adams",
+        "username": "adamsj",
+        "password": "Jul!e@dam$",
+        "emailAddress": "JulieAdams@gmail.com",
+        "birthday": "2000-09-11",
         "avatar": {
             "character": "LIZARD",
             "hat": "NONE",

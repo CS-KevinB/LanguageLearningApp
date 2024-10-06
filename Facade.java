@@ -1,3 +1,6 @@
+/**
+ * @author kinsawills
+ */
 public class Facade {
     private User user;
     private Language currentLanguage;
@@ -7,7 +10,7 @@ public class Facade {
     }
 
     public User login(String username, String password) {
-
+        
     }
 
     public User createUser() {

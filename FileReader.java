@@ -9,12 +9,12 @@ import org.json.simple.parser.JSONParser;
  * @author Risha Patel
  */
 
-public class FileReader {
+public class FileReader extends DataConstants {
 
-    public ArrayList<UserList> getUsers() {
+    public static ArrayList<UserList> getUsers() {
         ArrayList<UserList> users = new ArrayList<>();
         try {
-            FileaReader reader = new FileReader(USER_FILE_NAME);
+            FileReader reader = new FileReader(USER_FILE_NAME);
             JSONParser parser = new JSONParser();
             JSONArray peopleJSON = (JSONArray) parser.parse(reader);
             for (int i = 0; i < peoplJSON.size(); i++) {
@@ -37,7 +37,7 @@ public class FileReader {
         }
     }
 
-    public ArrayList<Language> getLanguages() {
+    public static ArrayList<Language> getLanguages() {
        
         ArrayList<Language> languages = new ArrayList<>();
         return languages;

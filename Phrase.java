@@ -8,8 +8,8 @@ import java.util.*;
 public class Phrase {
     private ArrayList<Word> phrase;
     private String feedback;
-    private Phrase englishPhrase;
-    private Phrase translatedPhrase;
+    private ArrayList<Word> englishPhrase;
+    private ArrayList<Word> translatedPhrase;
 
     public Phrase(Phrase transletPhrase, String feedback){
 

@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * @author Risha Patel
  */
 
-public class FileWriter extends DataConstants {
+public class DataWriter extends DataConstants {
     public void saveUser(ArrayList<User> users){
        User userList = User.getInstance();
        ArrayList<Use> UserList = new ArrayList<>();
@@ -15,7 +15,7 @@ public class FileWriter extends DataConstants {
         jsonUsers.add(users.get(i).toJSON());
     }
 
-    try(FileWriter file = new FileWriter("users.json")){
+    try(DataWriter file = new DataWriter("users.json")){
     file.write(jsonUsers.toJSONString());
     file.flush();  
     } catch(IOException e){

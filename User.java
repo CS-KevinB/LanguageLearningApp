@@ -9,7 +9,7 @@ import java.util.UUID;
  */
 
 
-public class RegisteredUser extends UserList {
+public class User {
     private UUID id;
     private String firstName;
     private String lastName;
@@ -23,7 +23,7 @@ public class RegisteredUser extends UserList {
     private int points;
     private UserProgress userProgress;
 
-    public RegisteredUser(UUID id, String firstName, String lastName, String username, 
+    public User(UUID id, String firstName, String lastName, String username, 
                           String emailAddress, Date birthday, Avatar avatar) {
         this.id = id;
         this.firstName = firstName;

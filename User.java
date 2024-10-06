@@ -9,7 +9,7 @@ import java.util.UUID;
  */
 
 
-public class User {
+public class User extends UserList {
     private UUID id;
     private String firstName;
     private String lastName;
@@ -19,7 +19,7 @@ public class User {
     private Date birthday;
     private Avatar avatar;
     private ArrayList<Language> languages;
-    private ArrayList<RegisteredUser> friends;
+    private ArrayList<User> friends;
     private int points;
     private UserProgress userProgress;
 
@@ -47,7 +47,7 @@ public class User {
         languages.remove(language);
     }
 
-    public void addFriend(RegisteredUser friend) {
+    public void addFriend(User friend) {
         friends.add(friend);
     }
 
@@ -83,7 +83,7 @@ public class User {
         return avatar;
     }
 
-    public ArrayList<RegisteredUser> getFriends() {
+    public ArrayList<User> getFriends() {
         return friends;
     }
 
@@ -102,4 +102,8 @@ public class User {
     public String toString() {
         return this.firstName + " " + this.lastName + " " + this.username + "/n";
     }
+
+    
+
+    
 }

@@ -96,7 +96,11 @@ public class User extends UserList {
     }
 
     public void setAvatar(CharacterOptions character, HatOptions hat) {
-        return;  
+        return;
+    }
+    
+    public String toString() {
+        return this.firstName + " " + this.lastName + " " + this.username + "/n";
     }
 
     

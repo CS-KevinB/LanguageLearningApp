@@ -16,6 +16,4 @@ public abstract class DataConstants {
     protected static final String USER_PROGRESS = "userProgress";
     protected static final String CURRENT_LESSON = "currentLesson";
     protected static final String CURRENT_EXERCISE = "currentExercise";
-
-    
 }

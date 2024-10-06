@@ -16,7 +16,7 @@ public class DataLoader extends DataConstants {
         ArrayList<User> users = new ArrayList<>();
         try {
             //FileReader reader = new FileReader(USER_FILE_NAME);
-            DataLoader reader = new DataLoader(USER_FILE_NAME);
+            FileReader reader = new FileReader(USER_FILE_NAME);
 
             JSONParser parser = new JSONParser();
             JSONArray peopleJSON = (JSONArray) parser.parse(reader);

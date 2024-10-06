@@ -26,6 +26,7 @@ public class UserList {
             if(user.getUsername().equals(username))
                 return user;
         }
+        return null;
     }
 
     public boolean editUser(String firstName, String lastName, String username, String emailAddress, int[] birthday, Avatar avatar) {

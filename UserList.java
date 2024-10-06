@@ -16,7 +16,7 @@ public class UserList {
     }
 
     public boolean addUser(String firstName, String lastName, String username, String emailAddress, int[] birthday, Avatar avatar) {
-
+        
     }
 
     public User getUser(String username) {

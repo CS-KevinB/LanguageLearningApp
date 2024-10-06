@@ -1,3 +1,6 @@
+/*
+ * @author kinsawills
+ */
 public class Notification {
     private NotificationType notificationType;
     private String message;
@@ -7,6 +10,6 @@ public class Notification {
     }
     
     public void notifyUser() {
-        
+
     }
 }

@@ -1,3 +1,6 @@
+/**
+ * @author kinsawills
+ */
 public class LanguageList {
     private static LanguageList languageList;
     private ArrayList<Language> languages;

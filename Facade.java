@@ -1,3 +1,6 @@
+/**
+ * @author kinsawills
+ */
 public class Facade {
     private User user;
     private Language currentLanguage;

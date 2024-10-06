@@ -8,6 +8,8 @@ public class FileReader {
 
     public ArrayList<UserList> getUsers() {
         ArrayList<UserList> users = new ArrayList<>();
+
+        
         return users;
     }
 

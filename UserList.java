@@ -20,7 +20,10 @@ public class UserList {
     }
 
     public User getUser(String username) {
-
+        for (User user : users) {
+            if(user.getUsername().equals(username))
+                return user;
+        }
     }
 
     public boolean editUser(String firstName, String lastName, String username, String emailAddress, int[] birthday, Avatar avatar) {

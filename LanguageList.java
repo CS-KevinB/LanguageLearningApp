@@ -10,10 +10,10 @@ public class LanguageList {
     }
 
     public static LanguageList getInstance() {
-
+        
     }
 
-    public void getLanguages() {
-        
+    public ArrayList<Language> getLanguages() {
+        return languages;
     }
 }

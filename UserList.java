@@ -18,7 +18,10 @@ public class UserList {
     }
 
     public boolean addUser(String firstName, String lastName, String username, String emailAddress, int[] birthday, Avatar avatar) {
-        
+        if(getUser(username) == null)
+            return false;
+        userList.add(new User(username, firstName, lastName, emailAddress, birthday, avatar));
+        return true;
     }
 
     public User getUser(String username) {
@@ -30,10 +33,10 @@ public class UserList {
     }
 
     public boolean editUser(String firstName, String lastName, String username, String emailAddress, int[] birthday, Avatar avatar) {
-
+        
     }
 
     public boolean saveUsers() {
-        
+        DataWriter.saveUsers();
     }
 }

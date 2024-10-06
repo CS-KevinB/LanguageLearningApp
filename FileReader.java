@@ -13,11 +13,6 @@ public class FileReader {
 
     public ArrayList<UserList> getUsers() {
         ArrayList<UserList> users = new ArrayList<>();
-<<<<<<< HEAD
-
-        
-        return users;
-=======
         try {
             FileaReader reader = new FileReader(USER_FILE_NAME);
             JSONParser parser = new JSONParser();
@@ -40,7 +35,6 @@ public class FileReader {
         } catch (Exception e) {
             e.printStackTrace();
         }
->>>>>>> 1d46e635e13427588532b9f66d5629974a23ae48
     }
 
     public ArrayList<Language> getLanguages() {

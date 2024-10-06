@@ -1,8 +1,12 @@
 import java.util.ArrayList;
+
 public class Main {
-    public ArrayList<User> users = FileReader.getUsers();
-    for(int i = 0; i < users.size(); i++){
-        System.out.println(users);
+    public static void main(String[] args) {
+        FileReader file = new FileReader();
+        ArrayList<User> users = file.getUsers();
+        for (int i = 0; i < users.size(); i++) {
+            System.out.println(users);
+        }
     }
 
 }

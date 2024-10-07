@@ -21,7 +21,7 @@ public class DataLoader extends DataConstants {
             JSONParser parser = new JSONParser();
             JSONArray peopleJSON = (JSONArray) parser.parse(reader);
             for (int i = 0; i < peopleJSON.size(); i++) {
-                JSONObject jsonObject = (JSONObject)peopleJSON>get(i);
+                JSONObject jsonObject = (JSONObject)peopleJSON.get(i);
                 UUID id = UUID.fromString((String)personJSON.get(USER_ID));
                 String firstName = (String)jsonObject.get(USER_FIRST_NAME);
                 String lastName = (String) jsonObject.get(USER_LAST_NAME);

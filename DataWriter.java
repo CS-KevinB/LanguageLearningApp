@@ -17,7 +17,8 @@ public class DataWriter extends DataConstants {
 
     try(DataWriter file = new DataWriter("users.json")){
     file.write(jsonUsers.toJSONString());
-    file.flush();  
+    file.flush();
+
     } catch(IOException e){
     e.printStackTrace();
         }
@@ -29,9 +30,10 @@ public class DataWriter extends DataConstants {
 		userDetails.put(USER_USER_NAME, user.getUserName());
 		userDetails.put(USER_FIRST_NAME, user.getFirstName());
 		userDetails.put(USER_LAST_NAME, user.getLastName());
-		userDetails.put(USER_AGE, user.getAge());
-		userDetails.put(USER_PHONE_NUMBER, user.getPhoneNumber());
-        
+		userDetails.put(USER_EMAIL, user.getEmail());
+        userDetails.put(USER_BIRTHDAY, user.getBirthday());
+        userDetails.put(USER_PASSWORD, user.getPassword());
+             
         return userDetails;
 	}
 

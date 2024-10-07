@@ -17,12 +17,12 @@ public class DataLoader extends DataConstants {
         try {
             //FileReader reader = new FileReader(USER_FILE_NAME);
             FileReader reader = new FileReader(USER_FILE_NAME);
-
             JSONParser parser = new JSONParser();
-            JSONArray peopleJSON = (JSONArray) parser.parse(reader);
+            JSONArray peopleJSON = (JSONArray) new JSONParser().parse(reader);
+
             for (int i = 0; i < peopleJSON.size(); i++) {
-                JSONObject jsonObject = (JSONObject)peopleJSON.get(i);
-                UUID id = UUID.fromString((String)personJSON.get(USER_ID));
+                JSONObject personJSON = (JSONObject) peopleJSON.get(i);
+                UUID id = UUID.fromString((String) jsonObject.get(USER_ID));
                 String firstName = (String)jsonObject.get(USER_FIRST_NAME);
                 String lastName = (String) jsonObject.get(USER_LAST_NAME);
                 String username = (String) jsonObject.get(USER_USERNAME);
@@ -38,7 +38,6 @@ public class DataLoader extends DataConstants {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        printUsers(users);
         return users;
     }
 
@@ -46,12 +45,6 @@ public class DataLoader extends DataConstants {
        
         ArrayList<Language> languages = new ArrayList<>();
         return languages;
-    }
-
-    public static void printUsers(ArrayList<User> users) {
-        for (int i = 0; i < users.size(); i++) {
-            System.out.println(users.get(i));
-        }
     }
 }
 

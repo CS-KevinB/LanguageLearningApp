@@ -33,10 +33,10 @@ public class UserList {
     }
 
     public boolean editUser(String firstName, String lastName, String username, String emailAddress, int[] birthday, Avatar avatar) {
-        
+        return false;
     }
 
     public boolean saveUsers() {
-        DataWriter.saveUsers();
+        return DataWriter.saveUsers(userList);
     }
 }

@@ -1,4 +1,4 @@
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -23,8 +23,9 @@ public class User extends UserList {
     private int points;
     private UserProgress userProgress;
 
-    public User(UUID id, String firstName, String lastName, String username, 
-                          String emailAddress, Date birthday, Avatar avatar) {
+    public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
+     Date birthday, Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
+     
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -96,14 +97,14 @@ public class User extends UserList {
     }
 
     public void setAvatar(CharacterOptions character, HatOptions hat) {
-        return;
+        if(avatar != null) {
+            avatar.setCharacter(character);
+            avatar.setHat(hat);
+        }
     }
     
     public String toString() {
         return this.firstName + " " + this.lastName + " " + this.username + "/n";
-    }
-
-    
-
+    }    
     
 }

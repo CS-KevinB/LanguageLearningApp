@@ -34,16 +34,24 @@ public class DataLoader extends DataConstants {
                 UserProgress userProgress = (UserProgress) jsonObject.get(USER_PROGRESS);
                 users.add(new User(id, firstName, lastName, username, email, birthday, avatar, friends, points, userProgress));
             }
-            return users;
+           
         } catch (Exception e) {
             e.printStackTrace();
         }
+        printUsers(users);
+        return users;
     }
 
     public static ArrayList<Language> getLanguages() {
        
         ArrayList<Language> languages = new ArrayList<>();
         return languages;
+    }
+
+    public static void printUsers(ArrayList<User> users) {
+        for (int i = 0; i < users.size(); i++) {
+            System.out.println(users.get(i));
+        }
     }
 }
 

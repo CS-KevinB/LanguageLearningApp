@@ -16,13 +16,14 @@ public class Story {
      * @param englishStory - list of words for the english story
      * @param spanishStory - list of words for the spanish story
      */
-    public Story(String title){
+    public Story(String title, ArrayList<Word> englishStory, ArrayList<Word> spanishStory){
         this.title = title;
-        this.englishStory = new ArrayList<>();
-        this.spanishStory = new ArrayList<>();
-    }
+        this.englishStory = englishStory;
+        this.spanishStory = spanishStory;
+    } 
+    
     /**
-     * Removes all the words from the story
+    * Removes all the words from the story
     * @return - void
     */
     public void remvoveWords(){

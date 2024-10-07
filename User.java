@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class User extends UserList {
     private UUID id;
-    private String firstName;
+    private static String firstName;
     private String lastName;
     private String username;
     private String password;
@@ -56,7 +56,7 @@ public class User extends UserList {
         points += numOfPoints;
     }
 
-    public String getFirstName() {
+    public static String getFirstName() {
         return firstName;
     }
 

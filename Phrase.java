@@ -27,14 +27,25 @@ public class Phrase {
         this.translatedPhrase = null;
     }
 
+    /**
+     * Getter method for english phrase
+     * @return - list of words for the english phrase
+     */
     public ArrayList<String> getEnglishPhrase(){
         return null;
     }
 
+    /**
+     * Getter method for translated phrase
+     * @return - list of words for the translated phrase
+     */
     public ArrayList<String> getTranslatedPhrase(){
         return null;
     }
-
+    /**
+     * Gets the Feedback 
+     * @return feedback
+     */
     public String getFeedback() {
         return feedback;
     }

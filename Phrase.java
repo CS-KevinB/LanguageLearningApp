@@ -11,6 +11,14 @@ public class Phrase {
     private ArrayList<Word> englishPhrase;
     private ArrayList<Word> translatedPhrase;
 
+    /**
+     * Constructor for phrase class
+     * @param phrase - list of words for the phrase
+     * @param feedback - feedback for the phrase
+     * @param englishPhrase - list of words for the english phrase
+     * @param translatedPhrase - list of words for the translated phrase
+     */
+
     public Phrase(Phrase transletPhrase, String feedback){
 
         this.phrase = new ArrayList<>();

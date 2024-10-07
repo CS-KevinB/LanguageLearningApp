@@ -1,39 +1,44 @@
 import java.io.IOException;
 import java.util.ArrayList;
+
+import netscape.javascript.JSObject;
 /**
- * FileWriter class saves list of registered users
+ * DataWriter class saves list of registered users
  * @author Risha Patel
  */
 
 public class DataWriter extends DataConstants {
-    public void saveUser(ArrayList<User> users){
-       User userList = User.getInstance();
-       ArrayList<Use> UserList = new ArrayList<>();
-       JSONArray jsonUsers = new JSONArray();    
+
+    public static boolean saveUsers(ArrayList<User> users) {
+       JSONArray jsonUsers = new JSONArray(); 
 
     for(int i = 0; i < users.size(); i++){
-        jsonUsers.add(users.get(i).toJSON());
+        JSObject user = getUserJSON(users.get(i));
+        jsonUsers.add(user);
     }
 
-    try(DataWriter file = new DataWriter("users.json")){
-    file.write(jsonUsers.toJSONString());
-    file.flush();
+    try(DataWriter file = new DataWriter("user.json")){
+        file.write(jsonUsers.toJSONString());
+        file.flush();
+        return true;
 
     } catch(IOException e){
-    e.printStackTrace();
-        }
-	}
+        e.printStackTrace();
+        return false;
+    }
+}
 	
 	public static JSONObject getUserJSON(User user) {
 		JSONObject userDetails = new JSONObject();
 		userDetails.put(USER_ID, user.getId().toString());
-		userDetails.put(USER_USER_NAME, user.getUserName());
 		userDetails.put(USER_FIRST_NAME, user.getFirstName());
 		userDetails.put(USER_LAST_NAME, user.getLastName());
 		userDetails.put(USER_EMAIL, user.getEmail());
         userDetails.put(USER_BIRTHDAY, user.getBirthday());
-        userDetails.put(USER_PASSWORD, user.getPassword());
-             
+        userDetails.put(USER_AVATAR, user.getAvatar().getImage());
+        userDetails.put(USER_POINTS, user.getPoints());
+        userDetails.put(USER_PROGRESS, user.getProgress().getProgress());
+        userDetails.put(FRIENDS_ID, user.getFriends());
         return userDetails;
 	}
 

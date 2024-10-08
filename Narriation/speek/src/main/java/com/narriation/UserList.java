@@ -1,8 +1,10 @@
 package com.narriation;
+import java.sql.Date;
 /**
  * @author kinsawills
  */
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class UserList {
     private static UserList userList;
@@ -18,10 +20,10 @@ public class UserList {
         return userList;
     }
 
-    public boolean addUser(String firstName, String lastName, String username, String emailAddress, int[] birthday, Avatar avatar) {
+    public boolean addUser(UUID id, String firstName, String lastName, String username, String password, String emailAddress, Date birthday, Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
         if(getUser(username) == null)
             return false;
-        users.add(new User(username, firstName, lastName, emailAddress, birthday, avatar));
+        users.add(new User(id, firstName, lastName, username, password, emailAddress, birthday, avatar, friends, points, userProgress));
         return true;
     }
 

@@ -9,7 +9,7 @@ public class UserList {
     private ArrayList<User> users;
 
     private UserList() {
-        userList = DataLoader.getUsers();
+        users = DataLoader.getUsers();
     }
 
     public static UserList getInstance() {
@@ -21,7 +21,7 @@ public class UserList {
     public boolean addUser(String firstName, String lastName, String username, String emailAddress, int[] birthday, Avatar avatar) {
         if(getUser(username) == null)
             return false;
-        userList.add(new User(username, firstName, lastName, emailAddress, birthday, avatar));
+        users.add(new User(username, firstName, lastName, emailAddress, birthday, avatar));
         return true;
     }
 
@@ -38,6 +38,6 @@ public class UserList {
     }
 
     public boolean saveUsers() {
-        return DataWriter.saveUsers(userList);
+        return DataWriter.saveUsers(users);
     }
 }

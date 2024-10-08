@@ -10,7 +10,7 @@ import java.util.UUID;
  */
 
 
-public class User extends UserList {
+public class User {
     private UUID id;
     private static String firstName;
     private String lastName;

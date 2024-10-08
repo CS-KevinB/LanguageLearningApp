@@ -16,6 +16,31 @@ public class Avatar {
         this.hat = HatOptions.NONE;
     }
 
+    public Avatar(String character, String hat) {
+        if (character == "LLAMA") {
+            this.character = CharacterOptions.LLAMA;
+        }
+        if (character == "GIRAFFE") {
+            this.character = CharacterOptions.GIRAFFE;
+        }
+        if (character == "LIZARD") {
+            this.character = CharacterOptions.LIZARD;
+        }
+        if (hat == "NONE") {
+            this.hat = HatOptions.NONE;
+        }
+        if (hat == "SOMBRERO") {
+            this.hat = HatOptions.SOMBRERO;
+        }
+        if (hat == "CORDOBES") { 
+            this.hat = HatOptions.CORDOBES;
+        }
+        if (hat == "TXAPELA") {
+            this.hat = HatOptions.TXAPELA;
+        }
+
+    }
+
     /**
      * Returns this avatar's character option
      * @return Avatar's character option

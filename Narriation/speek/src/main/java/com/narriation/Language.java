@@ -8,15 +8,19 @@ import java.util.UUID;
 public class Language {
     private UUID id;
     private String nameOfLanguage;
-    private Arraylist<Lesson> lessons;
+    private ArrayList<Lesson> lessons;
     private ArrayList<Word> words;
     private ArrayList<Phrase> phrases;
 
-    public Language(String nameOfLanguage, ArrayList<Lesson> lessons, ArrayList<Word> words, ArrayList<Phrase> phrases) {
-
+    public Language(UUID id, String nameOfLanguage, ArrayList<Lesson> lessons, ArrayList<Word> words, ArrayList<Phrase> phrases) {
+        this.id = id;
+        this.nameOfLanguage = nameOfLanguage;
+        this.lessons = lessons;
+        this.words = words;
+        this.phrases = phrases;
     }
 
     public ArrayList<Lesson> getLessons() {
-        
+        return lessons;
     }
 }

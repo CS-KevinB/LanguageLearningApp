@@ -12,15 +12,15 @@ import org.json.simple.JSONObject;
 public class DataWriter extends DataConstants {
 
     public static boolean saveUsers(ArrayList<User> users) {
-    UserList userList = UserList.getInstance();
+    UserList user = UserList.getInstance();
+    ArrayList<User> userList = user.getUser();
     JSONArray jsonUsers = new JSONArray(); 
 
-    for(int i = 0; i < users.size(); i++){
-        JSONObject user = getUserJSON(users.get(i));
-        jsonUsers.add(getUserJSON(users.get(i)));
+    for(int i = 0; i < userList.size(); i++){
+        jsonUsers.add(getUserJSON(userList.get(i)));
     }
 
-    try (DataWriter file = new DataWriter(user.json)) {
+    try (DataWriter file = new DataWriter("user.json")) {
 
         file.write(jsonUsers.toJSONString);
         file.flush();
@@ -37,6 +37,7 @@ public class DataWriter extends DataConstants {
 		userDetails.put(USER_ID, user.getUsername().toString());
 		userDetails.put(USER_FIRST_NAME, user.getFirstName());
 		userDetails.put(USER_LAST_NAME, user.getLastName());
+        userDetails.put(USER_PASSWORD, user.getPassword());
 		userDetails.put(USER_EMAIL, user.getEmailAddress());
         userDetails.put(USER_BIRTHDAY, user.getBirthday());
         userDetails.put(USER_AVATAR, user.getAvatar().getImage());

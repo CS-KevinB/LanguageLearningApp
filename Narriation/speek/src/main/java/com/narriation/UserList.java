@@ -20,10 +20,13 @@ public class UserList {
         return userList;
     }
 
-    public boolean addUser(UUID id, String firstName, String lastName, String username, String password, String emailAddress, Date birthday, Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
+    public boolean addUser(UUID id, String firstName, String lastName, String username,
+     String password, String emailAddress, Date birthday, Avatar avatar, 
+     ArrayList<User> friends, int points, UserProgress userProgress) {
         if(getUser(username) == null)
             return false;
-        users.add(new User(id, firstName, lastName, username, password, emailAddress, birthday, avatar, friends, points, userProgress));
+        users.add(new User(id, firstName, lastName, username, password, emailAddress,
+         birthday, avatar, friends, points, userProgress));
         return true;
     }
 

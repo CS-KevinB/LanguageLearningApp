@@ -38,8 +38,11 @@ public class UserList {
         return null;
     }
 
-    public boolean editUser(UUID id, String firstName, String lastName, String username, String password, String emailAddress, Date birthday, Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
-        User user = new User(id, firstName, lastName, username, password, emailAddress, birthday, avatar, friends, points, userProgress);
+    public boolean editUser(UUID id, String firstName, String lastName, String username,
+     String password, String emailAddress, Date birthday, Avatar avatar,
+      ArrayList<User> friends, int points, UserProgress userProgress) {
+        User user = new User(id, firstName, lastName, username, password,
+         emailAddress, birthday, avatar, friends, points, userProgress);
         for (int i = 0; i < users.size(); i++) {
             if(user.equals(users.get(i))) {
                 users.set(i, user);

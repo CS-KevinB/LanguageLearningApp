@@ -16,6 +16,7 @@ public class Avatar {
         this.hat = HatOptions.NONE;
     }
 
+    // Change this later
     public Avatar(String character, String hat) {
         if (character == "LLAMA") {
             this.character = CharacterOptions.LLAMA;
@@ -88,5 +89,9 @@ public class Avatar {
      */
     public String getImagePath() {
         return "";
+    }
+
+    public String toString(){
+        return this.character.toString() + " " + this.hat.toString();
     }
 }

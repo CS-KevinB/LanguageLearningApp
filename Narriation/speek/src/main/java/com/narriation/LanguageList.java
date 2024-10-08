@@ -12,7 +12,9 @@ public class LanguageList {
     }
 
     public static LanguageList getInstance() {
-        
+        if (languageList == null)
+            languageList = new LanguageList();
+        return languageList;
     }
 
     public ArrayList<Language> getLanguages() {

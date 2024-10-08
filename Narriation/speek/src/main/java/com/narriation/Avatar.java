@@ -90,4 +90,8 @@ public class Avatar {
     public String getImagePath() {
         return "";
     }
+
+    public String toString(){
+        return this.character.toString() + " " + this.hat.toString();
+    }
 }

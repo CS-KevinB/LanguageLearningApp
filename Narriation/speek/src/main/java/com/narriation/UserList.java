@@ -20,10 +20,18 @@ public class UserList {
         return userList;
     }
 
-    public boolean addUser(UUID id, String firstName, String lastName, String username, String password, String emailAddress, Date birthday, Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
+    public boolean addUser(UUID id, String firstName, String lastName, String username,
+     String password, String emailAddress, Date birthday, Avatar avatar, 
+     ArrayList<User> friends, int points, UserProgress userProgress) {
+        for (User user : users) {
+            if(user.getUsername().equals(username)
+             || user.getEmailAddress().equals(emailAddress))
+                return false;
+        }
         if(getUser(username) == null)
             return false;
-        users.add(new User(id, firstName, lastName, username, password, emailAddress, birthday, avatar, friends, points, userProgress));
+        users.add(new User(id, firstName, lastName, username, password, emailAddress,
+         birthday, avatar, friends, points, userProgress));
         return true;
     }
 
@@ -35,7 +43,17 @@ public class UserList {
         return null;
     }
 
-    public boolean editUser(String firstName, String lastName, String username, String emailAddress, int[] birthday, Avatar avatar) {
+    public boolean editUser(UUID id, String firstName, String lastName, String username,
+     String password, String emailAddress, Date birthday, Avatar avatar,
+      ArrayList<User> friends, int points, UserProgress userProgress) {
+        User user = new User(id, firstName, lastName, username, password,
+         emailAddress, birthday, avatar, friends, points, userProgress);
+        for (int i = 0; i < users.size(); i++) {
+            if(user.equals(users.get(i))) {
+                users.set(i, user);
+                return true;
+            }  
+        }
         return false;
     }
 

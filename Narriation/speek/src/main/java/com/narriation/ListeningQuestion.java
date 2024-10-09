@@ -77,7 +77,6 @@ public class ListeningQuestion implements Question{
     
     
     public  void playAudio(){
-        System.out.println(getQuestion());
         Narriator.playSound(getQuestion());
     }
 }

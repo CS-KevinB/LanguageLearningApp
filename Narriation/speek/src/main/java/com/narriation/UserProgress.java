@@ -70,6 +70,7 @@ public class UserProgress {
         return null;
     }
 
+<<<<<<< HEAD
     @Override
     public String toString() {
         return "Lesson = " + this.currentLesson + " | Exercise = " + this.currentExercise;
@@ -78,5 +79,15 @@ public class UserProgress {
     public Object getProgress() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getProgress'");
+=======
+    public Object getProgress() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getProgress'");
+    }
+    
+    @Override
+    public String toString() {
+        return "Lesson = " + this.currentLesson + " | Exercise = " + this.currentExercise;
+>>>>>>> 5c3f97505fbd65c5145c67e1a8afa42bb3b73d79
     }
 }

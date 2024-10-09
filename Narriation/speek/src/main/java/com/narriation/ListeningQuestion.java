@@ -9,17 +9,6 @@ public class ListeningQuestion implements Question{
     private Phrase phrase;
     private UUID id;
 
-    public static void main(String[] args) {
-        ArrayList<Word> englishPhrase = new ArrayList<>();
-        englishPhrase.add(new Word("Hello", "Hola", "O-la", null, null));
-        ArrayList<Word> translatedPhrase = new ArrayList<>();
-        translatedPhrase.add(new Word("Hello", "Hola", "O-la", null, null));
-        Phrase phrase = new Phrase("Goodbye", englishPhrase, translatedPhrase);
-        ListeningQuestion question = new ListeningQuestion(phrase, null);
-        question.playAudio();
-
-    }
-
     /**
      * Creates a public listening question for the user
      * @param phrase needs a phrase in order to set up the question
@@ -41,7 +30,7 @@ public class ListeningQuestion implements Question{
             if (questionBuilder.length() > 0) {
                 questionBuilder.append(" ");  // Add a space between words
             }
-            questionBuilder.append(word.toString());  // Use toString() to get the word's string representation
+            questionBuilder.append(word.getTranslatedWord());  // Use toString() to get the word's string representation
         }
         
         return questionBuilder.toString();
@@ -71,21 +60,12 @@ public class ListeningQuestion implements Question{
      * @return returns a boolean if the answer is correct or not
      */
     public boolean isCorrect(String answer) {
-        StringBuilder translatedPhraseString = new StringBuilder();
-        
-        for (Word word : phrase.getTranslatedPhrase()) {
-            if (translatedPhraseString.length() > 0) {
-                translatedPhraseString.append(" ");  
-            }
-            translatedPhraseString.append(word.toString()); 
-        }
-        
-        return translatedPhraseString.toString().equalsIgnoreCase(answer);
+        return getAnswer().equals(answer);
     }
     
     
     
     public  void playAudio(){
-        Narriator.playSound(phrase.getTranslatedPhrase().toString());
+        Narriator.playSound(getQuestion());
     }
 }

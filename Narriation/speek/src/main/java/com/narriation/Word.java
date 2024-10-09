@@ -34,6 +34,10 @@ public class Word {
         return englishWord;
     }
 
+    public String getTranslatedWord(){
+        return translatedWord;
+    }
+
     /**
      * Gets the pronunciation of whatever word
      * @return returns how to say it

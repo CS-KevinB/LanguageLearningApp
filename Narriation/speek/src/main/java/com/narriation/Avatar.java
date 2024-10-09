@@ -16,30 +16,14 @@ public class Avatar {
         this.hat = HatOptions.NONE;
     }
 
-    // Change this later
+    /**
+     * Parameterized constructor for an avatar
+     * @param character String value of corresponding CharacterOptions enum
+     * @param hat String value of corresponding HatOptions enum
+     */
     public Avatar(String character, String hat) {
-        if (character.equals("LLAMA")) {
-            this.character = CharacterOptions.LLAMA;
-        }
-        if (character.equals("GIRAFFE")) {
-            this.character = CharacterOptions.GIRAFFE;
-        }
-        if (character.equals("LIZARD")) {
-            this.character = CharacterOptions.LIZARD;
-        }
-        if (hat.equals("NONE")) {
-            this.hat = HatOptions.NONE;
-        }
-        if (hat.equals("SOMBRERO")) {
-            this.hat = HatOptions.SOMBRERO;
-        }
-        if (hat.equals("CORDOBES")) { 
-            this.hat = HatOptions.CORDOBES;
-        }
-        if (hat.equals("TXAPELA")) {
-            this.hat = HatOptions.TXAPELA;
-        }
-
+        this.character = CharacterOptions.getValue(character);
+        this.hat = HatOptions.getValue(hat);
     }
 
     /**
@@ -91,6 +75,10 @@ public class Avatar {
         return "";
     }
 
+    /**
+     * Override toString to return character configuration
+     * @return Returns character configuration in the format "[CHARACTER] [HAT]"
+     */
     public String toString(){
         return this.character.toString() + " " + this.hat.toString();
     }

@@ -1,20 +1,22 @@
 package com.narriation;
+
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * The RegisteredUser class extends UserList and contains list of registered users for
+ * The RegisteredUser class extends UserList and contains list of registered
+ * users for
  * Language learning app
- * @author Risha Patel 
+ * 
+ * @author Risha Patel
  */
-
 
 public class User {
     private UUID id;
     private static String firstName;
     private String lastName;
-    private String username;
+    private String userName;
     private String password;
     private String emailAddress;
     private Date birthday;
@@ -24,13 +26,13 @@ public class User {
     private int points;
     private UserProgress userProgress;
 
-    public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
-     Date birthday, Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
-     
+    public User(UUID id, String firstName, String lastName, String userName, String password, String emailAddress,
+            Date birthday, Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
+
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.username = username;
+        this.userName = userName;
         this.emailAddress = emailAddress;
         this.password = password;
         this.birthday = birthday;
@@ -39,6 +41,11 @@ public class User {
         this.friends = new ArrayList<>();
         this.points = 0;
         this.userProgress = new UserProgress();
+    }
+
+    public User(String firstname, String lastname) {
+        this.firstName = firstname;
+        this.lastName = lastname;
     }
 
     public void addLanguage(Language language) {
@@ -66,7 +73,7 @@ public class User {
     }
 
     public String getUsername() {
-        return username;
+        return userName;
     }
 
     public String getPassword() {
@@ -98,14 +105,19 @@ public class User {
     }
 
     public void setAvatar(CharacterOptions character, HatOptions hat) {
-        if(avatar != null) {
+        if (avatar != null) {
             avatar.setCharacter(character);
             avatar.setHat(hat);
         }
     }
-    
+
     public String toString() {
-        return this.firstName + " " + this.lastName + " " + this.username + "/n";
-    }    
-    
+        return this.firstName + " " + this.lastName + " " + this.userName + "/n";
+    }
+
+    public static void add(User user1) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'add'");
+    }
+
 }

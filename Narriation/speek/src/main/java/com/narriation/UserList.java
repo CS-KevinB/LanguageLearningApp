@@ -1,4 +1,5 @@
 package com.narriation;
+
 import java.sql.Date;
 /**
  * @author kinsawills
@@ -15,49 +16,54 @@ public class UserList {
     }
 
     public static UserList getInstance() {
-        if(userList == null)
+        if (userList == null)
             userList = new UserList();
         return userList;
     }
 
     public boolean addUser(UUID id, String firstName, String lastName, String username,
-     String password, String emailAddress, Date birthday, Avatar avatar, 
-     ArrayList<User> friends, int points, UserProgress userProgress) {
+            String password, String emailAddress, Date birthday, Avatar avatar,
+            ArrayList<User> friends, int points, UserProgress userProgress) {
         for (User user : users) {
-            if(user.getUsername().equals(username)
-             || user.getEmailAddress().equals(emailAddress))
+            if (user.getUsername().equals(username)
+                    || user.getEmailAddress().equals(emailAddress))
                 return false;
         }
-        if(getUser(username) == null)
+        if (getUser(username) == null)
             return false;
         users.add(new User(id, firstName, lastName, username, password, emailAddress,
-         birthday, avatar, friends, points, userProgress));
+                birthday, avatar, friends, points, userProgress));
         return true;
     }
 
     public User getUser(String username) {
         for (User user : users) {
-            if(user.getUsername().equals(username))
+            if (user.getUsername().equals(username))
                 return user;
         }
         return null;
     }
 
     public boolean editUser(UUID id, String firstName, String lastName, String username,
-     String password, String emailAddress, Date birthday, Avatar avatar,
-      ArrayList<User> friends, int points, UserProgress userProgress) {
+            String password, String emailAddress, Date birthday, Avatar avatar,
+            ArrayList<User> friends, int points, UserProgress userProgress) {
         User user = new User(id, firstName, lastName, username, password,
-         emailAddress, birthday, avatar, friends, points, userProgress);
+                emailAddress, birthday, avatar, friends, points, userProgress);
         for (int i = 0; i < users.size(); i++) {
-            if(user.equals(users.get(i))) {
+            if (user.equals(users.get(i))) {
                 users.set(i, user);
                 return true;
-            }  
+            }
         }
         return false;
     }
 
     public boolean saveUsers() {
         return DataWriter.saveUsers(users);
+    }
+
+    public ArrayList<User> getUser() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getUser'");
     }
 }

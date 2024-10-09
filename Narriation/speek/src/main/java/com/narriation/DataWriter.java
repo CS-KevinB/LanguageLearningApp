@@ -53,12 +53,12 @@ public class DataWriter extends DataConstants {
 
     public static void main(String[] args) {
         ArrayList<User> users = new ArrayList<>();
-        User user1 = new User("Risha", "Doe");
+        User user1 = new User("Jane", "Doe");
         users.add(user1);
 
         boolean addUser = DataWriter.saveUsers(users);
         if (addUser) {
-            System.out.println("User added successfully");
+            System.out.println(user1 + "User added successfully");
         } else {
             System.out.println("Error adding user");
         }

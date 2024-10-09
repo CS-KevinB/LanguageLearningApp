@@ -40,9 +40,9 @@ public class DataLoader extends DataConstants {
                 String birthday = (String) personJSON.get(USER_BIRTHDAY);
                 Avatar avatar = convertJSONToAvatar((JSONObject) personJSON.get(USER_AVATAR));
                 UserProgress userProgress = convertJSONToUserProgress((JSONObject) personJSON.get(USER_PROGRESS));
+                int points = Math.toIntExact((long) personJSON.get(USER_POINTS));
 
                 // ArrayList<User> friends = (ArrayList<User>) personJSON.get(FRIENDS_ID);
-                // int points = (int) personJSON.get(USER_POINTS);
                 // UserProgress userProgress = (UserProgress) personJSON.get(USER_PROGRESS);
 
                 // REMOVE LATER
@@ -54,6 +54,7 @@ public class DataLoader extends DataConstants {
                 System.out.println(birthday);
                 System.out.println(avatar);
                 System.out.println(userProgress);
+                System.out.println(points);
                 // --------
 
                 // users.add(new User(id, firstName, lastName, username, email, birthday, avatar, friends, points, userProgress));
@@ -65,6 +66,7 @@ public class DataLoader extends DataConstants {
         }
         return null;
     }
+
 
     public static Avatar convertJSONToAvatar(JSONObject json) {
         String character = (String) json.get(CHARACTER);

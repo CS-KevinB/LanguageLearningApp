@@ -1,12 +1,14 @@
 package com.narriation;
+
 /**
  * @author kinsawills
  */
 import java.util.ArrayList;
+
 public class LanguageList {
     private static LanguageList languageList;
     private ArrayList<Language> languages;
-    
+
     private LanguageList() {
 
     }

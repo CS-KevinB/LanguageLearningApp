@@ -37,7 +37,7 @@ public class Phrase {
      * 
      * @return - list of words for the english phrase
      */
-    public ArrayList<String> getEnglishPhrase() {
+    public ArrayList<Word> getEnglishPhrase() {
         return null;
     }
 
@@ -46,7 +46,7 @@ public class Phrase {
      * 
      * @return - list of words for the translated phrase
      */
-    public ArrayList<String> getTranslatedPhrase() {
+    public ArrayList<Word> getTranslatedPhrase() {
         return null;
     }
 

@@ -22,16 +22,34 @@ public class WritingQuestion implements Question{
      * joins the english phrases together and separates them by spaces
      * @return returns the new question to the user to be answered
      */
-    public String getQuestion(){
-        return String.join(" ", phrase.getEnglishPhrase());
+    public String getQuestion() {
+        StringBuilder questionBuilder = new StringBuilder();
+        
+        for (Word word : phrase.getEnglishPhrase()) {
+            if (questionBuilder.length() > 0) {
+                questionBuilder.append(" ");  // Add a space between words
+            }
+            questionBuilder.append(word.getTranslatedWord());  // Use toString() to get the word's string representation
+        }
+        
+        return questionBuilder.toString();
     }
 
     /**
      * joins the answer phrase together and separates the words with spaces
      * @return returns the answer
      */
-    public String getAnswer(){
-        return String.join(" ", phrase.getTranslatedPhrase());
+    public String getAnswer() {
+        StringBuilder answerBuilder = new StringBuilder();
+        
+        for (Word word : phrase.getTranslatedPhrase()) {
+            if (answerBuilder.length() > 0) {
+                answerBuilder.append(" ");  // Add a space between words
+            }
+            answerBuilder.append(word.toString());  // Use toString() to get the word's string representation
+        }
+        
+        return answerBuilder.toString();
     }
 
     /**
@@ -39,7 +57,7 @@ public class WritingQuestion implements Question{
      * @param answer requires the user answer in order to compare it to the actual answer
      * @return returns a boolean if the answer is correct or not
      */
-    public boolean isCorrect(String answer){
-        return String.join(" ", phrase.getTranslatedPhrase()).equalsIgnoreCase(answer);
+    public boolean isCorrect(String answer) {
+        return getAnswer().equals(answer);
     }
 }

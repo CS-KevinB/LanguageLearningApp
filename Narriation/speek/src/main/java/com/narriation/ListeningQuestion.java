@@ -9,17 +9,6 @@ public class ListeningQuestion implements Question{
     private Phrase phrase;
     private UUID id;
 
-    public static void main(String[] args) {
-        ArrayList<Word> englishPhrase = new ArrayList<>();
-        englishPhrase.add(new Word("Hello", "Hola", "O-la", null, null));
-        ArrayList<Word> translatedPhrase = new ArrayList<>();
-        translatedPhrase.add(new Word("Hello", "Hola", "O-la", null, null));
-        Phrase phrase = new Phrase("Goodbye", englishPhrase, translatedPhrase);
-        ListeningQuestion question = new ListeningQuestion(phrase, null);
-        question.playAudio();
-
-    }
-
     /**
      * Creates a public listening question for the user
      * @param phrase needs a phrase in order to set up the question

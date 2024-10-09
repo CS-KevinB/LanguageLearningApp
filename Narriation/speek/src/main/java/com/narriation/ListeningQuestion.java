@@ -41,7 +41,7 @@ public class ListeningQuestion implements Question{
             if (questionBuilder.length() > 0) {
                 questionBuilder.append(" ");  // Add a space between words
             }
-            questionBuilder.append(word.toString());  // Use toString() to get the word's string representation
+            questionBuilder.append(word.getTranslatedWord());  // Use toString() to get the word's string representation
         }
         
         return questionBuilder.toString();
@@ -71,21 +71,13 @@ public class ListeningQuestion implements Question{
      * @return returns a boolean if the answer is correct or not
      */
     public boolean isCorrect(String answer) {
-        StringBuilder translatedPhraseString = new StringBuilder();
-        
-        for (Word word : phrase.getTranslatedPhrase()) {
-            if (translatedPhraseString.length() > 0) {
-                translatedPhraseString.append(" ");  
-            }
-            translatedPhraseString.append(word.toString()); 
-        }
-        
-        return translatedPhraseString.toString().equalsIgnoreCase(answer);
+        return getAnswer().equals(answer);
     }
     
     
     
     public  void playAudio(){
-        Narriator.playSound(phrase.getTranslatedPhrase().toString());
+        System.out.println(getQuestion());
+        Narriator.playSound(getQuestion());
     }
 }

@@ -1,6 +1,8 @@
 package com.narriation;
+
 /**
  * Defines a class for user progress
+ * 
  * @author christianruff
  */
 public class UserProgress {
@@ -14,9 +16,10 @@ public class UserProgress {
         this.currentLesson = null;
         this.currentExercise = null;
     }
-    
+
     /**
      * Returns if there is a next exercise
+     * 
      * @return TRUE if there is a next exercise, FALSE otherwise
      */
     public boolean hasNextExercises() {
@@ -25,6 +28,7 @@ public class UserProgress {
 
     /**
      * Returns if there is a next lesson
+     * 
      * @return TRUE if there is a next lesson, FALSE otherwise
      */
     public boolean hasNextLesson() {
@@ -33,6 +37,7 @@ public class UserProgress {
 
     /**
      * Returns the next lesson
+     * 
      * @return The next lesson
      */
     public Lesson nextLesson() {
@@ -41,9 +46,15 @@ public class UserProgress {
 
     /**
      * Returns the next exercise
+     * 
      * @return The next exercise
      */
     public Exercise nextExercise() {
         return null;
+    }
+
+    public Object getProgress() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getProgress'");
     }
 }

@@ -10,7 +10,6 @@ public abstract class DataConstants {
     protected static final String USER_AVATAR = "avatar";
     protected static final String CHARACTER = "character";
     protected static final String HAT = "hat";
-    protected static final String AVATAR_IMAGE_PATH = "avatarImagePath";
     protected static final String LANGUAGE_ID = "lanugageid";
     protected static final String FRIENDS_ID = "friendsid";
     protected static final String USER_POINTS = "points";

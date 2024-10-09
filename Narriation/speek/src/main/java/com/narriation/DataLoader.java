@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 
 /**
  * The FileReader class reads users and languages 
+ * @author Christian Ruff
  * @author Risha Patel
  */
 
@@ -37,11 +38,12 @@ public class DataLoader extends DataConstants {
                 String username = (String) personJSON.get(USER_USERNAME);
                 String email = (String) personJSON.get(USER_EMAIL);
                 String birthday = (String) personJSON.get(USER_BIRTHDAY);
-                // Avatar avatar = (Avatar) personJSON.get(USER_AVATAR);
+                Avatar avatar = convertJSONToAvatar((JSONObject) personJSON.get(USER_AVATAR));
+                UserProgress userProgress = convertJSONToUserProgress((JSONObject) personJSON.get(USER_PROGRESS));
+
                 // ArrayList<User> friends = (ArrayList<User>) personJSON.get(FRIENDS_ID);
                 // int points = (int) personJSON.get(USER_POINTS);
                 // UserProgress userProgress = (UserProgress) personJSON.get(USER_PROGRESS);
-                JSONObject avatar = (JSONObject) personJSON.get(USER_AVATAR);
 
                 // REMOVE LATER
                 // System.out.println(id);
@@ -50,8 +52,8 @@ public class DataLoader extends DataConstants {
                 System.out.println(username);
                 System.out.println(email);
                 System.out.println(birthday);
-                // System.out.println(points);
-                System.out.println(convertJSONToAvatar(avatar));
+                System.out.println(avatar);
+                System.out.println(userProgress);
                 // --------
 
                 // users.add(new User(id, firstName, lastName, username, email, birthday, avatar, friends, points, userProgress));
@@ -68,6 +70,12 @@ public class DataLoader extends DataConstants {
         String character = (String) json.get(CHARACTER);
         String hat = (String) json.get(HAT);
         return new Avatar(character, hat);
+    }
+
+    public static UserProgress convertJSONToUserProgress(JSONObject json) {
+        int currentLesson = Math.toIntExact( (long) json.get(CURRENT_LESSON) );
+        int currentExercise = Math.toIntExact( (long) json.get(CURRENT_EXERCISE) );
+        return new UserProgress(currentLesson, currentExercise);
     }
 
     public static ArrayList<Language> getLanguages() {

@@ -9,8 +9,7 @@
         "birthday": "2003-05-14",
         "avatar": {
             "character": "LLAMA",
-            "hat": "NONE",
-            "avatarImagePath": "Image2.png"
+            "hat": "NONE"
         },
         "languages": [ "3085ad7f-139c-4d3e-85e6-52cc0d028a29" ],
         "friends": [
@@ -20,8 +19,8 @@
         ],
         "points": 0,
         "userProgress": {
-            "currentLesson": 0,
-            "currentExercise": 0
+            "currentLesson": 5,
+            "currentExercise": 3
         }
     },
     {
@@ -34,8 +33,7 @@
         "birthday": "1961-08-21",
         "avatar": {
             "character": "GIRAFFE",
-            "hat": "NONE",
-            "avatarImagePath": "Image1.png"
+            "hat": "NONE"
         },
         "languages": [ "3085ad7f-139c-4d3e-85e6-52cc0d028a29" ],
         "friends": [
@@ -45,8 +43,8 @@
         ],
         "points": 0,
         "userProgress": {
-            "currentLesson": 0,
-            "currentExercise": 0
+            "currentLesson": 1,
+            "currentExercise": 1
         }
     },
 
@@ -60,8 +58,7 @@
         "birthday": "2000-09-11",
         "avatar": {
             "character": "LIZARD",
-            "hat": "NONE",
-            "avatarImagePath": "Image3.png"
+            "hat": "NONE"
         },
         "languages": [ "3085ad7f-139c-4d3e-85e6-52cc0d028a29" ],
         "friends": [
@@ -72,8 +69,8 @@
         ],
         "points": 0,
         "userProgress": {
-            "currentLesson": 0,
-            "currentExercise": 0
+            "currentLesson": 3,
+            "currentExercise": 4
         }
     }
 ]

@@ -6,15 +6,31 @@ package com.narriation;
  * @author christianruff
  */
 public class UserProgress {
-    private Lesson currentLesson;
-    private Exercise currentExercise;
+    private int currentLesson;
+    private int currentExercise;
 
     /**
      * Constructs a new UserProgress object
      */
     public UserProgress() {
-        this.currentLesson = null;
-        this.currentExercise = null;
+        this.currentLesson = 1;
+        this.currentExercise = 1;
+    }
+
+    /**
+     * Constructs a new UserProgress object
+     * @param currentLesson Position of current lesson in array
+     * @param currentExercise Position of current exercise in array
+     */
+    public UserProgress(int currentLesson, int currentExercise) {
+        if (currentLesson > 0)
+            this.currentLesson = currentLesson;
+        else
+            this.currentLesson = 1;
+        if (currentExercise > 0)
+            this.currentExercise = currentExercise;
+        else
+            this.currentExercise = 1;
     }
 
     /**
@@ -53,8 +69,14 @@ public class UserProgress {
         return null;
     }
 
+<<<<<<< HEAD
     public Object getProgress() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getProgress'");
+=======
+    @Override
+    public String toString() {
+        return "Lesson = " + this.currentLesson + " | Exercise = " + this.currentExercise;
+>>>>>>> e9257817674ef3086f177a33e04883a60ccc94f9
     }
 }

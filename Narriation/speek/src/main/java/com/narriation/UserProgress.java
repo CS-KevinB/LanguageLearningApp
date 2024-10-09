@@ -19,7 +19,8 @@ public class UserProgress {
 
     /**
      * Constructs a new UserProgress object
-     * @param currentLesson Position of current lesson in array
+     * 
+     * @param currentLesson   Position of current lesson in array
      * @param currentExercise Position of current exercise in array
      */
     public UserProgress(int currentLesson, int currentExercise) {
@@ -69,14 +70,13 @@ public class UserProgress {
         return null;
     }
 
-<<<<<<< HEAD
-    public Object getProgress() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getProgress'");
-=======
     @Override
     public String toString() {
         return "Lesson = " + this.currentLesson + " | Exercise = " + this.currentExercise;
->>>>>>> e9257817674ef3086f177a33e04883a60ccc94f9
+    }
+
+    public Object getProgress() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getProgress'");
     }
 }

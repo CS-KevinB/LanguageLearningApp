@@ -63,7 +63,6 @@ public class UserList {
     }
 
     public ArrayList<User> getUser() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUser'");
+        return users;
     }
 }

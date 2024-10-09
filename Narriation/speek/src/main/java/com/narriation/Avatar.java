@@ -18,25 +18,25 @@ public class Avatar {
 
     // Change this later
     public Avatar(String character, String hat) {
-        if (character == "LLAMA") {
+        if (character.equals("LLAMA")) {
             this.character = CharacterOptions.LLAMA;
         }
-        if (character == "GIRAFFE") {
+        if (character.equals("GIRAFFE")) {
             this.character = CharacterOptions.GIRAFFE;
         }
-        if (character == "LIZARD") {
+        if (character.equals("LIZARD")) {
             this.character = CharacterOptions.LIZARD;
         }
-        if (hat == "NONE") {
+        if (hat.equals("NONE")) {
             this.hat = HatOptions.NONE;
         }
-        if (hat == "SOMBRERO") {
+        if (hat.equals("SOMBRERO")) {
             this.hat = HatOptions.SOMBRERO;
         }
-        if (hat == "CORDOBES") { 
+        if (hat.equals("CORDOBES")) { 
             this.hat = HatOptions.CORDOBES;
         }
-        if (hat == "TXAPELA") {
+        if (hat.equals("TXAPELA")) {
             this.hat = HatOptions.TXAPELA;
         }
 

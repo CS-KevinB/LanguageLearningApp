@@ -28,9 +28,9 @@ public class ListeningQuestion implements Question{
         
         for (Word word : phrase.getEnglishPhrase()) {
             if (questionBuilder.length() > 0) {
-                questionBuilder.append(" ");  // Add a space between words
+                questionBuilder.append(" ");  
             }
-            questionBuilder.append(word.getTranslatedWord());  // Use toString() to get the word's string representation
+            questionBuilder.append(word.getTranslatedWord());  
         }
         
         return questionBuilder.toString();
@@ -45,9 +45,9 @@ public class ListeningQuestion implements Question{
         
         for (Word word : phrase.getTranslatedPhrase()) {
             if (answerBuilder.length() > 0) {
-                answerBuilder.append(" ");  // Add a space between words
+                answerBuilder.append(" "); 
             }
-            answerBuilder.append(word.toString());  // Use toString() to get the word's string representation
+            answerBuilder.append(word.toString());
         }
         
         return answerBuilder.toString();

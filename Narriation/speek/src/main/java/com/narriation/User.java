@@ -135,6 +135,10 @@ public class User {
         return friends;
     }
 
+    public void addFriends(User friend) {
+        this.friends.add(friend);
+    }
+
     public int getPoints() {
         return points;
     }

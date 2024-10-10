@@ -21,19 +21,19 @@ public class UserList {
         return userList;
     }
 
-    public boolean addUser(UUID id, String firstName, String lastName, String username,
+    public User addUser(UUID id, String firstName, String lastName, String username,
             String password, String emailAddress, Date birthday, Avatar avatar,
             ArrayList<User> friends, int points, UserProgress userProgress) {
         for (User user : users) {
             if (user.getUsername().equals(username)
                     || user.getEmailAddress().equals(emailAddress))
-                return false;
+                return user;
         }
         if (getUser(username) == null)
-            return false;
+            return null;
         users.add(new User(id, firstName, lastName, username, password, emailAddress,
                 birthday, avatar, friends, points, userProgress));
-        return true;
+        return null;
     }
 
     public User getUser(String username) {

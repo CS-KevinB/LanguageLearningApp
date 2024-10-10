@@ -24,6 +24,10 @@ public class Language {
         return lessons;
     }
 
+    public String getLanguage () {
+        return nameOfLanguage;
+    }
+
     public UUID getUUID() {
         return id;
     }

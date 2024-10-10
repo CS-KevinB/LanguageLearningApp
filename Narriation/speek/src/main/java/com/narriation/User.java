@@ -85,6 +85,10 @@ public class User {
     }
 
     public boolean setUsername(String newUsername) {
+        if(newUsername.equals("")){
+            System.out.println("Please enter a valid username");
+            return false;
+        }
         for(User user : UserList.getInstance().getUsers()){
             if(user.getUsername().equals(newUsername)){
                 System.out.println("This username is already in use");
@@ -100,6 +104,10 @@ public class User {
     }
 
     public void setPassword(String newPassword){
+        if(newPassword.equals("")){
+            System.out.println("Please enter a valid password");
+            return;
+        }
         this.password = newPassword;
     }
 
@@ -108,6 +116,10 @@ public class User {
     }
 
     public boolean setEmailAddress(String newEmailAddress) {
+        if(newEmailAddress.equals("")){
+            System.out.println("Please enter a valid email address");
+            return false;
+        }
         for(User user : UserList.getInstance().getUsers()){
             if(user.getEmailAddress().equals(newEmailAddress)){
                 System.out.println("This email address is already in use");
@@ -124,6 +136,10 @@ public class User {
     }
 
     public void setBirthday(Date newBirthday) {
+        if(newBirthday == null){
+            System.out.println("Please enter a valid birthday");
+            return;
+        }
         this.birthday = newBirthday;
     }
 
@@ -136,6 +152,10 @@ public class User {
     }
 
     public void addFriends(User friend) {
+        if(friend == null){
+            System.out.println("You have no friends");
+            return;
+        }
         this.friends.add(friend);
     }
 

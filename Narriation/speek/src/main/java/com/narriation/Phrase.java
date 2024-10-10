@@ -19,7 +19,6 @@ public class Phrase {
     /**
      * Constructor for phrase class
      * 
-     * @param phrase           - list of words for the phrase
      * @param feedback         - feedback for the phrase
      * @param englishPhrase    - list of words for the english phrase
      * @param translatedPhrase - list of words for the translated phrase

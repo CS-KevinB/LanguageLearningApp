@@ -99,6 +99,10 @@ public class User {
         return password;
     }
 
+    public void setPassWord(String newPassword){
+        this.password = newPassword;
+    }
+
     public String getEmailAddress() {
         return emailAddress;
     }

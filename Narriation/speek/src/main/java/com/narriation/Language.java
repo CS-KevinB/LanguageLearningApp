@@ -23,4 +23,8 @@ public class Language {
     public ArrayList<Lesson> getLessons() {
         return lessons;
     }
+
+    public UUID getUUID() {
+        return id;
+    }
 }

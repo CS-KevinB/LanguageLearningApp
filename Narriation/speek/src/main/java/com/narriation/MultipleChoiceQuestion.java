@@ -3,8 +3,8 @@ package com.narriation;
  * @author Kevin Buie
  * Creates a Multiple Choice Question for the user
  */
-import java.util.UUID;
 import java.util.ArrayList;
+import java.util.UUID;
 public class MultipleChoiceQuestion implements Question{
     
 

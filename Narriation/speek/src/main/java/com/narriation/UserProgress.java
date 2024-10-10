@@ -74,7 +74,7 @@ public class UserProgress {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getProgress'");
     }
-    
+
     @Override
     public String toString() {
         return "Lesson = " + this.currentLesson + " | Exercise = " + this.currentExercise;

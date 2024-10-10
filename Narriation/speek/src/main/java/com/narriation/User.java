@@ -84,7 +84,7 @@ public class User {
         return userName;
     }
 
-    public boolean setUserName(String newUsername) {
+    public boolean setUsername(String newUsername) {
         for(User user : UserList.getInstance().getUsers()){
             if(user.getUsername().equals(newUsername)){
                 System.out.println("This username is already in use");

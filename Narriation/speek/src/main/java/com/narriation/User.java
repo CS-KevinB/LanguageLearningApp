@@ -84,14 +84,14 @@ public class User {
         return userName;
     }
 
-    public boolean setUserName(String newUserName) {
+    public boolean setUserName(String newUsername) {
         for(User user : UserList.getInstance().getUsers()){
-            if(user.getUsername().equals(newUserName)){
+            if(user.getUsername().equals(newUsername)){
                 System.out.println("This username is already in use");
                 return false;
             }
         }
-        this.userName = newUserName;
+        this.userName = newUsername;
         return true;
     }
 
@@ -99,12 +99,23 @@ public class User {
         return password;
     }
 
-    public void setPassWord(String newPassword){
+    public void setPassword(String newPassword){
         this.password = newPassword;
     }
 
     public String getEmailAddress() {
         return emailAddress;
+    }
+
+    public boolean setEmailAddress(String newEmailAddress) {
+        for(User user : UserList.getInstance().getUsers()){
+            if(user.getEmailAddress().equals(newEmailAddress)){
+                System.out.println("This email address is already in use");
+                return false;
+            }
+        }
+        this.emailAddress = newEmailAddress;
+        return true;
     }
 
 

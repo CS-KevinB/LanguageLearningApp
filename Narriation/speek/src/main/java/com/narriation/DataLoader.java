@@ -2,11 +2,11 @@ package com.narriation;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
 
 /**
  * The FileReader class reads users and languages 
@@ -32,7 +32,7 @@ public class DataLoader extends DataConstants {
             for (int i = 0; i < peopleJSON.size(); i++) {
                 JSONObject personJSON = (JSONObject) peopleJSON.get(i);
 
-                // UUID id = UUID.fromString((String) personJSON.get(USER_ID));
+                UUID id = UUID.fromString((String) personJSON.get(USER_ID));
                 String firstName = (String) personJSON.get(USER_FIRST_NAME);
                 String lastName = (String) personJSON.get(USER_LAST_NAME);
                 String username = (String) personJSON.get(USER_USERNAME);
@@ -46,7 +46,7 @@ public class DataLoader extends DataConstants {
                 // UserProgress userProgress = (UserProgress) personJSON.get(USER_PROGRESS);
 
                 // REMOVE LATER
-                // System.out.println(id);
+                System.out.println(id);
                 System.out.println(firstName);
                 System.out.println(lastName);
                 System.out.println(username);

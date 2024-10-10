@@ -21,6 +21,11 @@ public class UserList {
         return userList;
     }
 
+    // Method to test DataWriter
+    public User addUser(String userName) {
+
+    }
+
     public User addUser(UUID id, String firstName, String lastName, String username,
             String password, String emailAddress, Date birthday, Avatar avatar,
             ArrayList<User> friends, int points, UserProgress userProgress) {
@@ -29,7 +34,7 @@ public class UserList {
                     || user.getEmailAddress().equals(emailAddress))
                 return user;
         }
-        if (getUser(username) == null)
+        if (getUser(username) == null || saveUsers() == false)
             return null;
         users.add(new User(id, firstName, lastName, username, password, emailAddress,
                 birthday, avatar, friends, points, userProgress));
@@ -67,18 +72,23 @@ public class UserList {
     }
 
     // public static void main(String[] args) {
-    //     UserList userList =  UserList.getInstance();
-    //     Avatar avatar = new Avatar();
-    //     UserProgress userProgress = new UserProgress();
-    //     @SuppressWarnings("deprecation")
-    //     Date birthday = new Date(2003, 05, 14);
-    //     ArrayList<User> friends = new ArrayList<>();
-    //     @SuppressWarnings("deprecation")
-    //     Date birthday2 = new Date(2000, 9, 11);
-        
-    //     friends.add(User("081a004b-3306-4975-9520-2437276c600a", "Julie", "Adams", "adamsj", "Jul!e@dam$", "JulieAdams@gmail.com", birthday2, avatar, languages))
+    // UserList userList = UserList.getInstance();
+    // Avatar avatar = new Avatar();
+    // UserProgress userProgress = new UserProgress();
+    // @SuppressWarnings("deprecation")
+    // Date birthday = new Date(2003, 05, 14);
+    // ArrayList<User> friends = new ArrayList<>();
+    // @SuppressWarnings("deprecation")
+    // Date birthday2 = new Date(2000, 9, 11);
 
-    //     System.out.println(userList.addUser("a9fc5c37-053b-479e-9741-7f0bb0e525ae", "Jane", "Doe", "JDOE46", "Columb!aSC", "JaneDoe@gmail.com", birthday, avatar, "3085ad7f-139c-4d3e-85e6-52cc0d028a29", "081a004b-3306-4975-9520-2437276c600a", 0, userProgress));
+    // friends.add(User("081a004b-3306-4975-9520-2437276c600a", "Julie", "Adams",
+    // "adamsj", "Jul!e@dam$", "JulieAdams@gmail.com", birthday2, avatar,
+    // languages))
+
+    // System.out.println(userList.addUser("a9fc5c37-053b-479e-9741-7f0bb0e525ae",
+    // "Jane", "Doe", "JDOE46", "Columb!aSC", "JaneDoe@gmail.com", birthday, avatar,
+    // "3085ad7f-139c-4d3e-85e6-52cc0d028a29",
+    // "081a004b-3306-4975-9520-2437276c600a", 0, userProgress));
 
     // }
 }

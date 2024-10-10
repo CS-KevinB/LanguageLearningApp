@@ -57,7 +57,7 @@ public class DataWriter extends DataConstants {
         users.add(user1);
 
         boolean addUser = DataWriter.saveUsers(users);
-        if (addUser != null) {
+        if (!addUser) {
             System.out.println(user1 + "User added successfully");
         } else {
             System.out.println("Error adding user");

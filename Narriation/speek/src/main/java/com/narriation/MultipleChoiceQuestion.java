@@ -1,12 +1,13 @@
 package com.narriation;
 /**
  * @author Kevin Buie
- * Creates a Matching Question for the user
+ * Creates a Multiple Choice Question for the user
  */
 import java.util.UUID;
 import java.util.ArrayList;
 public class MultipleChoice implements Question{
     
+
     private ArrayList<Word> words;
     private Word correctAnswer;
     private UUID id;
@@ -18,14 +19,14 @@ public class MultipleChoice implements Question{
     }
 
     public String getQuestion(){
-        return null;
+        return correctAnswer.getTranslatedWord();
     }
 
     public String getAnswer(){
-        return null;
+        return correctAnswer.toString();
     }
 
     public boolean isCorrect(String answer){
-        return false;
+        return getAnswer().equals(answer);
     }
 }

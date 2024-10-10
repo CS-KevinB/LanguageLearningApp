@@ -6,6 +6,9 @@ package com.narriation;
  */
 public interface Question {
     public String getQuestion();
-    public String getAnswer();
+    public static String getAnswer() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAnswer'");
+    }
     public boolean isCorrect(String answer);
 }

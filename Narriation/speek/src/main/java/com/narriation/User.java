@@ -14,9 +14,9 @@ import java.util.UUID;
 
 public class User {
     private UUID id;
-    private static String firstName;
+    private String firstName;
     private String lastName;
-    private String userName;
+    private String username;
     private String password;
     private String emailAddress;
     private Date birthday;
@@ -26,13 +26,13 @@ public class User {
     private int points;
     private UserProgress userProgress;
 
-    public User(UUID id, String firstName, String lastName, String userName, String password, String emailAddress,
+    public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
             Date birthday, Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
 
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.username = username;
         this.emailAddress = emailAddress;
         this.password = password;
         this.birthday = birthday;
@@ -43,9 +43,9 @@ public class User {
         this.userProgress = new UserProgress();
     }
 
-    public User(String firstname, String lastname) {
-        this.firstName = firstname;
-        this.lastName = lastname;
+    public User(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public void addLanguage(Language language) {
@@ -81,7 +81,7 @@ public class User {
     }
 
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     public boolean setUsername(String newUsername) {
@@ -95,7 +95,7 @@ public class User {
                 return false;
             }
         }
-        this.userName = newUsername;
+        this.username = newUsername;
         return true;
     }
 
@@ -179,6 +179,6 @@ public class User {
     }
 
     public String toString() {
-        return this.firstName + " " + this.lastName + " " + this.userName + "/n";
+        return this.firstName + " " + this.lastName + " " + this.username + "/n";
     }
 }

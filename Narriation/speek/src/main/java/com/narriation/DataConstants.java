@@ -1,7 +1,7 @@
 package com.narriation;
 public abstract class DataConstants {
     protected static final String USER_FILE_NAME = "./Narriation/speek/json/user.json";
-    protected static final String USER_ID = "userid";
+    protected static final String USER_ID = "uuid";
     protected static final String USER_FIRST_NAME = "firstName";
     protected static final String USER_LAST_NAME = "lastName";
     protected static final String USER_USERNAME = "username";

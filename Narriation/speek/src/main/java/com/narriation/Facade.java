@@ -37,7 +37,7 @@ public class Facade {
     }
 
     public boolean logout() {
-        return false;
+        return users.saveUsers();
     }
 
     public void updateAvatar(CharacterOptions character, HatOptions hat) {

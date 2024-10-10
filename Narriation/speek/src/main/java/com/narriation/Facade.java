@@ -19,8 +19,14 @@ public class Facade {
 
     }
 
-    public User login(String username, String password) {
-        return null;
+    public boolean login(String username, String password) {
+        if (users.getUser(username) == null)
+            return false;
+        if (!users.getUser(username).getPassword().equals(password))
+            return false;
+        user = users.getUser(username);
+        return true;
+
     }
 
     public User createUser(UUID id, String firstName, String lastName, String username,

@@ -157,10 +157,4 @@ public class User {
     public String toString() {
         return this.firstName + " " + this.lastName + " " + this.userName + "/n";
     }
-
-    public static void add(User user1) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
-    }
-
 }

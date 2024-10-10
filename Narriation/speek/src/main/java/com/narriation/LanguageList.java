@@ -20,10 +20,6 @@ public class LanguageList {
         return languageList;
     }
 
-    public ArrayList<Language> getLanguages() {
-        return languages;
-    }
-
     public Language getLanguageByUUID(UUID id) {
         for (Language language : languages) {
             if (language.getUUID().equals(id))

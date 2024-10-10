@@ -123,6 +123,10 @@ public class User {
         return birthday;
     }
 
+    public void setBirthday(Date newBirthday) {
+        this.birthday = newBirthday;
+    }
+
     public Avatar getAvatar() {
         return avatar;
     }
@@ -133,6 +137,10 @@ public class User {
 
     public int getPoints() {
         return points;
+    }
+
+    public void addPoints(){
+        points++;
     }
 
     public UserProgress getUserProgress() {

@@ -62,7 +62,7 @@ public class UserList {
         return DataWriter.saveUsers(users);
     }
 
-    public ArrayList<User> getUser() {
+    public ArrayList<User> getUsers() {
         return users;
     }
 

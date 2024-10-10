@@ -26,7 +26,7 @@ public class Facade {
         
     }
 
-    public boolean updateUser(String firstname, String lastname, String emailAddress) {
+    public boolean updateUser(String username, String newUserName) {
         return false;
     }
 

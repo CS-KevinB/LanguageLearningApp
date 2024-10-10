@@ -64,16 +64,35 @@ public class User {
         points += numOfPoints;
     }
 
-    public static String getFirstName() {
+    public String getFirstName() {
         return firstName;
+    }
+
+    public void setFirstName(String newFirstName) {
+         firstName = newFirstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
+    public void setLastName(String newLastName) {
+        lastName = newLastName; 
+    }
+
     public String getUsername() {
         return userName;
+    }
+
+    public boolean setUserName(String newUserName) {
+        for(User user : UserList.getInstance().getUsers()){
+            if(user.getUsername().equals(newUserName)){
+                System.out.println("This username is already in use");
+                return false;
+            }
+        }
+        this.userName = newUserName;
+        return true;
     }
 
     public String getPassword() {
@@ -83,6 +102,7 @@ public class User {
     public String getEmailAddress() {
         return emailAddress;
     }
+
 
     public Date getBirthday() {
         return birthday;

@@ -14,6 +14,7 @@ import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
 
+    @SuppressWarnings("unchecked")
     public static boolean saveUsers(ArrayList<User> users) {
         UserList user = UserList.getInstance();
         ArrayList<User> userList = user.getUser();
@@ -46,23 +47,19 @@ public class DataWriter extends DataConstants {
         userDetails.put(USER_BIRTHDAY, user.getBirthday());
         userDetails.put(USER_AVATAR, user.getAvatar().getImagePath());
         userDetails.put(USER_POINTS, user.getPoints());
-        userDetails.put(USER_PROGRESS, user.getUserProgress().getProgress());
+        // userDetails.put(USER_PROGRESS, user.getUserProgress().getProgress());
         userDetails.put(FRIENDS_ID, user.getFriends());
         return userDetails;
     }
 
     public static void main(String[] args) {
-        ArrayList<User> users = new ArrayList<>();
-        User user1 = new User("Jane", "Doe");
-        users.add(user1);
-
-        boolean addUser = DataWriter.saveUsers(users);
-        if (!addUser) {
-            System.out.println(user1 + "User added successfully");
+        UserList users = UserList.getInstance();
+        boolean userAdded = users.addUser("John", "Smith");
+        if (userAdded) {
+            System.out.println("User 'John Smith' added successfully!");
         } else {
-            System.out.println("Error adding user");
+            System.out.println("Failed to add user");
         }
-
     }
 
 }

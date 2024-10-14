@@ -73,6 +73,7 @@ public class UserProgress {
     public Object getProgress() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getProgress'");
+
     }
 
     @Override

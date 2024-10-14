@@ -21,24 +21,46 @@ public class UserList {
         return userList;
     }
 
-    // Method to test DataWriter
-    public User addUser(String userName) {
+    // addUser Method to test DataWriter
+    public boolean addUser(String firstName, String lastName) {
 
+        UUID id = UUID.randomUUID();
+        String username = firstName.toLowerCase() + lastName.toLowerCase();
+        String password = "123";
+        String emailAddress = username + "@email.com";
+        Date birthday = new Date(0);
+        Avatar avatar = new Avatar();
+        ArrayList<User> friends = new ArrayList<>();
+        int points = 0;
+        UserProgress userProgress = new UserProgress();
+
+        for (User user : users) {
+            if (user.getUsername().equals(username) || user.getEmailAddress().equals(emailAddress)) {
+                return false;
+            }
+        }
+
+        User newUser = new User(id, firstName, lastName, username, password, emailAddress,
+                birthday, avatar, friends, points, userProgress);
+        users.add(newUser);
+        return saveUsers();
     }
 
-    public User addUser(UUID id, String firstName, String lastName, String username,
+    public boolean addUser(UUID id, String firstName, String lastName, String username,
             String password, String emailAddress, Date birthday, Avatar avatar,
             ArrayList<User> friends, int points, UserProgress userProgress) {
         for (User user : users) {
             if (user.getUsername().equals(username)
                     || user.getEmailAddress().equals(emailAddress))
-                return user;
+                return false; // User already exists
         }
-        if (getUser(username) == null || saveUsers() == false)
-            return null;
-        users.add(new User(id, firstName, lastName, username, password, emailAddress,
-                birthday, avatar, friends, points, userProgress));
-        return null;
+
+        // Add the new user to the list
+        User newUser = new User(id, firstName, lastName, username, password, emailAddress,
+                birthday, avatar, friends, points, userProgress);
+        users.add(newUser);
+        return saveUsers();
+
     }
 
     public User getUser(String username) {

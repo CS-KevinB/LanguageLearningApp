@@ -23,11 +23,11 @@ public class Facade {
         return null;
     }
 
-    public User createUser(UUID id, String firstName, String lastName, String username,
-    String password, String emailAddress, Date birthday, Avatar avatar,
-    ArrayList<User> friends, int points, UserProgress userProgress) {
+    public boolean createUser(UUID id, String firstName, String lastName, String username,
+            String password, String emailAddress, Date birthday, Avatar avatar,
+            ArrayList<User> friends, int points, UserProgress userProgress) {
         return users.addUser(id, firstName, lastName, username, password,
-        emailAddress, birthday, avatar, friends, points, userProgress);
+                emailAddress, birthday, avatar, friends, points, userProgress);
     }
 
     public boolean logout() {
@@ -35,7 +35,7 @@ public class Facade {
     }
 
     public void updateAvatar(CharacterOptions character, HatOptions hat) {
-        
+
     }
 
     public boolean updateUser(String firstname, String lastname, String emailAddress) {
@@ -64,7 +64,7 @@ public class Facade {
     }
 
     public void sendNotification(NotificationType notificationType) {
-        
+
     }
 
 }

@@ -24,14 +24,8 @@ public class UserProgress {
      * @param currentExercise Position of current exercise in array
      */
     public UserProgress(int currentLesson, int currentExercise) {
-        if (currentLesson > 0)
-            this.currentLesson = currentLesson;
-        else
-            this.currentLesson = 1;
-        if (currentExercise > 0)
-            this.currentExercise = currentExercise;
-        else
-            this.currentExercise = 1;
+        this.currentLesson = Math.max(currentLesson, 1);
+        this.currentExercise = Math.max(currentExercise, 1);
     }
 
     /**
@@ -39,7 +33,7 @@ public class UserProgress {
      * 
      * @return TRUE if there is a next exercise, FALSE otherwise
      */
-    public boolean hasNextExercises() {
+    public boolean hasNextExercise() {
         return true;
     }
 
@@ -57,8 +51,13 @@ public class UserProgress {
      * 
      * @return The next lesson
      */
-    public Lesson nextLesson() {
-        return null;
+    public void nextLesson() {
+        if (hasNextLesson()) {
+            currentLesson++;
+            currentExercise = 1;
+        } else {
+            System.out.println("Lesson completed!");
+        }
     }
 
     /**
@@ -66,18 +65,24 @@ public class UserProgress {
      * 
      * @return The next exercise
      */
-    public Exercise nextExercise() {
-        return null;
+    public void nextExercise() {
+        if (hasNextExercise()) {
+            currentExercise++;
+        } else if (hasNextLesson()) {
+            currentLesson++;
+            currentExercise = 1;
+        } else {
+            System.out.println("Exercise completed");
+        }
     }
 
-    public Object getProgress() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getProgress'");
+    public String getProgress() {
+        return "Lesson: " + currentLesson + " | Exercise: " + currentExercise;
 
     }
 
     @Override
     public String toString() {
-        return "Lesson = " + this.currentLesson + " | Exercise = " + this.currentExercise;
+        return getProgress();
     }
 }

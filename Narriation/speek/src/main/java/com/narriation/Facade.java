@@ -85,4 +85,22 @@ public class Facade {
 
     }
 
+    public boolean createAccount(String username, String password, String email) {
+        if (users.getUser(username) != null) {
+            return false;
+        }
+
+        UUID id = UUID.randomUUID();
+        String firstName = "";
+        String lastName = "";
+        Date birthday = new Date(0);
+        Avatar avatar = new Avatar();
+        ArrayList<User> friends = new ArrayList<>();
+        int points = 0;
+        UserProgress userProgress = new UserProgress();
+
+        return users.addUser(id, firstName, lastName, username, password, email, birthday, avatar, friends, points,
+                userProgress);
+    }
+
 }

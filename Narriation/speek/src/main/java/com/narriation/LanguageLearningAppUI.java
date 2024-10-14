@@ -80,11 +80,6 @@ public class LanguageLearningAppUI {
         return scanner.nextLine();
     }
 
-    private void logout() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'logout'");
-    }
-
     private void login() {
         String username = getField("Username");
         String password = getField("password");
@@ -94,6 +89,14 @@ public class LanguageLearningAppUI {
             System.out.println("Login successful! Welcome, " + username);
         } else {
             System.out.println("Invalid username. Please try again.");
+        }
+    }
+
+    private void logout() {
+        if (facade.logout()) {
+            System.out.println("You have been logged out successfully. Goodbye!");
+        } else {
+            System.out.println("Logout failed. Please try again.");
         }
     }
 

@@ -8,7 +8,7 @@ import java.util.UUID;
  * @author kinsawills
  */
 public class Facade {
-    private User user;
+    private User currentUser;
     private Language currentLanguage;
     private UserList users;
     private LanguageList languages;
@@ -16,11 +16,15 @@ public class Facade {
     public Facade() {
         users = UserList.getInstance();
         languages = LanguageList.getInstance();
-
     }
 
-    public User login(String username, String password) {
-        return null;
+    public boolean login(String username, String password) {
+        if (users.getUser(username) == null)
+            return false;
+        if (!users.getUser(username).getPassword().equals(password))
+            return false;
+        currentUser = users.getUser(username);
+        return true;
     }
 
     public boolean createUser(UUID id, String firstName, String lastName, String username,
@@ -30,20 +34,30 @@ public class Facade {
                 emailAddress, birthday, avatar, friends, points, userProgress);
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
     public boolean logout() {
-        return false;
+        return users.saveUsers();
     }
 
     public void updateAvatar(CharacterOptions character, HatOptions hat) {
+        currentUser.getAvatar().setCharacter(character);
+        currentUser.getAvatar().setHat(hat);
 
     }
 
-    public boolean updateUser(String firstname, String lastname, String emailAddress) {
-        return false;
+    public boolean updateUser(UUID id, String firstName, String lastName, String username,
+            String password, String emailAddress, Date birthday, Avatar avatar,
+            ArrayList<User> friends, int points, UserProgress userProgress) {
+        return users.editUser(id, firstName, lastName, username, password,
+                emailAddress, birthday, avatar, friends, points, userProgress);
     }
 
-    public boolean updateCredentials(String username, String password) {
-        return false;
+    public void updateCredentials(String username, String password) {
+        currentUser.setUsername(username);
+        currentUser.setPassword(password);
     }
 
     public boolean startLesson() {
@@ -60,6 +74,10 @@ public class Facade {
     }
 
     public boolean setCurrentLangauge(Language language) {
+        if (language != null) {
+            currentLanguage = language;
+            return true;
+        }
         return false;
     }
 

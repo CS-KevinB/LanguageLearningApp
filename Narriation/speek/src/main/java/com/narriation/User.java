@@ -14,9 +14,9 @@ import java.util.UUID;
 
 public class User {
     private UUID id;
-    private static String firstName;
+    private String firstName;
     private String lastName;
-    private String userName;
+    private String username;
     private String password;
     private String emailAddress;
     private Date birthday;
@@ -26,13 +26,13 @@ public class User {
     private int points;
     private UserProgress userProgress;
 
-    public User(UUID id, String firstName, String lastName, String userName, String password, String emailAddress,
+    public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
             Date birthday, Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
 
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.username = username;
         this.emailAddress = emailAddress;
         this.password = password;
         this.birthday = birthday;
@@ -43,9 +43,9 @@ public class User {
         this.userProgress = new UserProgress();
     }
 
-    public User(String firstname, String lastname) {
-        this.firstName = firstname;
-        this.lastName = lastname;
+    public User(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public void addLanguage(Language language) {
@@ -64,28 +64,83 @@ public class User {
         points += numOfPoints;
     }
 
-    public static String getFirstName() {
+    public String getFirstName() {
         return firstName;
+    }
+
+    public void setFirstName(String newFirstName) {
+         firstName = newFirstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
+    public void setLastName(String newLastName) {
+        lastName = newLastName; 
+    }
+
     public String getUsername() {
-        return userName;
+        return username;
+    }
+
+    public boolean setUsername(String newUsername) {
+        if(newUsername.equals("")){
+            System.out.println("Please enter a valid username");
+            return false;
+        }
+        for(User user : UserList.getInstance().getUsers()){
+            if(user.getUsername().equals(newUsername)){
+                System.out.println("This username is already in use");
+                return false;
+            }
+        }
+        this.username = newUsername;
+        return true;
     }
 
     public String getPassword() {
         return password;
     }
 
+    public void setPassword(String newPassword){
+        if(newPassword.equals("")){
+            System.out.println("Please enter a valid password");
+            return;
+        }
+        this.password = newPassword;
+    }
+
     public String getEmailAddress() {
         return emailAddress;
     }
 
+    public boolean setEmailAddress(String newEmailAddress) {
+        if(newEmailAddress.equals("")){
+            System.out.println("Please enter a valid email address");
+            return false;
+        }
+        for(User user : UserList.getInstance().getUsers()){
+            if(user.getEmailAddress().equals(newEmailAddress)){
+                System.out.println("This email address is already in use");
+                return false;
+            }
+        }
+        this.emailAddress = newEmailAddress;
+        return true;
+    }
+
+
     public Date getBirthday() {
         return birthday;
+    }
+
+    public void setBirthday(Date newBirthday) {
+        if(newBirthday == null){
+            System.out.println("Please enter a valid birthday");
+            return;
+        }
+        this.birthday = newBirthday;
     }
 
     public Avatar getAvatar() {
@@ -96,8 +151,20 @@ public class User {
         return friends;
     }
 
+    public void addFriends(User friend) {
+        if(friend == null){
+            System.out.println("You have no friends");
+            return;
+        }
+        this.friends.add(friend);
+    }
+
     public int getPoints() {
         return points;
+    }
+
+    public void addPoints(){
+        points++;
     }
 
     public UserProgress getUserProgress() {
@@ -112,12 +179,6 @@ public class User {
     }
 
     public String toString() {
-        return this.firstName + " " + this.lastName + " " + this.userName + "/n";
+        return this.firstName + " " + this.lastName + " " + this.username + "/n";
     }
-
-    public static void add(User user1) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
-    }
-
 }

@@ -17,7 +17,7 @@ public class DataWriter extends DataConstants {
     @SuppressWarnings("unchecked")
     public static boolean saveUsers(ArrayList<User> users) {
         UserList user = UserList.getInstance();
-        ArrayList<User> userList = user.getUser();
+        ArrayList<User> userList = user.getUsers();
         JSONArray jsonUsers = new JSONArray();
 
         for (User u : userList) {

@@ -43,7 +43,6 @@ public class DataLoader extends DataConstants {
                 int points = Math.toIntExact((long) personJSON.get(USER_POINTS));
 
                 // ArrayList<User> friends = (ArrayList<User>) personJSON.get(FRIENDS_ID);
-                // UserProgress userProgress = (UserProgress) personJSON.get(USER_PROGRESS);
 
                 // REMOVE LATER
                 System.out.println(id);
@@ -75,10 +74,17 @@ public class DataLoader extends DataConstants {
     }
 
     public static UserProgress convertJSONToUserProgress(JSONObject json) {
-        int currentLesson = Math.toIntExact( (long) json.get(CURRENT_LESSON) );
-        int currentExercise = Math.toIntExact( (long) json.get(CURRENT_EXERCISE) );
+        int currentLesson = Math.toIntExact((long) json.get(CURRENT_LESSON));
+        int currentExercise = Math.toIntExact((long) json.get(CURRENT_EXERCISE));
         return new UserProgress(currentLesson, currentExercise);
     }
+    
+    // public static ArrayList<User> convertJSONToFriendsArray(JSONArray json) {
+    //     for (Object friend : json) {
+            
+    //     }
+    //     return new ArrayList<User>();
+    // }
 
     public static ArrayList<Language> getLanguages() {
         ArrayList<Language> languages = new ArrayList<>();

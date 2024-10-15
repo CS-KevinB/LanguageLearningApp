@@ -8,14 +8,21 @@ import java.util.UUID;
  * @author kinsawills
  */
 public class Facade {
+    private static Facade facade;
     private User currentUser;
     private Language currentLanguage;
     private UserList users;
     private LanguageList languages;
 
-    public Facade() {
+    private Facade() {
         users = UserList.getInstance();
         languages = LanguageList.getInstance();
+    }
+
+    public Facade getInstance() {
+        if (facade == null)
+            facade = new Facade();
+        return facade;
     }
 
     public boolean login(String username, String password) {

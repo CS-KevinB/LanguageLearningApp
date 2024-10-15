@@ -81,6 +81,14 @@ public class UserProgress {
 
     }
 
+    public int getCurrentLesson() {
+        return currentLesson;
+    }
+
+    public int getCurrentExercise() {
+        return currentExercise;
+    }
+
     @Override
     public String toString() {
         return getProgress();

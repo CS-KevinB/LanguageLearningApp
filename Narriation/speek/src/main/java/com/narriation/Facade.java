@@ -66,11 +66,13 @@ public class Facade {
     }
 
     public boolean startExercise() {
+        currentUser.getUserProgress().getCurrentExercise();
         return false;
 
     }
 
     public boolean startStory() {
+        currentUser.getUserProgress().getCurrentStory();
         return false;
     }
 

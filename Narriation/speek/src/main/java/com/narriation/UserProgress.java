@@ -8,6 +8,7 @@ package com.narriation;
 public class UserProgress {
     private int currentLesson;
     private int currentExercise;
+    private Story currentStory;
 
     /**
      * Constructs a new UserProgress object
@@ -87,6 +88,10 @@ public class UserProgress {
 
     public int getCurrentExercise() {
         return currentExercise;
+    }
+
+    public Story getCurrentStory() {
+        return currentStory;
     }
 
     @Override

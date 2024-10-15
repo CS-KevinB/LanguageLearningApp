@@ -61,6 +61,7 @@ public class Facade {
     }
 
     public boolean startLesson() {
+        currentUser.getUserProgress().getCurrentLesson();
         return false;
     }
 
@@ -101,6 +102,10 @@ public class Facade {
 
         return users.addUser(id, firstName, lastName, username, password, email, birthday, avatar, friends, points,
                 userProgress);
+    }
+
+    public void viewLanguage() {
+        languages.getLanguageByUUID(currentLanguage.getUUID());
     }
 
 }

@@ -18,7 +18,7 @@ public class Lesson {
     }
 
     public Exercise getExercise() {
-        return null;  
+        return null; 
     }
 
     public Story getStory() {

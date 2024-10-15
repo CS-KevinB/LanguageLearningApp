@@ -27,7 +27,7 @@ public class Story {
     * Removes all the words from the story
     * @return - void
     */
-    public void remvoveWords(){
+    public void removeWords(){
         englishStory.clear();
         spanishStory.clear();
     }

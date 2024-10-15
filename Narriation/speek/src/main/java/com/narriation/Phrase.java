@@ -57,4 +57,8 @@ public class Phrase {
     public String getFeedback() {
         return feedback;
     }
+
+    public void setFeedBack(String message) {
+        this.feedback = message;
+    }
 }

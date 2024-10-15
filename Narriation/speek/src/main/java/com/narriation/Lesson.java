@@ -1,6 +1,8 @@
 package com.narriation;
 import java.util.ArrayList;
 import java.util.UUID;
+
+import software.amazon.awssdk.services.polly.endpoints.internal.Value.Array;
 /**
  * The Lesson class represents a lesson containing exercises and stories.
  * @author Risha Patel
@@ -17,15 +19,12 @@ public class Lesson {
         this.stories = stories;
     }
 
-    public Exercise getExercise() {
-        return null; 
+    public ArrayList<Exercise> getExercises() {
+        return exercises;
     }
 
-    public Story getStory() {
-        return null; 
+    public ArrayList<Story> getStory() {
+        return stories;
     }
 
-    public Lesson getInstance() {
-        return this;
-    }
 }

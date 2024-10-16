@@ -3,6 +3,7 @@ package com.narriation;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.HashMap;
 
 /**
  * The RegisteredUser class extends UserList and contains list of registered
@@ -25,6 +26,7 @@ public class User {
     private ArrayList<User> friends;
     private int points;
     private UserProgress userProgress;
+    private HashMap<Language, UserProgress> languageProgress; //Check
 
     public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
             Date birthday, Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
@@ -170,6 +172,10 @@ public class User {
     public UserProgress getUserProgress() {
         return userProgress;
     }
+
+    public void updateProgress(Language language, UserProgress userProgress) {
+        this.languageProgress.put(language, userProgress);
+    } // Check
 
     public void setAvatar(CharacterOptions character, HatOptions hat) {
         if (avatar != null) {

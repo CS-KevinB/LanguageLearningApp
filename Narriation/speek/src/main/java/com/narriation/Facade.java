@@ -50,9 +50,7 @@ public class Facade {
     }
 
     public void updateAvatar(CharacterOptions character, HatOptions hat) {
-        currentUser.getAvatar().setCharacter(character);
-        currentUser.getAvatar().setHat(hat);
-
+        currentUser.setAvatar(character, hat);
     }
 
     public boolean updateUser(UUID id, String firstName, String lastName, String username,

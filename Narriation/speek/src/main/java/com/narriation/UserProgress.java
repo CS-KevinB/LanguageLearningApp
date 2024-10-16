@@ -34,8 +34,8 @@ public class UserProgress {
      * 
      * @return TRUE if there is a next exercise, FALSE otherwise
      */
-    public boolean hasNextExercise() {
-        return true;
+    public boolean hasNextExercise(Lesson lessons) {
+        return currentExercise < lessons.getExercises().size();
     }
 
     /**
@@ -43,8 +43,8 @@ public class UserProgress {
      * 
      * @return TRUE if there is a next lesson, FALSE otherwise
      */
-    public boolean hasNextLesson() {
-        return true;
+    public boolean hasNextLesson(Language language) {
+        return currentLesson < language.getLessons().size();
     }
 
     /**

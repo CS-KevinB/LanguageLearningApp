@@ -17,7 +17,6 @@ public class Exercise {
      * @param exercise needs exercise in order to check if there is an array list of
      *                 question or not
      * @param question takes in a question
-     *                 CHECK THIS
      */
     public Exercise(Exercise exercise, Question question) {
         if (exercise != null) {

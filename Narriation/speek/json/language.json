@@ -7,6 +7,7 @@
                 "uuid": "",
                 "exercises": [
                     {
+                        "index": 0,
                         "questions": [
                             "21f57bce-ec87-459b-b9fd-9415530641ae",
                             "2cc95bf7-401b-4dbf-8619-b40932f06b24",
@@ -14,6 +15,7 @@
                         ]
                     },
                     {
+                        "index": 1,
                         "questions": [
                             "cb1757eb-7974-4dd7-baad-bd1cdfc6b290",
                             "a3b4d8c6-4c24-41a8-80a3-b50e119d08aa",

@@ -26,11 +26,43 @@ public class DataLoader extends DataConstants {
         getUsers();
     }
 
+    // LANGUAGES
+    /**
+     * @author Christian Ruff
+     * @return
+     */
+    public static ArrayList<Language> getLanguages() {
+        ArrayList<Language> languages = new ArrayList<>();
+        try {
+            FileReader reader = new FileReader(LANGUAGE_FILE_NAME);
+            JSONArray languageJSON = (JSONArray) new JSONParser().parse(reader);
+
+            // 1. create an ArrayList of words
+
+            // 2. create an ArrayList of phrases
+
+            // 3. create an ArrayList of questions (pulled from writing, listening, and
+            // matching questions)
+
+            // 4. construct exercises by pulling from ArrayList of questions
+
+            // 5. construct stories
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return languages;
+    }
+
+    // USERS
+    /**
+     * @author Christian Ruff
+     * @return
+     */
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
         try {
             FileReader reader = new FileReader(USER_FILE_NAME);
-            JSONParser parser = new JSONParser();
             JSONArray peopleJSON = (JSONArray) new JSONParser().parse(reader);
             HashMap<User, ArrayList<UUID>> friendsHash = new HashMap<User, ArrayList<UUID>>();
 
@@ -131,8 +163,4 @@ public class DataLoader extends DataConstants {
         return new UserProgress(currentLesson, currentExercise);
     }
 
-    public static ArrayList<Language> getLanguages() {
-        ArrayList<Language> languages = new ArrayList<>();
-        return languages;
-    }
 }

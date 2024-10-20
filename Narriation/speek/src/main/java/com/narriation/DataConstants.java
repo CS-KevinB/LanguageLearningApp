@@ -18,4 +18,7 @@ public abstract class DataConstants {
     protected static final String CURRENT_LESSON = "currentLesson";
     protected static final String CURRENT_EXERCISE = "currentExercise";
     protected static final String USER_PASSWORD = "password";
+
+    protected static final String LANGUAGE_FILE_NAME = "./Narriation/speek/json/language.json";
+    protected static final String EXERCISE_INDEX = "index";
 }

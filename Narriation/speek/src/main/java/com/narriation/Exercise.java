@@ -9,6 +9,7 @@ package com.narriation;
 import java.util.ArrayList;
 
 public class Exercise {
+    private int index;
     private ArrayList<Question> questions;
 
     /**

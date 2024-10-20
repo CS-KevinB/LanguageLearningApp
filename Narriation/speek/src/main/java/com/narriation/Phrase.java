@@ -1,6 +1,7 @@
 package com.narriation;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import software.amazon.awssdk.services.polly.endpoints.internal.Value.Str;
 
@@ -12,6 +13,7 @@ import software.amazon.awssdk.services.polly.endpoints.internal.Value.Str;
  */
 
 public class Phrase {
+    private UUID id;
     private String feedback;
     private ArrayList<Word> englishPhrase;
     private ArrayList<Word> translatedPhrase;
@@ -25,7 +27,14 @@ public class Phrase {
      */
 
     public Phrase(String feedback, ArrayList<Word> englishPhrase, ArrayList<Word> translatedPhrase) {
+        this.id = UUID.randomUUID();
+        this.feedback = feedback;
+        this.englishPhrase = englishPhrase;
+        this.translatedPhrase = translatedPhrase;
+    }
 
+    public Phrase(UUID uuid, String feedback, ArrayList<Word> englishPhrase, ArrayList<Word> translatedPhrase) {
+        this.id = uuid;
         this.feedback = feedback;
         this.englishPhrase = englishPhrase;
         this.translatedPhrase = translatedPhrase;
@@ -60,5 +69,10 @@ public class Phrase {
 
     public void setFeedBack(String message) {
         this.feedback = message;
+    }
+
+    public String toString() {
+        return "ID: " + this.id + "\n  ENGLISH: " + this.englishPhrase + "\n  TRNSLTD: " + this.translatedPhrase
+                + "\n  FEEDBACK: " + this.feedback + "\n\n";
     }
 }

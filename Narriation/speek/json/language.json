@@ -89,9 +89,9 @@
             {
                 "uuid": "b33aaaf8-c067-42bd-837d-28276098767c",
                 "englishWord": "bad",
-                "translatedWord": "mal",
-                "pronunciation": "mahl",
-                "gender": "NEITHER",
+                "translatedWord": "mala",
+                "pronunciation": "mahl-ah",
+                "gender": "FEMININE",
                 "partOfSpeech": "ADJECTIVE"
             }
         ], 
@@ -123,12 +123,12 @@
             {
                 "uuid": "ca0f8b81-6a16-4a44-96a0-b4fc8cb2e8d2",
                 "englishPhrase": [
-                    "7d5bc0c0-6538-461a-8698-e88ed212f14a",
+                    "b33aaaf8-c067-42bd-837d-28276098767c",
                     "b018bfd4-afb1-4cdd-bf13-3f58aad5279c"
                 ],
                 "translatedPhrase": [
                     "b018bfd4-afb1-4cdd-bf13-3f58aad5279c",
-                    "7d5bc0c0-6538-461a-8698-e88ed212f14a"
+                    "b33aaaf8-c067-42bd-837d-28276098767c"
                 ],
                 "feedback": "Try again!"
             }

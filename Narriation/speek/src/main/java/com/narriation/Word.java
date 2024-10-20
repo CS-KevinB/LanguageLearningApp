@@ -1,11 +1,14 @@
 package com.narriation;
 
+import java.util.UUID;
+
 /**
  * @author Kevin Buie
  *         Creates a public word and stores things like the translation in order
  *         to create questions
  */
 public class Word {
+    private UUID id;
     private String englishWord;
     private String translatedWord;
     private String pronunciation;
@@ -23,11 +26,40 @@ public class Word {
      */
     public Word(String englishWord, String translatedWord, String pronunciation, PartOfSpeech partOfSpeech,
             Gender gender) {
+        this.id = UUID.randomUUID();
         this.englishWord = englishWord;
         this.translatedWord = translatedWord;
         this.pronunciation = pronunciation;
         this.partOfSpeech = partOfSpeech;
         this.gender = gender;
+    }
+
+    /**
+     * Constructs a preexisting word object (already has a UUID)
+     * 
+     * @param englishWord    Stores what the word is in english
+     * @param translatedWord Stores what the word is in spanish
+     * @param pronunciation  Stores the pronunciation of the word
+     * @param partOfSpeech   Stores the part of speech of the word
+     * @param gender         Stores the gender of the word
+     */
+    public Word(UUID id, String englishWord, String translatedWord, String pronunciation, PartOfSpeech partOfSpeech,
+            Gender gender) {
+        this.id = id;
+        this.englishWord = englishWord;
+        this.translatedWord = translatedWord;
+        this.pronunciation = pronunciation;
+        this.partOfSpeech = partOfSpeech;
+        this.gender = gender;
+    }
+
+    /**
+     * Gets the UUID for the word
+     * 
+     * @return ID in data type, UUID
+     */
+    public UUID getUUID() {
+        return this.id;
     }
 
     /**

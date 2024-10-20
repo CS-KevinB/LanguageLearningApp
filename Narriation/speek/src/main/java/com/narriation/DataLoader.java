@@ -40,9 +40,10 @@ public class DataLoader extends DataConstants {
 
             for (int i = 0; i < languageJSON.size(); i++) {
                 JSONObject currentLang = (JSONObject) languageJSON.get(i);
-                UUID id = UUID.fromString((String) currentLang.get(LANGUAGE_ID));
+                UUID lessonID = UUID.fromString((String) currentLang.get(LANGUAGE_ID));
                 String nameOfLanguage = (String) currentLang.get(LANGUAGE_NAME);
                 ArrayList<Word> words = new ArrayList<Word>();
+                ArrayList<Phrase> phrases = new ArrayList<Phrase>();
 
                 // 1. parse the ArrayList of words
                 JSONArray jsonWords = (JSONArray) currentLang.get(LANGUAGE_WORDS);
@@ -56,10 +57,37 @@ public class DataLoader extends DataConstants {
                             (String) currentWord.get(WORD_PART_OF_SPEECH));
                     Gender gender = EnumUtilities.getEnumFromString(Gender.class,
                             (String) currentWord.get(WORD_GENDER));
-                    words.add(new Word(englishWord, translatedWord, pronounciation, partOfSpeech, gender));
+                    words.add(new Word(wordID, englishWord, translatedWord, pronounciation, partOfSpeech, gender));
                 }
 
                 // 2. create an ArrayList of phrases
+                JSONArray jsonPhrases = (JSONArray) currentLang.get(LANGUAGE_PHRASES);
+                for (int j = 0; j < jsonPhrases.size(); j++) {
+                    JSONObject currentPhrase = (JSONObject) jsonPhrases.get(j);
+
+                    UUID phraseID = UUID.fromString((String) currentPhrase.get(PHRASE_ID));
+                    String feedback = (String) currentPhrase.get(PHRASE_FEEDBACK);
+                    ArrayList<Word> englishPhrase = new ArrayList<Word>();
+                    ArrayList<Word> translatedPhrase = new ArrayList<Word>();
+
+                    // parse English phrase
+                    JSONArray jsonEnglishPhrase = (JSONArray) currentPhrase.get(PHRASE_IN_ENGLISH);
+                    for (int k = 0; k < jsonEnglishPhrase.size(); k++) {
+                        Word englishWord = findWordByUUID(words, UUID.fromString((String) jsonEnglishPhrase.get(k)));
+                        if (englishWord != null)
+                            englishPhrase.add(englishWord);
+                    }
+
+                    // parse translated phrase
+                    JSONArray jsonTranslatedPhrase = (JSONArray) currentPhrase.get(PHRASE_IN_TARGET_LANGUAGE);
+                    for (int k = 0; k < jsonTranslatedPhrase.size(); k++) {
+                        Word translatedWord = findWordByUUID(words,
+                                UUID.fromString((String) jsonTranslatedPhrase.get(k)));
+                        if (translatedWord != null)
+                            translatedPhrase.add(translatedWord);
+                    }
+                    phrases.add(new Phrase(phraseID, feedback, englishPhrase, translatedPhrase));
+                }
 
                 // 3. create an ArrayList of questions (pulled from writing, listening, and
                 // matching questions)
@@ -74,12 +102,20 @@ public class DataLoader extends DataConstants {
         return languages;
     }
 
+    private static Word findWordByUUID(ArrayList<Word> words, UUID id) {
+        for (int i = 0; i < words.size(); i++) {
+            if (words.get(i).getUUID().equals(id))
+                return words.get(i);
+        }
+        return null;
+    }
+
     // USERS
     /**
      * @author Christian Ruff
      * @return
      */
-    public static ArrayList<User> getUsers() {
+    private static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
         try {
             FileReader reader = new FileReader(USER_FILE_NAME);
@@ -141,7 +177,7 @@ public class DataLoader extends DataConstants {
         return null;
     }
 
-    public static Date convertStringToDate(String str) {
+    private static Date convertStringToDate(String str) {
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
         try {
@@ -153,7 +189,7 @@ public class DataLoader extends DataConstants {
         return date;
     }
 
-    public static ArrayList<UUID> convertFriendsToArrayList(JSONArray json) {
+    private static ArrayList<UUID> convertFriendsToArrayList(JSONArray json) {
         ArrayList<UUID> ret = new ArrayList<UUID>();
         if (json != null) {
             for (int i = 0; i < json.size(); i++) {
@@ -163,7 +199,7 @@ public class DataLoader extends DataConstants {
         return ret;
     }
 
-    public static User findUserByUUID(ArrayList<User> users, UUID id) {
+    private static User findUserByUUID(ArrayList<User> users, UUID id) {
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getUUID().equals(id))
                 return users.get(i);
@@ -171,13 +207,13 @@ public class DataLoader extends DataConstants {
         return null;
     }
 
-    public static Avatar convertJSONToAvatar(JSONObject json) {
+    private static Avatar convertJSONToAvatar(JSONObject json) {
         String character = (String) json.get(CHARACTER);
         String hat = (String) json.get(HAT);
         return new Avatar(character, hat);
     }
 
-    public static UserProgress convertJSONToUserProgress(JSONObject json) {
+    private static UserProgress convertJSONToUserProgress(JSONObject json) {
         int currentLesson = Math.toIntExact((long) json.get(CURRENT_LESSON));
         int currentExercise = Math.toIntExact((long) json.get(CURRENT_EXERCISE));
         return new UserProgress(currentLesson, currentExercise);

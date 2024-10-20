@@ -64,7 +64,7 @@
             },
             {
                 "uuid": "795891c4-3173-49ce-aa6d-0eaafe57f84a",
-                "englishWord": "night",
+                "englishWord": "nights",
                 "translatedWord": "noches",
                 "pronunciation": "noh-chey",
                 "gender": "FEMININE",
@@ -73,7 +73,7 @@
             {
                 "uuid": "a52257bc-23e1-4338-a846-9b765f1d1b5e",
                 "englishWord": "bye",
-                "translatedWord": "adios",
+                "translatedWord": "adiós",
                 "pronunciation": "bwen-ose",
                 "gender": "NEITHER",
                 "partOfSpeech": "INTERJECTION"

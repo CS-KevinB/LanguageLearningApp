@@ -23,7 +23,8 @@ public class DataLoader extends DataConstants {
 
     // temporary main
     public static void main(String args[]) {
-        getUsers();
+        // getUsers();
+        getLanguages();
     }
 
     // LANGUAGES
@@ -37,17 +38,36 @@ public class DataLoader extends DataConstants {
             FileReader reader = new FileReader(LANGUAGE_FILE_NAME);
             JSONArray languageJSON = (JSONArray) new JSONParser().parse(reader);
 
-            // 1. create an ArrayList of words
+            for (int i = 0; i < languageJSON.size(); i++) {
+                JSONObject currentLang = (JSONObject) languageJSON.get(i);
+                UUID id = UUID.fromString((String) currentLang.get(LANGUAGE_ID));
+                String nameOfLanguage = (String) currentLang.get(LANGUAGE_NAME);
+                ArrayList<Word> words = new ArrayList<Word>();
 
-            // 2. create an ArrayList of phrases
+                // 1. parse the ArrayList of words
+                JSONArray jsonWords = (JSONArray) currentLang.get(LANGUAGE_WORDS);
+                for (int j = 0; j < jsonWords.size(); j++) {
+                    JSONObject currentWord = (JSONObject) jsonWords.get(j);
+                    UUID wordID = UUID.fromString((String) currentWord.get(WORD_ID));
+                    String englishWord = (String) currentWord.get(WORD_IN_ENGLISH);
+                    String translatedWord = (String) currentWord.get(WORD_IN_TARGET_LANGUAGE);
+                    String pronounciation = (String) currentWord.get(WORD_PRONOUNCIATION);
+                    PartOfSpeech partOfSpeech = EnumUtilities.getEnumFromString(PartOfSpeech.class,
+                            (String) currentWord.get(WORD_PART_OF_SPEECH));
+                    Gender gender = EnumUtilities.getEnumFromString(Gender.class,
+                            (String) currentWord.get(WORD_GENDER));
+                    words.add(new Word(englishWord, translatedWord, pronounciation, partOfSpeech, gender));
+                }
 
-            // 3. create an ArrayList of questions (pulled from writing, listening, and
-            // matching questions)
+                // 2. create an ArrayList of phrases
 
-            // 4. construct exercises by pulling from ArrayList of questions
+                // 3. create an ArrayList of questions (pulled from writing, listening, and
+                // matching questions)
 
-            // 5. construct stories
+                // 4. construct exercises by pulling from ArrayList of questions
 
+                // 5. construct stories
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

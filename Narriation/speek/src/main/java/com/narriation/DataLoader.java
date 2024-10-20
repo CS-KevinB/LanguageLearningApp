@@ -24,7 +24,7 @@ public class DataLoader extends DataConstants {
     // temporary main
     public static void main(String args[]) {
         // getUsers();
-        getLanguages();
+        System.out.println(getLanguages());
     }
 
     // LANGUAGES
@@ -44,8 +44,9 @@ public class DataLoader extends DataConstants {
                 String nameOfLanguage = (String) currentLang.get(LANGUAGE_NAME);
                 ArrayList<Word> words = new ArrayList<Word>();
                 ArrayList<Phrase> phrases = new ArrayList<Phrase>();
+                ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 
-                // 1. parse the ArrayList of words
+                // 1. create an ArrayList of words
                 JSONArray jsonWords = (JSONArray) currentLang.get(LANGUAGE_WORDS);
                 for (int j = 0; j < jsonWords.size(); j++) {
                     JSONObject currentWord = (JSONObject) jsonWords.get(j);
@@ -92,9 +93,13 @@ public class DataLoader extends DataConstants {
                 // 3. create an ArrayList of questions (pulled from writing, listening, and
                 // matching questions)
 
-                // 4. construct exercises by pulling from ArrayList of questions
+                // 4. create an ArrayList of exercises
 
-                // 5. construct stories
+                // 5. create an ArrayList of stories
+
+                // 6. create ArrayList of lessons
+
+                languages.add(new Language(lessonID, nameOfLanguage, lessons, words, phrases));
             }
         } catch (Exception e) {
             e.printStackTrace();

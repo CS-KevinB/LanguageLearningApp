@@ -12,11 +12,7 @@
             "hat": "NONE"
         },
         "languages": [ "3085ad7f-139c-4d3e-85e6-52cc0d028a29" ],
-        "friends": [
-            [
-                "081a004b-3306-4975-9520-2437276c600a"
-            ]
-        ],
+        "friends":[ "081a004b-3306-4975-9520-2437276c600a" ],
         "points": 0,
         "userProgress": {
             "currentLesson": 5,
@@ -36,11 +32,7 @@
             "hat": "NONE"
         },
         "languages": [ "3085ad7f-139c-4d3e-85e6-52cc0d028a29" ],
-        "friends": [
-            [
-                "081a004b-3306-4975-9520-2437276c600a"
-            ]
-        ],
+        "friends": [ "081a004b-3306-4975-9520-2437276c600a" ],
         "points": 0,
         "userProgress": {
             "currentLesson": 1,
@@ -61,12 +53,12 @@
             "hat": "NONE"
         },
         "languages": [ "3085ad7f-139c-4d3e-85e6-52cc0d028a29" ],
-        "friends": [
+        "friends":
             [
                 "c5c93174-01f6-4dfc-aba2-14aa61c6696b",
                 "a9fc5c37-053b-479e-9741-7f0bb0e525ae"
             ]
-        ],
+        ,
         "points": 0,
         "userProgress": {
             "currentLesson": 3,

@@ -26,7 +26,7 @@ public class User {
     private ArrayList<User> friends;
     private int points;
     private UserProgress userProgress;
-    private HashMap<Language, UserProgress> languageProgress; //Check
+    private HashMap<Language, UserProgress> languageProgress; // Check
 
     public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
             Date birthday, Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
@@ -45,6 +45,38 @@ public class User {
         this.userProgress = new UserProgress();
     }
 
+    /**
+     * Constructor for User objects designed for the Data Loader
+     * 
+     * @author Christian Ruff
+     * @param id
+     * @param firstName
+     * @param lastName
+     * @param username
+     * @param password
+     * @param emailAddress
+     * @param birthday
+     * @param avatar
+     * @param points
+     * @param userProgress
+     */
+    public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
+            Date birthday, Avatar avatar, int points, UserProgress userProgress) {
+
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.emailAddress = emailAddress;
+        this.password = password;
+        this.birthday = birthday;
+        this.avatar = avatar;
+        this.languages = new ArrayList<Language>();
+        this.friends = new ArrayList<User>();
+        this.points = 0;
+        this.userProgress = userProgress;
+    }
+
     public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -59,7 +91,11 @@ public class User {
     }
 
     public void addFriend(User friend) {
-        friends.add(friend);
+        if (friend == null) {
+            System.out.println("Friend not found!");
+            return;
+        }
+        this.friends.add(friend);
     }
 
     public void addPoints(int numOfPoints) {
@@ -71,7 +107,7 @@ public class User {
     }
 
     public void setFirstName(String newFirstName) {
-         firstName = newFirstName;
+        firstName = newFirstName;
     }
 
     public String getLastName() {
@@ -79,7 +115,7 @@ public class User {
     }
 
     public void setLastName(String newLastName) {
-        lastName = newLastName; 
+        lastName = newLastName;
     }
 
     public String getUsername() {
@@ -87,12 +123,12 @@ public class User {
     }
 
     public boolean setUsername(String newUsername) {
-        if(newUsername.equals("")){
+        if (newUsername.equals("")) {
             System.out.println("Please enter a valid username");
             return false;
         }
-        for(User user : UserList.getInstance().getUsers()){
-            if(user.getUsername().equals(newUsername)){
+        for (User user : UserList.getInstance().getUsers()) {
+            if (user.getUsername().equals(newUsername)) {
                 System.out.println("This username is already in use");
                 return false;
             }
@@ -105,8 +141,8 @@ public class User {
         return password;
     }
 
-    public void setPassword(String newPassword){
-        if(newPassword.equals("")){
+    public void setPassword(String newPassword) {
+        if (newPassword.equals("")) {
             System.out.println("Please enter a valid password");
             return;
         }
@@ -118,12 +154,12 @@ public class User {
     }
 
     public boolean setEmailAddress(String newEmailAddress) {
-        if(newEmailAddress.equals("")){
+        if (newEmailAddress.equals("")) {
             System.out.println("Please enter a valid email address");
             return false;
         }
-        for(User user : UserList.getInstance().getUsers()){
-            if(user.getEmailAddress().equals(newEmailAddress)){
+        for (User user : UserList.getInstance().getUsers()) {
+            if (user.getEmailAddress().equals(newEmailAddress)) {
                 System.out.println("This email address is already in use");
                 return false;
             }
@@ -132,13 +168,12 @@ public class User {
         return true;
     }
 
-
     public Date getBirthday() {
         return birthday;
     }
 
     public void setBirthday(Date newBirthday) {
-        if(newBirthday == null){
+        if (newBirthday == null) {
             System.out.println("Please enter a valid birthday");
             return;
         }
@@ -154,7 +189,7 @@ public class User {
     }
 
     public void addFriends(User friend) {
-        if(friend == null){
+        if (friend == null) {
             System.out.println("You have no friends");
             return;
         }
@@ -165,7 +200,7 @@ public class User {
         return points;
     }
 
-    public void addPoints(){
+    public void addPoints() {
         points++;
     }
 
@@ -184,7 +219,14 @@ public class User {
         }
     }
 
+    public UUID getUUID() {
+        return this.id;
+    }
+
     public String toString() {
-        return this.firstName + " " + this.lastName + " " + this.username + "/n";
+        return "UUID: " + this.id + " | Name: " + this.firstName + " " + this.lastName + " | Username: " + this.username
+                + " | Password: " + this.password + " | Email Address: " + this.emailAddress + " | Date: "
+                + this.birthday + " | Avatar: " + this.avatar + " | Points: " + this.points + " | User Progress: "
+                + this.userProgress;
     }
 }

@@ -2,14 +2,19 @@ package com.narriation;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
+import java.util.HashMap;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 /**
- * The FileReader class reads users and languages 
+ * The FileReader class reads users and languages
+ * 
  * @author Christian Ruff
  * @author Risha Patel
  */
@@ -24,41 +29,59 @@ public class DataLoader extends DataConstants {
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
         try {
-            //FileReader reader = new FileReader(USER_FILE_NAME);
             FileReader reader = new FileReader(USER_FILE_NAME);
             JSONParser parser = new JSONParser();
             JSONArray peopleJSON = (JSONArray) new JSONParser().parse(reader);
+            HashMap<User, ArrayList<UUID>> friendsHash = new HashMap<User, ArrayList<UUID>>();
 
+            // 1. construct user objects without friends
             for (int i = 0; i < peopleJSON.size(); i++) {
                 JSONObject personJSON = (JSONObject) peopleJSON.get(i);
-
                 UUID id = UUID.fromString((String) personJSON.get(USER_ID));
                 String firstName = (String) personJSON.get(USER_FIRST_NAME);
                 String lastName = (String) personJSON.get(USER_LAST_NAME);
                 String username = (String) personJSON.get(USER_USERNAME);
-                String email = (String) personJSON.get(USER_EMAIL);
-                String birthday = (String) personJSON.get(USER_BIRTHDAY);
-                Avatar avatar = convertJSONToAvatar((JSONObject) personJSON.get(USER_AVATAR));
-                UserProgress userProgress = convertJSONToUserProgress((JSONObject) personJSON.get(USER_PROGRESS));
+                String password = (String) personJSON.get(USER_PASSWORD);
+                String emailAddress = (String) personJSON.get(USER_EMAIL);
                 int points = Math.toIntExact((long) personJSON.get(USER_POINTS));
 
-                // ArrayList<User> friends = (ArrayList<User>) personJSON.get(FRIENDS_ID);
+                // convert special data types
+                Date birthday = convertStringToDate((String) personJSON.get(USER_BIRTHDAY));
+                Avatar avatar = convertJSONToAvatar((JSONObject) personJSON.get(USER_AVATAR));
+                UserProgress userProgress = convertJSONToUserProgress((JSONObject) personJSON.get(USER_PROGRESS));
 
-                // REMOVE LATER
-                System.out.println(id);
-                System.out.println(firstName);
-                System.out.println(lastName);
-                System.out.println(username);
-                System.out.println(email);
-                System.out.println(birthday);
-                System.out.println(avatar);
-                System.out.println(userProgress);
-                System.out.println(points);
-                // --------
+                // create user object
+                User newUser = new User(id, firstName, lastName, username, password, emailAddress, birthday, avatar,
+                        points, userProgress);
+                System.out.println(newUser);
 
-                // users.add(new User(id, firstName, lastName, username, email, birthday, avatar, friends, points, userProgress));
-
+                // record the user's friends as a list of UUIDs
+                friendsHash.put(newUser, convertFriendsToArrayList((JSONArray) personJSON.get(FRIENDS)));
+                users.add(newUser);
             }
+
+            // 2. iteratively link all friend objects (referencing UUIDs) to each user
+            for (int i = 0; i < users.size(); i++) {
+                System.out.println("Entered loop #" + i);
+                User currentUser = users.get(i);
+                ArrayList<UUID> friendsUUIDs = (ArrayList<UUID>) friendsHash.get(currentUser);
+
+                // create user list of friends for each user
+                if (friendsUUIDs == null) {
+                    System.out.println("User #" + i + " has no friends.");
+                } else {
+                    // iterate through each friend
+                    for (int j = 0; j < friendsUUIDs.size(); j++) {
+                        User friend = findUserByUUID(users, friendsUUIDs.get(j));
+                        if (friend != null) {
+                            currentUser.addFriend(friend);
+                            System.out.println(
+                                    currentUser.getFirstName() + " is now friended with " + friend.getFirstName());
+                        }
+                    }
+                }
+            }
+
             return users;
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,6 +89,35 @@ public class DataLoader extends DataConstants {
         return null;
     }
 
+    public static Date convertStringToDate(String str) {
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = simpleDate.parse(str);
+            System.out.println(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public static ArrayList<UUID> convertFriendsToArrayList(JSONArray json) {
+        ArrayList<UUID> ret = new ArrayList<UUID>();
+        if (json != null) {
+            for (int i = 0; i < json.size(); i++) {
+                ret.add(UUID.fromString((String) json.get(i)));
+            }
+        }
+        return ret;
+    }
+
+    public static User findUserByUUID(ArrayList<User> users, UUID id) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUUID().equals(id))
+                return users.get(i);
+        }
+        return null;
+    }
 
     public static Avatar convertJSONToAvatar(JSONObject json) {
         String character = (String) json.get(CHARACTER);
@@ -78,17 +130,9 @@ public class DataLoader extends DataConstants {
         int currentExercise = Math.toIntExact((long) json.get(CURRENT_EXERCISE));
         return new UserProgress(currentLesson, currentExercise);
     }
-    
-    // public static ArrayList<User> convertJSONToFriendsArray(JSONArray json) {
-    //     for (Object friend : json) {
-            
-    //     }
-    //     return new ArrayList<User>();
-    // }
 
     public static ArrayList<Language> getLanguages() {
         ArrayList<Language> languages = new ArrayList<>();
         return languages;
     }
 }
-

@@ -19,7 +19,7 @@ public class Facade {
         languages = LanguageList.getInstance();
     }
 
-    public Facade getInstance() {
+    public static Facade getInstance() {
         if (facade == null)
             facade = new Facade();
         return facade;

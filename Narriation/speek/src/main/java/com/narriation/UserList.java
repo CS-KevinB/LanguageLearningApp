@@ -11,8 +11,17 @@ public class UserList {
     private static UserList userList;
     private ArrayList<User> users;
 
+    // private UserList() {
+    // users = DataLoader.getUsers();
+    // }
+
     private UserList() {
-        users = DataLoader.getUsers();
+        users = new ArrayList<>();
+        // Manually add users
+        users.add(new User(UUID.randomUUID(), "John", "Doe", "jdoe", "p123", "johndoe@email.com",
+                new Date(0), new Avatar(), new ArrayList<>(), 0, new UserProgress()));
+        users.add(new User(UUID.randomUUID(), "Jane", "Smith", "jsmith", "p123", "janesmith@email.com",
+                new Date(0), new Avatar(), new ArrayList<>(), 0, new UserProgress()));
     }
 
     public static UserList getInstance() {

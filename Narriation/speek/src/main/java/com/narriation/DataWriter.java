@@ -48,17 +48,17 @@ public class DataWriter extends DataConstants {
         userDetails.put(USER_AVATAR, user.getAvatar().getImagePath());
         userDetails.put(USER_POINTS, user.getPoints());
         // userDetails.put(USER_PROGRESS, user.getUserProgress().getProgress());
-        userDetails.put(FRIENDS_ID, user.getFriends());
+        userDetails.put(FRIENDS, user.getFriends());
         return userDetails;
     }
 
     public static void main(String[] args) {
         UserList users = UserList.getInstance();
-        boolean userAdded = users.addUser("John", "Smith");
+        boolean userAdded = users.saveUsers();
         if (userAdded) {
-            System.out.println("User 'John Smith' added successfully!");
+            System.out.println("Users saved successfully!");
         } else {
-            System.out.println("Failed to add user");
+            System.out.println("Failed to save users");
         }
     }
 

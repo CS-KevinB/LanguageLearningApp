@@ -14,7 +14,7 @@ public class Facade {
     private UserList users;
     private LanguageList languages;
 
-    private Facade() {
+    Facade() {
         users = UserList.getInstance();
         languages = LanguageList.getInstance();
     }

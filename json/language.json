@@ -103,8 +103,7 @@
                 "translatedPhrase": [
                     "00a54e77-b9af-4068-ace0-7bc4bda3b744",
                     "a961da70-ddf9-4134-982a-d9a150715c1a"
-                ],
-                "feedback": "Try again!"
+                ]
             }, 
             {
                 "uuid": "18b497a2-41fd-426d-aa09-aadbcda407b2",
@@ -115,8 +114,7 @@
                 "translatedPhrase": [
                     "99098414-5326-466c-bb0e-481f0c3beaab",
                     "795891c4-3173-49ce-aa6d-0eaafe57f84a"
-                ],
-                "feedback": "Try again!"
+                ]
             }, 
             {
                 "uuid": "ca0f8b81-6a16-4a44-96a0-b4fc8cb2e8d2",
@@ -127,8 +125,7 @@
                 "translatedPhrase": [
                     "b018bfd4-afb1-4cdd-bf13-3f58aad5279c",
                     "7d5bc0c0-6538-461a-8698-e88ed212f14a"
-                ],
-                "feedback": "Try again!"
+                ]
             }
         ],
         "writingQuestions": [

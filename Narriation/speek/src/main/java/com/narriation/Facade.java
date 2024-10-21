@@ -46,7 +46,11 @@ public class Facade {
     }
 
     public boolean logout() {
-        return users.saveUsers();
+        boolean saved = users.saveUsers();
+        if (saved) {
+            currentUser = null;
+        }
+        return saved;
     }
 
     public void updateAvatar(CharacterOptions character, HatOptions hat) {

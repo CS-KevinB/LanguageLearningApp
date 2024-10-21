@@ -16,7 +16,8 @@ public class LanguageLearningAppUI {
 
     public void run() {
         System.out.println(WELCOME_MESSAGE);
-        while (true) {
+        boolean loggedIn = true;
+        while (loggedIn) {
             displayMainMenu();
             int userCommand = getUserCommand(mainMenuOptions.length);
 
@@ -38,6 +39,7 @@ public class LanguageLearningAppUI {
                     break;
                 case 2:
                     logout();
+                    loggedIn = false;
                     break;
             }
         }

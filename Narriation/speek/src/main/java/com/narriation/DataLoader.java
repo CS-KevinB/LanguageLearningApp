@@ -120,10 +120,11 @@ public class DataLoader extends DataConstants {
      * @author Christian Ruff
      * @return
      */
+
     private static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
         try {
-            FileReader reader = new FileReader(USER_FILE_NAME);
+            FileReader reader = new FileReader("json/user.json");
             JSONArray peopleJSON = (JSONArray) new JSONParser().parse(reader);
             HashMap<User, ArrayList<UUID>> friendsHash = new HashMap<User, ArrayList<UUID>>();
 

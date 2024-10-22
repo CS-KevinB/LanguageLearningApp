@@ -1,5 +1,6 @@
 package com.narriation;
-
+import java.util.Date;
+import java.util.HashMap;
 /**
  * Defines a class for user progress
  * 
@@ -9,6 +10,9 @@ public class UserProgress {
     private int currentLesson;
     private int currentExercise;
     private Story currentStory;
+    private HashMap<Phrase, Integer> phraseSeenCounter;
+    private HashMap<Phrase, Integer> phraseCorrectCounter;
+    private HashMap<Phrase, Date> phraseLastSeen;
 
     /**
      * Constructs a new UserProgress object

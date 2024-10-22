@@ -1,7 +1,8 @@
 package com.narriation;
 
 /**
- * Enumeration for an avatar's character options 
+ * Enumeration for an avatar's character options
+ * 
  * @author Christian Ruff
  */
 public enum CharacterOptions {
@@ -13,8 +14,10 @@ public enum CharacterOptions {
 
     /**
      * Accepts a string and returns the CharacterOption enum that matches
+     * 
      * @param str Exact name of the corresponding enum
-     * @return Returns the corresponding enum if a match is found, ELSE returns default
+     * @return Returns the corresponding enum if a match is found, ELSE returns
+     *         default
      */
     public static CharacterOptions getValue(String str) {
         for (int i = 0; i < CharacterOptions.values().length; i++) {

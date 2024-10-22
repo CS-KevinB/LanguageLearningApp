@@ -1,7 +1,9 @@
 package com.narriation;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
 /**
  * Defines a class for user progress
  * 
@@ -12,8 +14,6 @@ public class UserProgress {
     private HashMap<Phrase, Integer> phraseSeenCounter;
     private HashMap<Phrase, Integer> phraseCorrectCounter;
     private HashMap<Phrase, Date> phraseLastSeen;
-
-
 
     /**
      * Constructs a new UserProgress object
@@ -29,9 +29,10 @@ public class UserProgress {
      * 
      * @param currentLesson   Position of current lesson in array
      * @param currentExercise Position of current exercise in array
-     * REDO ALL OF THIS
+     *                        REDO ALL OF THIS
      */
-    public UserProgress(HashMap<Story, Boolean> currentStory, HashMap<Phrase, Integer> phraseSeenCounter, HashMap<Phrase, Integer> phraseCorrectCounter, HashMap<Phrase, Date> phraseLastSeen) {
+    public UserProgress(HashMap<Story, Boolean> currentStory, HashMap<Phrase, Integer> phraseSeenCounter,
+            HashMap<Phrase, Integer> phraseCorrectCounter, HashMap<Phrase, Date> phraseLastSeen) {
         this.currentStory = currentStory;
         this.phraseSeenCounter = phraseSeenCounter;
         this.phraseCorrectCounter = phraseCorrectCounter;
@@ -39,13 +40,13 @@ public class UserProgress {
     }
 
     public Story getCurrentStory() {
-    for (Map.Entry<Story, Boolean> entry : currentStory.entrySet()) {
-        if (entry.getValue()) {
-            return entry.getKey();
+        for (Map.Entry<Story, Boolean> entry : currentStory.entrySet()) {
+            if (entry.getValue()) {
+                return entry.getKey();
+            }
         }
+        return null; // Return null if no current story is found
     }
-    return null; // Return null if no current story is found
-}
 
     public String toString() {
         return "This is " + Facade.getInstance().getCurrentUser().getFirstName() + "'s progress";
@@ -77,6 +78,6 @@ public class UserProgress {
 
     public void incrementPhraseSeenCounter(Phrase phrase) {
         this.phraseSeenCounter.put(phrase, this.phraseSeenCounter.get(phrase) + 1);
-    }    
+    }
 
 }

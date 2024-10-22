@@ -1,6 +1,7 @@
 package com.narriation;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 /**
  * Defines a class for user progress
  * 
@@ -30,23 +31,24 @@ public class UserProgress {
      * @param currentExercise Position of current exercise in array
      * REDO ALL OF THIS
      */
-    public UserProgress(int currentLesson, int currentExercise) {
-        // TODO:
+    public UserProgress(HashMap<Story, Boolean> currentStory, HashMap<Phrase, Integer> phraseSeenCounter, HashMap<Phrase, Integer> phraseCorrectCounter, HashMap<Phrase, Date> phraseLastSeen) {
+        this.currentStory = currentStory;
+        this.phraseSeenCounter = phraseSeenCounter;
+        this.phraseCorrectCounter = phraseCorrectCounter;
+        this.phraseLastSeen = phraseLastSeen;
     }
 
-    public String getProgress() {
-        // TODO: 
-
-    }
-
-    //EDIT THIS
     public Story getCurrentStory() {
-        return currentStory;
+    for (Map.Entry<Story, Boolean> entry : currentStory.entrySet()) {
+        if (entry.getValue()) {
+            return entry.getKey();
+        }
     }
+    return null; // Return null if no current story is found
+}
 
-    @Override
     public String toString() {
-        return getProgress();
+        return "This is " + Facade.getInstance().getCurrentUser().getFirstName() + "'s progress";
     }
 
     public HashMap<Phrase, Integer> getPhraseSeenCounter() {
@@ -75,11 +77,6 @@ public class UserProgress {
 
     public void incrementPhraseSeenCounter(Phrase phrase) {
         this.phraseSeenCounter.put(phrase, this.phraseSeenCounter.get(phrase) + 1);
-    }
-
-
-    
-
-    
+    }    
 
 }

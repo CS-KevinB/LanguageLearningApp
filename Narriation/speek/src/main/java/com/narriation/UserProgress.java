@@ -132,6 +132,13 @@ public class UserProgress {
         this.phraseLastSeen = phraseLastSeen;
     }
 
+    public void incrementPhraseSeenCounter(Phrase phrase) {
+        this.phraseSeenCounter.put(phrase, this.phraseSeenCounter.get(phrase) + 1);
+    }
+
+
+    
+
     
 
 }

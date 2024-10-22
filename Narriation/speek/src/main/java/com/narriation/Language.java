@@ -20,8 +20,8 @@ public class Language {
         this.phrases = phrases;
     }
 
-    public ArrayList<Lesson> getLessons() {
-        return lessons;
+    public ArrayList<Phrase> getPhrases() {
+        return phrases;
     }
 
     public String getLanguage () {

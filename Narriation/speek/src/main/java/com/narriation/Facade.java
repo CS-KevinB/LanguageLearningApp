@@ -69,20 +69,12 @@ public class Facade {
         currentUser.setPassword(password);
     }
 
-    public boolean startLesson() {
-        currentUser.getUserProgress().getCurrentLesson();
-        return false;
+    public Exercise startExercise() {
+        return currentUser.getUserProgress().getCurrentExercise();
     }
 
-    public boolean startExercise() {
-        currentUser.getUserProgress().getCurrentExercise();
-        return false;
-
-    }
-
-    public boolean startStory() {
-        currentUser.getUserProgress().getCurrentStory();
-        return false;
+    public Story startStory() {
+        return currentUser.getUserProgress().getCurrentStory();
     }
 
     public boolean setCurrentLangauge(Language language) {

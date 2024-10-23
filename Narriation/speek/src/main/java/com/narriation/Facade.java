@@ -1,6 +1,7 @@
 package com.narriation;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.sql.Date;
 import java.util.UUID;
 
@@ -41,6 +42,24 @@ public class Facade {
                 emailAddress, birthday, avatar, friends, points, userProgress);
     }
 
+    public boolean createAccount(String username, String password, String email) {
+        if (users.getUser(username) != null) {
+            return false;
+        }
+
+        UUID id = UUID.randomUUID();
+        String firstName = "";
+        String lastName = "";
+        Date birthday = new Date(0);
+        Avatar avatar = new Avatar();
+        ArrayList<User> friends = new ArrayList<>();
+        int points = 0;
+        UserProgress userProgress = new UserProgress();
+
+        return users.addUser(id, firstName, lastName, username, password, email, birthday, avatar, friends, points,
+                userProgress);
+    }
+
     public User getCurrentUser() {
         return currentUser;
     }
@@ -69,10 +88,16 @@ public class Facade {
         currentUser.setPassword(password);
     }
 
-
-    public Exercise startExercise() {
-        // TODO: PHRASES?
+    public void displayQuestion(Word word) {
+        System.out.println("Select the correct translantion for " + word.getEnglishWord() + " in spanish");
+        // Correct answer
+        List<String> options = new ArrayList<>();
+        options.add(word.getTranslatedWord());
     }
+
+    // public Exercise startExercise() {
+    // TODO: PHRASES?
+    // }
 
     public boolean startStory() {
         currentUser.getUserProgress().getCurrentStory();
@@ -87,30 +112,19 @@ public class Facade {
         return false;
     }
 
-    public void sendNotification(NotificationType notificationType) {
+    // public void sendNotification(NotificationType notificationType) {
 
-    }
-
-    public boolean createAccount(String username, String password, String email) {
-        if (users.getUser(username) != null) {
-            return false;
-        }
-
-        UUID id = UUID.randomUUID();
-        String firstName = "";
-        String lastName = "";
-        Date birthday = new Date(0);
-        Avatar avatar = new Avatar();
-        ArrayList<User> friends = new ArrayList<>();
-        int points = 0;
-        UserProgress userProgress = new UserProgress();
-
-        return users.addUser(id, firstName, lastName, username, password, email, birthday, avatar, friends, points,
-                userProgress);
-    }
+    // }
 
     public void viewLanguage() {
         languages.getLanguageByUUID(currentLanguage.getUUID());
     }
 
+    public void startLesson() {
+        if (currentUser != null && currentLanguage != null) {
+            // Get user progress to start lesson
+            UserProgress userProgress = currentUser.getUserProgress();
+        }
+
+    }
 }

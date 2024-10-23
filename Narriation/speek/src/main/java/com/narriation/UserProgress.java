@@ -22,7 +22,7 @@ public class UserProgress {
         this.currentStory = new HashMap<>();
     }
 
-    public int getPhraseSeenCount(Phrase phrase) {
+    public int getPhraseSeenCounter(Phrase phrase) {
         return phraseSeenCounter.getOrDefault(phrase, 0);
     }
 
@@ -39,7 +39,7 @@ public class UserProgress {
     }
 
     public Date getPhraseLastSeen(Phrase phrase) {
-        return phraseLastSeen.get(phrase);
+        return phraseLastSeen.getOrDefault(phrase, null);
     }
 
     public void setPhraseLastSeen(Phrase phrase) {

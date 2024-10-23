@@ -1,7 +1,11 @@
 package com.narriation;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 import java.sql.Date;
 import java.util.UUID;
 
@@ -88,11 +92,44 @@ public class Facade {
         currentUser.setPassword(password);
     }
 
-    public void displayQuestion(Word word) {
-        System.out.println("Select the correct translantion for " + word.getEnglishWord() + " in spanish");
-        // Correct answer
-        List<String> options = new ArrayList<>();
-        options.add(word.getTranslatedWord());
+    public void displayQuestion(Phrase phrase) {
+        displayMCQ(phrase);
+        displayFillInTheBlank(phrase);
+    }
+
+    public void displayMCQ(Phrase correctPhrase) {
+        ArrayList<String> options = new ArrayList<>();
+        Random random = new Random();
+        options.add(correctPhrase.getTranslatedPhrase().toString());
+        while (options.size() < 4) {
+            Phrase getRandomPhrase = phrases.get(random.nextInt(phrases.size()));
+            if (!options.contains(getRandomPhrase.getTranslatedPhrase().toString())) {
+                options.add(getRandomPhrase.getTranslatedPhrase().toString());
+            }
+            Collections.shuffle(options);
+            System.out.println("What is the translation of " + correctPhrase.getEnglishPhrase().toString()
+                    + " in spanish? /n Choose from the following options:");
+            for (int i = 0; i < options.size(); i++) {
+                System.out.println((i + 1) + ". " + options.get(i));
+            }
+            Scanner scanner = new Scanner(System.in);
+            int userChoice = scanner.nextInt();
+            if (userChoice > options.size() || userChoice < 1) {
+                System.out.println("Invalid choice. Please try again.");
+            } else if (options.get(userChoice - 1).equals(correctPhrase.getTranslatedPhrase().toString())) {
+                System.out.println("Correct!");
+                currentUser.getUserProgress().incrementPhraseSeenCounter(correctPhrase);
+            } else {
+                System.out.println("Incorrect. The correct answer is " + correctPhrase.getTranslatedPhrase());
+            }
+            correctPhrase.phraseSeen();
+
+        }
+
+    }
+
+    public void displayFillInTheBlank(Phrase phrase) {
+
     }
 
     // public Exercise startExercise() {

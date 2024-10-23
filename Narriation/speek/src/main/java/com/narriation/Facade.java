@@ -106,24 +106,29 @@ public class Facade {
     public void displayMCQ(Phrase correctPhrase) {
         ArrayList<String> options = new ArrayList<>();
         Random random = new Random();
-        options.add(correctPhrase.getTranslatedPhrase().toString());
+
+        String correctAnswer = phraseToString(correctPhrase.getTranslatedPhrase());
+        options.add(correctAnswer);
 
         while (options.size() < 4 && !phrases.isEmpty()) {
             Phrase getRandomPhrase = phrases.get(random.nextInt(phrases.size()));
-            if (!options.contains(getRandomPhrase.getTranslatedPhrase().toString())) {
-                options.add(getRandomPhrase.getTranslatedPhrase().toString());
+            String translatedString = phraseToString(getRandomPhrase.getTranslatedPhrase());
+
+            if (!options.contains(translatedString)) {
+                options.add(translatedString);
             }
 
             Collections.shuffle(options);
 
-            System.out.println("What is the translation of " + correctPhrase.getEnglishPhrase().toString()
-                    + " in spanish? \n Choose from the following options:");
+            System.out.println("What is the translation of " + phraseToString(correctPhrase.getEnglishPhrase()));
             for (int i = 0; i < options.size(); i++) {
                 System.out.println((i + 1) + ". " + options.get(i));
             }
 
             Scanner sc = new Scanner(System.in);
+            System.out.println("Choose from the following options:");
             int userChoice = sc.nextInt();
+
             if (userChoice > options.size() || userChoice < 1) {
                 System.out.println("Invalid choice. Please try again.");
             } else if (options.get(userChoice - 1).equals(correctPhrase.getTranslatedPhrase().toString())) {
@@ -135,6 +140,17 @@ public class Facade {
             correctPhrase.phraseSeen();
 
         }
+
+    }
+
+    private String phraseToString(ArrayList<Word> phraseWords) {
+
+        StringBuilder phraseToString = new StringBuilder();
+        for (Word word : phraseWords) {
+            phraseToString.append(word.getTranslatedWord()).append(" ");
+
+        }
+        return phraseToString.toString().trim();
 
     }
 

@@ -27,23 +27,12 @@ public class Phrase {
      * @param translatedPhrase - list of words for the translated phrase
      */
 
-    public Phrase(String feedback, ArrayList<Word> englishPhrase, ArrayList<Word> translatedPhrase) {
+    public Phrase(String feedback, ArrayList<Word> englishPhrase, ArrayList<Word> translatedPhrase, int difficulty) {
         this.id = UUID.randomUUID();
         this.feedback = feedback;
         this.englishPhrase = englishPhrase;
         this.translatedPhrase = translatedPhrase;
         this.difficulty = difficulty;
-    }
-
-    public Phrase(UUID uuid, String feedback, ArrayList<Word> englishPhrase, ArrayList<Word> translatedPhrase) {
-        this.id = uuid;
-        this.feedback = feedback;
-        this.englishPhrase = englishPhrase;
-        this.translatedPhrase = translatedPhrase;
-    }
-
-    public Phrase(String string, String string2, String string3, int i) {
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -73,8 +62,8 @@ public class Phrase {
         return feedback;
     }
 
-    public void setFeedBack(String message) {
-        this.feedback = message;
+    public void setFeedBack(String feedback) {
+        this.feedback = feedback;
     }
 
     // TODO: TEST THIS!!!

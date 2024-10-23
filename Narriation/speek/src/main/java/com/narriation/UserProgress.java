@@ -22,19 +22,37 @@ public class UserProgress {
         this.currentStory = new HashMap<>();
     }
 
-    /**
-     * Constructs a new UserProgress object
-     * 
-     * @param currentLesson   Position of current lesson in array
-     * @param currentExercise Position of current exercise in array
-     *                        REDO ALL OF THIS
-     */
-    public UserProgress(HashMap<Story, Boolean> currentStory, HashMap<Phrase, Integer> phraseSeenCounter,
-            HashMap<Phrase, Integer> phraseCorrectCounter, HashMap<Phrase, Date> phraseLastSeen) {
-        this.currentStory = currentStory;
+    public int getPhraseSeenCount(Phrase phrase) {
+        return phraseSeenCounter.getOrDefault(phrase, 0);
+    }
+
+    public void setPhraseSeenCounter(HashMap<Phrase, Integer> phraseSeenCounter) {
         this.phraseSeenCounter = phraseSeenCounter;
+    }
+
+    public int getPhraseCorrectCounter(Phrase phrase) {
+        return phraseCorrectCounter.getOrDefault(phrase, 0);
+    }
+
+    public void setPhraseCorrectCounter(HashMap<Phrase, Integer> phraseCorrectCounter) {
         this.phraseCorrectCounter = phraseCorrectCounter;
-        this.phraseLastSeen = phraseLastSeen;
+    }
+
+    public Date getPhraseLastSeen(Phrase phrase) {
+        return phraseLastSeen.get(phrase);
+    }
+
+    public void setPhraseLastSeen(Phrase phrase) {
+        phraseLastSeen.put(phrase, new Date());
+    }
+
+    public void incrementPhraseSeenCounter(Phrase phrase) {
+        // Initialize counter
+        phraseSeenCounter.putIfAbsent(phrase, 0);
+        // Increment counter
+        phraseSeenCounter.put(phrase, phraseSeenCounter.get(phrase) + 1);
+        // Update last seen date
+        phraseLastSeen.put(phrase, new Date());
     }
 
     public Story getCurrentStory() {
@@ -48,39 +66,6 @@ public class UserProgress {
 
     public String toString() {
         return "This is " + Facade.getInstance().getCurrentUser().getFirstName() + "'s progress";
-    }
-
-    public int getPhraseSeenCount(Phrase phrase) {
-        return phraseSeenCounter.getOrDefault(phrase, 0);
-    }
-
-    public void setPhraseSeenCounter(HashMap<Phrase, Integer> phraseSeenCounter) {
-        this.phraseSeenCounter = phraseSeenCounter;
-    }
-
-    public int getPhraseCorrectCounter() {
-        return phraseCorrectCounter.getOrDefault(phrase, 0);
-    }
-
-    public void setPhraseCorrectCounter(HashMap<Phrase, Integer> phraseCorrectCounter) {
-        this.phraseCorrectCounter = phraseCorrectCounter;
-    }
-
-    public HashMap<Phrase, Date> getPhraseLastSeen() {
-        return phraseLastSeen;
-    }
-
-    public void setPhraseLastSeen(HashMap<Phrase, Date> phraseLastSeen) {
-        this.phraseLastSeen = phraseLastSeen;
-    }
-
-    public void incrementPhraseSeenCounter(Phrase phrase) {
-        // Initialize counter
-        phraseSeenCounter.putIfAbsent(phrase, 0);
-        // Increment counter
-        phraseSeenCounter.put(phrase, phraseSeenCounter.get(phrase) + 1);
-        // Update last seen date
-        phraseLastSeen.put(phrase, new Date());
     }
 
 }

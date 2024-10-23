@@ -1,7 +1,8 @@
 package com.narriation;
 
 import java.util.ArrayList;
-import java.lang.reflect.Array;
+
+import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,11 +21,20 @@ public class Main {
 
         Phrase phrase = new Phrase("Try again!", englishPhrase, translatedPhrase, 1);
 
+        // Check phrase seen count
         System.out.println("Initial phrase seen count: " + userProgress.getPhraseSeenCount(phrase));
         userProgress.incrementPhraseSeenCounter(phrase);
         System.out.println("Incremented phrase seen count: " + userProgress.getPhraseSeenCount(phrase));
         userProgress.incrementPhraseSeenCounter(phrase);
         System.out.println("Incremented phrase seen count: " + userProgress.getPhraseSeenCount(phrase));
+
+        // Check phrase correct count
+        // userProgress.setPhraseCorrectCounter(phrase, 1);
+        userProgress.incrementPhraseSeenCounter(phrase);
+        System.out.println("Phrase correct count: " + userProgress.getPhraseCorrectCounter(phrase));
+
+        Date lastSeen = userProgress.getPhraseLastSeen(phrase);
+        System.out.println("Last seen date: " + lastSeen);
     }
 
 }

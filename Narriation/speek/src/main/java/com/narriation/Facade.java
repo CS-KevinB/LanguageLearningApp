@@ -154,6 +154,7 @@ public class Facade {
     }
 
     public void displayFillInTheBlank(Phrase phrase) {
+        Random random = new Random();
 
     }
 

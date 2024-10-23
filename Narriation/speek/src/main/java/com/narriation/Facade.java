@@ -18,16 +18,22 @@ public class Facade {
     private Language currentLanguage;
     private UserList users;
     private LanguageList languages;
+    private ArrayList<Phrase> phrases;
 
     Facade() {
         users = UserList.getInstance();
-        languages = LanguageList.getInstance();
+        phrases = new ArrayList<>();
+        // languages = LanguageList.getInstance();
     }
 
     public static Facade getInstance() {
         if (facade == null)
             facade = new Facade();
         return facade;
+    }
+
+    public void setPhrases(ArrayList<Phrase> phrases) {
+        this.phrases = phrases;
     }
 
     public boolean login(String username, String password) {
@@ -94,26 +100,30 @@ public class Facade {
 
     public void displayQuestion(Phrase phrase) {
         displayMCQ(phrase);
-        displayFillInTheBlank(phrase);
+        // displayFillInTheBlank(phrase);
     }
 
     public void displayMCQ(Phrase correctPhrase) {
         ArrayList<String> options = new ArrayList<>();
         Random random = new Random();
         options.add(correctPhrase.getTranslatedPhrase().toString());
-        while (options.size() < 4) {
+
+        while (options.size() < 4 && !phrases.isEmpty()) {
             Phrase getRandomPhrase = phrases.get(random.nextInt(phrases.size()));
             if (!options.contains(getRandomPhrase.getTranslatedPhrase().toString())) {
                 options.add(getRandomPhrase.getTranslatedPhrase().toString());
             }
+
             Collections.shuffle(options);
+
             System.out.println("What is the translation of " + correctPhrase.getEnglishPhrase().toString()
-                    + " in spanish? /n Choose from the following options:");
+                    + " in spanish? \n Choose from the following options:");
             for (int i = 0; i < options.size(); i++) {
                 System.out.println((i + 1) + ". " + options.get(i));
             }
-            Scanner scanner = new Scanner(System.in);
-            int userChoice = scanner.nextInt();
+
+            Scanner sc = new Scanner(System.in);
+            int userChoice = sc.nextInt();
             if (userChoice > options.size() || userChoice < 1) {
                 System.out.println("Invalid choice. Please try again.");
             } else if (options.get(userChoice - 1).equals(correctPhrase.getTranslatedPhrase().toString())) {
@@ -161,6 +171,7 @@ public class Facade {
         if (currentUser != null && currentLanguage != null) {
             // Get user progress to start lesson
             UserProgress userProgress = currentUser.getUserProgress();
+
         }
 
     }

@@ -30,13 +30,13 @@ public class Word {
         this.id = UUID.randomUUID();
         this.englishWord = englishWord;
         this.translatedWord = translatedWord;
-        this.pronunciation = pronunciation;
-        this.partOfSpeech = partOfSpeech;
-        this.gender = gender;
+        this.pronunciation = " ";
+        this.partOfSpeech = partOfSpeech.ADJECTIVE;
+        this.gender = gender.NEITHER;
         this.difficulty = difficulty;
     }
 
-    public Word(String string, String string2, int i) {
+    public Word(String string, String string2, int difficulty) {
         // TODO Auto-generated constructor stub
     }
 
@@ -87,8 +87,14 @@ public class Word {
      *         of speech) (gender)
      */
     public String toString() {
-        return "EN: " + this.englishWord + " | XX: " + this.translatedWord + " | Pronounciation: " + this.pronunciation
-                + " | Part of Speech: " + this.partOfSpeech + " | Gender: " + this.gender;
+        StringBuilder sb = new StringBuilder();
+        sb.append("EN: ").append(englishWord != null ? englishWord : "null");
+        sb.append(" | XX: ").append(translatedWord != null ? translatedWord : "null");
+        sb.append(" | Pronunciation: ").append(pronunciation != null ? pronunciation : "null");
+        sb.append(" | Part of Speech: ").append(partOfSpeech != null ? partOfSpeech.toString() : "null");
+        sb.append(" | Gender: ").append(gender != null ? gender.toString() : "null");
+
+        return sb.toString();
     }
 
     public int getDifficulty() {

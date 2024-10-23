@@ -15,13 +15,11 @@ public class UserProgress {
     private HashMap<Phrase, Integer> phraseCorrectCounter;
     private HashMap<Phrase, Date> phraseLastSeen;
 
-    /**
-     * Constructs a new UserProgress object
-     */
     public UserProgress() {
-        this.phraseSeenCounter = new HashMap<Phrase, Integer>();
-        this.phraseCorrectCounter = new HashMap<Phrase, Integer>();
-        this.phraseLastSeen = new HashMap<Phrase, Date>();
+        this.phraseSeenCounter = new HashMap<>();
+        this.phraseCorrectCounter = new HashMap<>();
+        this.phraseLastSeen = new HashMap<>();
+        this.currentStory = new HashMap<>();
     }
 
     /**
@@ -52,16 +50,16 @@ public class UserProgress {
         return "This is " + Facade.getInstance().getCurrentUser().getFirstName() + "'s progress";
     }
 
-    public HashMap<Phrase, Integer> getPhraseSeenCounter() {
-        return phraseSeenCounter;
+    public int getPhraseSeenCount(Phrase phrase) {
+        return phraseSeenCounter.getOrDefault(phrase, 0);
     }
 
     public void setPhraseSeenCounter(HashMap<Phrase, Integer> phraseSeenCounter) {
         this.phraseSeenCounter = phraseSeenCounter;
     }
 
-    public HashMap<Phrase, Integer> getPhraseCorrectCounter() {
-        return phraseCorrectCounter;
+    public int getPhraseCorrectCounter() {
+        return phraseCorrectCounter.getOrDefault(phrase, 0);
     }
 
     public void setPhraseCorrectCounter(HashMap<Phrase, Integer> phraseCorrectCounter) {

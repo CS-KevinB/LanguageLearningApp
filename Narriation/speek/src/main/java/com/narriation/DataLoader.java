@@ -99,7 +99,7 @@ public class DataLoader extends DataConstants {
 
                 // 6. create ArrayList of lessons
 
-                languages.add(new Language(lessonID, nameOfLanguage, lessons, words, phrases));
+                languages.add(new Language(lessonID, nameOfLanguage, words, phrases));
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -30,6 +30,12 @@ public class UserProgress {
         this.phraseSeenCounter = phraseSeenCounter;
     }
 
+    public void incrementPhraseSeenCounter(Phrase phrase) {
+        phraseSeenCounter.putIfAbsent(phrase, 0);
+        phraseSeenCounter.put(phrase, phraseSeenCounter.get(phrase) + 1);
+        phraseLastSeen.put(phrase, new Date());
+    }
+
     public int getPhraseCorrectCounter(Phrase phrase) {
         return phraseCorrectCounter.getOrDefault(phrase, 0);
     }
@@ -43,15 +49,6 @@ public class UserProgress {
     }
 
     public void setPhraseLastSeen(Phrase phrase) {
-        phraseLastSeen.put(phrase, new Date());
-    }
-
-    public void incrementPhraseSeenCounter(Phrase phrase) {
-        // Initialize counter
-        phraseSeenCounter.putIfAbsent(phrase, 0);
-        // Increment counter
-        phraseSeenCounter.put(phrase, phraseSeenCounter.get(phrase) + 1);
-        // Update last seen date
         phraseLastSeen.put(phrase, new Date());
     }
 

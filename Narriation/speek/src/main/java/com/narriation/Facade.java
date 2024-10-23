@@ -120,18 +120,17 @@ public class Facade {
 
             Collections.shuffle(options);
 
-            System.out.println("What is the translation of " + phraseToString(correctPhrase.getEnglishPhrase()));
+            System.out.println("Translate the phrase: " + phraseToString(correctPhrase.getEnglishPhrase()));
             for (int i = 0; i < options.size(); i++) {
                 System.out.println((i + 1) + ". " + options.get(i));
             }
 
             Scanner sc = new Scanner(System.in);
-            System.out.println("Choose from the following options:");
             int userChoice = sc.nextInt();
 
             if (userChoice > options.size() || userChoice < 1) {
                 System.out.println("Invalid choice. Please try again.");
-            } else if (options.get(userChoice - 1).equals(correctPhrase.getTranslatedPhrase().toString())) {
+            } else if (options.get(userChoice - 1).equals(phraseToString(correctPhrase.getTranslatedPhrase()))) {
                 System.out.println("Correct!");
                 currentUser.getUserProgress().incrementPhraseSeenCounter(correctPhrase);
             } else {
@@ -143,10 +142,10 @@ public class Facade {
 
     }
 
-    private String phraseToString(ArrayList<Word> phraseWords) {
+    private String phraseToString(ArrayList<Word> phrase) {
 
         StringBuilder phraseToString = new StringBuilder();
-        for (Word word : phraseWords) {
+        for (Word word : phrase) {
             phraseToString.append(word.getTranslatedWord()).append(" ");
 
         }

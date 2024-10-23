@@ -1,5 +1,6 @@
 package com.narriation;
-
+import java.util.Date;
+import java.util.HashMap;
 /**
  * Defines a class for user progress
  * 
@@ -9,6 +10,11 @@ public class UserProgress {
     private int currentLesson;
     private int currentExercise;
     private Story currentStory;
+    private HashMap<Phrase, Integer> phraseSeenCounter;
+    private HashMap<Phrase, Integer> phraseCorrectCounter;
+    private HashMap<Phrase, Date> phraseLastSeen;
+
+
 
     /**
      * Constructs a new UserProgress object
@@ -16,6 +22,9 @@ public class UserProgress {
     public UserProgress() {
         this.currentLesson = 1;
         this.currentExercise = 1;
+        this.phraseSeenCounter = new HashMap<Phrase, Integer>();
+        this.phraseCorrectCounter = new HashMap<Phrase, Integer>();
+        this.phraseLastSeen = new HashMap<Phrase, Date>();
     }
 
     /**
@@ -98,4 +107,38 @@ public class UserProgress {
     public String toString() {
         return getProgress();
     }
+
+    public HashMap<Phrase, Integer> getPhraseSeenCounter() {
+        return phraseSeenCounter;
+    }
+
+    public void setPhraseSeenCounter(HashMap<Phrase, Integer> phraseSeenCounter) {
+        this.phraseSeenCounter = phraseSeenCounter;
+    }
+
+    public HashMap<Phrase, Integer> getPhraseCorrectCounter() {
+        return phraseCorrectCounter;
+    }
+
+    public void setPhraseCorrectCounter(HashMap<Phrase, Integer> phraseCorrectCounter) {
+        this.phraseCorrectCounter = phraseCorrectCounter;
+    }
+
+    public HashMap<Phrase, Date> getPhraseLastSeen() {
+        return phraseLastSeen;
+    }
+
+    public void setPhraseLastSeen(HashMap<Phrase, Date> phraseLastSeen) {
+        this.phraseLastSeen = phraseLastSeen;
+    }
+
+    public void incrementPhraseSeenCounter(Phrase phrase) {
+        this.phraseSeenCounter.put(phrase, this.phraseSeenCounter.get(phrase) + 1);
+    }
+
+
+    
+
+    
+
 }

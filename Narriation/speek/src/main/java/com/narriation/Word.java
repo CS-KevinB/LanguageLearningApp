@@ -14,6 +14,7 @@ public class Word {
     private String pronunciation;
     private PartOfSpeech partOfSpeech;
     private Gender gender;
+    private int difficulty;
 
     /**
      * Takes all the information and parts of a word and stores them for later use
@@ -32,6 +33,7 @@ public class Word {
         this.pronunciation = pronunciation;
         this.partOfSpeech = partOfSpeech;
         this.gender = gender;
+        this.difficulty = difficulty;
     }
 
     /**
@@ -51,6 +53,10 @@ public class Word {
         this.pronunciation = pronunciation;
         this.partOfSpeech = partOfSpeech;
         this.gender = gender;
+    }
+
+    public Word(String string, String string2, int i) {
+        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -102,5 +108,9 @@ public class Word {
     public String toString() {
         return "EN: " + this.englishWord + " | XX: " + this.translatedWord + " | Pronounciation: " + this.pronunciation
                 + " | Part of Speech: " + this.partOfSpeech + " | Gender: " + this.gender;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
     }
 }

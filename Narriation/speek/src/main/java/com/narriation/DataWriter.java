@@ -24,7 +24,7 @@ public class DataWriter extends DataConstants {
             jsonUsers.add(getUserJSON(u));
         }
 
-        try (FileWriter file = new FileWriter("user.json")) {
+        try (FileWriter file = new FileWriter("Narriation/speek/json/user-test.json")) {
 
             file.write(jsonUsers.toJSONString());
             file.flush();

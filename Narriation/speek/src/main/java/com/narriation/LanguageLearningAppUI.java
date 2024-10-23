@@ -96,7 +96,7 @@ public class LanguageLearningAppUI {
 
     private void logout() {
         if (facade.logout()) {
-            System.out.println("You have been logged out successfully.");
+            System.out.println("You have been logged out successfully.1");
         } else {
             System.out.println("Logout failed. Please try again.");
         }

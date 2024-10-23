@@ -17,6 +17,7 @@ public class Phrase {
     private String feedback;
     private ArrayList<Word> englishPhrase;
     private ArrayList<Word> translatedPhrase;
+    private int difficulty;
 
     /**
      * Constructor for phrase class
@@ -31,6 +32,7 @@ public class Phrase {
         this.feedback = feedback;
         this.englishPhrase = englishPhrase;
         this.translatedPhrase = translatedPhrase;
+        this.difficulty = difficulty;
     }
 
     public Phrase(UUID uuid, String feedback, ArrayList<Word> englishPhrase, ArrayList<Word> translatedPhrase) {
@@ -38,6 +40,10 @@ public class Phrase {
         this.feedback = feedback;
         this.englishPhrase = englishPhrase;
         this.translatedPhrase = translatedPhrase;
+    }
+
+    public Phrase(String string, String string2, String string3, int i) {
+        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -72,7 +78,7 @@ public class Phrase {
     }
 
     // TODO: TEST THIS!!!
-    public void phraseSeen(){
+    public void phraseSeen() {
         UserProgress userProgress = Facade.getInstance().getCurrentUser().getUserProgress();
         userProgress.incrementPhraseSeenCounter(this);
     }
@@ -80,5 +86,9 @@ public class Phrase {
     public String toString() {
         return "ID: " + this.id + "\n  ENGLISH: " + this.englishPhrase + "\n  TRNSLTD: " + this.translatedPhrase
                 + "\n  FEEDBACK: " + this.feedback + "\n\n";
+    }
+
+    public int getDifficulty() {
+        return difficulty;
     }
 }

@@ -11,14 +11,17 @@ import software.amazon.awssdk.services.polly.endpoints.internal.Value.Array;
  * @author Risha Patel
  */
 public class Lesson {
-    public final int NUMBER_OF_QUESTIONS = 5;
+    public static final int NUMBER_OF_QUESTIONS = 5;
+    private UserProgress userProgress;
     private ArrayList<Question> questions;
+    private int score;
 
-    public Lesson(ArrayList<Exercise> exercises, ArrayList<Story> stories) {
-        this.questions = new ArrayList<Question>();
+    public Lesson(UserProgress userProgress) {
+        this.score = 0;
+        this.questions = generateQuestions(userProgress, NUMBER_OF_QUESTIONS);
     }
 
-    public void populateWithQuestions(int numOfQuestions) {
+    public static ArrayList<Question> generateQuestions(UserProgress userProgress, int numOfQuestions) {
         ArrayList<Phrase> allPhrases = Facade.getInstance().getLanguage().getPhrases();
         ArrayList<Phrase> selectedPhrases = new ArrayList<Phrase>();
         int userDifficulty = Facade.getInstance().getCurrentUser().getUserProgress().getDifficulty();
@@ -49,47 +52,14 @@ public class Lesson {
             }
         }
 
-        // 3. move the questions to the lesson instance variable
-        this.questions = selectedQuestions;
+        return selectedQuestions;
     }
 
-    // TODO test start lesson
-    public void startLesson() {
-        boolean quit = false;
-        while (!quit) {
-            ArrayList<Phrase> allPhrases = Facade.getInstance().getLanguage().getPhrases();
-            ArrayList<Phrase> lessonPhrases = new ArrayList<Phrase>();
-            int userDifficulty = Facade.getInstance().getCurrentUser().getUserProgress().getDifficulty();
-            int pointer = 0;
-
-            while (lessonPhrases.size() < NUMBER_OF_QUESTIONS && pointer < allPhrases.size()) {
-                Phrase phrase = allPhrases.get(pointer);
-                if (phrase.getDifficulty() == userDifficulty
-                        && Facade.getInstance().getCurrentUser().getUserProgress().getPhraseProgress(phrase) < 2) {
-                    lessonPhrases.add(phrase);
-                }
-            }
-
-            // 2. generate (NUMBER_OF_QUESTIONS) questions
-
-            System.out.println(lessonPhrases);
-        }
-
-        // 1. pull phrases that the user has not already seen from Language.getPhrases
-
-        // 2. iterate through the phrases, and generate question objects from those
-        // phrases
-
-        // 3. display those questions in the UI one at a time, and allow the user to
-        // input their answer
+    public ArrayList<Question> getQuestions() {
+        return this.questions;
     }
 
-    public ArrayList<Exercise> getExercises() {
-        return exercises;
+    public String getScore() {
+        return score + " / " + NUMBER_OF_QUESTIONS;
     }
-
-    public ArrayList<Story> getStory() {
-        return stories;
-    }
-
 }

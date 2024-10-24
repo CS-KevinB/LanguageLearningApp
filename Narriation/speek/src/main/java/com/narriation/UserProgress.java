@@ -20,8 +20,8 @@ public class UserProgress {
     public UserProgress() {
         this.difficulty = 0;
         this.currentStory = 0;
-        this.phraseProgress = new HashMap<>();
-        this.wordProgress = new HashMap<>();
+        this.phraseProgress = new HashMap<Phrase, Integer>();
+        this.wordProgress = new HashMap<Word, Integer>();
     }
 
     public int getDifficulty() {
@@ -29,12 +29,12 @@ public class UserProgress {
     }
 
     public int getWordProgress(Word word) {
-        return wordProgress.getOrDefault(word, 0);
+        return this.wordProgress.getOrDefault(word, 0);
     }
 
-    public void setWordProgress(Word word) {
-        wordProgress.put(word, wordProgress.get(word) + 1);
-    }
+    // public void setWordProgress(Word word) {
+    // this.wordProgress.put(word, wordProgress.get(word) + 1);
+    // }
 
     public void updateWordProgress(Word word) {
 
@@ -44,8 +44,15 @@ public class UserProgress {
         return phraseProgress.getOrDefault(phrase, 0);
     }
 
-    public void setPhraseProgress(Phrase phrase) {
-        phraseProgress.put(phrase, phraseProgress.get(phrase) + 1);
+    public void countCorrectPhrase(Phrase phrase) {
+        int currentCount = this.phraseProgress.getOrDefault(phrase, 0);
+        phraseProgress.put(phrase, currentCount + 1);
+
+    }
+
+    public void countIncorrectPhrase(Phrase phrase) {
+        int currentCount = this.phraseProgress.getOrDefault(phrase, 0);
+        phraseProgress.put(phrase, currentCount - 1);
     }
 
     public Story getCurrentStory() {

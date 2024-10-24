@@ -14,6 +14,7 @@ import java.util.UUID;
  */
 public class Facade {
     private static Facade facade;
+    private static Scanner keyboard = new Scanner(System.in);
     private User currentUser;
     private Language currentLanguage;
     private UserList users;
@@ -132,7 +133,6 @@ public class Facade {
                 System.out.println("Invalid choice. Please try again.");
             } else if (options.get(userChoice - 1).equals(phraseToString(correctPhrase.getTranslatedPhrase()))) {
                 System.out.println("Correct!");
-                currentUser.getUserProgress().incrementPhraseSeenCounter(correctPhrase);
             } else {
                 System.out.println("Incorrect. The correct answer is " + correctPhrase.getTranslatedPhrase());
             }
@@ -184,12 +184,22 @@ public class Facade {
     }
 
     public void startLesson() {
-        if (currentUser != null && currentLanguage != null) {
-            // Get user progress to start lesson
-            UserProgress userProgress = currentUser.getUserProgress();
+        if (this.currentUser != null && this.currentLanguage != null) {
+            Lesson lesson = new Lesson(this.currentUser.getUserProgress());
+            ArrayList<Question> questions = lesson.getQuestions();
 
+            for (Question question : questions) {
+                System.out.println(question.getQuestion());
+                String input = keyboard.nextLine();
+                if (question.isCorrect(input)) {
+                    System.out.println("Correct! Great work! Your score is now " + lesson.getScore());
+                } else {
+                    System.out.println("Oh no, that was incorrect. Keep going!");
+                }
+            }
+
+            System.out.println("Lesson complete! Your final score is " + lesson.getScore());
         }
-
     }
 
     public Language getLanguage() {

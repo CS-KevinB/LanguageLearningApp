@@ -3,7 +3,6 @@ package com.narriation;
 import java.util.Scanner;
 
 public class LanguageAppUI {
-
     private static final String WELCOME_MESSAGE = "Welcome to the Language Learning App!";
     private String[] mainMenuOptions = { "Create Account", "Login", "Logout" };
     private Scanner scanner;

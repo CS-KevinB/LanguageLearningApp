@@ -191,4 +191,8 @@ public class Facade {
         }
 
     }
+
+    public Language getLanguage() {
+        return this.currentLanguage;
+    }
 }

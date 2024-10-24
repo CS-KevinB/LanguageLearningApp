@@ -20,19 +20,37 @@ public class Lesson {
 
     public void populateWithQuestions(int numOfQuestions) {
         ArrayList<Phrase> allPhrases = Facade.getInstance().getLanguage().getPhrases();
-        ArrayList<Phrase> lessonPhrases = new ArrayList<Phrase>();
+        ArrayList<Phrase> selectedPhrases = new ArrayList<Phrase>();
         int userDifficulty = Facade.getInstance().getCurrentUser().getUserProgress().getDifficulty();
 
-        // 1.
-        int pointer = 0;
-        for (int i = 0; i < allPhrases.size() && lessonPhrases.size() < NUMBER_OF_QUESTIONS; i++) {
+        // 1. pull a list of (NUMBER_OF_QUESTIONS) phrases that are within the user's
+        // difficulty
+        for (int i = 0; i < allPhrases.size() && selectedPhrases.size() < NUMBER_OF_QUESTIONS; i++) {
             Phrase phrase = allPhrases.get(i);
             if (phrase.getDifficulty() == userDifficulty)
-                lessonPhrases.add(phrase);
+                selectedPhrases.add(phrase);
         }
 
-        // 2. loop through the questions
+        // 2. generate all four question types
+        ArrayList<Question> selectedQuestions = new ArrayList<Question>();
+        for (int j = 0; j < selectedPhrases.size(); j++) {
+            switch (j % 4) {
+                case 0:
+                    selectedQuestions.add(new MultipleChoiceQuestion(selectedPhrases.get(j)));
+                    break;
+                case 1:
+                    selectedQuestions.add(new ListeningQuestion(selectedPhrases.get(j)));
+                    break;
+                case 2:
+                    selectedQuestions.add(new TrueFalseQuestion(selectedPhrases.get(j)));
+                    break;
+                case 3:
+                    selectedQuestions.add(new WritingQuestion(selectedPhrases.get(j)));
+            }
+        }
 
+        // 3. move the questions to the lesson instance variable
+        this.questions = selectedQuestions;
     }
 
     // TODO test start lesson
@@ -44,8 +62,6 @@ public class Lesson {
             int userDifficulty = Facade.getInstance().getCurrentUser().getUserProgress().getDifficulty();
             int pointer = 0;
 
-            // 1. pull a list of (NUMBER_OF_QUESTIONS) phrases that are within the users
-            // difficulty
             while (lessonPhrases.size() < NUMBER_OF_QUESTIONS && pointer < allPhrases.size()) {
                 Phrase phrase = allPhrases.get(pointer);
                 if (phrase.getDifficulty() == userDifficulty

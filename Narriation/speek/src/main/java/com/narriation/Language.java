@@ -21,12 +21,20 @@ public class Language {
         this.phrases = phrases;
     }
 
-    public String getLanguage() {
+    public ArrayList<Phrase> getPhrases() {
+        return phrases;
+    }
+
+    public String getLanguage () {
         return nameOfLanguage;
     }
 
     public UUID getUUID() {
         return id;
+    }
+
+    public ArrayList<Story> getStories() {
+        return stories;
     }
 
 }

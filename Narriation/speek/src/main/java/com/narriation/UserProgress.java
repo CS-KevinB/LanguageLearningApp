@@ -13,12 +13,10 @@ public class UserProgress {
     private HashMap<Story, Boolean> currentStory;
     private HashMap<Phrase, Integer> phraseProgress;
     private HashMap<Word, Integer> wordProgress;
-    private HashMap<Phrase, Date> phraseLastSeen;
 
     public UserProgress() {
         this.phraseProgress = new HashMap<>();
         this.wordProgress = new HashMap<>();
-        this.phraseLastSeen = new HashMap<>();
         this.currentStory = new HashMap<>();
     }
 
@@ -36,14 +34,6 @@ public class UserProgress {
 
     public void setPhraseProgress(Phrase phrase) {
         phraseProgress.put(phrase, phraseProgress.get(phrase) + 1);
-    }
-
-    public Date getPhraseLastSeen(Phrase phrase) {
-        return phraseLastSeen.getOrDefault(phrase, null);
-    }
-
-    public void setPhraseLastSeen(Phrase phrase) {
-        phraseLastSeen.put(phrase, new Date());
     }
 
     public Story getCurrentStory() {

@@ -1,1 +1,2 @@
-[{"birthday":1969-12-31,"firstName":"John","lastName":"Doe","password":"p123","emailAddress":"johndoe@email.com","avatar":"","uuid":"jdoe","friends":[],"points":0},{"birthday":1969-12-31,"firstName":"Jane","lastName":"Smith","password":"p123","emailAddress":"janesmith@email.com","avatar":"","uuid":"jsmith","friends":[],"points":0}]
+[{"birthday":1969-12-31,"firstName":"John","lastName":"Doe","password":"p123","emailAddress":"johndoe@email.com","avatar":"","uuid":"jdoe","friends":[],"points":0},
+{"birthday":1969-12-31,"firstName":"Jane","lastName":"Smith","password":"p123","emailAddress":"janesmith@email.com","avatar":"","uuid":"jsmith","friends":[],"points":0}]

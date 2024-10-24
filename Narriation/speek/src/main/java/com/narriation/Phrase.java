@@ -17,6 +17,7 @@ public class Phrase {
     private String feedback;
     private ArrayList<Word> englishPhrase;
     private ArrayList<Word> translatedPhrase;
+    private int difficulty;
 
     /**
      * Constructor for phrase class
@@ -26,18 +27,12 @@ public class Phrase {
      * @param translatedPhrase - list of words for the translated phrase
      */
 
-    public Phrase(String feedback, ArrayList<Word> englishPhrase, ArrayList<Word> translatedPhrase) {
+    public Phrase(String feedback, ArrayList<Word> englishPhrase, ArrayList<Word> translatedPhrase, int difficulty) {
         this.id = UUID.randomUUID();
         this.feedback = feedback;
         this.englishPhrase = englishPhrase;
         this.translatedPhrase = translatedPhrase;
-    }
-
-    public Phrase(UUID uuid, String feedback, ArrayList<Word> englishPhrase, ArrayList<Word> translatedPhrase) {
-        this.id = uuid;
-        this.feedback = feedback;
-        this.englishPhrase = englishPhrase;
-        this.translatedPhrase = translatedPhrase;
+        this.difficulty = difficulty;
     }
 
     /**
@@ -67,11 +62,12 @@ public class Phrase {
         return feedback;
     }
 
-    public void setFeedBack(String message) {
-        this.feedback = message;
+    public void setFeedBack(String feedback) {
+        this.feedback = feedback;
     }
 
-    public void phraseSeen(){
+    // TODO: TEST THIS!!!
+    public void phraseSeen() {
         UserProgress userProgress = Facade.getInstance().getCurrentUser().getUserProgress();
         userProgress.incrementPhraseSeenCounter(this);
     }
@@ -79,5 +75,9 @@ public class Phrase {
     public String toString() {
         return "ID: " + this.id + "\n  ENGLISH: " + this.englishPhrase + "\n  TRNSLTD: " + this.translatedPhrase
                 + "\n  FEEDBACK: " + this.feedback + "\n\n";
+    }
+
+    public int getDifficulty() {
+        return difficulty;
     }
 }

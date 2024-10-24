@@ -1,6 +1,11 @@
 package com.narriation;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 import java.sql.Date;
 import java.util.UUID;
 
@@ -13,16 +18,22 @@ public class Facade {
     private Language currentLanguage;
     private UserList users;
     private LanguageList languages;
+    private ArrayList<Phrase> phrases;
 
     Facade() {
         users = UserList.getInstance();
-        languages = LanguageList.getInstance();
+        phrases = new ArrayList<>();
+        // languages = LanguageList.getInstance();
     }
 
     public static Facade getInstance() {
         if (facade == null)
             facade = new Facade();
         return facade;
+    }
+
+    public void setPhrases(ArrayList<Phrase> phrases) {
+        this.phrases = phrases;
     }
 
     public boolean login(String username, String password) {
@@ -39,6 +50,24 @@ public class Facade {
             ArrayList<User> friends, int points, UserProgress userProgress) {
         return users.addUser(id, firstName, lastName, username, password,
                 emailAddress, birthday, avatar, friends, points, userProgress);
+    }
+
+    public boolean createAccount(String username, String password, String email) {
+        if (users.getUser(username) != null) {
+            return false;
+        }
+
+        UUID id = UUID.randomUUID();
+        String firstName = "";
+        String lastName = "";
+        Date birthday = new Date(0);
+        Avatar avatar = new Avatar();
+        ArrayList<User> friends = new ArrayList<>();
+        int points = 0;
+        UserProgress userProgress = new UserProgress();
+
+        return users.addUser(id, firstName, lastName, username, password, email, birthday, avatar, friends, points,
+                userProgress);
     }
 
     public User getCurrentUser() {
@@ -69,12 +98,73 @@ public class Facade {
         currentUser.setPassword(password);
     }
 
-    public Exercise startExercise() {
-        return currentUser.getUserProgress().getCurrentExercise();
+    public void displayQuestion(Phrase phrase) {
+        displayMCQ(phrase);
+        // displayFillInTheBlank(phrase);
     }
 
-    public Story startStory() {
-        return currentUser.getUserProgress().getCurrentStory();
+    public void displayMCQ(Phrase correctPhrase) {
+        ArrayList<String> options = new ArrayList<>();
+        Random random = new Random();
+
+        String correctAnswer = phraseToString(correctPhrase.getTranslatedPhrase());
+        options.add(correctAnswer);
+
+        while (options.size() < 4 && !phrases.isEmpty()) {
+            Phrase getRandomPhrase = phrases.get(random.nextInt(phrases.size()));
+            String translatedString = phraseToString(getRandomPhrase.getTranslatedPhrase());
+
+            if (!options.contains(translatedString)) {
+                options.add(translatedString);
+            }
+
+            Collections.shuffle(options);
+
+            System.out.println("Translate the phrase: " + phraseToString(correctPhrase.getEnglishPhrase()));
+            for (int i = 0; i < options.size(); i++) {
+                System.out.println((i + 1) + ". " + options.get(i));
+            }
+
+            Scanner sc = new Scanner(System.in);
+            int userChoice = sc.nextInt();
+
+            if (userChoice > options.size() || userChoice < 1) {
+                System.out.println("Invalid choice. Please try again.");
+            } else if (options.get(userChoice - 1).equals(phraseToString(correctPhrase.getTranslatedPhrase()))) {
+                System.out.println("Correct!");
+                currentUser.getUserProgress().incrementPhraseSeenCounter(correctPhrase);
+            } else {
+                System.out.println("Incorrect. The correct answer is " + correctPhrase.getTranslatedPhrase());
+            }
+            correctPhrase.phraseSeen();
+
+        }
+
+    }
+
+    private String phraseToString(ArrayList<Word> phrase) {
+
+        StringBuilder phraseToString = new StringBuilder();
+        for (Word word : phrase) {
+            phraseToString.append(word.getTranslatedWord()).append(" ");
+
+        }
+        return phraseToString.toString().trim();
+
+    }
+
+    public void displayFillInTheBlank(Phrase phrase) {
+        Random random = new Random();
+
+    }
+
+    // public Exercise startExercise() {
+    // TODO: PHRASES?
+    // }
+
+    public boolean startStory() {
+        currentUser.getUserProgress().getCurrentStory();
+        return false;
     }
 
     public boolean setCurrentLangauge(Language language) {
@@ -85,30 +175,20 @@ public class Facade {
         return false;
     }
 
-    public void sendNotification(NotificationType notificationType) {
+    // public void sendNotification(NotificationType notificationType) {
 
-    }
-
-    public boolean createAccount(String username, String password, String email) {
-        if (users.getUser(username) != null) {
-            return false;
-        }
-
-        UUID id = UUID.randomUUID();
-        String firstName = "";
-        String lastName = "";
-        Date birthday = new Date(0);
-        Avatar avatar = new Avatar();
-        ArrayList<User> friends = new ArrayList<>();
-        int points = 0;
-        UserProgress userProgress = new UserProgress();
-
-        return users.addUser(id, firstName, lastName, username, password, email, birthday, avatar, friends, points,
-                userProgress);
-    }
+    // }
 
     public void viewLanguage() {
         languages.getLanguageByUUID(currentLanguage.getUUID());
     }
 
+    public void startLesson() {
+        if (currentUser != null && currentLanguage != null) {
+            // Get user progress to start lesson
+            UserProgress userProgress = currentUser.getUserProgress();
+
+        }
+
+    }
 }

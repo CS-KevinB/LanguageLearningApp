@@ -2,14 +2,14 @@ package com.narriation;
 
 import java.util.Scanner;
 
-public class LanguageLearningAppUI {
+public class LanguageAppUI {
 
     private static final String WELCOME_MESSAGE = "Welcome to the Language Learning App!";
     private String[] mainMenuOptions = { "Create Account", "Login", "Logout" };
     private Scanner scanner;
     private Facade facade;
 
-    LanguageLearningAppUI() {
+    LanguageAppUI() {
         scanner = new Scanner(System.in);
         facade = new Facade();
     }
@@ -38,12 +38,19 @@ public class LanguageLearningAppUI {
                     login();
                     break;
                 case 2:
+                    startLesson();
+                    break;
+                case 3:
                     logout();
                     loggedIn = false;
                     break;
             }
         }
         System.out.println("Goodbye! Keep learning!");
+    }
+
+    private void startLesson() {
+        facade.startLesson();
     }
 
     private void displayMainMenu() {
@@ -96,14 +103,14 @@ public class LanguageLearningAppUI {
 
     private void logout() {
         if (facade.logout()) {
-            System.out.println("You have been logged out successfully. Goodbye!");
+            System.out.println("You have been logged out successfully.1");
         } else {
             System.out.println("Logout failed. Please try again.");
         }
     }
 
     public static void main(String[] args) {
-        LanguageLearningAppUI UI = new LanguageLearningAppUI();
+        LanguageAppUI UI = new LanguageAppUI();
         UI.run();
     }
 

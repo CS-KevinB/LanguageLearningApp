@@ -2,39 +2,16 @@
     {
         "uuid": "3085ad7f-139c-4d3e-85e6-52cc0d028a29",
         "nameOfLanguage": "Spanish",
-        "lessons": [
+        "stories": [
             {
-                "uuid": "",
-                "exercises": [
-                    {
-                        "index": 0,
-                        "questions": [
-                            "21f57bce-ec87-459b-b9fd-9415530641ae",
-                            "2cc95bf7-401b-4dbf-8619-b40932f06b24",
-                            "7f15ff4d-75c0-43c9-b026-1ff42960456a"
-                        ]
-                    },
-                    {
-                        "index": 1,
-                        "questions": [
-                            "cb1757eb-7974-4dd7-baad-bd1cdfc6b290",
-                            "a3b4d8c6-4c24-41a8-80a3-b50e119d08aa",
-                            "86ee376a-3d4a-4b2e-ba58-460360910dc4"
-                        ]
-                    }
-                ],
-                "story": [
-                    {
-                        "title": "Greeting Ana!",
-                        "englishStory": "Good morning! My name is Ana. Nice to meet you.",
-                        "spanishStory": "¡Buenos días! Me llamo Ana. Mucho gusto."
-                    },
-                    {
-                        "title": "Good night Marco!",
-                        "englishStory": "It's time to go to sleep. Drink a glass of milk and good night, Marco!",
-                        "spanishStory": "Es hora de irse a dormir. Bebe un vaso de leche y ¡buenas noches, Marco!"
-                    }
-                ]
+                "title": "Greeting Ana!",
+                "englishStory": "Good morning! My name is Ana. Nice to meet you.",
+                "spanishStory": "¡Buenos días! Me llamo Ana. Mucho gusto."
+            },
+            {
+                "title": "Good night Marco!",
+                "englishStory": "It's time to go to sleep. Drink a glass of milk and good night, Marco!",
+                "spanishStory": "Es hora de irse a dormir. Bebe un vaso de leche y ¡buenas noches, Marco!"
             }
         ],
         "words": [

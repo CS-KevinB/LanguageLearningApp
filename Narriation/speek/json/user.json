@@ -15,8 +15,27 @@
         "friends":[ "081a004b-3306-4975-9520-2437276c600a" ],
         "points": 0,
         "userProgress": {
-            "currentLesson": 5,
-            "currentExercise": 3
+            "currentStory": 1,
+            "phraseProgress": [
+                {
+                    "phrase": UUID of phrase,
+                    "integer": 0
+                },
+                {
+                    "phrase": UUID of phrase,
+                    "integer": 0
+                }
+            ],
+            "wordProgress": [
+                {
+                    "word": UUID of word,
+                    "integer": 0
+                },
+                {
+                    "word": UUID of word,
+                    "integer": 0
+                }
+            ]
         }
     },
     {

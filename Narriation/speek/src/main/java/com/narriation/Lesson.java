@@ -26,10 +26,13 @@ public class Lesson {
         boolean quit = false;
         while (!quit) {
             ArrayList<Phrase> allPhrases = Facade.getInstance().getLanguage().getPhrases();
+            int difficulty = Facade.getInstance().getCurrentUser().getUserProgress().getDifficulty();
+
             ArrayList<Phrase> thisPhrases = new ArrayList<>();
 
             for (int i = 0; i < NUMBER_OF_QUESTIONS; i++) {
                 Phrase phrase = allPhrases.get(i);
+                if (phrase)
             }
 
             System.out.println(allPhrases);

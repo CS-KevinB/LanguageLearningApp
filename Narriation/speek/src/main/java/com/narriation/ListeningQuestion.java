@@ -1,17 +1,28 @@
 package com.narriation;
-import java.util.UUID;
-
+import java.util.ArrayList;
 /**
  * @author Kevin Buie
- * Creates a class that will be used to create questions for the user
+ * Creates a Listening Question for the user
  */
-public class Question {
+import java.util.UUID;
+public class ListeningQuestion implements Question{
     private Phrase phrase;
     private UUID id;
-    public Question(Phrase phrase, UUID id){
+
+    /**
+     * Creates a public listening question for the user
+     * @param phrase needs a phrase in order to set up the question
+     * @param id needs the stored id in order to pull the specific stored variables
+     */
+    public ListeningQuestion(Phrase phrase, UUID id){
         this.phrase = phrase;
         this.id = id;
     }
+
+    /**
+     * Gets the question and joins the words together separated by spaces to make a sentence
+     * @return returns the new question to the user to be answered
+     */
     public String getQuestion() {
         StringBuilder questionBuilder = new StringBuilder();
         
@@ -42,6 +53,7 @@ public class Question {
         return answerBuilder.toString();
     }
     
+
      /**
      * Checks to see if the user answer is correct
      * @param answer requires the user answer in order to compare it to the actual answer
@@ -52,9 +64,7 @@ public class Question {
     }
     
     
-    /**
-     * translates the question and plays the audio
-     */
+    
     public void playAudio(){
         Narriator.playSound(getQuestion());
     }

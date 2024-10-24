@@ -1,32 +1,42 @@
 package com.narriation;
-import java.util.UUID;
-
 /**
  * @author Kevin Buie
- * Creates a class that will be used to create questions for the user
+ * Creates a writing question for the user
  */
-public class Question {
+import java.util.UUID;
+public class WritingQuestion implements Question{
     private Phrase phrase;
     private UUID id;
-    public Question(Phrase phrase, UUID id){
+
+    /**
+     * Creates a default Writing Question with the parameters
+     * @param phrase needs a phrase for the question
+     * @param id needs the id to pull the stored question
+     */
+    public WritingQuestion(Phrase phrase, UUID id){
         this.phrase = phrase;
         this.id = id;
     }
+    
+    /**
+     * joins the english phrases together and separates them by spaces
+     * @return returns the new question to the user to be answered
+     */
     public String getQuestion() {
         StringBuilder questionBuilder = new StringBuilder();
         
         for (Word word : phrase.getEnglishPhrase()) {
             if (questionBuilder.length() > 0) {
-                questionBuilder.append(" ");  
+                questionBuilder.append(" "); 
             }
-            questionBuilder.append(word.getTranslatedWord());  
+            questionBuilder.append(word.getTranslatedWord()); 
         }
         
         return questionBuilder.toString();
     }
-    
+
     /**
-     * Joins the answer phrase together and separates the words with spaces
+     * joins the answer phrase together and separates the words with spaces
      * @return returns the answer
      */
     public String getAnswer() {
@@ -36,13 +46,13 @@ public class Question {
             if (answerBuilder.length() > 0) {
                 answerBuilder.append(" "); 
             }
-            answerBuilder.append(word.toString());
+            answerBuilder.append(word.toString()); 
         }
         
         return answerBuilder.toString();
     }
-    
-     /**
+
+    /**
      * Checks to see if the user answer is correct
      * @param answer requires the user answer in order to compare it to the actual answer
      * @return returns a boolean if the answer is correct or not
@@ -50,12 +60,5 @@ public class Question {
     public boolean isCorrect(String answer) {
         return getAnswer().equals(answer);
     }
-    
-    
-    /**
-     * translates the question and plays the audio
-     */
-    public void playAudio(){
-        Narriator.playSound(getQuestion());
-    }
 }
+

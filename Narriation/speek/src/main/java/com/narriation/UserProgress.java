@@ -1,5 +1,7 @@
 package com.narriation;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +36,10 @@ public class UserProgress {
         wordProgress.put(word, wordProgress.get(word) + 1);
     }
 
+    public void updateWordProgress(Word word) {
+
+    }
+
     public int getPhraseProgress(Phrase phrase) {
         return phraseProgress.getOrDefault(phrase, 0);
     }
@@ -43,12 +49,8 @@ public class UserProgress {
     }
 
     public Story getCurrentStory() {
-        for (Map.Entry<Story, Boolean> entry : currentStory.entrySet()) {
-            if (entry.getValue()) {
-                return entry.getKey();
-            }
-        }
-        return null; // Return null if no current story is found
+        ArrayList<Story> stories = Facade.getInstance().getCurrentLanguage().getStories();
+        return stories.get(currentStory);
     }
 
     public String toString() {

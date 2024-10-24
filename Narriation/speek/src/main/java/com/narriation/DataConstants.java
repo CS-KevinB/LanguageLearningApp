@@ -37,5 +37,15 @@ public abstract class DataConstants {
     protected static final String PHRASE_IN_TARGET_LANGUAGE = "translatedPhrase";
     protected static final String PHRASE_FEEDBACK = "feedback";
 
+    // User progress
+    protected static final String USERPROGRESS_DIFFICULTY = "difficulty";
+    protected static final String USERPROGRESS_CURRENTSTORY = "currentStory";
+    protected static final String USERPROGRESS_PHRASEPROGRESS = "phraseProgress";
+    protected static final String USERPROGRESS_PHRASEPROGRESS_PHRASE = "phrase";
+    protected static final String USERPROGRESS_PHRASEPROGRESS_INTEGER = "integer";
+    protected static final String USERPROGRESS_WORDPROGRESS = "userProgress";
+    protected static final String USERPROGRESS_WORDPROGRESS_WORD = "word";
+    protected static final String USERPROGRESS_WORDPROGRESS_INTEGER = "integer";
+
     protected static final String EXERCISE_INDEX = "index";
 }

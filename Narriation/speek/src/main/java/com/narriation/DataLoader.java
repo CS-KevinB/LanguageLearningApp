@@ -156,7 +156,6 @@ public class DataLoader extends DataConstants {
 
             // 2. iteratively link all friend objects (referencing UUIDs) to each user
             for (int i = 0; i < users.size(); i++) {
-                System.out.println("Entered loop #" + i);
                 User currentUser = users.get(i);
                 ArrayList<UUID> friendsUUIDs = (ArrayList<UUID>) friendsHash.get(currentUser);
 
@@ -220,9 +219,32 @@ public class DataLoader extends DataConstants {
     }
 
     private static UserProgress convertJSONToUserProgress(JSONObject json) {
-        int currentLesson = Math.toIntExact((long) json.get(CURRENT_LESSON));
-        int currentExercise = Math.toIntExact((long) json.get(CURRENT_EXERCISE));
-        return new UserProgress(currentLesson, currentExercise);
+        int userDifficulty = Math.toIntExact((long) json.get(CURRENT_LESSON));
+        int currentStory = Math.toIntExact((long) json.get(CURRENT_EXERCISE));
+        HashMap<Phrase, Integer> phraseProgress = convertJSONToPhraseProgress(
+                (JSONArray) json.get(USERPROGRESS_PHRASEPROGRESS));
+        HashMap<Phrase, Integer> wordProgress = convertJSONToPhraseProgress(
+                (JSONArray) json.get(USERPROGRESS_WORDPROGRESS));
+
+    }
+
+    public static HashMap<Phrase, Integer> convertJSONToPhraseProgress(JSONArray json) {
+        HashMap<Phrase, Integer> ret = new HashMap<Phrase, Integer>();
+        for (int i = 0; i < json.size(); i++) {
+            // 1. get key-value pair
+            JSONObject keyValuePair = (JSONObject) json.get(i);
+
+            // 2. get phrase
+            UUID uuidOfPhrase = UUID.fromString((String) keyValuePair.get(USERPROGRESS_PHRASEPROGRESS_PHRASE));
+            Phrase phrase = null;
+
+            // TODO fix phrase above
+
+            // 3. get value
+            int integer = Math.toIntExact((long) keyValuePair.get(USERPROGRESS_PHRASEPROGRESS_INTEGER));
+            ret.put(phrase, integer);
+        }
+        return ret;
     }
 
 }

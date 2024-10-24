@@ -10,14 +10,13 @@ import java.util.Map;
  * @author christianruff
  */
 public class UserProgress {
-    private HashMap<Story, Boolean> currentStory;
+    private int currentStory;
     private HashMap<Phrase, Integer> phraseProgress;
     private HashMap<Word, Integer> wordProgress;
 
     public UserProgress() {
         this.phraseProgress = new HashMap<>();
         this.wordProgress = new HashMap<>();
-        this.currentStory = new HashMap<>();
     }
 
     public int getWordProgress(Word word) {

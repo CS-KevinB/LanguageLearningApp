@@ -223,7 +223,7 @@ public class DataLoader extends DataConstants {
         int currentStory = Math.toIntExact((long) json.get(CURRENT_EXERCISE));
         HashMap<Phrase, Integer> phraseProgress = convertJSONToPhraseProgress(
                 (JSONArray) json.get(USERPROGRESS_PHRASEPROGRESS));
-        HashMap<Phrase, Integer> wordProgress = convertJSONToPhraseProgress(
+        HashMap<Word, Integer> wordProgress = convertJSONToWordProgress(
                 (JSONArray) json.get(USERPROGRESS_WORDPROGRESS));
 
     }
@@ -247,4 +247,22 @@ public class DataLoader extends DataConstants {
         return ret;
     }
 
+    public static HashMap<Word, Integer> convertJSONToWordProgress(JSONArray json) {
+        HashMap<Word, Integer> ret = new HashMap<Word, Integer>();
+        for (int i = 0; i < json.size(); i++) {
+            // 1. get key-value pair
+            JSONObject keyValuePair = (JSONObject) json.get(i);
+
+            // 2. get phrase
+            UUID uuidOfWord = UUID.fromString((String) keyValuePair.get(USERPROGRESS_WORDPROGRESS_WORD));
+            Word word = null;
+
+            // TODO fix phrase above
+
+            // 3. get value
+            int integer = Math.toIntExact((long) keyValuePair.get(USERPROGRESS_WORDPROGRESS_INTEGER));
+            ret.put(word, integer);
+        }
+        return ret;
+    }
 }

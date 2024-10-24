@@ -29,6 +29,10 @@ public class UserProgress {
         wordProgress.put(word, wordProgress.get(word) + 1);
     }
 
+    public void updateWordProgress(Word word) {
+
+    }
+
     public int getPhraseProgress(Phrase phrase) {
         return phraseProgress.getOrDefault(phrase, 0);
     }

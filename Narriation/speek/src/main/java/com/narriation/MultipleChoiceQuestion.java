@@ -4,13 +4,11 @@ package com.narriation;
  * Creates a Multiple Choice Question for the user
  */
 import java.util.ArrayList;
-import java.util.UUID;
 public class MultipleChoiceQuestion implements Question{
     
 
     private ArrayList<Word> words;
     private Word correctAnswer;
-    private UUID id;
 
     /**
      * Creates a multiple choice question
@@ -18,10 +16,9 @@ public class MultipleChoiceQuestion implements Question{
      * @param correctAnswer assigns the correct answer for the problem
      * @param id assigns the specific question an id so it can be reused
      */
-    public MultipleChoiceQuestion(ArrayList<Word> words, Word correctAnswer, UUID id){
+    public MultipleChoiceQuestion(ArrayList<Word> words, Word correctAnswer){
         this.words = words;
         this.correctAnswer = correctAnswer;
-        this.id = id;
     }
 
     /**

@@ -4,19 +4,16 @@ import java.util.ArrayList;
  * @author Kevin Buie
  * Creates a Listening Question for the user
  */
-import java.util.UUID;
 public class ListeningQuestion implements Question{
     private Phrase phrase;
-    private UUID id;
 
     /**
      * Creates a public listening question for the user
      * @param phrase needs a phrase in order to set up the question
      * @param id needs the stored id in order to pull the specific stored variables
      */
-    public ListeningQuestion(Phrase phrase, UUID id){
+    public ListeningQuestion(Phrase phrase){
         this.phrase = phrase;
-        this.id = id;
     }
 
     /**

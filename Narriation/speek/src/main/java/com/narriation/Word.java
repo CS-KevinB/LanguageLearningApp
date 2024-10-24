@@ -36,10 +36,6 @@ public class Word {
         this.difficulty = difficulty;
     }
 
-    public Word(String string, String string2, int difficulty) {
-        // TODO Auto-generated constructor stub
-    }
-
     /**
      * Gets the UUID for the word
      * 

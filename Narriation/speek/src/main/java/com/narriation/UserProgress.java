@@ -11,37 +11,31 @@ import java.util.Map;
  */
 public class UserProgress {
     private HashMap<Story, Boolean> currentStory;
-    private HashMap<Phrase, Integer> phraseSeenCounter;
-    private HashMap<Phrase, Integer> phraseCorrectCounter;
+    private HashMap<Phrase, Integer> phraseProgress;
+    private HashMap<Word, Integer> wordProgress;
     private HashMap<Phrase, Date> phraseLastSeen;
 
     public UserProgress() {
-        this.phraseSeenCounter = new HashMap<>();
-        this.phraseCorrectCounter = new HashMap<>();
+        this.phraseProgress = new HashMap<>();
+        this.wordProgress = new HashMap<>();
         this.phraseLastSeen = new HashMap<>();
         this.currentStory = new HashMap<>();
     }
 
-    public int getPhraseSeenCounter(Phrase phrase) {
-        return phraseSeenCounter.getOrDefault(phrase, 0);
+    public int getWordProgress(Word word) {
+        return wordProgress.getOrDefault(word, 0);
     }
 
-    public void setPhraseSeenCounter(HashMap<Phrase, Integer> phraseSeenCounter) {
-        this.phraseSeenCounter = phraseSeenCounter;
+    public void setWordProgress(Word word) {
+        wordProgress.put(word, wordProgress.get(word) + 1);
     }
 
-    public void incrementPhraseSeenCounter(Phrase phrase) {
-        phraseSeenCounter.putIfAbsent(phrase, 0);
-        phraseSeenCounter.put(phrase, phraseSeenCounter.get(phrase) + 1);
-        phraseLastSeen.put(phrase, new Date());
+    public int getPhraseProgress(Phrase phrase) {
+        return phraseProgress.getOrDefault(phrase, 0);
     }
 
-    public int getPhraseCorrectCounter(Phrase phrase) {
-        return phraseCorrectCounter.getOrDefault(phrase, 0);
-    }
-
-    public void setPhraseCorrectCounter(HashMap<Phrase, Integer> phraseCorrectCounter) {
-        this.phraseCorrectCounter = phraseCorrectCounter;
+    public void setPhraseProgress(Phrase phrase) {
+        phraseProgress.put(phrase, phraseProgress.get(phrase) + 1);
     }
 
     public Date getPhraseLastSeen(Phrase phrase) {

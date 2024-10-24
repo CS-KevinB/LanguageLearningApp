@@ -179,8 +179,8 @@ public class Facade {
 
     // }
 
-    public void viewLanguage() {
-        languages.getLanguageByUUID(currentLanguage.getUUID());
+    public Language getCurrentLanguage() {
+        return languages.getLanguageByUUID(currentLanguage.getUUID());
     }
 
     public void startLesson() {

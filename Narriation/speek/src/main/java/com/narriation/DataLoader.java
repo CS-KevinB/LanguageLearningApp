@@ -225,7 +225,7 @@ public class DataLoader extends DataConstants {
                 (JSONArray) json.get(USERPROGRESS_PHRASEPROGRESS));
         HashMap<Word, Integer> wordProgress = convertJSONToWordProgress(
                 (JSONArray) json.get(USERPROGRESS_WORDPROGRESS));
-
+        return new UserProgress(userDifficulty, currentStory, phraseProgress, wordProgress);
     }
 
     public static HashMap<Phrase, Integer> convertJSONToPhraseProgress(JSONArray json) {
@@ -257,7 +257,7 @@ public class DataLoader extends DataConstants {
             UUID uuidOfWord = UUID.fromString((String) keyValuePair.get(USERPROGRESS_WORDPROGRESS_WORD));
             Word word = null;
 
-            // TODO fix phrase above
+            // TODO fix word above
 
             // 3. get value
             int integer = Math.toIntExact((long) keyValuePair.get(USERPROGRESS_WORDPROGRESS_INTEGER));

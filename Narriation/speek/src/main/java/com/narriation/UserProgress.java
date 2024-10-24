@@ -24,6 +24,14 @@ public class UserProgress {
         this.wordProgress = new HashMap<Word, Integer>();
     }
 
+    public UserProgress(int difficulty, int currentStory, HashMap<Phrase, Integer> phraseProgress,
+            HashMap<Word, Integer> wordProgress) {
+        this.difficulty = difficulty;
+        this.currentStory = currentStory;
+        this.phraseProgress = phraseProgress;
+        this.wordProgress = wordProgress;
+    }
+
     public int getDifficulty() {
         return this.difficulty;
     }

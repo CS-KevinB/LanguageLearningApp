@@ -118,7 +118,7 @@ public class UserProgress {
      * @return returns the current story
      */
     public Story getCurrentStory() {
-        ArrayList<Story> stories = Facade.getInstance().getCurrentLanguage().getStories();
+        ArrayList<Story> stories = Facade.getInstance().getLanguage().getStories();
         return stories.get(currentStory);
     }
 
@@ -128,7 +128,8 @@ public class UserProgress {
      * @return returns the string
      */
     public String toString() {
-        return "Difficulty: " + this.difficulty + " | Current Story: " + this.currentStory
+        return "Language: " + this.language + " | Difficulty: " + this.difficulty + " | Current Story: "
+                + this.currentStory
                 + " | Phrase Progress (Language:Score)" + this.phraseProgress
                 + " | " + this.wordProgress;
     }

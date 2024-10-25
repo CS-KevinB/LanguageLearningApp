@@ -25,13 +25,15 @@ public class ListeningQuestion implements Question {
      * Generates the listening question
      */
     public void generateQuestion() {
-        question = this.convertPhraseToString(this.phrase, false);    
+        question = this.convertPhraseToString(this.phrase, false);
     }
 
     /**
      * Converts the phrase to a string
-     * @param phrase Takes the phrase in order to convert
-     * @param isEnglish Takes a boolean to determine if the phrase is in English or Spanish
+     * 
+     * @param phrase    Takes the phrase in order to convert
+     * @param isEnglish Takes a boolean to determine if the phrase is in English or
+     *                  Spanish
      * @return Returns the phrase as a string
      */
     private String convertPhraseToString(Phrase phrase, boolean isEnglish) {
@@ -96,14 +98,7 @@ public class ListeningQuestion implements Question {
      * @return returns a boolean if the answer is correct or not
      */
     public boolean isCorrect(String answer) {
-        boolean ret = getAnswer().equals(answer);
-        if (ret)
-            Facade.getInstance().getCurrentUser().getUserProgress(Facade.getInstance().getCurrentLanguage())
-                    .countCorrectPhrase(this.phrase);
-        else
-            Facade.getInstance().getCurrentUser().getUserProgress(Facade.getInstance().getCurrentLanguage())
-                    .countIncorrectPhrase(this.phrase);
-        return ret;
+        return getAnswer().equals(answer);
     }
 
     /**

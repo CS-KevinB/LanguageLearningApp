@@ -274,7 +274,6 @@ public class DataLoader extends DataConstants {
      * @return returns the user progress
      */
     private static ArrayList<UserProgress> convertJSONToUserProgress(JSONArray json) {
-        System.out.println("Entered loop convertJSONToUP");
         ArrayList<UserProgress> ret = new ArrayList<UserProgress>();
 
         for (int i = 0; i < json.size(); i++) {

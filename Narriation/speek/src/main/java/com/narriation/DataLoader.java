@@ -23,8 +23,8 @@ public class DataLoader extends DataConstants {
 
     // temporary main
     public static void main(String args[]) {
-        // getUsers();
-        System.out.println(getLanguages());
+        System.out.println(getUsers());
+        // System.out.println(getLanguages());
     }
 
     // LANGUAGES
@@ -124,7 +124,7 @@ public class DataLoader extends DataConstants {
     private static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
         try {
-            FileReader reader = new FileReader("json/user.json");
+            FileReader reader = new FileReader("Narriation/speek/json/user.json");
             JSONArray peopleJSON = (JSONArray) new JSONParser().parse(reader);
             HashMap<User, ArrayList<UUID>> friendsHash = new HashMap<User, ArrayList<UUID>>();
 
@@ -142,12 +142,12 @@ public class DataLoader extends DataConstants {
                 // convert special data types
                 Date birthday = convertStringToDate((String) personJSON.get(USER_BIRTHDAY));
                 Avatar avatar = convertJSONToAvatar((JSONObject) personJSON.get(USER_AVATAR));
-                UserProgress userProgress = convertJSONToUserProgress((JSONObject) personJSON.get(USER_PROGRESS));
+                UserProgress userProgress = convertJSONToUserProgress((JSONObject) personJSON.get(USERPROGRESS));
 
                 // create user object
                 User newUser = new User(id, firstName, lastName, username, password, emailAddress, birthday, avatar,
                         points, userProgress);
-                System.out.println(newUser);
+                // System.out.println(newUser);
 
                 // record the user's friends as a list of UUIDs
                 friendsHash.put(newUser, convertFriendsToArrayList((JSONArray) personJSON.get(FRIENDS)));
@@ -156,8 +156,8 @@ public class DataLoader extends DataConstants {
 
             // 2. iteratively link all friend objects (referencing UUIDs) to each user
             for (int i = 0; i < users.size(); i++) {
-                User currentUser = users.get(i);
-                ArrayList<UUID> friendsUUIDs = (ArrayList<UUID>) friendsHash.get(currentUser);
+                User updatedUser = users.get(i);
+                ArrayList<UUID> friendsUUIDs = (ArrayList<UUID>) friendsHash.get(updatedUser);
 
                 // create user list of friends for each user
                 if (friendsUUIDs == null) {
@@ -167,9 +167,9 @@ public class DataLoader extends DataConstants {
                     for (int j = 0; j < friendsUUIDs.size(); j++) {
                         User friend = findUserByUUID(users, friendsUUIDs.get(j));
                         if (friend != null) {
-                            currentUser.addFriend(friend);
+                            updatedUser.addFriend(friend);
                             System.out.println(
-                                    currentUser.getFirstName() + " is now friended with " + friend.getFirstName());
+                                    updatedUser.getFirstName() + " is now friended with " + friend.getFirstName());
                         }
                     }
                 }
@@ -219,8 +219,14 @@ public class DataLoader extends DataConstants {
     }
 
     private static UserProgress convertJSONToUserProgress(JSONObject json) {
-        int userDifficulty = Math.toIntExact((long) json.get(CURRENT_LESSON));
-        int currentStory = Math.toIntExact((long) json.get(CURRENT_EXERCISE));
+        System.out.println(
+                "Entered\n" + json);
+
+        int userDifficulty = Math.toIntExact((long) json.get(USERPROGRESS_DIFFICULTY));
+        int currentStory = Math.toIntExact((long) json.get(USERPROGRESS_CURRENTSTORY));
+
+        System.out.println(json.get(USERPROGRESS_WORDPROGRESS));
+
         HashMap<Phrase, Integer> phraseProgress = convertJSONToPhraseProgress(
                 (JSONArray) json.get(USERPROGRESS_PHRASEPROGRESS));
         HashMap<Word, Integer> wordProgress = convertJSONToWordProgress(

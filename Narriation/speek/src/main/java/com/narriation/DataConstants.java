@@ -14,7 +14,6 @@ public abstract class DataConstants {
     protected static final String LANGUAGES = "languages";
     protected static final String FRIENDS = "friends";
     protected static final String USER_POINTS = "points";
-    protected static final String USER_PROGRESS = "userProgress";
     protected static final String CURRENT_LESSON = "currentLesson";
     protected static final String CURRENT_EXERCISE = "currentExercise";
     protected static final String USER_PASSWORD = "password";
@@ -38,12 +37,13 @@ public abstract class DataConstants {
     protected static final String PHRASE_FEEDBACK = "feedback";
 
     // User progress
+    protected static final String USERPROGRESS = "userProgress";
     protected static final String USERPROGRESS_DIFFICULTY = "difficulty";
     protected static final String USERPROGRESS_CURRENTSTORY = "currentStory";
     protected static final String USERPROGRESS_PHRASEPROGRESS = "phraseProgress";
     protected static final String USERPROGRESS_PHRASEPROGRESS_PHRASE = "phrase";
     protected static final String USERPROGRESS_PHRASEPROGRESS_INTEGER = "integer";
-    protected static final String USERPROGRESS_WORDPROGRESS = "userProgress";
+    protected static final String USERPROGRESS_WORDPROGRESS = "wordProgress";
     protected static final String USERPROGRESS_WORDPROGRESS_WORD = "word";
     protected static final String USERPROGRESS_WORDPROGRESS_INTEGER = "integer";
 

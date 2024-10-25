@@ -69,7 +69,8 @@ public class UserProgress {
     }
 
     public String toString() {
-        return "This is " + Facade.getInstance().getCurrentUser().getFirstName() + "'s progress";
+        return "Difficulty: " + this.difficulty + " | Current Story: " + this.currentStory + " | " + this.phraseProgress
+                + " | " + this.wordProgress;
     }
 
 }

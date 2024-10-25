@@ -55,8 +55,20 @@
         "friends": [ "081a004b-3306-4975-9520-2437276c600a" ],
         "points": 0,
         "userProgress": {
-            "currentLesson": 1,
-            "currentExercise": 1
+            "difficulty": 3,
+            "currentStory": 1,
+            "phraseProgress": [
+                {
+                    "phrase": "77879555-3098-4a9f-8c23-c348a62e2b65",
+                    "integer": 2
+                }
+            ],
+            "wordProgress": [
+                {
+                    "word": "00a54e77-b9af-4068-ace0-7bc4bda3b744",
+                    "integer": 0
+                }
+            ]
         }
     },
 
@@ -81,8 +93,20 @@
         ,
         "points": 0,
         "userProgress": {
-            "currentLesson": 3,
-            "currentExercise": 4
+            "difficulty": 3,
+            "currentStory": 1,
+            "phraseProgress": [
+                {
+                    "phrase": "77879555-3098-4a9f-8c23-c348a62e2b65",
+                    "integer": 2
+                }
+            ],
+            "wordProgress": [
+                {
+                    "word": "00a54e77-b9af-4068-ace0-7bc4bda3b744",
+                    "integer": 0
+                }
+            ]
         }
     }
 ]

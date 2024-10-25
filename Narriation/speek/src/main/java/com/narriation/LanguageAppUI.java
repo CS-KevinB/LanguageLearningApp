@@ -2,17 +2,27 @@ package com.narriation;
 
 import java.util.Scanner;
 
+/**
+ * Creates a UI for the language learning app
+ */
 public class LanguageAppUI {
     private static final String WELCOME_MESSAGE = "Welcome to the Language Learning App!";
     private String[] mainMenuOptions = { "Create Account", "Login", "Logout" };
     private Scanner scanner;
     private Facade facade;
 
+    /**
+     * Creates a default UI
+     */
     LanguageAppUI() {
         scanner = new Scanner(System.in);
         facade = new Facade();
     }
 
+    /**
+     * Runs the welcome message and checks for the login status
+     * Displays the main menu and checks for the user input
+     */
     public void run() {
         System.out.println(WELCOME_MESSAGE);
         boolean loggedIn = true;
@@ -48,10 +58,16 @@ public class LanguageAppUI {
         System.out.println("Goodbye! Keep learning!");
     }
 
+    /**
+     * Starts the lesson from the facade
+     */
     private void startLesson() {
         facade.startLesson();
     }
 
+    /**
+     * Displays the main menu
+     */
     private void displayMainMenu() {
         System.out.println("\n************ Main Menu *************");
         for (int i = 0; i < mainMenuOptions.length; i++) {
@@ -60,6 +76,11 @@ public class LanguageAppUI {
         System.out.println("\n");
     }
 
+    /**
+     * Gets the user command they enter
+     * @param numCommands runs a loop with numCommands
+     * @return returns whatever the user enters
+     */
     private int getUserCommand(int numCommands) {
         System.out.print("What would you like to do?: ");
         String input = scanner.nextLine();
@@ -71,6 +92,9 @@ public class LanguageAppUI {
         return -1;
     }
 
+    /**
+     * Creates an account for the user
+     */
     private void createAccount() {
         String username = getField("Username");
         String password = getField("Password");
@@ -83,11 +107,19 @@ public class LanguageAppUI {
         }
     }
 
+    /**
+     * Gets a field from the user
+     * @param prompt requires the prompt in order to get the field
+     * @return returns the string of the field
+     */
     private String getField(String prompt) {
         System.out.print(prompt + ": ");
         return scanner.nextLine();
     }
 
+    /**
+     * Logs in the user with the username and password
+     */
     private void login() {
         String username = getField("Username");
         String password = getField("password");
@@ -100,6 +132,9 @@ public class LanguageAppUI {
         }
     }
 
+    /**
+     * Logs out the user and displays a message
+     */
     private void logout() {
         if (facade.logout()) {
             System.out.println("You have been logged out successfully.1");

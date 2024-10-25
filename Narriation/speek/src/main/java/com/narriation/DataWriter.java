@@ -14,6 +14,12 @@ import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
 
+
+    /**
+     * Saves the users to a json file
+     * @param users requires the list of users in order to save
+     * @return returns a boolean if the save was successful
+     */
     @SuppressWarnings("unchecked")
     public static boolean saveUsers(ArrayList<User> users) {
         UserList user = UserList.getInstance();
@@ -37,6 +43,11 @@ public class DataWriter extends DataConstants {
 
     }
 
+    /**
+     * Saves the user to a json file
+     * @param user requires the specific user now in order to add to the json file
+     * @return returns a JSON Object
+     */
     public static JSONObject getUserJSON(User user) {
         JSONObject userDetails = new JSONObject();
         userDetails.put(USER_ID, user.getUsername().toString());

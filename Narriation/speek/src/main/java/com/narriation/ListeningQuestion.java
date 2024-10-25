@@ -1,6 +1,7 @@
 package com.narriation;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author Kevin Buie
@@ -22,7 +23,32 @@ public class ListeningQuestion implements Question {
     }
 
     public void generateQuestion() {
+        question = this.convertPhraseToString(this.phrase, false);    
+    }
 
+    private String convertPhraseToString(Phrase phrase, boolean isEnglish) {
+        ArrayList<Word> phraseArr;
+        StringBuilder str = new StringBuilder();
+        if (isEnglish) {
+            phraseArr = phrase.getEnglishPhrase();
+            int len = phraseArr.size();
+
+            for (int i = 0; i < len; i++) {
+                if (str.length() > 0)
+                    str.append(" ");
+                str.append(phraseArr.get(i).getEnglishWord());
+            }
+        } else {
+            phraseArr = phrase.getTranslatedPhrase();
+            int len = phraseArr.size();
+
+            for (int i = 0; i < len; i++) {
+                if (str.length() > 0)
+                    str.append(" ");
+                str.append(phraseArr.get(i).getTranslatedWord());
+            }
+        }
+        return str.toString();
     }
 
     /**
@@ -32,16 +58,8 @@ public class ListeningQuestion implements Question {
      * @return returns the new question to the user to be answered
      */
     public String getQuestion() {
-        StringBuilder questionBuilder = new StringBuilder();
-
-        for (Word word : phrase.getEnglishPhrase()) {
-            if (questionBuilder.length() > 0) {
-                questionBuilder.append(" ");
-            }
-            questionBuilder.append(word.getTranslatedWord());
-        }
-
-        return questionBuilder.toString();
+        this.playAudio();
+        return "Repeat the phrase: ";
     }
 
     /**

@@ -51,16 +51,18 @@ public class LanguageAppUI {
                     Language language = this.facade.getLanguage();
                     Phrase phrase = language.getPhrases().get(1);
 
-                    System.out.println("BEFORE: "
-                            + this.facade.getCurrentUser().getUserProgress(language).getPhraseProgress(phrase));
+                    // System.out.println("BEFORE: "
+                    // +
+                    // this.facade.getCurrentUser().getUserProgress(language).getPhraseProgress(phrase));
 
                     WritingQuestion question = new WritingQuestion(phrase);
                     System.out.println(question.getQuestion());
                     String input = scanner.nextLine();
                     System.out.println(question.isCorrect(input));
 
-                    System.out.println("AFTER: "
-                            + this.facade.getCurrentUser().getUserProgress(language).getPhraseProgress(phrase));
+                    // System.out.println("AFTER: "
+                    // +
+                    // this.facade.getCurrentUser().getUserProgress(language).getPhraseProgress(phrase));
 
                     break;
                 case 2:

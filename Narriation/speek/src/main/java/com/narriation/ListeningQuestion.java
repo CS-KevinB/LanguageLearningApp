@@ -72,9 +72,11 @@ public class ListeningQuestion implements Question {
     public boolean isCorrect(String answer) {
         boolean ret = getAnswer().equals(answer);
         if (ret)
-            Facade.getInstance().getCurrentUser().getUserProgress(Facade.getInstance().getCurrentLanguage()).countCorrectPhrase(this.phrase);
+            Facade.getInstance().getCurrentUser().getUserProgress(Facade.getInstance().getCurrentLanguage())
+                    .countCorrectPhrase(this.phrase);
         else
-            Facade.getInstance().getCurrentUser().getUserProgress(Facade.getInstance().getCurrentLanguage()).countIncorrectPhrase(this.phrase);
+            Facade.getInstance().getCurrentUser().getUserProgress(Facade.getInstance().getCurrentLanguage())
+                    .countIncorrectPhrase(this.phrase);
         return ret;
     }
 
@@ -82,6 +84,6 @@ public class ListeningQuestion implements Question {
      * Plays the audio for the listening question
      */
     public void playAudio() {
-        Narriator.playSound(getQuestion());
+        Narriator.playSound(question);
     }
 }

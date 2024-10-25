@@ -11,6 +11,8 @@ public interface Question {
 
     public String getAnswer();
 
+    public Phrase getPhrase();
+
     public void generateQuestion();
 
     public boolean isCorrect(String answer);

@@ -36,7 +36,7 @@ public class Lesson {
      * @return returns the questions in a list
      */
     public ArrayList<Question> generateQuestions(int numOfQuestions) {
-        ArrayList<Phrase> allPhrases = Facade.getInstance().getCurrentLanguage().getPhrases();
+        ArrayList<Phrase> allPhrases = Facade.getInstance().getLanguage().getPhrases();
         ArrayList<Phrase> selectedPhrases = new ArrayList<Phrase>();
         int userDifficulty = userProgress.getDifficulty();
 
@@ -51,7 +51,7 @@ public class Lesson {
         // 2. generate all four question types
         ArrayList<Question> selectedQuestions = new ArrayList<Question>();
         for (int j = 0; j < selectedPhrases.size(); j++) {
-            switch (j % 4) {
+            switch (3) { // before i % 4
                 case 0:
                     selectedQuestions.add(new MultipleChoiceQuestion(selectedPhrases.get(j), this.language));
                     break;
@@ -63,6 +63,7 @@ public class Lesson {
                     break;
                 case 3:
                     selectedQuestions.add(new WritingQuestion(selectedPhrases.get(j)));
+                    break;
             }
         }
 

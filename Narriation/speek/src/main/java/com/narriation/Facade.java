@@ -28,9 +28,9 @@ public class Facade {
      * Creates a facade
      */
     Facade() {
+        languages = LanguageList.getInstance();
         users = UserList.getInstance();
         phrases = new ArrayList<>();
-        // languages = LanguageList.getInstance();
     }
 
     /**
@@ -65,7 +65,9 @@ public class Facade {
             return false;
         if (!users.getUser(username).getPassword().equals(password))
             return false;
-        currentUser = users.getUser(username);
+        this.currentUser = users.getUser(username);
+        this.currentLanguage = currentUser.getUserProgress().get(0).getLanguage();
+
         return true;
     }
 
@@ -96,7 +98,7 @@ public class Facade {
         Avatar avatar = new Avatar();
         ArrayList<User> friends = new ArrayList<>();
         int points = 0;
-        UserProgress userProgress = new UserProgress(Facade.getInstance().getCurrentLanguage());
+        UserProgress userProgress = new UserProgress(Facade.getInstance().getLanguage());
 
         User user = new User(id, firstName, lastName, userName, password, email, birthday, avatar, friends, points,
                 userProgress);
@@ -175,8 +177,11 @@ public class Facade {
      * Reads and displays the current story
      */
     public void startStory() {
-        currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()).getCurrentStory().displayStory();
-        currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()).getCurrentStory().speakStory();
+        // TODO remove Facade
+        System.out.println("CURERNT USER:" + currentLanguage);
+
+        currentUser.getUserProgress(currentLanguage).getCurrentStory().displayStory();
+        currentUser.getUserProgress(currentLanguage).getCurrentStory().speakStory();
     }
 
     /**
@@ -207,13 +212,15 @@ public class Facade {
      */
     public void startLesson() {
         if (this.currentUser != null && this.currentLanguage != null) {
-            Lesson lesson = new Lesson(this.currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()), this.currentLanguage);
+            Lesson lesson = new Lesson(this.currentUser.getUserProgress(Facade.getInstance().getLanguage()),
+                    this.currentLanguage);
             ArrayList<Question> questions = lesson.getQuestions();
 
             for (Question question : questions) {
                 System.out.println(question.getQuestion());
                 String input = keyboard.nextLine();
                 if (question.isCorrect(input)) {
+                    this.currentUser.getUserProgress(this.currentLanguage).countCorrectPhrase(question.getPhrase());
                     System.out.println("Correct! Great work! Your score is now " + lesson.getScore());
                 } else {
                     System.out.println("Oh no, that was incorrect. Keep going!");
@@ -230,6 +237,10 @@ public class Facade {
      * @return returns the language
      */
     public Language getLanguage() {
-        return this.currentLanguage;
+        if (currentLanguage != null) {
+            return currentLanguage;
+        } else {
+            return this.currentUser.getUserProgress().get(0).getLanguage();
+        }
     }
 }

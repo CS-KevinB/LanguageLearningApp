@@ -71,4 +71,17 @@ public class Story {
         return "Title: " + this.title + "\n English Story: " + this.englishStory + "\n Spanish Story: "
                 + this.spanishStory + "\n\n";
     }
+
+    public String getSpanishStory() {
+        return spanishStory;
+    }
+
+    public String getEnglishStory() {
+        return englishStory;
+
+    }
+
+    public String getTitle() {
+        return title;
+    }
 }

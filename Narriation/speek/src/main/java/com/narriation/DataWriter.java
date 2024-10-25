@@ -14,91 +14,215 @@ import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
 
-    private static final Object USER_PROGRESS = null;
-
-    /**
-     * Saves the users to a json file
-     * 
-     * @param users requires the list of users in order to save
-     * @return returns a boolean if the save was successful
-     */
     @SuppressWarnings("unchecked")
     public static boolean saveUsers(ArrayList<User> users) {
         UserList user = UserList.getInstance();
         ArrayList<User> userList = user.getUsers();
-        JSONArray jsonUsers = new JSONArray();
-
+        JSONArray usersJSON = new JSONArray();
         for (User u : userList) {
-            jsonUsers.add(getUserJSON(u));
+            usersJSON.add(createUserJSON(u));
         }
 
         try (FileWriter file = new FileWriter("Narriation/speek/json/user-test.json")) {
-
-            file.write(jsonUsers.toJSONString());
+            file.write(usersJSON.toJSONString());
             file.flush();
             return true;
-
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
+    }
 
+    @SuppressWarnings("unchecked")
+    public static boolean saveLanguages(ArrayList<Language> languages) {
+        JSONArray languagesJSON = new JSONArray();
+        for (Language language : languages) {
+            languagesJSON.add(createLanguageJSON(language));
+        }
+
+        try (FileWriter file = new FileWriter("Narriation/speek/json/language-test.json")) {
+            file.write(languagesJSON.toJSONString());
+            file.flush();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
-     * Saves the user to a json file
-     * 
-     * @param user requires the specific user now in order to add to the json file
-     * @return returns a JSON Object
+     * Converts a User object to JSON format.
      */
     @SuppressWarnings("unchecked")
-    public static JSONObject getUserJSON(User user) {
-        JSONObject userDetails = new JSONObject();
-        userDetails.put(USER_ID, user.getUUID().toString());
-        userDetails.put(USER_FIRST_NAME, user.getFirstName());
-        userDetails.put(USER_LAST_NAME, user.getLastName());
-        userDetails.put(USER_USERNAME, user.getUsername());
-        userDetails.put(USER_PASSWORD, user.getPassword());
-        userDetails.put(USER_EMAIL, user.getEmailAddress());
-        userDetails.put(USER_BIRTHDAY, user.getBirthday().toString());
-        userDetails.put(USER_POINTS, user.getPoints());
+    private static JSONObject createUserJSON(User user) {
+        JSONObject userJSON = new JSONObject();
+        userJSON.put(USER_ID, user.getUUID());
+        userJSON.put(USER_FIRST_NAME, user.getFirstName());
+        userJSON.put(USER_LAST_NAME, user.getLastName());
+        userJSON.put(USER_USERNAME, user.getUsername());
+        userJSON.put(USER_PASSWORD, user.getPassword());
+        userJSON.put(USER_EMAIL, user.getEmailAddress());
+        userJSON.put(USER_BIRTHDAY, user.getBirthday());
+        userJSON.put(FRIENDS, user.getFriends());
+        userJSON.put(USERPROGRESS, user.getUserProgress());
+        userJSON.put(USER_POINTS, user.getPoints());
 
-        // Avatar information
+        // Avatar JSON
         JSONObject avatarJSON = new JSONObject();
         avatarJSON.put(CHARACTER, user.getAvatar().getCharacter());
         avatarJSON.put(HAT, user.getAvatar().getHat());
-        userDetails.put(USER_AVATAR, avatarJSON);
+        userJSON.put(USER_AVATAR, avatarJSON);
 
-        // Friends list
+        // Friends JSON
         JSONArray friendsArray = new JSONArray();
         for (User friend : user.getFriends()) {
-            friendsArray.add(friend.getUUID().toString());
+            friendsArray.add(friend.getUUID());
         }
-        userDetails.put(FRIENDS, friendsArray);
+        userJSON.put(FRIENDS, friendsArray);
 
+        // User Progress JSON
         JSONArray userProgressArray = new JSONArray();
         for (UserProgress progress : user.getUserProgress()) {
-            JSONObject progressJSON = createProgressJSON(progress);
-            userProgressArray.add(progressJSON);
+            userProgressArray.add(createProgressJSON(progress));
         }
-        userDetails.put(USERPROGRESS, userProgressArray);
+        userJSON.put(USERPROGRESS, userProgressArray);
 
-        return userDetails;
+        return userJSON;
     }
 
+    /**
+     * Converts UserProgress object to JSON format.
+     */
+    @SuppressWarnings("unchecked")
     private static JSONObject createProgressJSON(UserProgress progress) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createProgressJSON'");
+        JSONObject progressJSON = new JSONObject();
+        progressJSON.put(USERPROGRESS_LANGUAGE, progress.getLanguage().getUUID());
+        progressJSON.put(USERPROGRESS_DIFFICULTY, progress.getDifficulty());
+        progressJSON.put(USERPROGRESS_CURRENTSTORY, progress.getCurrentStory());
+
+        // Phrase Progress JSON
+        JSONArray phraseProgressArray = new JSONArray();
+        for (HashMap.Entry<Phrase, Integer> entry : progress.getPhraseProgress().entrySet()) {
+            // Phrase phrase = entry.getKey();
+            // int progress = entry.getValue();
+            JSONObject phraseEntry = new JSONObject();
+            phraseEntry.put(USERPROGRESS_PHRASEPROGRESS_PHRASE, entry.getKey().getUUID().toString());
+            phraseEntry.put(USERPROGRESS_PHRASEPROGRESS_INTEGER, entry.getValue());
+            phraseProgressArray.add(phraseEntry);
+        }
+        progressJSON.put(USERPROGRESS_PHRASEPROGRESS, phraseProgressArray);
+
+        // Word Progress JSON
+        JSONArray wordProgressArray = new JSONArray();
+        for (HashMap.Entry<Word, Integer> entry : progress.getWordProgress().entrySet()) {
+            JSONObject wordEntry = new JSONObject();
+            wordEntry.put(USERPROGRESS_WORDPROGRESS_WORD, entry.getKey().getUUID().toString());
+            wordEntry.put(USERPROGRESS_WORDPROGRESS_INTEGER, entry.getValue());
+            wordProgressArray.add(wordEntry);
+        }
+        progressJSON.put(USERPROGRESS_WORDPROGRESS, wordProgressArray);
+
+        return progressJSON;
+    }
+
+    /**
+     * Converts Language object to JSON format.
+     */
+    @SuppressWarnings("unchecked")
+    private static JSONObject createLanguageJSON(Language language) {
+        JSONObject languageJSON = new JSONObject();
+        languageJSON.put(LANGUAGE_ID, language.getUUID());
+        languageJSON.put(LANGUAGE_NAME, language.getLanguage());
+
+        // Stories
+        JSONArray storiesJSON = new JSONArray();
+        for (Story story : language.getStories()) {
+            storiesJSON.add(createStoryJSON(story));
+        }
+        languageJSON.put(LANGUAGE_STORIES, storiesJSON);
+
+        // Words
+        JSONArray wordsJSON = new JSONArray();
+        for (Word word : language.getWords()) {
+            wordsJSON.add(createWordJSON(word));
+        }
+        languageJSON.put(LANGUAGE_WORDS, wordsJSON);
+
+        // Phrases
+        JSONArray phrasesJSON = new JSONArray();
+        for (Phrase phrase : language.getPhrases()) {
+            phrasesJSON.add(createPhraseJSON(phrase));
+        }
+        languageJSON.put(LANGUAGE_PHRASES, phrasesJSON);
+
+        return languageJSON;
+    }
+
+    /**
+     * Converts Story object to JSON format.
+     */
+    @SuppressWarnings("unchecked")
+    private static JSONObject createStoryJSON(Story story) {
+        JSONObject storyJSON = new JSONObject();
+        storyJSON.put(STORY_TITLE, story.getTitle());
+        storyJSON.put(STORY_ENGLISHSTORY, story.getEnglishStory());
+        storyJSON.put(STORY_SPANISHSTORY, story.getSpanishStory());
+        return storyJSON;
+    }
+
+    /**
+     * Converts Word object to JSON format.
+     */
+    @SuppressWarnings("unchecked")
+    private static JSONObject createWordJSON(Word word) {
+        JSONObject wordJSON = new JSONObject();
+        wordJSON.put(WORD_ID, word.getUUID().toString());
+        wordJSON.put(WORD_INENGLISH, word.getEnglishWord());
+        wordJSON.put(WORD_INTARGETLANGUAGE, word.getTranslatedWord());
+        wordJSON.put(WORD_PRONUNCIATION, word.getPronunciation());
+        wordJSON.put(WORD_GENDER, word.getGender());
+        wordJSON.put(WORD_PARTOFSPEECH, word.getPartOfSpeech());
+        wordJSON.put(WORD_DIFFICULTY, word.getDifficulty());
+        return wordJSON;
+    }
+
+    /**
+     * Converts Phrase object to JSON format.
+     */
+    @SuppressWarnings("unchecked")
+    private static JSONObject createPhraseJSON(Phrase phrase) {
+        JSONObject phraseJSON = new JSONObject();
+        phraseJSON.put(PHRASE_ID, phrase.getUUID().toString());
+        phraseJSON.put(PHRASE_DIFFICULTY, phrase.getDifficulty());
+
+        // English Phrase
+        JSONArray englishPhraseArray = new JSONArray();
+        for (Word word : phrase.getEnglishPhrase()) {
+            englishPhraseArray.add(word.getUUID().toString());
+        }
+        phraseJSON.put(PHRASE_IN_ENGLISH, englishPhraseArray);
+
+        // Translated Phrase
+        JSONArray translatedPhraseArray = new JSONArray();
+        for (Word word : phrase.getTranslatedPhrase()) {
+            translatedPhraseArray.add(word.getUUID().toString());
+        }
+        phraseJSON.put(PHRASE_IN_TARGET_LANGUAGE, translatedPhraseArray);
+
+        return phraseJSON;
     }
 
     public static void main(String[] args) {
-        UserList users = UserList.getInstance();
-        boolean userAdded = users.saveUsers();
-        if (userAdded) {
-            System.out.println("Users saved successfully!");
+        ArrayList<User> users = UserList.getInstance().getUsers();
+        if (users == null || users.isEmpty()) {
+            System.out.println("No users available to save.");
         } else {
-            System.out.println("Failed to save users");
+            boolean userSaved = saveUsers(users);
+            System.out.println(userSaved ? "Users saved successfully!" : "Failed to saveusers");
         }
+        ArrayList<Language> languages = DataLoader.getLanguages();
+        boolean languageSaved = saveLanguages(languages);
+        System.out.println(languageSaved ? "Languages saved successfully!" : "Failed to save languages");
     }
 
 }

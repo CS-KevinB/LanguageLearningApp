@@ -70,6 +70,29 @@ public class Facade {
     }
 
     /**
+     * Creates a user
+     * 
+     * @param id           requires the id in order to create the user
+     * @param firstName    requires the first name
+     * @param lastName     requires the last name
+     * @param username     requires a username
+     * @param password     requires a password
+     * @param emailAddress requires an email address
+     * @param birthday     requires a birthday
+     * @param avatar       requires an avatar
+     * @param friends      requires an array list of friends
+     * @param points       requires the points
+     * @param userProgress requires the user progress
+     * @return returns a boolean if the user was created
+     */
+    public boolean createUser(UUID id, String firstName, String lastName, String username,
+            String password, String emailAddress, String birthdayStr, Avatar avatar,
+            ArrayList<User> friends, int points, UserProgress userProgress) {
+        return users.addUser(id, firstName, lastName, username, password,
+                emailAddress, avatar, new Date(), friends, points, userProgress);
+    }
+
+    /**
      * Creates an account
      * 
      * @param firstName requires the first name
@@ -91,12 +114,12 @@ public class Facade {
             System.out.println("Invalid date format. Please use yyyy-MM-dd.");
             return false;
         }
-        Date birthday = new Date();
+        java.sql.Date birthday = new java.sql.Date(birthdayUtil.getTime());
         UUID id = UUID.randomUUID();
         Avatar avatar = new Avatar();
         ArrayList<User> friends = new ArrayList<>();
         int points = 0;
-        UserProgress userProgress = new UserProgress(Facade.getInstance().getCurrentLanguage());
+        UserProgress userProgress = new UserProgress();
 
         User user = new User(id, firstName, lastName, userName, password, email, birthday, avatar, friends, points,
                 userProgress);
@@ -251,7 +274,7 @@ public class Facade {
     // }
 
     public boolean startStory() {
-        currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()).getCurrentStory();
+        currentUser.getUserProgress().getCurrentStory();
         return false;
     }
 
@@ -287,7 +310,7 @@ public class Facade {
      */
     public void startLesson() {
         if (this.currentUser != null && this.currentLanguage != null) {
-            Lesson lesson = new Lesson(this.currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()), this.currentLanguage);
+            Lesson lesson = new Lesson(this.currentUser.getUserProgress(), this.currentLanguage);
             ArrayList<Question> questions = lesson.getQuestions();
 
             for (Question question : questions) {

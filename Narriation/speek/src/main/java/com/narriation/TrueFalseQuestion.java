@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class TrueFalseQuestion implements Question {
 
+    private Language language; // reference for pulling similar questions, pass "current language"
     private Phrase phrase;
     private String questionStr;
     private boolean answer;
@@ -17,10 +18,9 @@ public class TrueFalseQuestion implements Question {
     public static void main(String[] args) {
         UUID id = UUID.fromString("3085ad7f-139c-4d3e-85e6-52cc0d028a29");
         Language currLanguage = Facade.getInstance().getLanguages().getLanguageByUUID(id);
-        Facade.getInstance().setCurrentLangauge(currLanguage);
 
         Phrase phrase = currLanguage.getPhrases().get(2);
-        TrueFalseQuestion tfQuestion = new TrueFalseQuestion(phrase);
+        TrueFalseQuestion tfQuestion = new TrueFalseQuestion(phrase, currLanguage);
         System.out.println(tfQuestion.getQuestion());
         String userInput = "true";
         System.out.println(
@@ -32,8 +32,9 @@ public class TrueFalseQuestion implements Question {
      * 
      * @param phrase
      */
-    public TrueFalseQuestion(Phrase phrase) {
+    public TrueFalseQuestion(Phrase phrase, Language currentLanguage) {
         this.phrase = phrase;
+        this.currentLanguage = currentLanguage;
         this.generateRandomQuestion();
     }
 
@@ -59,7 +60,7 @@ public class TrueFalseQuestion implements Question {
         if (ansBool) {
             answer = this.convertPhraseToString(this.phrase, true);
         } else {
-            ArrayList<Phrase> phrases = Facade.getInstance().getCurrentLanguage().getPhrases(); // TODO
+            ArrayList<Phrase> phrases = currentLanguage.getPhrases();
             int index = r.nextInt(phrases.size());
 
             System.out.println(ansBool); // TEST make sure this doesn't mess up our answer

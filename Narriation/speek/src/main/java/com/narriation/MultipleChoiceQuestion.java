@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class MultipleChoiceQuestion implements Question {
 
+    private Language language; // reference for pulling similar questions, pass "current language"
     private ArrayList<Word> words;
     private Word correctAnswer;
 
@@ -33,6 +34,10 @@ public class MultipleChoiceQuestion implements Question {
      */
     public String getQuestion() {
         return correctAnswer.getTranslatedWord();
+    }
+
+    public void generateRandomQuestion() {
+
     }
 
     /**

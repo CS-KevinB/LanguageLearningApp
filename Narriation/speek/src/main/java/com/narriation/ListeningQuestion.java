@@ -19,6 +19,7 @@ public class ListeningQuestion implements Question {
      */
     public ListeningQuestion(Phrase phrase) {
         this.phrase = phrase;
+        this.generateQuestion();
     }
 
     /**
@@ -78,16 +79,7 @@ public class ListeningQuestion implements Question {
      * @return returns the answer
      */
     public String getAnswer() {
-        StringBuilder answerBuilder = new StringBuilder();
-
-        for (Word word : phrase.getTranslatedPhrase()) {
-            if (answerBuilder.length() > 0) {
-                answerBuilder.append(" ");
-            }
-            answerBuilder.append(word.toString());
-        }
-
-        return answerBuilder.toString();
+        return this.question;
     }
 
     /**
@@ -105,11 +97,13 @@ public class ListeningQuestion implements Question {
      * Plays the audio for the listening question
      */
     public void playAudio() {
+        System.out.println(question);
         Narriator.playSound(question);
     }
 
     /**
      * Gets the phrase that the question is based on
+     * 
      * @return Returns the phrase
      */
     public Phrase getPhrase() {

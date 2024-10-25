@@ -85,7 +85,6 @@ public class UserProgress {
     /**
      * Gets the phrase progress of the user
      * 
-     * @param phrase takes in the phrase to get the progress for
      * @return returns the progress
      */
     public int getPhraseProgress(Phrase phrase) {

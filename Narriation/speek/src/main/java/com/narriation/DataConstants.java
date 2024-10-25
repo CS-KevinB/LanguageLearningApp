@@ -23,6 +23,12 @@ public abstract class DataConstants {
     protected static final String LANGUAGE_NAME = "nameOfLanguage";
     protected static final String LANGUAGE_WORDS = "words";
     protected static final String LANGUAGE_PHRASES = "phrases";
+    protected static final String LANGUAGE_STORIES = "stories";
+
+    // Stories
+    protected static final String STORY_TITLE = "title";
+    protected static final String STORY_ENGLISHSTORY = "englishStory";
+    protected static final String STORY_SPANISHSTORY = "spanishStory";
 
     protected static final String WORD_ID = "uuid";
     protected static final String WORD_INENGLISH = "englishWord";

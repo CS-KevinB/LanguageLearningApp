@@ -75,7 +75,7 @@ public class Phrase {
 
     public String toString() {
         return "ID: " + this.id + "\n  ENGLISH: " + this.englishPhrase + "\n  TRNSLTD: " + this.translatedPhrase
-                + "\n  FEEDBACK: " + this.feedback + "\n\n";
+                + "\n\n";
     }
 
     public int getDifficulty() {

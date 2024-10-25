@@ -111,6 +111,7 @@ public class Word {
         sb.append(" | Pronunciation: ").append(pronunciation != null ? pronunciation : "null");
         sb.append(" | Part of Speech: ").append(partOfSpeech != null ? partOfSpeech.toString() : "null");
         sb.append(" | Gender: ").append(gender != null ? gender.toString() : "null");
+        sb.append("\n");
 
         return sb.toString();
     }

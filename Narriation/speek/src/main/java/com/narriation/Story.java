@@ -11,39 +11,48 @@ import java.util.ArrayList;
 public class Story {
 
     private String title;
-    private ArrayList<Word> englishStory;
-    private ArrayList<Word> spanishStory;
+    private String englishStory;
+    private String spanishStory;
 
-    /**
-     * Constructor for story class
-     * 
-     * @param title        - title of the story
-     * @param englishStory - list of words for the english story
-     * @param spanishStory - list of words for the spanish story
-     */
-    public Story(String title, ArrayList<Word> englishStory, ArrayList<Word> spanishStory) {
+    // OLD IMPLEMENTATION WITH ARRAYLIST<WORD>
+
+    // /**
+    // * Constructor for story class
+    // *
+    // * @param title - title of the story
+    // * @param englishStory - list of words for the english story
+    // * @param spanishStory - list of words for the spanish story
+    // */
+    // public Story(String title, ArrayList<Word> englishStory, ArrayList<Word>
+    // spanishStory) {
+    // this.title = title;
+    // this.englishStory = englishStory;
+    // this.spanishStory = spanishStory;
+    // }
+
+    // public String getStory() {
+    // StringBuilder storyBuilder = new StringBuilder();
+    // for (Word word : englishStory) {
+    // storyBuilder.append(word.getEnglishWord());
+    // storyBuilder.append(" ");
+    // }
+    // return storyBuilder.toString();
+    // }
+
+    /// **
+    // * Removes all the words from the story
+    // *
+    // * @return - void
+    // */
+    // public void removeWords() {
+    // englishStory.clear();
+    // spanishStory.clear();
+    // }
+
+    public Story(String title, String englishStory, String spanishStory) {
         this.title = title;
         this.englishStory = englishStory;
         this.spanishStory = spanishStory;
-    }
-
-    public String getStory() {
-        StringBuilder storyBuilder = new StringBuilder();
-        for (Word word : englishStory) {
-            storyBuilder.append(word.getEnglishWord());
-            storyBuilder.append(" ");
-        }
-        return storyBuilder.toString();
-    }
-
-    /**
-     * Removes all the words from the story
-     * 
-     * @return - void
-     */
-    public void removeWords() {
-        englishStory.clear();
-        spanishStory.clear();
     }
 
     /**
@@ -57,6 +66,6 @@ public class Story {
 
     public String toString() {
         return "Title: " + this.title + "\n English Story: " + this.englishStory + "\n Spanish Story: "
-                + this.spanishStory;
+                + this.spanishStory + "\n\n";
     }
 }

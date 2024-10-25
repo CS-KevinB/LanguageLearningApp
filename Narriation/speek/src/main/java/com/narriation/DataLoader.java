@@ -23,8 +23,8 @@ public class DataLoader extends DataConstants {
 
     // temporary main
     public static void main(String args[]) {
-        System.out.println(getUsers());
-        // System.out.println(getLanguages());
+        // System.out.println(getUsers());
+        System.out.println(getLanguages());
     }
 
     // LANGUAGES
@@ -44,11 +44,11 @@ public class DataLoader extends DataConstants {
                 // 0. store all variables
                 UUID lessonID = UUID.fromString((String) currentLang.get(LANGUAGE_ID));
                 String nameOfLanguage = (String) currentLang.get(LANGUAGE_NAME);
-                ArrayList<Story> stories = new ArrayList<Story>();
+                ArrayList<Story> stories = parseStoriesFromLanguageObject((JSONObject) currentLang);
                 ArrayList<Word> words = parseWordsFromLanguageObject((JSONObject) currentLang);
-                ArrayList<Phrase> phrases = parsePhrasesFromLanguageObject((JSONObject) currentLang);
+                ArrayList<Phrase> phrases = parsePhrasesFromLanguageObject((JSONObject) currentLang, words);
 
-                languages.add(new Language(lessonID, nameOfLanguage, words, phrases));
+                languages.add(new Language(lessonID, nameOfLanguage, words, phrases, stories));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,7 +77,7 @@ public class DataLoader extends DataConstants {
         return words;
     }
 
-    private static ArrayList<Phrase> parsePhrasesFromLanguageObject(JSONObject json) {
+    private static ArrayList<Phrase> parsePhrasesFromLanguageObject(JSONObject json, ArrayList<Word> words) {
         ArrayList<Phrase> phrases = new ArrayList<Phrase>();
         JSONArray jsonPhrases = (JSONArray) json.get(LANGUAGE_PHRASES);
 
@@ -107,6 +107,21 @@ public class DataLoader extends DataConstants {
             }
             phrases.add(new Phrase(phraseID, englishPhrase, translatedPhrase, difficulty));
         }
+
+        return phrases;
+    }
+
+    private static ArrayList<Story> parseStoriesFromLanguageObject(JSONObject json) {
+        ArrayList<Story> stories = new ArrayList<Story>();
+        JSONArray jsonStories = (JSONArray) json.get(LANGUAGE_STORIES);
+        for (int i = 0; i < jsonStories.size(); i++) {
+            JSONObject story = (JSONObject) jsonStories.get(i);
+            String title = (String) story.get(STORY_TITLE);
+            String englishStory = (String) story.get(STORY_ENGLISHSTORY);
+            String spanishStory = (String) story.get(STORY_SPANISHSTORY);
+            stories.add(new Story(title, englishStory, spanishStory));
+        }
+        return stories;
     }
 
     private static Word findWordByUUID(ArrayList<Word> words, UUID id) {

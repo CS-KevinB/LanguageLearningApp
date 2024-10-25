@@ -14,18 +14,19 @@ public class Language {
     private ArrayList<Story> stories;
 
     public Language(UUID id, String nameOfLanguage, ArrayList<Word> words,
-            ArrayList<Phrase> phrases) {
+            ArrayList<Phrase> phrases, ArrayList<Story> stories) {
         this.id = id;
         this.nameOfLanguage = nameOfLanguage;
         this.words = words;
         this.phrases = phrases;
+        this.stories = stories;
     }
 
     public ArrayList<Phrase> getPhrases() {
         return phrases;
     }
 
-    public String getLanguage () {
+    public String getLanguage() {
         return nameOfLanguage;
     }
 
@@ -37,4 +38,8 @@ public class Language {
         return stories;
     }
 
+    public String toString() {
+        return "ID: " + this.id + "\n  Language: " + this.nameOfLanguage + "\n  Words: " + this.words + "\n  Phrases: "
+                + this.phrases + "\n  Stories: " + this.stories;
+    }
 }

@@ -36,6 +36,9 @@ public class LanguageAppUI {
                 System.out.println("Invalid command");
                 continue;
             }
+            if (userCommand > mainMenuOptions.length) {
+                System.out.println("Invalid command");
+            }
             if (userCommand == mainMenuOptions.length) {
                 facade.logout();
                 System.out.println("Logging out ...");
@@ -99,10 +102,17 @@ public class LanguageAppUI {
      */
     private void displayMainMenu() {
         System.out.println("\n************ Main Menu *************");
-        for (int i = 0; i < mainMenuOptions.length; i++) {
-            System.out.println((i + 1) + ". " + mainMenuOptions[i]);
+        if(facade.getCurrentUser() == null) {
+            for (int i = 0; i < 2; i++) {
+                System.out.println((i+1) + ". " + mainMenuOptions[i]);
+            }
+            System.out.println("\n");
+        } else {
+            for (int i = 2; i < mainMenuOptions.length; i++) {
+                System.out.println((i-1) + ". " + mainMenuOptions[i]);
+            }
+            System.out.println("\n");
         }
-        System.out.println("\n");
     }
 
     /**
@@ -114,11 +124,15 @@ public class LanguageAppUI {
     private int getUserCommand(int numCommands) {
         System.out.print("What would you like to do?: ");
         String input = scanner.nextLine();
-        int command = Integer.parseInt(input) - 1;
-
-        if (command >= 0 && command < numCommands)
-            return command;
-
+        if (facade.getCurrentUser() != null) {
+            int command = Integer.parseInt(input) + 1;
+            if (command >= 0 && command < numCommands)
+                return command;
+        } else {
+            int command = Integer.parseInt(input) - 1;
+            if (command >= 0 && command < numCommands)
+                return command;
+        }
         return -1;
     }
 

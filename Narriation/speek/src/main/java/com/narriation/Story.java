@@ -71,4 +71,8 @@ public class Story {
         return "Title: " + this.title + "\n English Story: " + this.englishStory + "\n Spanish Story: "
                 + this.spanishStory + "\n\n";
     }
+
+    public void speakStory() {
+        Narriator.playSound(spanishStory);
+    }
 }

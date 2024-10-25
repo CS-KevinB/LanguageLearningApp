@@ -86,26 +86,6 @@ public class DataWriter extends DataConstants {
         return userDetails;
     }
 
-    // private static JSONObject createProgressJSON(UserProgress progress) {
-    // JSONObject progressJSON = new JSONObject();
-    // progressJSON.put(USERPROGRESS_LANGUAGE,
-    // progress.getLanguage().getUUID().toString());
-    // progressJSON.put(USERPROGRESS_DIFFICULTY, progress.getDifficulty());
-    // progressJSON.put(USERPROGRESS_CURRENTSTORY, progress.getCurrentStory());
-
-    // // Phrase progress
-    // JSONArray phraseProgressArray = new JSONArray();
-    // for (HashMap.Entry<Phrase, Integer> entry :
-    // progress.getPhraseProgress().entrySet()) {
-    // JSONObject phraseProgress = new JSONObject();
-    // phraseProgress.put(USERPROGRESS_PHRASEPROGRESS_PHRASE,
-    // entry.getKey().getId().toString());
-    // phraseProgress.put(USERPROGRESS_PHRASEPROGRESS_INTEGER, entry.getValue());
-    // phraseProgressArray.add(phraseProgress);
-    // }
-    // progressJSON.put(USERPROGRESS_PHRASEPROGRESS, phraseProgressArray);
-    // Word progress
-
     public static void main(String[] args) {
         UserList users = UserList.getInstance();
         boolean userAdded = users.saveUsers();

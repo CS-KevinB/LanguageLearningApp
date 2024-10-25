@@ -38,9 +38,10 @@ public class Avatar {
      * Returns this avatar's hat option
      * @return Avatar's hat option
      */
-    public HatOptions getHatOptions() {
+    public HatOptions getHat() {
         return this.hat;
     }
+
 
     /**
      * Sets the avatar's hat to a passed in parameter

@@ -55,7 +55,7 @@ public class LanguageAppUI {
                     // +
                     // this.facade.getCurrentUser().getUserProgress(language).getPhraseProgress(phrase));
 
-                    WritingQuestion question = new WritingQuestion(phrase);
+                    MultipleChoiceQuestion question = new MultipleChoiceQuestion(phrase, language);
                     System.out.println(question.getQuestion());
                     String input = scanner.nextLine();
                     System.out.println(question.isCorrect(input));

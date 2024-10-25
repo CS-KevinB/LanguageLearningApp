@@ -43,7 +43,7 @@ public class Phrase {
      */
     public Phrase(UUID id, ArrayList<Word> englishPhrase, ArrayList<Word> translatedPhrase,
             int difficulty) {
-        this.id = UUID.randomUUID();
+        this.id = id;
         this.englishPhrase = englishPhrase;
         this.translatedPhrase = translatedPhrase;
         this.difficulty = difficulty;
@@ -70,11 +70,12 @@ public class Phrase {
     // TODO: TEST THIS!!!
     public void phraseSeen() {
         UserProgress userProgress = Facade.getInstance().getCurrentUser().getUserProgress();
-        userProgress.incrementPhraseSeenCounter(this);
+        // userProgress.incrementPhraseSeenCounter(this);
     }
 
     /**
      * Creates a string representation of the phrase
+     * 
      * @return returns the phrase as a string
      */
     public String toString() {
@@ -84,9 +85,14 @@ public class Phrase {
 
     /**
      * Gets the difficulty of the phrase or word
+     * 
      * @return returns the difficulty
      */
     public int getDifficulty() {
         return difficulty;
+    }
+
+    public UUID getUUID() {
+        return this.id;
     }
 }

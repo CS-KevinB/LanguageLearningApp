@@ -22,11 +22,9 @@ public class User {
     private String emailAddress;
     private Date birthday;
     private Avatar avatar;
-    private ArrayList<Language> languages;
     private ArrayList<User> friends;
     private int points;
-    private UserProgress userProgress;
-    private HashMap<Language, UserProgress> languageProgress; // Check
+    private ArrayList<UserProgress> userProgress;
 
     /**
      * Creates a new user with the parameters
@@ -53,10 +51,9 @@ public class User {
         this.password = password;
         this.birthday = birthday;
         this.avatar = avatar;
-        this.languages = new ArrayList<>();
-        this.friends = new ArrayList<>();
+        this.friends = new ArrayList<User>();
         this.points = 0;
-        this.userProgress = new UserProgress();
+        this.userProgress = new ArrayList<UserProgress>();
     }
 
     /**
@@ -75,7 +72,7 @@ public class User {
      * @param userProgress tracks the user's progress
      */
     public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
-            Date birthday, Avatar avatar, int points, UserProgress userProgress) {
+            Date birthday, Avatar avatar, int points, ArrayList<UserProgress> userProgress) {
 
         this.id = id;
         this.firstName = firstName;
@@ -85,7 +82,6 @@ public class User {
         this.password = password;
         this.birthday = birthday;
         this.avatar = avatar;
-        this.languages = new ArrayList<Language>();
         this.friends = new ArrayList<User>();
         this.points = 0;
         this.userProgress = userProgress;

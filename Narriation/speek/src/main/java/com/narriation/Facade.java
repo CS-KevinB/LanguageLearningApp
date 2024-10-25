@@ -25,13 +25,14 @@ public class Facade {
      * Creates a facade
      */
     Facade() {
-        users = UserList.getInstance();
         phrases = new ArrayList<>();
-        // languages = LanguageList.getInstance();
+        languages = LanguageList.getInstance();
+        users = UserList.getInstance();
     }
 
     /**
      * Gets the instance of the facade
+     * 
      * @return returns the instance of the facade
      */
     public static Facade getInstance() {
@@ -42,6 +43,7 @@ public class Facade {
 
     /**
      * Sets the phrases for the user
+     * 
      * @param phrases requires the array list of phrases in order to set
      */
     public void setPhrases(ArrayList<Phrase> phrases) {
@@ -50,6 +52,7 @@ public class Facade {
 
     /**
      * Logs in the user
+     * 
      * @param username requires the username in order to log in
      * @param password requires the password in order to log in
      * @return returns a boolean if the login was successful
@@ -65,16 +68,17 @@ public class Facade {
 
     /**
      * Creates a user
-     * @param id requires the id in order to create the user
-     * @param firstName requires the first name
-     * @param lastName requires the last name
-     * @param username requires a username
-     * @param password requires a password
+     * 
+     * @param id           requires the id in order to create the user
+     * @param firstName    requires the first name
+     * @param lastName     requires the last name
+     * @param username     requires a username
+     * @param password     requires a password
      * @param emailAddress requires an email address
-     * @param birthday requires a birthday
-     * @param avatar requires an avatar
-     * @param friends requires an array list of friends
-     * @param points requires the points
+     * @param birthday     requires a birthday
+     * @param avatar       requires an avatar
+     * @param friends      requires an array list of friends
+     * @param points       requires the points
      * @param userProgress requires the user progress
      * @return returns a boolean if the user was created
      */
@@ -87,9 +91,10 @@ public class Facade {
 
     /**
      * Creates an account
+     * 
      * @param username requires the username
      * @param password requires the password
-     * @param email requires the email
+     * @param email    requires the email
      * @return returns a boolean if the account was created
      */
     public boolean createAccount(String username, String password, String email) {
@@ -112,6 +117,7 @@ public class Facade {
 
     /**
      * Gets the current user
+     * 
      * @return returns the current user
      */
     public User getCurrentUser() {
@@ -120,6 +126,7 @@ public class Facade {
 
     /**
      * Logs out the user
+     * 
      * @return returns a boolean if the logout was successful
      */
     public boolean logout() {
@@ -132,8 +139,9 @@ public class Facade {
 
     /**
      * Updates the avatar
+     * 
      * @param character requires the new character option
-     * @param hat requires the new hat option
+     * @param hat       requires the new hat option
      */
     public void updateAvatar(CharacterOptions character, HatOptions hat) {
         currentUser.setAvatar(character, hat);
@@ -141,16 +149,17 @@ public class Facade {
 
     /**
      * Updates the user
-     * @param id requires the id in order to update the user
-     * @param firstName requires the first name
-     * @param lastName requires the last name
-     * @param username requires a username
-     * @param password requires a password
+     * 
+     * @param id           requires the id in order to update the user
+     * @param firstName    requires the first name
+     * @param lastName     requires the last name
+     * @param username     requires a username
+     * @param password     requires a password
      * @param emailAddress requires an email address
-     * @param birthday requires a birthday
-     * @param avatar requires an avatar
-     * @param friends requires an array list of friends
-     * @param points requires the points
+     * @param birthday     requires a birthday
+     * @param avatar       requires an avatar
+     * @param friends      requires an array list of friends
+     * @param points       requires the points
      * @param userProgress requires the user progress
      * @return returns a boolean if the user was updated
      */
@@ -163,6 +172,7 @@ public class Facade {
 
     /**
      * Updates the credentials
+     * 
      * @param username requires the new username
      * @param password requires the new password
      */
@@ -173,6 +183,7 @@ public class Facade {
 
     /**
      * Displays a question
+     * 
      * @param phrase requires the phrase in order to display
      */
     public void displayQuestion(Phrase phrase) {
@@ -182,6 +193,7 @@ public class Facade {
 
     /**
      * Displays a multiple choice question
+     * 
      * @param correctPhrase requires the correct phrase in order to display
      */
     public void displayMCQ(Phrase correctPhrase) {
@@ -224,6 +236,7 @@ public class Facade {
 
     /**
      * Converts the phrase to a string
+     * 
      * @param phrase requires the phrase in order to convert
      * @return returns the phrase as a string
      */
@@ -254,6 +267,7 @@ public class Facade {
 
     /**
      * Sets the current language
+     * 
      * @param language requires the language in order to set
      * @return returns a boolean if the language was set
      */
@@ -271,6 +285,7 @@ public class Facade {
 
     /**
      * Gets the current language
+     * 
      * @return returns the current language
      */
     public Language getCurrentLanguage() {
@@ -279,7 +294,7 @@ public class Facade {
 
     /**
      * Starts the lesson
-     */ 
+     */
     public void startLesson() {
         if (this.currentUser != null && this.currentLanguage != null) {
             Lesson lesson = new Lesson(this.currentUser.getUserProgress());
@@ -301,9 +316,14 @@ public class Facade {
 
     /**
      * Gets the language
+     * 
      * @return returns the language
      */
-    public Language getLanguage() {
-        return this.currentLanguage;
+    public LanguageList getLanguages() {
+        return this.languages;
+    }
+
+    public UserList getUsers() {
+        return this.users;
     }
 }

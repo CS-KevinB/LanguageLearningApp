@@ -45,6 +45,10 @@ public class Language {
         return phrases;
     }
 
+    public ArrayList<Word> getWords() {
+        return words;
+    }
+
     public String getLanguage() {
         return nameOfLanguage;
     }

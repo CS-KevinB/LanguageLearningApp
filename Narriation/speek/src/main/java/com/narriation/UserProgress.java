@@ -12,16 +12,17 @@ import java.util.Map;
  * @author christianruff
  */
 public class UserProgress {
+    private Language language;
     private int difficulty;
     private int currentStory;
     private HashMap<Phrase, Integer> phraseProgress;
     private HashMap<Word, Integer> wordProgress;
 
-
     /**
      * Creates a default user progress
      */
     public UserProgress() {
+        this.language = null;
         this.difficulty = 0;
         this.currentStory = 0;
         this.phraseProgress = new HashMap<Phrase, Integer>();
@@ -30,13 +31,15 @@ public class UserProgress {
 
     /**
      * Creates a user progress with the parameters
-     * @param difficulty takes in the difficulty of the user
-     * @param currentStory takes in the current story of the user
+     * 
+     * @param difficulty     takes in the difficulty of the user
+     * @param currentStory   takes in the current story of the user
      * @param phraseProgress takes in the phrase progress of the user
-     * @param wordProgress takes in the word progress of the user
+     * @param wordProgress   takes in the word progress of the user
      */
-    public UserProgress(int difficulty, int currentStory, HashMap<Phrase, Integer> phraseProgress,
+    public UserProgress(Language language, int difficulty, int currentStory, HashMap<Phrase, Integer> phraseProgress,
             HashMap<Word, Integer> wordProgress) {
+        this.language = language;
         this.difficulty = difficulty;
         this.currentStory = currentStory;
         this.phraseProgress = phraseProgress;
@@ -45,6 +48,7 @@ public class UserProgress {
 
     /**
      * Gets the difficulty of the user
+     * 
      * @return returns the difficulty
      */
     public int getDifficulty() {
@@ -53,6 +57,7 @@ public class UserProgress {
 
     /**
      * Gets the word progress of the user
+     * 
      * @param word takes in the word to get the progress for
      * @return returns the progress
      */
@@ -66,6 +71,7 @@ public class UserProgress {
 
     /**
      * Updates the word progress of the user
+     * 
      * @param word takes in the word to update the progress for
      */
     public void updateWordProgress(Word word) {
@@ -74,6 +80,7 @@ public class UserProgress {
 
     /**
      * Gets the phrase progress of the user
+     * 
      * @param phrase takes in the phrase to get the progress for
      * @return returns the progress
      */
@@ -83,6 +90,7 @@ public class UserProgress {
 
     /**
      * Counts the correct phrase of the user
+     * 
      * @param phrase takes in the phrase to count the progress for
      */
     public void countCorrectPhrase(Phrase phrase) {
@@ -93,6 +101,7 @@ public class UserProgress {
 
     /**
      * Counts the incorrect phrase of the user
+     * 
      * @param phrase takes in the phrase to count the progress for
      */
     public void countIncorrectPhrase(Phrase phrase) {
@@ -102,6 +111,7 @@ public class UserProgress {
 
     /**
      * Gets the current story of the user
+     * 
      * @return returns the current story
      */
     public Story getCurrentStory() {
@@ -111,10 +121,12 @@ public class UserProgress {
 
     /**
      * Gets a string representation of the user progress
+     * 
      * @return returns the string
      */
     public String toString() {
-        return "Difficulty: " + this.difficulty + " | Current Story: " + this.currentStory + " | " + this.phraseProgress
+        return "Difficulty: " + this.difficulty + " | Current Story: " + this.currentStory
+                + " | Phrase Progress (Language:Score)" + this.phraseProgress
                 + " | " + this.wordProgress;
     }
 

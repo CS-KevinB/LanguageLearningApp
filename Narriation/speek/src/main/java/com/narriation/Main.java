@@ -7,7 +7,7 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
         // Test for UserProgress - Create a new UserProgress object
-        UserProgress userProgress = new UserProgress();
+        UserProgress userProgress = new UserProgress(Facade.getInstance().getCurrentLanguage());
 
         Word word1 = new Word("Good morning!", "Buenos dias!", " ", PartOfSpeech.NOUN, Gender.NEITHER, 1);
         Word word2 = new Word("Good night!", "Buenas noches!", " ", PartOfSpeech.NOUN, Gender.NEITHER, 1);

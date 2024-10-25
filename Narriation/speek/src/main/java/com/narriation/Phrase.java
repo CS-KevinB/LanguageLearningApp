@@ -69,7 +69,8 @@ public class Phrase {
 
     // TODO: TEST THIS!!!
     public void phraseSeen() {
-        UserProgress userProgress = Facade.getInstance().getCurrentUser().getUserProgress();
+        // UserProgress userProgress =
+        // Facade.getInstance().getCurrentUser().getUserProgress();
         // userProgress.incrementPhraseSeenCounter(this);
     }
 

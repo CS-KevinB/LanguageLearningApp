@@ -1,13 +1,10 @@
 package com.narriation;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.UUID;
 import org.json.simple.parser.ParseException;
 import software.amazon.awssdk.services.polly.endpoints.internal.Value.Str;
@@ -241,6 +238,32 @@ public class Facade {
             return currentLanguage;
         } else {
             return this.currentUser.getUserProgress().get(0).getLanguage();
+        }
+    }
+
+    public String displayProgress() {
+        String progress = "";
+        if (currentUser.getUserProgress(currentLanguage).displayHardPhrases() != "") {
+            progress += "Problem Phrases:\n" + currentUser.getUserProgress(currentLanguage).displayHardPhrases();
+        } else {
+            progress += "No Problem Phrases!\n";
+        }
+        if (currentUser.getUserProgress(currentLanguage).displayHardWords() != "") {
+            progress += "\nProblem Words:\n" + currentUser.getUserProgress(currentLanguage).displayHardWords();
+        } else {
+            progress += "\nNo Problem Words!";
+        }
+        return progress;
+    }
+
+    public boolean printProgress() {
+        try (FileWriter file = new FileWriter("Narriation/speek/user-progress/"+currentUser.getUsername()+".txt")) {
+            file.write(displayProgress());
+            file.flush();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

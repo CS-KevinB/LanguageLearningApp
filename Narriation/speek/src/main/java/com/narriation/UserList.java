@@ -18,6 +18,10 @@ public class UserList {
         users = DataLoader.getUsers();
     }
 
+    public void addUser(User user) {
+        users.add(user);
+    }
+
     // private UserList() {
     // users = DataLoader.getUsers();
     // }

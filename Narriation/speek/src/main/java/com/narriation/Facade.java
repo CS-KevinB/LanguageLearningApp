@@ -234,6 +234,7 @@ public class Facade {
      * @return returns the language
      */
     public Language getLanguage() {
+        System.out.println("CURRENT USER" + this.getCurrentUser());
         if (currentLanguage != null) {
             return currentLanguage;
         } else {

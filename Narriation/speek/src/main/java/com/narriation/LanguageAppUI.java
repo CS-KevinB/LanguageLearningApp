@@ -78,6 +78,7 @@ public class LanguageAppUI {
 
     /**
      * Gets the user command they enter
+     * 
      * @param numCommands runs a loop with numCommands
      * @return returns whatever the user enters
      */
@@ -103,12 +104,13 @@ public class LanguageAppUI {
         if (facade.createAccount(username, password, email)) {
             System.out.println("Account successfully created!");
         } else {
-            System.out.println("Username already exists. Try a different username.");
+            System.out.println("Account already exists. Please try logging in.");
         }
     }
 
     /**
      * Gets a field from the user
+     * 
      * @param prompt requires the prompt in order to get the field
      * @return returns the string of the field
      */

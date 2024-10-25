@@ -121,4 +121,11 @@ public class TrueFalseQuestion implements Question {
         return getAnswer().equals(input);
     }
 
+    /**
+     * Gets the phrase that the question is based on
+     * @return Returns the phrase
+     */
+    public Phrase getPhrase() {
+        return this.phrase;
+    }
 }

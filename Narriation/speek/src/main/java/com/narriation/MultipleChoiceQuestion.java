@@ -110,4 +110,12 @@ public class MultipleChoiceQuestion implements Question {
     public boolean isCorrect(String answer) {
         return getAnswer().equals(answer);
     }
+
+    /**
+     * Gets the phrase that the question is based on
+     * @return Returns the phrase
+     */
+    public Phrase getPhrase() {
+        return this.phrase;
+    }
 }

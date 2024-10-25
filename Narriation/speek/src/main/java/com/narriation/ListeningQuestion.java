@@ -107,4 +107,12 @@ public class ListeningQuestion implements Question {
     public void playAudio() {
         Narriator.playSound(question);
     }
+
+    /**
+     * Gets the phrase that the question is based on
+     * @return Returns the phrase
+     */
+    public Phrase getPhrase() {
+        return this.phrase;
+    }
 }

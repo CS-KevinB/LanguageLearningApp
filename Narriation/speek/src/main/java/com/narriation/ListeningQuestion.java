@@ -19,10 +19,47 @@ public class ListeningQuestion implements Question {
      */
     public ListeningQuestion(Phrase phrase) {
         this.phrase = phrase;
+        this.generateQuestion();
     }
 
+    /**
+     * Generates the listening question
+     */
     public void generateQuestion() {
+        question = this.convertPhraseToString(this.phrase, false);
+    }
 
+    /**
+     * Converts the phrase to a string
+     * 
+     * @param phrase    Takes the phrase in order to convert
+     * @param isEnglish Takes a boolean to determine if the phrase is in English or
+     *                  Spanish
+     * @return Returns the phrase as a string
+     */
+    private String convertPhraseToString(Phrase phrase, boolean isEnglish) {
+        ArrayList<Word> phraseArr;
+        StringBuilder str = new StringBuilder();
+        if (isEnglish) {
+            phraseArr = phrase.getEnglishPhrase();
+            int len = phraseArr.size();
+
+            for (int i = 0; i < len; i++) {
+                if (str.length() > 0)
+                    str.append(" ");
+                str.append(phraseArr.get(i).getEnglishWord());
+            }
+        } else {
+            phraseArr = phrase.getTranslatedPhrase();
+            int len = phraseArr.size();
+
+            for (int i = 0; i < len; i++) {
+                if (str.length() > 0)
+                    str.append(" ");
+                str.append(phraseArr.get(i).getTranslatedWord());
+            }
+        }
+        return str.toString();
     }
 
     /**
@@ -32,16 +69,8 @@ public class ListeningQuestion implements Question {
      * @return returns the new question to the user to be answered
      */
     public String getQuestion() {
-        StringBuilder questionBuilder = new StringBuilder();
-
-        for (Word word : phrase.getEnglishPhrase()) {
-            if (questionBuilder.length() > 0) {
-                questionBuilder.append(" ");
-            }
-            questionBuilder.append(word.getTranslatedWord());
-        }
-
-        return questionBuilder.toString();
+        this.playAudio();
+        return "Repeat the phrase: ";
     }
 
     /**
@@ -50,16 +79,7 @@ public class ListeningQuestion implements Question {
      * @return returns the answer
      */
     public String getAnswer() {
-        StringBuilder answerBuilder = new StringBuilder();
-
-        for (Word word : phrase.getTranslatedPhrase()) {
-            if (answerBuilder.length() > 0) {
-                answerBuilder.append(" ");
-            }
-            answerBuilder.append(word.toString());
-        }
-
-        return answerBuilder.toString();
+        return this.question;
     }
 
     /**
@@ -70,20 +90,23 @@ public class ListeningQuestion implements Question {
      * @return returns a boolean if the answer is correct or not
      */
     public boolean isCorrect(String answer) {
-        boolean ret = getAnswer().equals(answer);
-        if (ret)
-            Facade.getInstance().getCurrentUser().getUserProgress(Facade.getInstance().getCurrentLanguage())
-                    .countCorrectPhrase(this.phrase);
-        else
-            Facade.getInstance().getCurrentUser().getUserProgress(Facade.getInstance().getCurrentLanguage())
-                    .countIncorrectPhrase(this.phrase);
-        return ret;
+        return getAnswer().equals(answer);
     }
 
     /**
      * Plays the audio for the listening question
      */
     public void playAudio() {
+        System.out.println(question);
         Narriator.playSound(question);
+    }
+
+    /**
+     * Gets the phrase that the question is based on
+     * 
+     * @return Returns the phrase
+     */
+    public Phrase getPhrase() {
+        return this.phrase;
     }
 }

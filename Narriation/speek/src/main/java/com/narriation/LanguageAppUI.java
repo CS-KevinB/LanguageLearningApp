@@ -47,6 +47,25 @@ public class LanguageAppUI {
                     break;
                 case 1:
                     login();
+
+                    // Language language = this.facade.getLanguage();
+                    // Phrase phrase = language.getPhrases().get(1);
+
+                    // System.out.println("BEFORE: "
+                    // +
+                    // this.facade.getCurrentUser().getUserProgress(language).getPhraseProgress(phrase));
+
+                    // T/F questions
+                    // Listening questions
+                    // Lesson
+                    // Story
+
+                    this.facade.startStory();
+
+                    // System.out.println("AFTER: "
+                    // +
+                    // this.facade.getCurrentUser().getUserProgress(language).getPhraseProgress(phrase));
+
                     break;
                 case 2:
                     startLesson();

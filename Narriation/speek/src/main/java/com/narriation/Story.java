@@ -1,7 +1,5 @@
 package com.narriation;
 
-import java.util.ArrayList;
-
 /**
  * Story class will have list of stories
  * 
@@ -9,59 +7,21 @@ import java.util.ArrayList;
  */
 
 public class Story {
-
     private String title;
     private String englishStory;
     private String spanishStory;
 
-    // OLD IMPLEMENTATION WITH ARRAYLIST<WORD>
-
-    // /**
-    // * Constructor for story class
-    // *
-    // * @param title - title of the story
-    // * @param englishStory - list of words for the english story
-    // * @param spanishStory - list of words for the spanish story
-    // */
-    // public Story(String title, ArrayList<Word> englishStory, ArrayList<Word>
-    // spanishStory) {
-    // this.title = title;
-    // this.englishStory = englishStory;
-    // this.spanishStory = spanishStory;
-    // }
-
-    // public String getStory() {
-    // StringBuilder storyBuilder = new StringBuilder();
-    // for (Word word : englishStory) {
-    // storyBuilder.append(word.getEnglishWord());
-    // storyBuilder.append(" ");
-    // }
-    // return storyBuilder.toString();
-    // }
-
-    /// **
-    // * Removes all the words from the story
-    // *
-    // * @return - void
-    // */
-    // public void removeWords() {
-    // englishStory.clear();
-    // spanishStory.clear();
-    // }
-
+    /**
+     * Constructor for story class
+     * 
+     * @param title        The title of the story
+     * @param englishStory The english translation of the story
+     * @param spanishStory The spanish translation of the story
+     */
     public Story(String title, String englishStory, String spanishStory) {
         this.title = title;
         this.englishStory = englishStory;
         this.spanishStory = spanishStory;
-    }
-
-    /**
-     * To check if the story is correct
-     * 
-     * @return boolean
-     */
-    public boolean isCorrect(String story) {
-        return this.title.equalsIgnoreCase(story);
     }
 
     /**
@@ -72,16 +32,19 @@ public class Story {
                 + this.spanishStory + "\n\n";
     }
 
-    public String getSpanishStory() {
+    /**
+     * Displays the story
+     * 
+     * @return Returns the story as a string
+     */
+    public String displayStory() {
         return spanishStory;
     }
 
-    public String getEnglishStory() {
-        return englishStory;
-
-    }
-
-    public String getTitle() {
-        return title;
+    /**
+     * Speaks the story
+     */
+    public void speakStory() {
+        Narriator.playSound(spanishStory);
     }
 }

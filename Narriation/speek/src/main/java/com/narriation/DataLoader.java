@@ -22,11 +22,6 @@ public class DataLoader extends DataConstants {
     public static final String DATE_FORMAT = "yyyy-MM-dd";
     private static ArrayList<Language> languagesArr = new ArrayList<>();
 
-    // temporary main
-    public static void main(String args[]) {
-
-    }
-
     // LANGUAGES
     public static ArrayList<Language> getLanguages() {
         try {
@@ -289,7 +284,6 @@ public class DataLoader extends DataConstants {
             try {
                 Language language = getLanguageByUUID(
                         UUID.fromString((String) currentUserProgress.get(USERPROGRESS_LANGUAGE)));
-
                 HashMap<Phrase, Integer> phraseProgress = convertJSONToPhraseProgress(
                         (JSONArray) currentUserProgress.get(USERPROGRESS_PHRASEPROGRESS), language.getPhrases());
                 HashMap<Word, Integer> wordProgress = convertJSONToWordProgress(

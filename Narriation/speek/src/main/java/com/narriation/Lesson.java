@@ -25,6 +25,7 @@ public class Lesson {
      */
     public Lesson(UserProgress userProgress, Language language) {
         this.userProgress = userProgress;
+        this.language = language;
         this.questions = this.generateQuestions(NUMBER_OF_QUESTIONS);
         this.score = 0;
     }
@@ -36,7 +37,7 @@ public class Lesson {
      * @return returns the questions in a list
      */
     public ArrayList<Question> generateQuestions(int numOfQuestions) {
-        ArrayList<Phrase> allPhrases = Facade.getInstance().getCurrentLanguage().getPhrases();
+        ArrayList<Phrase> allPhrases = language.getPhrases();
         ArrayList<Phrase> selectedPhrases = new ArrayList<Phrase>();
         int userDifficulty = userProgress.getDifficulty();
 
@@ -63,6 +64,7 @@ public class Lesson {
                     break;
                 case 3:
                     selectedQuestions.add(new WritingQuestion(selectedPhrases.get(j)));
+                    break;
             }
         }
 
@@ -78,6 +80,14 @@ public class Lesson {
         return this.questions;
     }
 
+    public void increaseScore() {
+        this.score++;
+    }
+
+    public void decreaseScore() {
+        this.score--;
+    }
+
     /**
      * Gets the score to keep track of the user's progress
      * 
@@ -85,6 +95,6 @@ public class Lesson {
      *         correctly
      */
     public String getScore() {
-        return score + " / " + NUMBER_OF_QUESTIONS;
+        return score + " / " + questions.size();
     }
 }

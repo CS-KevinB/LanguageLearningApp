@@ -1,13 +1,10 @@
 package com.narriation;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.UUID;
 import org.json.simple.parser.ParseException;
 import software.amazon.awssdk.services.polly.endpoints.internal.Value.Str;
@@ -28,9 +25,9 @@ public class Facade {
      * Creates a facade
      */
     Facade() {
+        languages = LanguageList.getInstance();
         users = UserList.getInstance();
         phrases = new ArrayList<>();
-        // languages = LanguageList.getInstance();
     }
 
     /**
@@ -65,7 +62,9 @@ public class Facade {
             return false;
         if (!users.getUser(username).getPassword().equals(password))
             return false;
-        currentUser = users.getUser(username);
+        this.currentUser = users.getUser(username);
+        this.currentLanguage = currentUser.getUserProgress().get(0).getLanguage();
+
         return true;
     }
 
@@ -119,7 +118,7 @@ public class Facade {
         Avatar avatar = new Avatar();
         ArrayList<User> friends = new ArrayList<>();
         int points = 0;
-        UserProgress userProgress = new UserProgress();
+        UserProgress userProgress = new UserProgress(Facade.getInstance().getLanguage());
 
         User user = new User(id, firstName, lastName, userName, password, email, birthday, avatar, friends, points,
                 userProgress);
@@ -195,87 +194,12 @@ public class Facade {
     }
 
     /**
-     * Displays a question
-     * 
-     * @param phrase requires the phrase in order to display
+     * Reads and displays the current story
      */
-    public void displayQuestion(Phrase phrase) {
-        displayMCQ(phrase);
-        // displayFillInTheBlank(phrase);
-    }
-
-    /**
-     * Displays a multiple choice question
-     * 
-     * @param correctPhrase requires the correct phrase in order to display
-     */
-    public void displayMCQ(Phrase correctPhrase) {
-        ArrayList<String> options = new ArrayList<>();
-        Random random = new Random();
-
-        String correctAnswer = phraseToString(correctPhrase.getTranslatedPhrase());
-        options.add(correctAnswer);
-
-        while (options.size() < 4 && !phrases.isEmpty()) {
-            Phrase getRandomPhrase = phrases.get(random.nextInt(phrases.size()));
-            String translatedString = phraseToString(getRandomPhrase.getTranslatedPhrase());
-
-            if (!options.contains(translatedString)) {
-                options.add(translatedString);
-            }
-
-            Collections.shuffle(options);
-
-            System.out.println("Translate the phrase: " + phraseToString(correctPhrase.getEnglishPhrase()));
-            for (int i = 0; i < options.size(); i++) {
-                System.out.println((i + 1) + ". " + options.get(i));
-            }
-
-            Scanner sc = new Scanner(System.in);
-            int userChoice = sc.nextInt();
-
-            if (userChoice > options.size() || userChoice < 1) {
-                System.out.println("Invalid choice. Please try again.");
-            } else if (options.get(userChoice - 1).equals(phraseToString(correctPhrase.getTranslatedPhrase()))) {
-                System.out.println("Correct!");
-            } else {
-                System.out.println("Incorrect. The correct answer is " + correctPhrase.getTranslatedPhrase());
-            }
-            correctPhrase.phraseSeen();
-
-        }
-
-    }
-
-    /**
-     * Converts the phrase to a string
-     * 
-     * @param phrase requires the phrase in order to convert
-     * @return returns the phrase as a string
-     */
-    private String phraseToString(ArrayList<Word> phrase) {
-
-        StringBuilder phraseToString = new StringBuilder();
-        for (Word word : phrase) {
-            phraseToString.append(word.getTranslatedWord()).append(" ");
-
-        }
-        return phraseToString.toString().trim();
-
-    }
-
-    public void displayFillInTheBlank(Phrase phrase) {
-        Random random = new Random();
-
-    }
-
-    // public Exercise startExercise() {
-    // TODO: PHRASES?
-    // }
-
-    public boolean startStory() {
-        currentUser.getUserProgress().getCurrentStory();
-        return false;
+    public void startStory() {
+        // TODO remove Facade
+        System.out.println(currentUser.getUserProgress(currentLanguage).getCurrentStory().displayStory());
+        currentUser.getUserProgress(currentLanguage).getCurrentStory().speakStory();
     }
 
     /**
@@ -292,10 +216,6 @@ public class Facade {
         return false;
     }
 
-    // public void sendNotification(NotificationType notificationType) {
-
-    // }
-
     /**
      * Gets the current language
      * 
@@ -310,13 +230,17 @@ public class Facade {
      */
     public void startLesson() {
         if (this.currentUser != null && this.currentLanguage != null) {
-            Lesson lesson = new Lesson(this.currentUser.getUserProgress(), this.currentLanguage);
+            Lesson lesson = new Lesson(this.currentUser.getUserProgress(currentLanguage), this.currentLanguage);
             ArrayList<Question> questions = lesson.getQuestions();
+
+            System.out.println("SIZE:" + questions.size());
 
             for (Question question : questions) {
                 System.out.println(question.getQuestion());
                 String input = keyboard.nextLine();
                 if (question.isCorrect(input)) {
+                    this.currentUser.getUserProgress(this.currentLanguage).countCorrectPhrase(question.getPhrase());
+                    lesson.increaseScore();
                     System.out.println("Correct! Great work! Your score is now " + lesson.getScore());
                 } else {
                     System.out.println("Oh no, that was incorrect. Keep going!");
@@ -333,6 +257,47 @@ public class Facade {
      * @return returns the language
      */
     public Language getLanguage() {
-        return this.currentLanguage;
+        if (currentLanguage != null) {
+            return currentLanguage;
+        } else {
+            return this.currentUser.getUserProgress().get(0).getLanguage();
+        }
+    }
+
+    /**
+     * Display the user's current progress with the words and phrases
+     * they are currently struggling with
+     * 
+     * @return The user's struggle words and phrases as a string
+     */
+    public String displayProgress() {
+        String progress = "";
+        if (currentUser.getUserProgress(currentLanguage).displayHardPhrases() != "") {
+            progress += "Problem Phrases:\n" + currentUser.getUserProgress(currentLanguage).displayHardPhrases();
+        } else {
+            progress += "No Problem Phrases!\n";
+        }
+        if (currentUser.getUserProgress(currentLanguage).displayHardWords() != "") {
+            progress += "\nProblem Words:\n" + currentUser.getUserProgress(currentLanguage).displayHardWords();
+        } else {
+            progress += "\nNo Problem Words!";
+        }
+        return progress;
+    }
+
+    /**
+     * Create a text file with the user's current progress
+     * 
+     * @return A boolean if the file was created successfully
+     */
+    public boolean printProgress() {
+        try (FileWriter file = new FileWriter("Narriation/speek/user-progress/" + currentUser.getUsername() + ".txt")) {
+            file.write(displayProgress());
+            file.flush();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

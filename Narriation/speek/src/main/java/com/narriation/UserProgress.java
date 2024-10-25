@@ -118,7 +118,7 @@ public class UserProgress {
      * @return returns the current story
      */
     public Story getCurrentStory() {
-        ArrayList<Story> stories = Facade.getInstance().getCurrentLanguage().getStories();
+        ArrayList<Story> stories = language.getStories();
         return stories.get(currentStory);
     }
 
@@ -128,9 +128,42 @@ public class UserProgress {
      * @return returns the string
      */
     public String toString() {
-        return "Difficulty: " + this.difficulty + " | Current Story: " + this.currentStory
+        return "Language: " + this.language + " | Difficulty: " + this.difficulty + " | Current Story: "
+                + this.currentStory
                 + " | Phrase Progress (Language:Score)" + this.phraseProgress
                 + " | " + this.wordProgress;
+    }
+
+    /**
+     * Gets the words that the user is struggling with
+     * 
+     * @return A string of words that the user is struggling with
+     */
+    public String displayHardWords() {
+        String hardWords = "";
+        ArrayList<Word> words = this.language.getWords();
+        for (Word word : words) {
+            if (this.getWordProgress(word) < 1) {
+                hardWords += word + " " + this.getWordProgress(word) + "\n";
+            }
+        }
+        return hardWords;
+    }
+
+    /**
+     * Gets the phrases that the user is struggling with
+     * 
+     * @return A string of phrases that the user is struggling with
+     */
+    public String displayHardPhrases() {
+        String hardPhrases = "";
+        ArrayList<Phrase> phrases = this.language.getPhrases();
+        for (Phrase phrase : phrases) {
+            if (this.getPhraseProgress(phrase) < 1) {
+                hardPhrases += phrase + " " + this.getPhraseProgress(phrase) + "\n";
+            }
+        }
+        return hardPhrases;
     }
 
 }

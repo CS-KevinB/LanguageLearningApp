@@ -63,16 +63,7 @@ public class WritingQuestion implements Question {
      * @return returns the new question to the user to be answered
      */
     public String getQuestion() {
-        StringBuilder questionBuilder = new StringBuilder();
-
-        for (Word word : phrase.getEnglishPhrase()) {
-            if (questionBuilder.length() > 0) {
-                questionBuilder.append(" ");
-            }
-            questionBuilder.append(word.getTranslatedWord());
-        }
-
-        return questionBuilder.toString();
+        return this.questionString;
     }
 
     /**
@@ -92,10 +83,14 @@ public class WritingQuestion implements Question {
      * @return returns a boolean if the answer is correct or not
      */
     public boolean isCorrect(String input) {
-        return input.equals(this.answer);
+        return getAnswer().equals(input);
     }
 
     public String toString() {
         return "Question: " + this.questionString + " | Answer: " + this.answer;
+    }
+
+    public Phrase getPhrase() {
+        return this.phrase;
     }
 }

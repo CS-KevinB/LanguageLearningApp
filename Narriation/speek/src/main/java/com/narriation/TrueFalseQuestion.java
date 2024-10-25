@@ -28,7 +28,7 @@ public class TrueFalseQuestion implements Question {
     }
 
     public String getQuestion() {
-        return englishStr + " = " + translatedStr + "?";
+        return englishStr;
     }
 
     /**
@@ -47,6 +47,7 @@ public class TrueFalseQuestion implements Question {
     public void generateQuestion() {
         Random r = new Random();
         boolean ansBool = r.nextBoolean();
+        System.out.println("Answer = " + ansBool);
 
         // build the question string
 
@@ -65,6 +66,7 @@ public class TrueFalseQuestion implements Question {
             Phrase randPhrase;
             do {
                 randPhrase = phrases.get(index);
+                index = r.nextInt(phrases.size());
             } while (randPhrase == this.phrase);
             isMatch = this.convertPhraseToString(randPhrase, true);
         }
@@ -121,4 +123,12 @@ public class TrueFalseQuestion implements Question {
         return getAnswer().equals(input);
     }
 
+    /**
+     * Gets the phrase that the question is based on
+     * 
+     * @return Returns the phrase
+     */
+    public Phrase getPhrase() {
+        return this.phrase;
+    }
 }

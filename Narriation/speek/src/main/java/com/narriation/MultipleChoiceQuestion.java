@@ -24,7 +24,7 @@ public class MultipleChoiceQuestion implements Question {
     public MultipleChoiceQuestion(Phrase phrase, Language language) {
         this.phrase = phrase;
         this.language = language;
-        generateRandomQuestion();
+        generateQuestion();
     }
 
     /**
@@ -38,7 +38,7 @@ public class MultipleChoiceQuestion implements Question {
         return correctAnswer.getTranslatedWord();
     }
 
-    public void generateRandomQuestion() {
+    public void generateQuestion() {
         // set the question and answer strings
 
         // lastly, randomize

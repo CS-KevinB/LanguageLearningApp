@@ -21,8 +21,8 @@ public class UserProgress {
     /**
      * Creates a default user progress
      */
-    public UserProgress() {
-        this.language = null;
+    public UserProgress(Language language) {
+        this.language = language;
         this.difficulty = 0;
         this.currentStory = 0;
         this.phraseProgress = new HashMap<Phrase, Integer>();
@@ -44,6 +44,10 @@ public class UserProgress {
         this.currentStory = currentStory;
         this.phraseProgress = phraseProgress;
         this.wordProgress = wordProgress;
+    }
+
+    public Language getLanguage() {
+        return this.language;
     }
 
     /**

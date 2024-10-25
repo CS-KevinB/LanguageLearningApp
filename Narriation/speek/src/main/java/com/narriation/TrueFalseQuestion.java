@@ -13,20 +13,8 @@ public class TrueFalseQuestion implements Question {
     private Language language; // reference for pulling similar questions, pass "current language"
     private Phrase phrase;
     private String englishStr;
-    private String answerStr;
-    private boolean answer;
-
-    public static void main(String[] args) {
-        UUID id = UUID.fromString("3085ad7f-139c-4d3e-85e6-52cc0d028a29");
-        Language currLanguage = Facade.getInstance().getLanguages().getLanguageByUUID(id);
-
-        Phrase phrase = currLanguage.getPhrases().get(2);
-        TrueFalseQuestion tfQuestion = new TrueFalseQuestion(phrase, currLanguage);
-        System.out.println(tfQuestion.getQuestion());
-        String userInput = "true";
-        System.out.println(
-                "If the user writes \"" + userInput + "\", the answer would be " + tfQuestion.isCorrect(userInput));
-    }
+    private String translatedStr;
+    private boolean isMatch;
 
     /**
      * Creates a default true or false question
@@ -36,7 +24,11 @@ public class TrueFalseQuestion implements Question {
     public TrueFalseQuestion(Phrase phrase, Language currentLanguage) {
         this.phrase = phrase;
         this.language = currentLanguage;
-        this.generateRandomQuestion();
+        this.generateQuestion();
+    }
+
+    public String getQuestion() {
+        return englishStr + " = " + translatedStr + "?";
     }
 
     /**
@@ -48,22 +40,22 @@ public class TrueFalseQuestion implements Question {
         return this.englishStr;
     }
 
-    public String getEnglishStr() {
-        return this.englishStr;
+    public String getTranslatedStr() {
+        return this.translatedStr;
     }
 
-    public void generateRandomQuestion() {
+    public void generateQuestion() {
         Random r = new Random();
         boolean ansBool = r.nextBoolean();
 
         // build the question string
 
         String question = this.convertPhraseToString(this.phrase, false);
-        String answer = "";
+        String isMatch = "";
 
         // if we should display a TRUE question,
         if (ansBool) {
-            answer = this.convertPhraseToString(this.phrase, true);
+            isMatch = this.convertPhraseToString(this.phrase, true);
         } else {
             ArrayList<Phrase> phrases = language.getPhrases();
             int index = r.nextInt(phrases.size());
@@ -74,12 +66,12 @@ public class TrueFalseQuestion implements Question {
             do {
                 randPhrase = phrases.get(index);
             } while (randPhrase == this.phrase);
-            answer = this.convertPhraseToString(randPhrase, true);
+            isMatch = this.convertPhraseToString(randPhrase, true);
         }
-        this.englishStr = question + " = " + answer + "?";
+        this.englishStr = question + " = " + isMatch + "?";
 
         // set answer
-        this.answer = ansBool;
+        this.isMatch = ansBool;
     }
 
     private String convertPhraseToString(Phrase phrase, boolean isEnglish) {
@@ -111,7 +103,7 @@ public class TrueFalseQuestion implements Question {
      * @return returns the answer to be checked
      */
     public String getAnswer() {
-        if (this.answer)
+        if (this.isMatch)
             return "true";
         else
             return "false";
@@ -121,12 +113,12 @@ public class TrueFalseQuestion implements Question {
      * takes the true or false answer inserted by the user and checks to see if it
      * is correct
      * 
-     * @param answer requires the user answer in order to compare it to the actual
-     *               answer
+     * @param input requires the user answer in order to compare it to the actual
+     *              answer
      * @return returns a boolean if the answer is correct
      */
-    public boolean isCorrect(String answer) {
-        return getAnswer().equals(answer);
+    public boolean isCorrect(String input) {
+        return getAnswer().equals(input);
     }
 
 }

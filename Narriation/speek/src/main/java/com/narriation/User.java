@@ -106,7 +106,7 @@ public class User {
      * @param language takes in the language to add
      */
     public void addLanguage(Language language) {
-        languages.add(language);
+        this.userProgress.add(new UserProgress(language));
     }
 
     /**
@@ -114,8 +114,8 @@ public class User {
      * 
      * @param language takes in the language to remove
      */
-    public void removeLanguage(Language language) {
-        languages.remove(language);
+    public void removeLanguage(UserProgress userProgress) {
+        this.userProgress.remove(userProgress);
     }
 
     /**
@@ -332,19 +332,13 @@ public class User {
      * 
      * @return returns the user progress
      */
-    public UserProgress getUserProgress() {
-        return userProgress;
+    public UserProgress getUserProgress(Language language) {
+        for (UserProgress progress : this.userProgress) {
+            if (progress.getLanguage().equals(language))
+                return progress;
+        }
+        return null;
     }
-
-    /**
-     * Updates the user progress of the user
-     * 
-     * @param language     takes in the language to update the user progress for
-     * @param userProgress takes in the user progress to update
-     */
-    public void updateProgress(Language language, UserProgress userProgress) {
-        this.languageProgress.put(language, userProgress);
-    } // Check
 
     /**
      * Sets the avatar of the user

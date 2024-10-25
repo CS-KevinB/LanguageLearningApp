@@ -40,12 +40,12 @@ public class Word {
      * Constructor for data loader
      * 
      * @author Christian Ruff
-     * @param englishWord
-     * @param translatedWord
-     * @param pronunciation
-     * @param partOfSpeech
-     * @param gender
-     * @param difficulty
+     * @param englishWord takes in the english word
+     * @param translatedWord takes in the translated word
+     * @param pronunciation takes in the pronunciation of the word
+     * @param partOfSpeech takes in the part of speech of the word
+     * @param gender takes in the gender of the word
+     * @param difficulty takes in the difficulty of the word
      */
     public Word(UUID id, String englishWord, String translatedWord, String pronunciation, PartOfSpeech partOfSpeech,
             Gender gender, int difficulty) {
@@ -76,6 +76,10 @@ public class Word {
         return englishWord;
     }
 
+    /**
+     * Gets what the word is in spanish
+     * @return returns the spanish word
+     */
     public String getTranslatedWord() {
         return translatedWord;
     }
@@ -116,6 +120,10 @@ public class Word {
         return sb.toString();
     }
 
+    /**
+     * Gets the difficulty of the word
+     * @return returns the difficulty
+     */
     public int getDifficulty() {
         return difficulty;
     }

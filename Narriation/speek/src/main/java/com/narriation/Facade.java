@@ -250,9 +250,9 @@ public class Facade {
     // TODO: PHRASES?
     // }
 
-    public boolean startStory() {
-        currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()).getCurrentStory();
-        return false;
+    public void startStory() {
+        currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()).getCurrentStory().displayStory();
+        currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()).getCurrentStory().speakStory();
     }
 
     /**

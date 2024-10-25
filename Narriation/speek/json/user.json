@@ -3,8 +3,8 @@
         "uuid": "a9fc5c37-053b-479e-9741-7f0bb0e525ae",
         "firstName": "Jane",
         "lastName": "Doe",
-        "username": "JDOE46",
-        "password": "Columb!aSC",
+        "username": "jane",
+        "password": "doe",
         "emailAddress": "JaneDoe@gmail.com",
         "birthday": "2003-05-14",
         "avatar": {

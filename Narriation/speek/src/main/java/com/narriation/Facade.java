@@ -66,6 +66,10 @@ public class Facade {
         if (!users.getUser(username).getPassword().equals(password))
             return false;
         currentUser = users.getUser(username);
+        System.out.println(currentUser);
+
+        currentLanguage = currentUser.getUserProgress().get(0).getLanguage();
+
         return true;
     }
 
@@ -207,7 +211,8 @@ public class Facade {
      */
     public void startLesson() {
         if (this.currentUser != null && this.currentLanguage != null) {
-            Lesson lesson = new Lesson(this.currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()), this.currentLanguage);
+            Lesson lesson = new Lesson(this.currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()),
+                    this.currentLanguage);
             ArrayList<Question> questions = lesson.getQuestions();
 
             for (Question question : questions) {

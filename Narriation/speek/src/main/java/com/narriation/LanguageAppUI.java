@@ -47,6 +47,7 @@ public class LanguageAppUI {
                     break;
                 case 1:
                     login();
+                    facade.startStory();
                     break;
                 case 2:
                     startLesson();

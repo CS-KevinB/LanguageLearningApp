@@ -16,11 +16,21 @@ public class Lesson {
     private ArrayList<Question> questions;
     private int score;
 
+    /**
+     * Creates a lesson based on the user progress
+     * @param userProgress requires the progress in order for difficulty and completed tasks
+     */
     public Lesson(UserProgress userProgress) {
         this.score = 0;
         this.questions = generateQuestions(userProgress, NUMBER_OF_QUESTIONS);
     }
 
+    /**
+     * Generates questions based on the user progress
+     * @param userProgress requires the progress for difficulty and to track progress
+     * @param numOfQuestions determiens how many questions to generate
+     * @return returns the questions in a list
+     */
     public static ArrayList<Question> generateQuestions(UserProgress userProgress, int numOfQuestions) {
         ArrayList<Phrase> allPhrases = Facade.getInstance().getLanguage().getPhrases();
         ArrayList<Phrase> selectedPhrases = new ArrayList<Phrase>();
@@ -55,10 +65,18 @@ public class Lesson {
         return selectedQuestions;
     }
 
+    /**
+     * gets the questions for the lesson
+     * @return returns those questions
+     */
     public ArrayList<Question> getQuestions() {
         return this.questions;
     }
 
+    /**
+     * Gets the score to keep track of the user's progress
+     * @return returns the users score based on number of questions answered correctly
+     */
     public String getScore() {
         return score + " / " + NUMBER_OF_QUESTIONS;
     }

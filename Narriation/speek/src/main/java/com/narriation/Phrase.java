@@ -73,11 +73,19 @@ public class Phrase {
         userProgress.incrementPhraseSeenCounter(this);
     }
 
+    /**
+     * Creates a string representation of the phrase
+     * @return returns the phrase as a string
+     */
     public String toString() {
         return "ID: " + this.id + "\n  ENGLISH: " + this.englishPhrase + "\n  TRNSLTD: " + this.translatedPhrase
                 + "\n\n";
     }
 
+    /**
+     * Gets the difficulty of the phrase or word
+     * @return returns the difficulty
+     */
     public int getDifficulty() {
         return difficulty;
     }

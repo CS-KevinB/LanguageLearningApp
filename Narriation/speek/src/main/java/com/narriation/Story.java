@@ -64,6 +64,9 @@ public class Story {
         return this.title.equalsIgnoreCase(story);
     }
 
+    /**
+     * To string method in order to test the story
+     */
     public String toString() {
         return "Title: " + this.title + "\n English Story: " + this.englishStory + "\n Spanish Story: "
                 + this.spanishStory + "\n\n";

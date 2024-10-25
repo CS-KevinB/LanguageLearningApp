@@ -6,6 +6,7 @@ package com.narriation;
  *         types will use
  */
 public interface Question {
+
     public String getQuestion();
 
     public String getAnswer();

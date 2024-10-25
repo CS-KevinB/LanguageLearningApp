@@ -83,14 +83,7 @@ public class WritingQuestion implements Question {
      * @return returns a boolean if the answer is correct or not
      */
     public boolean isCorrect(String input) {
-        boolean ret = getAnswer().equals(input);
-        if (ret)
-            Facade.getInstance().getCurrentUser().getUserProgress(Facade.getInstance().getLanguage())
-                    .countCorrectPhrase(this.phrase);
-        else
-            Facade.getInstance().getCurrentUser().getUserProgress(Facade.getInstance().getLanguage())
-                    .countIncorrectPhrase(this.phrase);
-        return ret;
+        return getAnswer().equals(input);
     }
 
     public String toString() {

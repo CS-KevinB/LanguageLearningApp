@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
+import org.json.simple.parser.ParseException;
+import software.amazon.awssdk.services.polly.endpoints.internal.Value.Str;
 
 /**
  * @author kinsawills
@@ -25,9 +28,9 @@ public class Facade {
      * Creates a facade
      */
     Facade() {
-        phrases = new ArrayList<>();
-        languages = LanguageList.getInstance();
         users = UserList.getInstance();
+        phrases = new ArrayList<>();
+        // languages = LanguageList.getInstance();
     }
 
     /**
@@ -92,27 +95,31 @@ public class Facade {
     /**
      * Creates an account
      * 
-     * @param username requires the username
-     * @param password requires the password
-     * @param email    requires the email
+     * @param firstName requires the first name
+     * @param lastName  requires the last name
+     * @param username  requires the username
+     * @param password  requires the password
+     * @param email     requires the email
+     * @param birthday  requires the birthday
      * @return returns a boolean if the account was created
      */
-    public boolean createAccount(String username, String password, String email) {
-        if (users.getUser(username) != null) {
+    public boolean createAccount(String firstName, String lastName, String userName, String password, String email,
+            Date birthday) {
+        if (users.getUser(userName) != null) {
+            System.out.println(userName + " already exists");
             return false;
         }
-
         UUID id = UUID.randomUUID();
-        String firstName = "";
-        String lastName = "";
-        Date birthday = new Date(0);
         Avatar avatar = new Avatar();
         ArrayList<User> friends = new ArrayList<>();
         int points = 0;
         UserProgress userProgress = new UserProgress();
 
-        return users.addUser(id, firstName, lastName, username, password, email, birthday, avatar, friends, points,
+        User user = new User(id, firstName, lastName, userName, password, email, birthday, avatar, friends, points,
                 userProgress);
+        users.addUser(user);
+        users.saveUsers();
+        return true;
     }
 
     /**
@@ -319,11 +326,7 @@ public class Facade {
      * 
      * @return returns the language
      */
-    public LanguageList getLanguages() {
-        return this.languages;
-    }
-
-    public UserList getUsers() {
-        return this.users;
+    public Language getLanguage() {
+        return this.currentLanguage;
     }
 }

@@ -175,9 +175,7 @@ public class Facade {
      */
     public void startStory() {
         // TODO remove Facade
-        System.out.println("CURERNT USER:" + currentLanguage);
-
-        currentUser.getUserProgress(currentLanguage).getCurrentStory().displayStory();
+        System.out.println(currentUser.getUserProgress(currentLanguage).getCurrentStory().displayStory());
         currentUser.getUserProgress(currentLanguage).getCurrentStory().speakStory();
     }
 

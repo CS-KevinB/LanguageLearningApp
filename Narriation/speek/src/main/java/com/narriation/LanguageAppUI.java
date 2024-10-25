@@ -60,7 +60,7 @@ public class LanguageAppUI {
                     // Lesson
                     // Story
 
-                    this.facade.startLesson();
+                    this.facade.startStory();
 
                     // System.out.println("AFTER: "
                     // +

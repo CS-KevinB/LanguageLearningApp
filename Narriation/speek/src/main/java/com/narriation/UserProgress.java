@@ -118,7 +118,7 @@ public class UserProgress {
      * @return returns the current story
      */
     public Story getCurrentStory() {
-        ArrayList<Story> stories = Facade.getInstance().getLanguage().getStories();
+        ArrayList<Story> stories = language.getStories();
         return stories.get(currentStory);
     }
 
@@ -136,10 +136,11 @@ public class UserProgress {
 
     /**
      * Gets the words that the user is struggling with
+     * 
      * @return A string of words that the user is struggling with
      */
     public String displayHardWords() {
-        String hardWords ="";
+        String hardWords = "";
         ArrayList<Word> words = this.language.getWords();
         for (Word word : words) {
             if (this.getWordProgress(word) < 1) {
@@ -151,10 +152,11 @@ public class UserProgress {
 
     /**
      * Gets the phrases that the user is struggling with
+     * 
      * @return A string of phrases that the user is struggling with
      */
     public String displayHardPhrases() {
-        String hardPhrases ="";
+        String hardPhrases = "";
         ArrayList<Phrase> phrases = this.language.getPhrases();
         for (Phrase phrase : phrases) {
             if (this.getPhraseProgress(phrase) < 1) {

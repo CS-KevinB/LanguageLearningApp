@@ -1,6 +1,8 @@
 package com.narriation;
 
 import java.util.Scanner;
+import java.util.Date;
+import org.json.simple.parser.ParseException;
 
 /**
  * Creates a UI for the language learning app
@@ -97,11 +99,14 @@ public class LanguageAppUI {
      * Creates an account for the user
      */
     private void createAccount() {
-        String username = getField("Username");
+        String firstName = getField("First Name");
+        String lastName = getField("Last Name");
+        String userName = getField("Username");
         String password = getField("Password");
+        String birthdayStr = getField("Birthday (yyyy-MM-dd)");
         String email = getField("Email");
 
-        if (facade.createAccount(username, password, email)) {
+        if (facade.createAccount(firstName, lastName, userName, password, birthdayStr, email)) {
             System.out.println("Account successfully created!");
         } else {
             System.out.println("Account already exists. Please try logging in.");
@@ -139,7 +144,7 @@ public class LanguageAppUI {
      */
     private void logout() {
         if (facade.logout()) {
-            System.out.println("You have been logged out successfully.1");
+            System.out.println("You have been logged out successfully");
         } else {
             System.out.println("Logout failed. Please try again.");
         }

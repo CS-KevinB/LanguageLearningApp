@@ -96,7 +96,7 @@ public class Facade {
         Avatar avatar = new Avatar();
         ArrayList<User> friends = new ArrayList<>();
         int points = 0;
-        UserProgress userProgress = new UserProgress();
+        UserProgress userProgress = new UserProgress(Facade.getInstance().getCurrentLanguage());
 
         User user = new User(id, firstName, lastName, userName, password, email, birthday, avatar, friends, points,
                 userProgress);
@@ -251,7 +251,7 @@ public class Facade {
     // }
 
     public boolean startStory() {
-        currentUser.getUserProgress().getCurrentStory();
+        currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()).getCurrentStory();
         return false;
     }
 
@@ -287,7 +287,7 @@ public class Facade {
      */
     public void startLesson() {
         if (this.currentUser != null && this.currentLanguage != null) {
-            Lesson lesson = new Lesson(this.currentUser.getUserProgress(), this.currentLanguage);
+            Lesson lesson = new Lesson(this.currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()), this.currentLanguage);
             ArrayList<Question> questions = lesson.getQuestions();
 
             for (Question question : questions) {

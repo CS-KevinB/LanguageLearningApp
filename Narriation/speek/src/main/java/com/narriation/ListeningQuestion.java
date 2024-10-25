@@ -72,9 +72,9 @@ public class ListeningQuestion implements Question {
     public boolean isCorrect(String answer) {
         boolean ret = getAnswer().equals(answer);
         if (ret)
-            Facade.getInstance().getCurrentUser().getUserProgress().countCorrectPhrase(this.phrase);
+            Facade.getInstance().getCurrentUser().getUserProgress(Facade.getInstance().getCurrentLanguage()).countCorrectPhrase(this.phrase);
         else
-            Facade.getInstance().getCurrentUser().getUserProgress().countIncorrectPhrase(this.phrase);
+            Facade.getInstance().getCurrentUser().getUserProgress(Facade.getInstance().getCurrentLanguage()).countIncorrectPhrase(this.phrase);
         return ret;
     }
 

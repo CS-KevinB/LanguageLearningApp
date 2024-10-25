@@ -234,7 +234,6 @@ public class Facade {
      * @return returns the language
      */
     public Language getLanguage() {
-        System.out.println("CURRENT USER" + this.getCurrentUser());
         if (currentLanguage != null) {
             return currentLanguage;
         } else {
@@ -245,6 +244,7 @@ public class Facade {
     /**
      * Display the user's current progress with the words and phrases
      * they are currently struggling with
+     * 
      * @return The user's struggle words and phrases as a string
      */
     public String displayProgress() {
@@ -264,10 +264,11 @@ public class Facade {
 
     /**
      * Create a text file with the user's current progress
+     * 
      * @return A boolean if the file was created successfully
      */
     public boolean printProgress() {
-        try (FileWriter file = new FileWriter("Narriation/speek/user-progress/"+currentUser.getUsername()+".txt")) {
+        try (FileWriter file = new FileWriter("Narriation/speek/user-progress/" + currentUser.getUsername() + ".txt")) {
             file.write(displayProgress());
             file.flush();
             return true;

@@ -10,7 +10,7 @@ import java.util.Collections;
 
 public class MultipleChoiceQuestion implements Question {
 
-    private final int NUMBER_OF_CHOICES = 4;
+    private final int NUMBER_OF_CHOICES = 3;
     private Language language; // reference for pulling similar questions, pass "current language"
     private Phrase phrase;
     private List<String> choices;

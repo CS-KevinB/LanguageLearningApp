@@ -340,6 +340,10 @@ public class User {
         return null;
     }
 
+    public ArrayList<UserProgress> getUserProgress() {
+        return this.userProgress;
+    }
+
     /**
      * Sets the avatar of the user
      * 

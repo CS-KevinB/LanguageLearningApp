@@ -209,8 +209,7 @@ public class Facade {
      */
     public void startLesson() {
         if (this.currentUser != null && this.currentLanguage != null) {
-            Lesson lesson = new Lesson(this.currentUser.getUserProgress(Facade.getInstance().getLanguage()),
-                    this.currentLanguage);
+            Lesson lesson = new Lesson(this.currentUser.getUserProgress(currentLanguage), this.currentLanguage);
             ArrayList<Question> questions = lesson.getQuestions();
 
             for (Question question : questions) {
@@ -237,7 +236,7 @@ public class Facade {
         if (currentLanguage != null) {
             return currentLanguage;
         } else {
-            return this.currentUser.getUserProgress().get(0).getLanguage();
+            return this.getCurrentUser().getUserProgress().get(0).getLanguage();
         }
     }
 

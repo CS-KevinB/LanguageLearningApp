@@ -51,7 +51,7 @@ public class Lesson {
         // 2. generate all four question types
         ArrayList<Question> selectedQuestions = new ArrayList<Question>();
         for (int j = 0; j < selectedPhrases.size(); j++) {
-            switch (3) { // before i % 4
+            switch (j % 4) {
                 case 0:
                     selectedQuestions.add(new MultipleChoiceQuestion(selectedPhrases.get(j), this.language));
                     break;

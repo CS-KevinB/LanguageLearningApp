@@ -48,8 +48,8 @@ public class LanguageAppUI {
                 case 1:
                     login();
 
-                    Language language = this.facade.getLanguage();
-                    Phrase phrase = language.getPhrases().get(1);
+                    // Language language = this.facade.getLanguage();
+                    // Phrase phrase = language.getPhrases().get(1);
 
                     // System.out.println("BEFORE: "
                     // +
@@ -60,11 +60,7 @@ public class LanguageAppUI {
                     // Lesson
                     // Story
 
-                    TrueFalseQuestion question = new TrueFalseQuestion(phrase, language);
-                    System.out.println(question.getQuestion());
-                    String input = scanner.nextLine();
-
-                    System.out.println(question.isCorrect(input));
+                    this.facade.startLesson();
 
                     // System.out.println("AFTER: "
                     // +

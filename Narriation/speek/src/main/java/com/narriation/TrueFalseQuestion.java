@@ -66,6 +66,7 @@ public class TrueFalseQuestion implements Question {
             Phrase randPhrase;
             do {
                 randPhrase = phrases.get(index);
+                index = r.nextInt(phrases.size());
             } while (randPhrase == this.phrase);
             isMatch = this.convertPhraseToString(randPhrase, true);
         }

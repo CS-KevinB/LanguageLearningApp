@@ -35,7 +35,7 @@
             },
             {
                 "uuid": "a961da70-ddf9-4134-982a-d9a150715c1a",
-                "englishWord": "days",
+                "englishWord": "morning",
                 "translatedWord": "días",
                 "pronunciation": "dee-ahs",
                 "gender": "MASCULINE",
@@ -44,7 +44,7 @@
             },
             {
                 "uuid": "795891c4-3173-49ce-aa6d-0eaafe57f84a",
-                "englishWord": "nights",
+                "englishWord": "night",
                 "translatedWord": "noches",
                 "pronunciation": "noh-chey",
                 "gender": "FEMININE",

@@ -86,6 +86,11 @@ public class DataWriter extends DataConstants {
         return userDetails;
     }
 
+    private static JSONObject createProgressJSON(UserProgress progress) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'createProgressJSON'");
+    }
+
     public static void main(String[] args) {
         UserList users = UserList.getInstance();
         boolean userAdded = users.saveUsers();

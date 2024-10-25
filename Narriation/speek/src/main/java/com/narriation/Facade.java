@@ -70,29 +70,6 @@ public class Facade {
     }
 
     /**
-     * Creates a user
-     * 
-     * @param id           requires the id in order to create the user
-     * @param firstName    requires the first name
-     * @param lastName     requires the last name
-     * @param username     requires a username
-     * @param password     requires a password
-     * @param emailAddress requires an email address
-     * @param birthday     requires a birthday
-     * @param avatar       requires an avatar
-     * @param friends      requires an array list of friends
-     * @param points       requires the points
-     * @param userProgress requires the user progress
-     * @return returns a boolean if the user was created
-     */
-    public boolean createUser(UUID id, String firstName, String lastName, String username,
-            String password, String emailAddress, String birthdayStr, Avatar avatar,
-            ArrayList<User> friends, int points, UserProgress userProgress) {
-        return users.addUser(id, firstName, lastName, username, password,
-                emailAddress, avatar, new Date(), friends, points, userProgress);
-    }
-
-    /**
      * Creates an account
      * 
      * @param firstName requires the first name

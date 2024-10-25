@@ -56,6 +56,12 @@ public class DataLoader extends DataConstants {
         return languages;
     }
 
+    /**
+     * Parses the words from the json files
+     * 
+     * @param json requires the json file in order to parse
+     * @return returns an array list of words
+     */
     private static ArrayList<Word> parseWordsFromLanguageObject(JSONObject json) {
         ArrayList<Word> words = new ArrayList<Word>();
         JSONArray jsonWords = (JSONArray) json.get(LANGUAGE_WORDS);
@@ -77,7 +83,13 @@ public class DataLoader extends DataConstants {
         return words;
     }
 
-    private static ArrayList<Phrase> parsePhrasesFromLanguageObject(JSONObject json, ArrayList<Word> words) {
+    /**
+     * Parses the phrases from the json files
+     * 
+     * @param json needs the json file in order to parse
+     * @return returns an array list of phrases
+     */
+    private static ArrayList<Phrase> parsePhrasesFromLanguageObject(JSONObject json, ArrayList<Word> word) {
         ArrayList<Phrase> phrases = new ArrayList<Phrase>();
         JSONArray jsonPhrases = (JSONArray) json.get(LANGUAGE_PHRASES);
 
@@ -107,23 +119,15 @@ public class DataLoader extends DataConstants {
             }
             phrases.add(new Phrase(phraseID, englishPhrase, translatedPhrase, difficulty));
         }
-
-        return phrases;
     }
 
-    private static ArrayList<Story> parseStoriesFromLanguageObject(JSONObject json) {
-        ArrayList<Story> stories = new ArrayList<Story>();
-        JSONArray jsonStories = (JSONArray) json.get(LANGUAGE_STORIES);
-        for (int i = 0; i < jsonStories.size(); i++) {
-            JSONObject story = (JSONObject) jsonStories.get(i);
-            String title = (String) story.get(STORY_TITLE);
-            String englishStory = (String) story.get(STORY_ENGLISHSTORY);
-            String spanishStory = (String) story.get(STORY_SPANISHSTORY);
-            stories.add(new Story(title, englishStory, spanishStory));
-        }
-        return stories;
-    }
-
+    /**
+     * Finds a word by its UUID
+     * 
+     * @param words needs the array list of words in order to search
+     * @param id    needs the id
+     * @return returns a word if found
+     */
     private static Word findWordByUUID(ArrayList<Word> words, UUID id) {
         for (int i = 0; i < words.size(); i++) {
             if (words.get(i).getUUID().equals(id))
@@ -135,7 +139,7 @@ public class DataLoader extends DataConstants {
     // USERS
     /**
      * @author Christian Ruff
-     * @return
+     * @return returns an array list of users
      */
 
     private static ArrayList<User> getUsers() {
@@ -199,6 +203,12 @@ public class DataLoader extends DataConstants {
         return null;
     }
 
+    /**
+     * Converts a string to a date
+     * 
+     * @param str requires the string in order to convert
+     * @return returns a date
+     */
     private static Date convertStringToDate(String str) {
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
@@ -211,6 +221,12 @@ public class DataLoader extends DataConstants {
         return date;
     }
 
+    /**
+     * Converts a json array to an array list
+     * 
+     * @param json requires the json array in order to convert
+     * @return returns an array list
+     */
     private static ArrayList<UUID> convertFriendsToArrayList(JSONArray json) {
         ArrayList<UUID> ret = new ArrayList<UUID>();
         if (json != null) {
@@ -221,6 +237,13 @@ public class DataLoader extends DataConstants {
         return ret;
     }
 
+    /**
+     * Finds a user by its UUID
+     * 
+     * @param users requires the array list of users in order to search
+     * @param id    requires the specific id in order to find
+     * @return returns the user if found
+     */
     private static User findUserByUUID(ArrayList<User> users, UUID id) {
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getUUID().equals(id))
@@ -229,12 +252,24 @@ public class DataLoader extends DataConstants {
         return null;
     }
 
+    /**
+     * Converts the json to an avatar
+     * 
+     * @param json requires the json object in order to create the avatar
+     * @return returns the avatar
+     */
     private static Avatar convertJSONToAvatar(JSONObject json) {
         String character = (String) json.get(CHARACTER);
         String hat = (String) json.get(HAT);
         return new Avatar(character, hat);
     }
 
+    /**
+     * Converts the json to a user progress
+     * 
+     * @param json requires the json object in order to create the user progress
+     * @return returns the user progress
+     */
     private static UserProgress convertJSONToUserProgress(JSONObject json) {
         System.out.println(
                 "Entered\n" + json);
@@ -251,6 +286,12 @@ public class DataLoader extends DataConstants {
         return new UserProgress(userDifficulty, currentStory, phraseProgress, wordProgress);
     }
 
+    /**
+     * Converts the json to a phrase progress
+     * 
+     * @param json requires the json array in order to create the phrase progress
+     * @return returns the phrase progress
+     */
     public static HashMap<Phrase, Integer> convertJSONToPhraseProgress(JSONArray json) {
         HashMap<Phrase, Integer> ret = new HashMap<Phrase, Integer>();
         for (int i = 0; i < json.size(); i++) {
@@ -270,6 +311,12 @@ public class DataLoader extends DataConstants {
         return ret;
     }
 
+    /**
+     * Converts the json to a word progress
+     * 
+     * @param json requires the json array in order to create the word progress
+     * @return returns the word progress
+     */
     public static HashMap<Word, Integer> convertJSONToWordProgress(JSONArray json) {
         HashMap<Word, Integer> ret = new HashMap<Word, Integer>();
         for (int i = 0; i < json.size(); i++) {

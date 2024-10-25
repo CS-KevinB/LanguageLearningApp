@@ -21,22 +21,39 @@ public class Facade {
     private LanguageList languages;
     private ArrayList<Phrase> phrases;
 
+    /**
+     * Creates a facade
+     */
     Facade() {
         users = UserList.getInstance();
         phrases = new ArrayList<>();
         // languages = LanguageList.getInstance();
     }
 
+    /**
+     * Gets the instance of the facade
+     * @return returns the instance of the facade
+     */
     public static Facade getInstance() {
         if (facade == null)
             facade = new Facade();
         return facade;
     }
 
+    /**
+     * Sets the phrases for the user
+     * @param phrases requires the array list of phrases in order to set
+     */
     public void setPhrases(ArrayList<Phrase> phrases) {
         this.phrases = phrases;
     }
 
+    /**
+     * Logs in the user
+     * @param username requires the username in order to log in
+     * @param password requires the password in order to log in
+     * @return returns a boolean if the login was successful
+     */
     public boolean login(String username, String password) {
         if (users.getUser(username) == null)
             return false;
@@ -46,6 +63,21 @@ public class Facade {
         return true;
     }
 
+    /**
+     * Creates a user
+     * @param id requires the id in order to create the user
+     * @param firstName requires the first name
+     * @param lastName requires the last name
+     * @param username requires a username
+     * @param password requires a password
+     * @param emailAddress requires an email address
+     * @param birthday requires a birthday
+     * @param avatar requires an avatar
+     * @param friends requires an array list of friends
+     * @param points requires the points
+     * @param userProgress requires the user progress
+     * @return returns a boolean if the user was created
+     */
     public boolean createUser(UUID id, String firstName, String lastName, String username,
             String password, String emailAddress, Date birthday, Avatar avatar,
             ArrayList<User> friends, int points, UserProgress userProgress) {
@@ -53,6 +85,13 @@ public class Facade {
                 emailAddress, birthday, avatar, friends, points, userProgress);
     }
 
+    /**
+     * Creates an account
+     * @param username requires the username
+     * @param password requires the password
+     * @param email requires the email
+     * @return returns a boolean if the account was created
+     */
     public boolean createAccount(String username, String password, String email) {
         if (users.getUser(username) != null) {
             return false;
@@ -71,10 +110,18 @@ public class Facade {
                 userProgress);
     }
 
+    /**
+     * Gets the current user
+     * @return returns the current user
+     */
     public User getCurrentUser() {
         return currentUser;
     }
 
+    /**
+     * Logs out the user
+     * @return returns a boolean if the logout was successful
+     */
     public boolean logout() {
         boolean saved = users.saveUsers();
         if (saved) {
@@ -83,10 +130,30 @@ public class Facade {
         return saved;
     }
 
+    /**
+     * Updates the avatar
+     * @param character requires the new character option
+     * @param hat requires the new hat option
+     */
     public void updateAvatar(CharacterOptions character, HatOptions hat) {
         currentUser.setAvatar(character, hat);
     }
 
+    /**
+     * Updates the user
+     * @param id requires the id in order to update the user
+     * @param firstName requires the first name
+     * @param lastName requires the last name
+     * @param username requires a username
+     * @param password requires a password
+     * @param emailAddress requires an email address
+     * @param birthday requires a birthday
+     * @param avatar requires an avatar
+     * @param friends requires an array list of friends
+     * @param points requires the points
+     * @param userProgress requires the user progress
+     * @return returns a boolean if the user was updated
+     */
     public boolean updateUser(UUID id, String firstName, String lastName, String username,
             String password, String emailAddress, Date birthday, Avatar avatar,
             ArrayList<User> friends, int points, UserProgress userProgress) {
@@ -94,16 +161,29 @@ public class Facade {
                 emailAddress, birthday, avatar, friends, points, userProgress);
     }
 
+    /**
+     * Updates the credentials
+     * @param username requires the new username
+     * @param password requires the new password
+     */
     public void updateCredentials(String username, String password) {
         currentUser.setUsername(username);
         currentUser.setPassword(password);
     }
 
+    /**
+     * Displays a question
+     * @param phrase requires the phrase in order to display
+     */
     public void displayQuestion(Phrase phrase) {
         displayMCQ(phrase);
         // displayFillInTheBlank(phrase);
     }
 
+    /**
+     * Displays a multiple choice question
+     * @param correctPhrase requires the correct phrase in order to display
+     */
     public void displayMCQ(Phrase correctPhrase) {
         ArrayList<String> options = new ArrayList<>();
         Random random = new Random();
@@ -142,6 +222,11 @@ public class Facade {
 
     }
 
+    /**
+     * Converts the phrase to a string
+     * @param phrase requires the phrase in order to convert
+     * @return returns the phrase as a string
+     */
     private String phraseToString(ArrayList<Word> phrase) {
 
         StringBuilder phraseToString = new StringBuilder();
@@ -167,6 +252,11 @@ public class Facade {
         return false;
     }
 
+    /**
+     * Sets the current language
+     * @param language requires the language in order to set
+     * @return returns a boolean if the language was set
+     */
     public boolean setCurrentLangauge(Language language) {
         if (language != null) {
             currentLanguage = language;
@@ -179,10 +269,17 @@ public class Facade {
 
     // }
 
+    /**
+     * Gets the current language
+     * @return returns the current language
+     */
     public Language getCurrentLanguage() {
         return languages.getLanguageByUUID(currentLanguage.getUUID());
     }
 
+    /**
+     * Starts the lesson
+     */ 
     public void startLesson() {
         if (this.currentUser != null && this.currentLanguage != null) {
             Lesson lesson = new Lesson(this.currentUser.getUserProgress());
@@ -202,6 +299,10 @@ public class Facade {
         }
     }
 
+    /**
+     * Gets the language
+     * @return returns the language
+     */
     public Language getLanguage() {
         return this.currentLanguage;
     }

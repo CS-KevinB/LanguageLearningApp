@@ -17,6 +17,10 @@ public class UserProgress {
     private HashMap<Phrase, Integer> phraseProgress;
     private HashMap<Word, Integer> wordProgress;
 
+
+    /**
+     * Creates a default user progress
+     */
     public UserProgress() {
         this.difficulty = 0;
         this.currentStory = 0;
@@ -24,6 +28,13 @@ public class UserProgress {
         this.wordProgress = new HashMap<Word, Integer>();
     }
 
+    /**
+     * Creates a user progress with the parameters
+     * @param difficulty takes in the difficulty of the user
+     * @param currentStory takes in the current story of the user
+     * @param phraseProgress takes in the phrase progress of the user
+     * @param wordProgress takes in the word progress of the user
+     */
     public UserProgress(int difficulty, int currentStory, HashMap<Phrase, Integer> phraseProgress,
             HashMap<Word, Integer> wordProgress) {
         this.difficulty = difficulty;
@@ -32,10 +43,19 @@ public class UserProgress {
         this.wordProgress = wordProgress;
     }
 
+    /**
+     * Gets the difficulty of the user
+     * @return returns the difficulty
+     */
     public int getDifficulty() {
         return this.difficulty;
     }
 
+    /**
+     * Gets the word progress of the user
+     * @param word takes in the word to get the progress for
+     * @return returns the progress
+     */
     public int getWordProgress(Word word) {
         return this.wordProgress.getOrDefault(word, 0);
     }
@@ -44,30 +64,55 @@ public class UserProgress {
     // this.wordProgress.put(word, wordProgress.get(word) + 1);
     // }
 
+    /**
+     * Updates the word progress of the user
+     * @param word takes in the word to update the progress for
+     */
     public void updateWordProgress(Word word) {
 
     }
 
+    /**
+     * Gets the phrase progress of the user
+     * @param phrase takes in the phrase to get the progress for
+     * @return returns the progress
+     */
     public int getPhraseProgress(Phrase phrase) {
         return phraseProgress.getOrDefault(phrase, 0);
     }
 
+    /**
+     * Counts the correct phrase of the user
+     * @param phrase takes in the phrase to count the progress for
+     */
     public void countCorrectPhrase(Phrase phrase) {
         int currentCount = this.phraseProgress.getOrDefault(phrase, 0);
         phraseProgress.put(phrase, currentCount + 1);
 
     }
 
+    /**
+     * Counts the incorrect phrase of the user
+     * @param phrase takes in the phrase to count the progress for
+     */
     public void countIncorrectPhrase(Phrase phrase) {
         int currentCount = this.phraseProgress.getOrDefault(phrase, 0);
         phraseProgress.put(phrase, currentCount - 1);
     }
 
+    /**
+     * Gets the current story of the user
+     * @return returns the current story
+     */
     public Story getCurrentStory() {
         ArrayList<Story> stories = Facade.getInstance().getCurrentLanguage().getStories();
         return stories.get(currentStory);
     }
 
+    /**
+     * Gets a string representation of the user progress
+     * @return returns the string
+     */
     public String toString() {
         return "Difficulty: " + this.difficulty + " | Current Story: " + this.currentStory + " | " + this.phraseProgress
                 + " | " + this.wordProgress;

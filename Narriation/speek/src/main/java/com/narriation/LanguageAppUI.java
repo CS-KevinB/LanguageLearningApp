@@ -58,6 +58,7 @@ public class LanguageAppUI {
                     MultipleChoiceQuestion question = new MultipleChoiceQuestion(phrase, language);
                     System.out.println(question.getQuestion());
                     String input = scanner.nextLine();
+
                     System.out.println(question.isCorrect(input));
 
                     // System.out.println("AFTER: "

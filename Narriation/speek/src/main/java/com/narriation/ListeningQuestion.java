@@ -1,7 +1,6 @@
 package com.narriation;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * @author Kevin Buie

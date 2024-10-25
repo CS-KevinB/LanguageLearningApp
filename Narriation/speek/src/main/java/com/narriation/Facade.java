@@ -105,15 +105,6 @@ public class Facade {
     }
 
     /**
-     * Gets the current user
-     * 
-     * @return returns the current user
-     */
-    public User getCurrentUser() {
-        return currentUser;
-    }
-
-    /**
      * Logs out the user
      * 
      * @return returns a boolean if the logout was successful
@@ -239,6 +230,15 @@ public class Facade {
         } else {
             return this.currentUser.getUserProgress().get(0).getLanguage();
         }
+    }
+
+    /**
+     * Gets the current user
+     * 
+     * @return returns the current user
+     */
+    public User getCurrentUser() {
+        return currentUser;
     }
 
     /**

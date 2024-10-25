@@ -15,6 +15,7 @@ public class Lesson {
     private UserProgress userProgress;
     private ArrayList<Question> questions;
     private int score;
+    private Language language;
 
     /**
      * Creates a lesson based on the user progress
@@ -22,7 +23,7 @@ public class Lesson {
      * @param userProgress requires the progress in order for difficulty and
      *                     completed tasks
      */
-    public Lesson(UserProgress userProgress) {
+    public Lesson(UserProgress userProgress, Language language) {
         this.userProgress = userProgress;
         this.questions = this.generateQuestions(NUMBER_OF_QUESTIONS);
         this.score = 0;
@@ -52,13 +53,13 @@ public class Lesson {
         for (int j = 0; j < selectedPhrases.size(); j++) {
             switch (j % 4) {
                 case 0:
-                    selectedQuestions.add(new MultipleChoiceQuestion(selectedPhrases.get(j)));
+                    selectedQuestions.add(new MultipleChoiceQuestion(selectedPhrases.get(j), this.language));
                     break;
                 case 1:
                     selectedQuestions.add(new ListeningQuestion(selectedPhrases.get(j)));
                     break;
                 case 2:
-                    selectedQuestions.add(new TrueFalseQuestion(selectedPhrases.get(j)));
+                    selectedQuestions.add(new TrueFalseQuestion(selectedPhrases.get(j), this.language));
                     break;
                 case 3:
                     selectedQuestions.add(new WritingQuestion(selectedPhrases.get(j)));

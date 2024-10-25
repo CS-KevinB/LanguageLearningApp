@@ -12,7 +12,8 @@ public class TrueFalseQuestion implements Question {
 
     private Language language; // reference for pulling similar questions, pass "current language"
     private Phrase phrase;
-    private String questionStr;
+    private String englishStr;
+    private String answerStr;
     private boolean answer;
 
     public static void main(String[] args) {
@@ -34,7 +35,7 @@ public class TrueFalseQuestion implements Question {
      */
     public TrueFalseQuestion(Phrase phrase, Language currentLanguage) {
         this.phrase = phrase;
-        this.currentLanguage = currentLanguage;
+        this.language = currentLanguage;
         this.generateRandomQuestion();
     }
 
@@ -43,8 +44,12 @@ public class TrueFalseQuestion implements Question {
      * 
      * @return returns the question
      */
-    public String getQuestion() {
-        return this.questionStr;
+    public String getEnglishStr() {
+        return this.englishStr;
+    }
+
+    public String getEnglishStr() {
+        return this.englishStr;
     }
 
     public void generateRandomQuestion() {
@@ -60,7 +65,7 @@ public class TrueFalseQuestion implements Question {
         if (ansBool) {
             answer = this.convertPhraseToString(this.phrase, true);
         } else {
-            ArrayList<Phrase> phrases = currentLanguage.getPhrases();
+            ArrayList<Phrase> phrases = language.getPhrases();
             int index = r.nextInt(phrases.size());
 
             System.out.println(ansBool); // TEST make sure this doesn't mess up our answer
@@ -71,7 +76,7 @@ public class TrueFalseQuestion implements Question {
             } while (randPhrase == this.phrase);
             answer = this.convertPhraseToString(randPhrase, true);
         }
-        this.questionStr = question + " = " + answer + "?";
+        this.englishStr = question + " = " + answer + "?";
 
         // set answer
         this.answer = ansBool;

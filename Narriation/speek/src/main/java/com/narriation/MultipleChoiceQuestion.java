@@ -8,8 +8,9 @@ import java.util.ArrayList;
 
 public class MultipleChoiceQuestion implements Question {
 
+    private final int NUMBER_OF_CHOICES = 4;
     private Language language; // reference for pulling similar questions, pass "current language"
-    private ArrayList<Word> words;
+    private Phrase phrase;
     private Word correctAnswer;
 
     /**
@@ -20,9 +21,10 @@ public class MultipleChoiceQuestion implements Question {
      * @param correctAnswer assigns the correct answer for the problem
      * @param id            assigns the specific question an id so it can be reused
      */
-    public MultipleChoiceQuestion(ArrayList<Word> words, Word correctAnswer) {
-        this.words = words;
-        this.correctAnswer = correctAnswer;
+    public MultipleChoiceQuestion(Phrase phrase, Language language) {
+        this.phrase = phrase;
+        this.language = language;
+        generateRandomQuestion();
     }
 
     /**
@@ -37,6 +39,9 @@ public class MultipleChoiceQuestion implements Question {
     }
 
     public void generateRandomQuestion() {
+        // set the question and answer strings
+
+        // lastly, randomize
 
     }
 

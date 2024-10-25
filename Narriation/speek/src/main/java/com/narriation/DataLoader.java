@@ -16,24 +16,21 @@ import org.json.simple.parser.JSONParser;
  * The FileReader class reads users and languages
  * 
  * @author Christian Ruff
- * @author Risha Patel
  */
 
 public class DataLoader extends DataConstants {
 
+    public static final String DATE_FORMAT = "yyyy-MM-dd";
+    private static ArrayList<Language> languagesArr = new ArrayList<>();
+
     // temporary main
     public static void main(String args[]) {
-        // System.out.println(getUsers());
-        System.out.println(getLanguages());
+        System.out.println(Facade.getInstance().getLanguages());
+        System.out.println(Facade.getInstance().getUsers());
     }
 
     // LANGUAGES
-    /**
-     * @author Christian Ruff
-     * @return
-     */
     public static ArrayList<Language> getLanguages() {
-        ArrayList<Language> languages = new ArrayList<>();
         try {
             FileReader reader = new FileReader(LANGUAGE_FILE_NAME);
             JSONArray languageJSON = (JSONArray) new JSONParser().parse(reader);
@@ -48,12 +45,12 @@ public class DataLoader extends DataConstants {
                 ArrayList<Word> words = parseWordsFromLanguageObject((JSONObject) currentLang);
                 ArrayList<Phrase> phrases = parsePhrasesFromLanguageObject((JSONObject) currentLang, words);
 
-                languages.add(new Language(lessonID, nameOfLanguage, words, phrases, stories));
+                languagesArr.add(new Language(lessonID, nameOfLanguage, words, phrases, stories));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return languages;
+        return languagesArr;
     }
 
     private static ArrayList<Story> parseStoriesFromLanguageObject(JSONObject json) {
@@ -71,10 +68,10 @@ public class DataLoader extends DataConstants {
     }
 
     /**
-     * Parses the words from the json files
+     * Parses the words from a JSON language object
      * 
-     * @param json requires the json file in order to parse
-     * @return returns an array list of words
+     * @param json Takes the language JSON object
+     * @return Returns an ArrayList of words from the language
      */
     private static ArrayList<Word> parseWordsFromLanguageObject(JSONObject json) {
         ArrayList<Word> words = new ArrayList<Word>();
@@ -85,23 +82,23 @@ public class DataLoader extends DataConstants {
             UUID wordID = UUID.fromString((String) currentWord.get(WORD_ID));
             String englishWord = (String) currentWord.get(WORD_INENGLISH);
             String translatedWord = (String) currentWord.get(WORD_INTARGETLANGUAGE);
-            String pronounciation = (String) currentWord.get(WORD_PRONOUNCIATION);
+            String pronunciation = (String) currentWord.get(WORD_PRONUNCIATION);
             Gender gender = EnumUtilities.getEnumFromString(Gender.class,
                     (String) currentWord.get(WORD_GENDER));
             PartOfSpeech partOfSpeech = EnumUtilities.getEnumFromString(PartOfSpeech.class,
                     (String) currentWord.get(WORD_PARTOFSPEECH));
             int difficulty = Math.toIntExact((long) currentWord.get(WORD_DIFFICULTY));
-            words.add(new Word(wordID, englishWord, translatedWord, pronounciation, partOfSpeech, gender,
+            words.add(new Word(wordID, englishWord, translatedWord, pronunciation, partOfSpeech, gender,
                     difficulty));
         }
         return words;
     }
 
     /**
-     * Parses the phrases from the json files
+     * Parses the phrases from a JSON language object
      * 
-     * @param json needs the json file in order to parse
-     * @return returns an array list of phrases
+     * @param json Takes the language JSON object
+     * @return Returns an ArrayList of phrases from the language
      */
     private static ArrayList<Phrase> parsePhrasesFromLanguageObject(JSONObject json, ArrayList<Word> words) {
         ArrayList<Phrase> phrases = new ArrayList<Phrase>();
@@ -140,9 +137,9 @@ public class DataLoader extends DataConstants {
     /**
      * Finds a word by its UUID
      * 
-     * @param words needs the array list of words in order to search
-     * @param id    needs the id
-     * @return returns a word if found
+     * @param words Takes an ArrayList of words
+     * @param id    Returns a word by its UUID
+     * @return Returns the word if found, else NULL
      */
     private static Word findWordByUUID(ArrayList<Word> words, UUID id) {
         for (int i = 0; i < words.size(); i++) {
@@ -153,12 +150,7 @@ public class DataLoader extends DataConstants {
     }
 
     // USERS
-    /**
-     * @author Christian Ruff
-     * @return returns an array list of users
-     */
-
-    private static ArrayList<User> getUsers() {
+    public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
         try {
             FileReader reader = new FileReader("Narriation/speek/json/user.json");
@@ -179,7 +171,8 @@ public class DataLoader extends DataConstants {
                 // convert special data types
                 Date birthday = convertStringToDate((String) personJSON.get(USER_BIRTHDAY));
                 Avatar avatar = convertJSONToAvatar((JSONObject) personJSON.get(USER_AVATAR));
-                UserProgress userProgress = convertJSONToUserProgress((JSONObject) personJSON.get(USERPROGRESS));
+                ArrayList<UserProgress> userProgress = convertJSONToUserProgress(
+                        (JSONArray) personJSON.get(USERPROGRESS));
 
                 // create user object
                 User newUser = new User(id, firstName, lastName, username, password, emailAddress, birthday, avatar,
@@ -198,15 +191,16 @@ public class DataLoader extends DataConstants {
 
                 // create user list of friends for each user
                 if (friendsUUIDs == null) {
-                    System.out.println("User #" + i + " has no friends.");
+                    // System.out.println("User #" + i + " has no friends.");
                 } else {
                     // iterate through each friend
                     for (int j = 0; j < friendsUUIDs.size(); j++) {
                         User friend = findUserByUUID(users, friendsUUIDs.get(j));
                         if (friend != null) {
                             updatedUser.addFriend(friend);
-                            System.out.println(
-                                    updatedUser.getFirstName() + " is now friended with " + friend.getFirstName());
+                            // System.out.println(
+                            // updatedUser.getFirstName() + " is now friended with " +
+                            // friend.getFirstName());
                         }
                     }
                 }
@@ -220,17 +214,16 @@ public class DataLoader extends DataConstants {
     }
 
     /**
-     * Converts a string to a date
+     * Converts a String data type to the Date data type
      * 
-     * @param str requires the string in order to convert
-     * @return returns a date
+     * @param str Takes a String of format yyyy-MM-dd
+     * @return Returns a Date object
      */
     private static Date convertStringToDate(String str) {
-        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat simpleDate = new SimpleDateFormat(DATE_FORMAT);
         Date date = null;
         try {
             date = simpleDate.parse(str);
-            System.out.println(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -238,10 +231,10 @@ public class DataLoader extends DataConstants {
     }
 
     /**
-     * Converts a json array to an array list
+     * Converts a JSON Array of Friends to a ArrayList
      * 
-     * @param json requires the json array in order to convert
-     * @return returns an array list
+     * @param json Takes a JSON Array of friends
+     * @return Returns an ArrayList of friends
      */
     private static ArrayList<UUID> convertFriendsToArrayList(JSONArray json) {
         ArrayList<UUID> ret = new ArrayList<UUID>();
@@ -286,20 +279,39 @@ public class DataLoader extends DataConstants {
      * @param json requires the json object in order to create the user progress
      * @return returns the user progress
      */
-    private static UserProgress convertJSONToUserProgress(JSONObject json) {
-        System.out.println(
-                "Entered\n" + json);
+    private static ArrayList<UserProgress> convertJSONToUserProgress(JSONArray json) {
+        ArrayList<UserProgress> ret = new ArrayList<UserProgress>();
 
-        int userDifficulty = Math.toIntExact((long) json.get(USERPROGRESS_DIFFICULTY));
-        int currentStory = Math.toIntExact((long) json.get(USERPROGRESS_CURRENTSTORY));
+        for (int i = 0; i < json.size(); i++) {
+            JSONObject currentUserProgress = (JSONObject) json.get(i);
 
-        System.out.println(json.get(USERPROGRESS_WORDPROGRESS));
+            int userDifficulty = Math.toIntExact((long) currentUserProgress.get(USERPROGRESS_DIFFICULTY));
+            int currentStory = Math.toIntExact((long) currentUserProgress.get(USERPROGRESS_CURRENTSTORY));
 
-        HashMap<Phrase, Integer> phraseProgress = convertJSONToPhraseProgress(
-                (JSONArray) json.get(USERPROGRESS_PHRASEPROGRESS));
-        HashMap<Word, Integer> wordProgress = convertJSONToWordProgress(
-                (JSONArray) json.get(USERPROGRESS_WORDPROGRESS));
-        return new UserProgress(userDifficulty, currentStory, phraseProgress, wordProgress);
+            try {
+                Language language = getLanguageByUUID(
+                        UUID.fromString((String) currentUserProgress.get(USERPROGRESS_LANGUAGE)));
+
+                HashMap<Phrase, Integer> phraseProgress = convertJSONToPhraseProgress(
+                        (JSONArray) currentUserProgress.get(USERPROGRESS_PHRASEPROGRESS), language.getPhrases());
+                HashMap<Word, Integer> wordProgress = convertJSONToWordProgress(
+                        (JSONArray) currentUserProgress.get(USERPROGRESS_WORDPROGRESS), language.getWords());
+                ret.add(new UserProgress(language, userDifficulty, currentStory, phraseProgress, wordProgress));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return ret;
+    }
+
+    private static Language getLanguageByUUID(UUID id) {
+        for (Language language : languagesArr) {
+            if (language.getUUID().equals(id)) {
+                return language;
+            }
+            return null;
+        }
+        return null;
     }
 
     /**
@@ -308,7 +320,7 @@ public class DataLoader extends DataConstants {
      * @param json requires the json array in order to create the phrase progress
      * @return returns the phrase progress
      */
-    public static HashMap<Phrase, Integer> convertJSONToPhraseProgress(JSONArray json) {
+    public static HashMap<Phrase, Integer> convertJSONToPhraseProgress(JSONArray json, ArrayList<Phrase> phrases) {
         HashMap<Phrase, Integer> ret = new HashMap<Phrase, Integer>();
         for (int i = 0; i < json.size(); i++) {
             // 1. get key-value pair
@@ -316,9 +328,7 @@ public class DataLoader extends DataConstants {
 
             // 2. get phrase
             UUID uuidOfPhrase = UUID.fromString((String) keyValuePair.get(USERPROGRESS_PHRASEPROGRESS_PHRASE));
-            Phrase phrase = null;
-
-            // TODO fix phrase above
+            Phrase phrase = getPhraseByUUID(phrases, uuidOfPhrase);
 
             // 3. get value
             int integer = Math.toIntExact((long) keyValuePair.get(USERPROGRESS_PHRASEPROGRESS_INTEGER));
@@ -333,7 +343,7 @@ public class DataLoader extends DataConstants {
      * @param json requires the json array in order to create the word progress
      * @return returns the word progress
      */
-    public static HashMap<Word, Integer> convertJSONToWordProgress(JSONArray json) {
+    public static HashMap<Word, Integer> convertJSONToWordProgress(JSONArray json, ArrayList<Word> words) {
         HashMap<Word, Integer> ret = new HashMap<Word, Integer>();
         for (int i = 0; i < json.size(); i++) {
             // 1. get key-value pair
@@ -341,7 +351,7 @@ public class DataLoader extends DataConstants {
 
             // 2. get phrase
             UUID uuidOfWord = UUID.fromString((String) keyValuePair.get(USERPROGRESS_WORDPROGRESS_WORD));
-            Word word = null;
+            Word word = getWordByUUID(words, uuidOfWord);
 
             // TODO fix word above
 
@@ -350,5 +360,21 @@ public class DataLoader extends DataConstants {
             ret.put(word, integer);
         }
         return ret;
+    }
+
+    public static Phrase getPhraseByUUID(ArrayList<Phrase> phrases, UUID id) {
+        for (Phrase phrase : phrases) {
+            if (phrase.getUUID().equals(id))
+                return phrase;
+        }
+        return null;
+    }
+
+    public static Word getWordByUUID(ArrayList<Word> words, UUID id) {
+        for (Word word : words) {
+            if (word.getUUID().equals(id))
+                return word;
+        }
+        return null;
     }
 }

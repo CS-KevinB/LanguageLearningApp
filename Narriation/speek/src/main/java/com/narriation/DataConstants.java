@@ -33,7 +33,7 @@ public abstract class DataConstants {
     protected static final String WORD_ID = "uuid";
     protected static final String WORD_INENGLISH = "englishWord";
     protected static final String WORD_INTARGETLANGUAGE = "translatedWord";
-    protected static final String WORD_PRONOUNCIATION = "pronunciation";
+    protected static final String WORD_PRONUNCIATION = "pronunciation";
     protected static final String WORD_GENDER = "gender";
     protected static final String WORD_PARTOFSPEECH = "partOfSpeech";
     protected static final String WORD_DIFFICULTY = "difficulty";
@@ -46,6 +46,7 @@ public abstract class DataConstants {
 
     // User progress
     protected static final String USERPROGRESS = "userProgress";
+    protected static final String USERPROGRESS_LANGUAGE = "language";
     protected static final String USERPROGRESS_DIFFICULTY = "difficulty";
     protected static final String USERPROGRESS_CURRENTSTORY = "currentStory";
     protected static final String USERPROGRESS_PHRASEPROGRESS = "phraseProgress";

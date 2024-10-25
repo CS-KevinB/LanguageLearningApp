@@ -52,9 +52,9 @@ public class Word {
         this.id = id;
         this.englishWord = englishWord;
         this.translatedWord = translatedWord;
-        this.pronunciation = " ";
-        this.partOfSpeech = partOfSpeech.ADJECTIVE;
-        this.gender = gender.NEITHER;
+        this.pronunciation = pronunciation;
+        this.partOfSpeech = partOfSpeech;
+        this.gender = gender;
         this.difficulty = difficulty;
     }
 

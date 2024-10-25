@@ -12,20 +12,23 @@ import java.util.Map;
  * @author christianruff
  */
 public class UserProgress {
+    private Language language;
     private int difficulty;
     private int currentStory;
     private HashMap<Phrase, Integer> phraseProgress;
     private HashMap<Word, Integer> wordProgress;
 
     public UserProgress() {
+        this.language = null;
         this.difficulty = 0;
         this.currentStory = 0;
         this.phraseProgress = new HashMap<Phrase, Integer>();
         this.wordProgress = new HashMap<Word, Integer>();
     }
 
-    public UserProgress(int difficulty, int currentStory, HashMap<Phrase, Integer> phraseProgress,
+    public UserProgress(Language language, int difficulty, int currentStory, HashMap<Phrase, Integer> phraseProgress,
             HashMap<Word, Integer> wordProgress) {
+        this.language = language;
         this.difficulty = difficulty;
         this.currentStory = currentStory;
         this.phraseProgress = phraseProgress;
@@ -69,7 +72,8 @@ public class UserProgress {
     }
 
     public String toString() {
-        return "Difficulty: " + this.difficulty + " | Current Story: " + this.currentStory + " | " + this.phraseProgress
+        return "Difficulty: " + this.difficulty + " | Current Story: " + this.currentStory
+                + " | Phrase Progress (Language:Score)" + this.phraseProgress
                 + " | " + this.wordProgress;
     }
 

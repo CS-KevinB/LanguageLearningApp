@@ -15,10 +15,10 @@ public class WritingQuestion implements Question {
     // temporary main
     public static void main(String[] args) {
         UUID id = UUID.fromString("3085ad7f-139c-4d3e-85e6-52cc0d028a29");
-        Phrase phrase = Facade.getInstance().getLanguages().getLanguageByUUID(id).getPhrases().get(0);
+        Phrase phrase = Facade.getInstance().getLanguages().getLanguageByUUID(id).getPhrases().get(2);
         WritingQuestion writingQ = new WritingQuestion(phrase);
         System.out.println(writingQ);
-        System.out.println(writingQ.isCorrect("dias"));
+        System.out.println(writingQ.isCorrect("leche"));
     }
 
     /**
@@ -29,10 +29,10 @@ public class WritingQuestion implements Question {
      */
     public WritingQuestion(Phrase phrase) {
         this.phrase = phrase;
-        generateRandomQuestion();
+        this.generateRandomQuestion();
     }
 
-    private void generateRandomQuestion() {
+    public void generateRandomQuestion() {
         Random r = new Random();
 
         // english phrase

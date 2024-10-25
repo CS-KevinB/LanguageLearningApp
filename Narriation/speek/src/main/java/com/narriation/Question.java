@@ -11,6 +11,8 @@ public interface Question {
 
     public String getAnswer();
 
+    public void generateRandomQuestion();
+
     public boolean isCorrect(String answer);
 
 }

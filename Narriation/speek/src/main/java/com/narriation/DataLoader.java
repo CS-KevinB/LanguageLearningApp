@@ -56,6 +56,20 @@ public class DataLoader extends DataConstants {
         return languages;
     }
 
+    private static ArrayList<Story> parseStoriesFromLanguageObject(JSONObject json) {
+        ArrayList<Story> stories = new ArrayList<Story>();
+        JSONArray jsonStories = (JSONArray) json.get(LANGUAGE_STORIES);
+
+        for (int i = 0; i < jsonStories.size(); i++) {
+            JSONObject currentStory = (JSONObject) jsonStories.get(i);
+            String title = (String) currentStory.get(STORY_TITLE);
+            String englishStory = (String) currentStory.get(STORY_ENGLISHSTORY);
+            String spanishStory = (String) currentStory.get(STORY_SPANISHSTORY);
+            stories.add(new Story(title, englishStory, spanishStory));
+        }
+        return stories;
+    }
+
     /**
      * Parses the words from the json files
      * 
@@ -89,7 +103,7 @@ public class DataLoader extends DataConstants {
      * @param json needs the json file in order to parse
      * @return returns an array list of phrases
      */
-    private static ArrayList<Phrase> parsePhrasesFromLanguageObject(JSONObject json, ArrayList<Word> word) {
+    private static ArrayList<Phrase> parsePhrasesFromLanguageObject(JSONObject json, ArrayList<Word> words) {
         ArrayList<Phrase> phrases = new ArrayList<Phrase>();
         JSONArray jsonPhrases = (JSONArray) json.get(LANGUAGE_PHRASES);
 
@@ -119,6 +133,8 @@ public class DataLoader extends DataConstants {
             }
             phrases.add(new Phrase(phraseID, englishPhrase, translatedPhrase, difficulty));
         }
+
+        return phrases;
     }
 
     /**

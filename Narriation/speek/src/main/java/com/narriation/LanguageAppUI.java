@@ -1,6 +1,8 @@
 package com.narriation;
 
 import java.util.Scanner;
+import java.util.Date;
+import org.json.simple.parser.ParseException;
 
 /**
  * Creates a UI for the language learning app
@@ -104,7 +106,7 @@ public class LanguageAppUI {
         String birthday = getField("Birthday");
         String email = getField("Email");
 
-        if (facade.createAccount(firstName, lastName, username, password, email, birthday)) {
+        if (facade.createAccount(firstName, lastName, username, birthday, password, email)) {
             System.out.println("Account successfully created!");
         } else {
             System.out.println("Account already exists. Please try logging in.");

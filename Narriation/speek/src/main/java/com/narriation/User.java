@@ -35,14 +35,15 @@ public class User {
      * @param username     takes in the username of the user
      * @param password     takes in the password of the user
      * @param emailAddress takes in the email address of the user
-     * @param birthday     takes in the birthday of the user
+     * @param birthday2    takes in the birthday of the user
      * @param avatar       takes in the avatar of the user (default unless changed)
      * @param friends      takes in the friends of the user if they have any
      * @param points       sets up a point system for the user
      * @param userProgress tracks the user's progress
      */
     public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
-            Date birthday, Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
+            Date birtday,
+            Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
 
         this.id = id;
         this.firstName = firstName;
@@ -262,9 +263,9 @@ public class User {
      * 
      * @return returns the birthday
      */
-    public Date getBirthday() {
-        return birthday;
-    }
+    // public Date getBirthday() {
+    // return birthday;
+    // }
 
     /**
      * Sets the birthday of the user

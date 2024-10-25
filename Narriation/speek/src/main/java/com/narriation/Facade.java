@@ -102,8 +102,9 @@ public class Facade {
      * @param email     requires the email
      * @return returns a boolean if the account was created
      */
-    public boolean createAccount(String firstName, String lastName, String userName, String password, String email,) {
-               
+    public boolean createAccount(String firstName, String lastName, String userName, String password,
+            java.util.Date birthday, String email) {
+
         if (users.getUser(userName) != null) {
             System.out.println(userName + " already exists");
             return false;
@@ -114,7 +115,7 @@ public class Facade {
         int points = 0;
         UserProgress userProgress = new UserProgress();
 
-        User user = new User(id, firstName, lastName, userName, password, email, avatar, friends, points,
+        User user = new User(id, firstName, lastName, userName, password, email, birthday, avatar, friends, points,
                 userProgress);
         users.addUser(user);
         users.saveUsers();

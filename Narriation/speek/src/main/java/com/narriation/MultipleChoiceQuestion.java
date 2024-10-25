@@ -1,17 +1,20 @@
 package com.narriation;
-
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
 /**
  * @author Kevin Buie
  * Creates a Multiple Choice Question for the user
  */
-import java.util.ArrayList;
 
 public class MultipleChoiceQuestion implements Question {
 
     private final int NUMBER_OF_CHOICES = 4;
     private Language language; // reference for pulling similar questions, pass "current language"
     private Phrase phrase;
-    private Word correctAnswer;
+    private List<String> choices;
+    private String correctAnswer;
 
     /**
      * Creates a multiple choice question
@@ -24,6 +27,7 @@ public class MultipleChoiceQuestion implements Question {
     public MultipleChoiceQuestion(Phrase phrase, Language language) {
         this.phrase = phrase;
         this.language = language;
+        this.choices = new ArrayList<>();
         generateQuestion();
     }
 
@@ -32,17 +36,59 @@ public class MultipleChoiceQuestion implements Question {
      * question
      * 
      * @return returns the question
-     *         MAY NEED TO BE EDITED LATER
      */
     public String getQuestion() {
-        return correctAnswer.getTranslatedWord();
-    }
+        StringBuilder question = new StringBuilder("Select the correct translation for : \"");
+        question.append(convertPhraseToString(phrase, false)).append("\"\n");
+        for(int i = 0; i < choices.size(); i++) {
+            question.append(i + 1).append(". ").append(choices.get(i)).append("\n");
+        }
+
+        return question.toString();
+    }   
+
 
     public void generateQuestion() {
-        // set the question and answer strings
+        Random r = new Random();
+        ArrayList<Phrase> allPhrases = language.getPhrases();
+        
+        String correctAnswerStr = convertPhraseToString(phrase, true);
+        choices.add(correctAnswerStr);
 
-        // lastly, randomize
+        while(choices.size() < NUMBER_OF_CHOICES) {
+            Phrase randomPhrase = allPhrases.get(r.nextInt(allPhrases.size()));
+            String translatedStr = convertPhraseToString(randomPhrase, true);
+            if(!choices.contains(translatedStr) && !randomPhrase.equals(phrase)) {
+                choices.add(translatedStr);
+            }
+        }
+        Collections.shuffle(choices);
+        this.correctAnswer = correctAnswerStr;
+    }
 
+    private String convertPhraseToString(Phrase phrase, boolean isEnglish) {
+        ArrayList<Word> phraseArr;
+        StringBuilder str = new StringBuilder();
+        if (isEnglish) {
+            phraseArr = phrase.getEnglishPhrase();
+            int len = phraseArr.size();
+
+            for (int i = 0; i < len; i++) {
+                if (str.length() > 0)
+                    str.append(" ");
+                str.append(phraseArr.get(i).getEnglishWord());
+            }
+        } else {
+            phraseArr = phrase.getTranslatedPhrase();
+            int len = phraseArr.size();
+
+            for (int i = 0; i < len; i++) {
+                if (str.length() > 0)
+                    str.append(" ");
+                str.append(phraseArr.get(i).getTranslatedWord());
+            }
+        }
+        return str.toString();
     }
 
     /**

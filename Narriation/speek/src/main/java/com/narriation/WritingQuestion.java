@@ -12,17 +12,6 @@ public class WritingQuestion implements Question {
     private String questionString;
     private String answer;
 
-    // temporary main
-    public static void main(String[] args) {
-        UUID id = UUID.fromString("3085ad7f-139c-4d3e-85e6-52cc0d028a29");
-        Phrase phrase = Facade.getInstance().getLanguages().getLanguageByUUID(id).getPhrases().get(2);
-        WritingQuestion writingQ = new WritingQuestion(phrase);
-        System.out.println(writingQ);
-        String userInput = "leche";
-        System.out.println(
-                "If the user writes \"" + userInput + "\", the answer would be " + writingQ.isCorrect(userInput));
-    }
-
     /**
      * Creates a default Writing Question with the parameters
      * 
@@ -31,10 +20,10 @@ public class WritingQuestion implements Question {
      */
     public WritingQuestion(Phrase phrase) {
         this.phrase = phrase;
-        this.generateRandomQuestion();
+        this.generateQuestion();
     }
 
-    public void generateRandomQuestion() {
+    public void generateQuestion() {
         Random r = new Random();
 
         // english phrase

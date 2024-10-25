@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class ListeningQuestion implements Question {
     private Phrase phrase;
+    private String question;
 
     /**
      * Creates a public listening question for the user
@@ -18,6 +19,10 @@ public class ListeningQuestion implements Question {
      */
     public ListeningQuestion(Phrase phrase) {
         this.phrase = phrase;
+    }
+
+    public void generateQuestion() {
+
     }
 
     /**

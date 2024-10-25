@@ -11,7 +11,7 @@ public interface Question {
 
     public String getAnswer();
 
-    public void generateRandomQuestion();
+    public void generateQuestion();
 
     public boolean isCorrect(String answer);
 

@@ -114,7 +114,7 @@ public class Facade {
             System.out.println("Invalid date format. Please use yyyy-MM-dd.");
             return false;
         }
-        java.sql.Date birthday = new java.sql.Date(birthdayUtil.getTime());
+        Date birthday = new Date();
         UUID id = UUID.randomUUID();
         Avatar avatar = new Avatar();
         ArrayList<User> friends = new ArrayList<>();

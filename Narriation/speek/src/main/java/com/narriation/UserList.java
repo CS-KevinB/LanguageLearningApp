@@ -68,39 +68,41 @@ public class UserList {
         return saveUsers();
     }
 
-    /**
-     * Adds a user to the user list
-     * 
-     * @param id           takes in the id of the user
-     * @param firstName    takes in the first name of the user
-     * @param lastName     takes in the last name of the user
-     * @param username     takes in the username of the user
-     * @param password     takes in the password of the user
-     * @param emailAddress takes in the email address of the user
-     * @param birthday     takes in the birthday of the user
-     * @param avatar       takes in the avatar of the user (default unless changed)
-     * @param friends      takes in the friends of the user if they have any
-     * @param points       sets up a point system for the user
-     * @param userProgress tracks the user's progress
-     * @return returns a boolean if the user was added
-     */
-    public boolean addUser(UUID id, String firstName, String lastName, String username,
-            String password, String emailAddress, Avatar avatar, Date birthday,
-            ArrayList<User> friends, int points, UserProgress userProgress) {
-        for (User user : users) {
-            if (user.getUsername().equals(username)
-                    || user.getEmailAddress().equals(emailAddress))
-                return false; // User already exists
-        }
+    // /**
+    // * Adds a user to the user list
+    // *
+    // * @param id takes in the id of the user
+    // * @param firstName takes in the first name of the user
+    // * @param lastName takes in the last name of the user
+    // * @param username takes in the username of the user
+    // * @param password takes in the password of the user
+    // * @param emailAddress takes in the email address of the user
+    // * @param birthday takes in the birthday of the user
+    // * @param avatar takes in the avatar of the user (default unless changed)
+    // * @param friends takes in the friends of the user if they have any
+    // * @param points sets up a point system for the user
+    // * @param userProgress tracks the user's progress
+    // * @return returns a boolean if the user was added
+    // */
+    // public boolean addUser(UUID id, String firstName, String lastName, String
+    // username,
+    // String password, String emailAddress, Avatar avatar, Date birthday,
+    // ArrayList<User> friends, int points, UserProgress userProgress) {
+    // for (User user : users) {
+    // if (user.getUsername().equals(username)
+    // || user.getEmailAddress().equals(emailAddress))
+    // return false; // User already exists
+    // }
 
-        // Add the new user to the list
-        User newUser = new User(id, firstName, lastName, username, password, emailAddress, birthday, avatar, friends,
-                points,
-                userProgress);
-        users.add(newUser);
-        return saveUsers();
+    // // Add the new user to the list
+    // User newUser = new User(id, firstName, lastName, username, password,
+    // emailAddress, birthday, avatar, friends,
+    // points,
+    // userProgress);
+    // users.add(newUser);
+    // return saveUsers();
 
-    }
+    // }
 
     /**
      * Gets a user by their username

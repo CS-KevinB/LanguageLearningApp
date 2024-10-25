@@ -25,8 +25,7 @@ public class DataLoader extends DataConstants {
 
     // temporary main
     public static void main(String args[]) {
-        System.out.println(Facade.getInstance().getLanguages());
-        System.out.println(Facade.getInstance().getUsers());
+
     }
 
     // LANGUAGES

@@ -172,84 +172,8 @@ public class Facade {
     }
 
     /**
-     * Displays a question
-     * 
-     * @param phrase requires the phrase in order to display
+     * Reads and displays the current story
      */
-    public void displayQuestion(Phrase phrase) {
-        displayMCQ(phrase);
-        // displayFillInTheBlank(phrase);
-    }
-
-    /**
-     * Displays a multiple choice question
-     * 
-     * @param correctPhrase requires the correct phrase in order to display
-     */
-    public void displayMCQ(Phrase correctPhrase) {
-        ArrayList<String> options = new ArrayList<>();
-        Random random = new Random();
-
-        String correctAnswer = phraseToString(correctPhrase.getTranslatedPhrase());
-        options.add(correctAnswer);
-
-        while (options.size() < 4 && !phrases.isEmpty()) {
-            Phrase getRandomPhrase = phrases.get(random.nextInt(phrases.size()));
-            String translatedString = phraseToString(getRandomPhrase.getTranslatedPhrase());
-
-            if (!options.contains(translatedString)) {
-                options.add(translatedString);
-            }
-
-            Collections.shuffle(options);
-
-            System.out.println("Translate the phrase: " + phraseToString(correctPhrase.getEnglishPhrase()));
-            for (int i = 0; i < options.size(); i++) {
-                System.out.println((i + 1) + ". " + options.get(i));
-            }
-
-            Scanner sc = new Scanner(System.in);
-            int userChoice = sc.nextInt();
-
-            if (userChoice > options.size() || userChoice < 1) {
-                System.out.println("Invalid choice. Please try again.");
-            } else if (options.get(userChoice - 1).equals(phraseToString(correctPhrase.getTranslatedPhrase()))) {
-                System.out.println("Correct!");
-            } else {
-                System.out.println("Incorrect. The correct answer is " + correctPhrase.getTranslatedPhrase());
-            }
-            correctPhrase.phraseSeen();
-
-        }
-
-    }
-
-    /**
-     * Converts the phrase to a string
-     * 
-     * @param phrase requires the phrase in order to convert
-     * @return returns the phrase as a string
-     */
-    private String phraseToString(ArrayList<Word> phrase) {
-
-        StringBuilder phraseToString = new StringBuilder();
-        for (Word word : phrase) {
-            phraseToString.append(word.getTranslatedWord()).append(" ");
-
-        }
-        return phraseToString.toString().trim();
-
-    }
-
-    public void displayFillInTheBlank(Phrase phrase) {
-        Random random = new Random();
-
-    }
-
-    // public Exercise startExercise() {
-    // TODO: PHRASES?
-    // }
-
     public void startStory() {
         currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()).getCurrentStory().displayStory();
         currentUser.getUserProgress(Facade.getInstance().getCurrentLanguage()).getCurrentStory().speakStory();
@@ -268,10 +192,6 @@ public class Facade {
         }
         return false;
     }
-
-    // public void sendNotification(NotificationType notificationType) {
-
-    // }
 
     /**
      * Gets the current language

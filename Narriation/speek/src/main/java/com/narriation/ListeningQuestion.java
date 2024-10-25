@@ -21,10 +21,19 @@ public class ListeningQuestion implements Question {
         this.phrase = phrase;
     }
 
+    /**
+     * Generates the listening question
+     */
     public void generateQuestion() {
         question = this.convertPhraseToString(this.phrase, false);    
     }
 
+    /**
+     * Converts the phrase to a string
+     * @param phrase Takes the phrase in order to convert
+     * @param isEnglish Takes a boolean to determine if the phrase is in English or Spanish
+     * @return Returns the phrase as a string
+     */
     private String convertPhraseToString(Phrase phrase, boolean isEnglish) {
         ArrayList<Word> phraseArr;
         StringBuilder str = new StringBuilder();

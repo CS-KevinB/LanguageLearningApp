@@ -25,16 +25,18 @@ public abstract class DataConstants {
     protected static final String LANGUAGE_PHRASES = "phrases";
 
     protected static final String WORD_ID = "uuid";
-    protected static final String WORD_IN_ENGLISH = "englishWord";
-    protected static final String WORD_IN_TARGET_LANGUAGE = "translatedWord";
+    protected static final String WORD_INENGLISH = "englishWord";
+    protected static final String WORD_INTARGETLANGUAGE = "translatedWord";
     protected static final String WORD_PRONOUNCIATION = "pronunciation";
     protected static final String WORD_GENDER = "gender";
-    protected static final String WORD_PART_OF_SPEECH = "partOfSpeech";
+    protected static final String WORD_PARTOFSPEECH = "partOfSpeech";
+    protected static final String WORD_DIFFICULTY = "difficulty";
 
+    // Phrase
     protected static final String PHRASE_ID = "uuid";
     protected static final String PHRASE_IN_ENGLISH = "englishPhrase";
     protected static final String PHRASE_IN_TARGET_LANGUAGE = "translatedPhrase";
-    protected static final String PHRASE_FEEDBACK = "feedback";
+    protected static final String PHRASE_DIFFICULTY = "difficulty";
 
     // User progress
     protected static final String USERPROGRESS = "userProgress";

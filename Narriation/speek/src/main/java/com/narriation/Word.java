@@ -37,6 +37,28 @@ public class Word {
     }
 
     /**
+     * Constructor for data loader
+     * 
+     * @author Christian Ruff
+     * @param englishWord
+     * @param translatedWord
+     * @param pronunciation
+     * @param partOfSpeech
+     * @param gender
+     * @param difficulty
+     */
+    public Word(UUID id, String englishWord, String translatedWord, String pronunciation, PartOfSpeech partOfSpeech,
+            Gender gender, int difficulty) {
+        this.id = id;
+        this.englishWord = englishWord;
+        this.translatedWord = translatedWord;
+        this.pronunciation = " ";
+        this.partOfSpeech = partOfSpeech.ADJECTIVE;
+        this.gender = gender.NEITHER;
+        this.difficulty = difficulty;
+    }
+
+    /**
      * Gets the UUID for the word
      * 
      * @return ID in data type, UUID

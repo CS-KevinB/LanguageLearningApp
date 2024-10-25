@@ -14,7 +14,6 @@ import software.amazon.awssdk.services.polly.endpoints.internal.Value.Str;
 
 public class Phrase {
     private UUID id;
-    private String feedback;
     private ArrayList<Word> englishPhrase;
     private ArrayList<Word> translatedPhrase;
     private int difficulty;
@@ -22,14 +21,29 @@ public class Phrase {
     /**
      * Constructor for phrase class
      * 
-     * @param feedback         - feedback for the phrase
      * @param englishPhrase    - list of words for the english phrase
      * @param translatedPhrase - list of words for the translated phrase
      */
 
     public Phrase(String feedback, ArrayList<Word> englishPhrase, ArrayList<Word> translatedPhrase, int difficulty) {
         this.id = UUID.randomUUID();
-        this.feedback = feedback;
+        this.englishPhrase = englishPhrase;
+        this.translatedPhrase = translatedPhrase;
+        this.difficulty = difficulty;
+    }
+
+    /**
+     * Constructor for data loader
+     * 
+     * @author Christian Ruff
+     * @param id
+     * @param englishPhrase
+     * @param translatedPhrase
+     * @param difficulty
+     */
+    public Phrase(UUID id, ArrayList<Word> englishPhrase, ArrayList<Word> translatedPhrase,
+            int difficulty) {
+        this.id = UUID.randomUUID();
         this.englishPhrase = englishPhrase;
         this.translatedPhrase = translatedPhrase;
         this.difficulty = difficulty;
@@ -51,19 +65,6 @@ public class Phrase {
      */
     public ArrayList<Word> getTranslatedPhrase() {
         return translatedPhrase;
-    }
-
-    /**
-     * Gets the Feedback
-     * 
-     * @return feedback
-     */
-    public String getFeedback() {
-        return feedback;
-    }
-
-    public void setFeedBack(String feedback) {
-        this.feedback = feedback;
     }
 
     // TODO: TEST THIS!!!

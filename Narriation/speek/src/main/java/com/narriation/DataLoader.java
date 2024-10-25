@@ -40,64 +40,13 @@ public class DataLoader extends DataConstants {
 
             for (int i = 0; i < languageJSON.size(); i++) {
                 JSONObject currentLang = (JSONObject) languageJSON.get(i);
+
+                // 0. store all variables
                 UUID lessonID = UUID.fromString((String) currentLang.get(LANGUAGE_ID));
                 String nameOfLanguage = (String) currentLang.get(LANGUAGE_NAME);
-                ArrayList<Word> words = new ArrayList<Word>();
-                ArrayList<Phrase> phrases = new ArrayList<Phrase>();
-                ArrayList<Lesson> lessons = new ArrayList<Lesson>();
-
-                // 1. create an ArrayList of words
-                JSONArray jsonWords = (JSONArray) currentLang.get(LANGUAGE_WORDS);
-                for (int j = 0; j < jsonWords.size(); j++) {
-                    JSONObject currentWord = (JSONObject) jsonWords.get(j);
-                    UUID wordID = UUID.fromString((String) currentWord.get(WORD_ID));
-                    String englishWord = (String) currentWord.get(WORD_IN_ENGLISH);
-                    String translatedWord = (String) currentWord.get(WORD_IN_TARGET_LANGUAGE);
-                    String pronounciation = (String) currentWord.get(WORD_PRONOUNCIATION);
-                    PartOfSpeech partOfSpeech = EnumUtilities.getEnumFromString(PartOfSpeech.class,
-                            (String) currentWord.get(WORD_PART_OF_SPEECH));
-                    Gender gender = EnumUtilities.getEnumFromString(Gender.class,
-                            (String) currentWord.get(WORD_GENDER));
-                    words.add(new Word(wordID, englishWord, translatedWord, pronounciation, partOfSpeech, gender));
-                }
-
-                // 2. create an ArrayList of phrases
-                JSONArray jsonPhrases = (JSONArray) currentLang.get(LANGUAGE_PHRASES);
-                for (int j = 0; j < jsonPhrases.size(); j++) {
-                    JSONObject currentPhrase = (JSONObject) jsonPhrases.get(j);
-
-                    UUID phraseID = UUID.fromString((String) currentPhrase.get(PHRASE_ID));
-                    String feedback = (String) currentPhrase.get(PHRASE_FEEDBACK);
-                    ArrayList<Word> englishPhrase = new ArrayList<Word>();
-                    ArrayList<Word> translatedPhrase = new ArrayList<Word>();
-
-                    // parse English phrase
-                    JSONArray jsonEnglishPhrase = (JSONArray) currentPhrase.get(PHRASE_IN_ENGLISH);
-                    for (int k = 0; k < jsonEnglishPhrase.size(); k++) {
-                        Word englishWord = findWordByUUID(words, UUID.fromString((String) jsonEnglishPhrase.get(k)));
-                        if (englishWord != null)
-                            englishPhrase.add(englishWord);
-                    }
-
-                    // parse translated phrase
-                    JSONArray jsonTranslatedPhrase = (JSONArray) currentPhrase.get(PHRASE_IN_TARGET_LANGUAGE);
-                    for (int k = 0; k < jsonTranslatedPhrase.size(); k++) {
-                        Word translatedWord = findWordByUUID(words,
-                                UUID.fromString((String) jsonTranslatedPhrase.get(k)));
-                        if (translatedWord != null)
-                            translatedPhrase.add(translatedWord);
-                    }
-                    phrases.add(new Phrase(phraseID, feedback, englishPhrase, translatedPhrase));
-                }
-
-                // 3. create an ArrayList of questions (pulled from writing, listening, and
-                // matching questions)
-
-                // 4. create an ArrayList of exercises
-
-                // 5. create an ArrayList of stories
-
-                // 6. create ArrayList of lessons
+                ArrayList<Story> stories = new ArrayList<Story>();
+                ArrayList<Word> words = parseWordsFromLanguageObject((JSONObject) currentLang);
+                ArrayList<Phrase> phrases = parsePhrasesFromLanguageObject((JSONObject) currentLang);
 
                 languages.add(new Language(lessonID, nameOfLanguage, words, phrases));
             }
@@ -105,6 +54,59 @@ public class DataLoader extends DataConstants {
             e.printStackTrace();
         }
         return languages;
+    }
+
+    private static ArrayList<Word> parseWordsFromLanguageObject(JSONObject json) {
+        ArrayList<Word> words = new ArrayList<Word>();
+        JSONArray jsonWords = (JSONArray) json.get(LANGUAGE_WORDS);
+
+        for (int j = 0; j < jsonWords.size(); j++) {
+            JSONObject currentWord = (JSONObject) jsonWords.get(j);
+            UUID wordID = UUID.fromString((String) currentWord.get(WORD_ID));
+            String englishWord = (String) currentWord.get(WORD_INENGLISH);
+            String translatedWord = (String) currentWord.get(WORD_INTARGETLANGUAGE);
+            String pronounciation = (String) currentWord.get(WORD_PRONOUNCIATION);
+            Gender gender = EnumUtilities.getEnumFromString(Gender.class,
+                    (String) currentWord.get(WORD_GENDER));
+            PartOfSpeech partOfSpeech = EnumUtilities.getEnumFromString(PartOfSpeech.class,
+                    (String) currentWord.get(WORD_PARTOFSPEECH));
+            int difficulty = Math.toIntExact((long) currentWord.get(WORD_DIFFICULTY));
+            words.add(new Word(wordID, englishWord, translatedWord, pronounciation, partOfSpeech, gender,
+                    difficulty));
+        }
+        return words;
+    }
+
+    private static ArrayList<Phrase> parsePhrasesFromLanguageObject(JSONObject json) {
+        ArrayList<Phrase> phrases = new ArrayList<Phrase>();
+        JSONArray jsonPhrases = (JSONArray) json.get(LANGUAGE_PHRASES);
+
+        for (int j = 0; j < jsonPhrases.size(); j++) {
+            JSONObject currentPhrase = (JSONObject) jsonPhrases.get(j);
+
+            UUID phraseID = UUID.fromString((String) currentPhrase.get(PHRASE_ID));
+            ArrayList<Word> englishPhrase = new ArrayList<Word>();
+            ArrayList<Word> translatedPhrase = new ArrayList<Word>();
+            int difficulty = Math.toIntExact((long) currentPhrase.get(PHRASE_DIFFICULTY));
+
+            // parse English phrase
+            JSONArray jsonEnglishPhrase = (JSONArray) currentPhrase.get(PHRASE_IN_ENGLISH);
+            for (int k = 0; k < jsonEnglishPhrase.size(); k++) {
+                Word englishWord = findWordByUUID(words, UUID.fromString((String) jsonEnglishPhrase.get(k)));
+                if (englishWord != null)
+                    englishPhrase.add(englishWord);
+            }
+
+            // parse translated phrase
+            JSONArray jsonTranslatedPhrase = (JSONArray) currentPhrase.get(PHRASE_IN_TARGET_LANGUAGE);
+            for (int k = 0; k < jsonTranslatedPhrase.size(); k++) {
+                Word translatedWord = findWordByUUID(words,
+                        UUID.fromString((String) jsonTranslatedPhrase.get(k)));
+                if (translatedWord != null)
+                    translatedPhrase.add(translatedWord);
+            }
+            phrases.add(new Phrase(phraseID, englishPhrase, translatedPhrase, difficulty));
+        }
     }
 
     private static Word findWordByUUID(ArrayList<Word> words, UUID id) {

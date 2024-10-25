@@ -57,7 +57,7 @@ public class MultipleChoiceQuestion implements Question {
 
         while(choices.size() < NUMBER_OF_CHOICES) {
             Phrase randomPhrase = allPhrases.get(r.nextInt(allPhrases.size()));
-            String translatedStr = convertPhraseToString(randomPhrase, true)
+            String translatedStr = convertPhraseToString(randomPhrase, true);
             if(!choices.contains(translatedStr) && !randomPhrase.equals(phrase)) {
                 choices.add(translatedStr);
             }
@@ -65,7 +65,6 @@ public class MultipleChoiceQuestion implements Question {
         Collections.shuffle(choices);
         this.correctAnswer = correctAnswerStr;
     }
-}
 
     private String convertPhraseToString(Phrase phrase, boolean isEnglish) {
         ArrayList<Word> phraseArr;

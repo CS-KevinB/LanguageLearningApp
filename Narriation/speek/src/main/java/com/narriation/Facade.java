@@ -241,6 +241,11 @@ public class Facade {
         }
     }
 
+    /**
+     * Display the user's current progress with the words and phrases
+     * they are currently struggling with
+     * @return The user's struggle words and phrases as a string
+     */
     public String displayProgress() {
         String progress = "";
         if (currentUser.getUserProgress(currentLanguage).displayHardPhrases() != "") {
@@ -256,6 +261,10 @@ public class Facade {
         return progress;
     }
 
+    /**
+     * Create a text file with the user's current progress
+     * @return A boolean if the file was created successfully
+     */
     public boolean printProgress() {
         try (FileWriter file = new FileWriter("Narriation/speek/user-progress/"+currentUser.getUsername()+".txt")) {
             file.write(displayProgress());

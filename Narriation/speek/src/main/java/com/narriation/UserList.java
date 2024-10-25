@@ -167,6 +167,11 @@ public class UserList {
         return users;
     }
 
+    public void addUser(User user) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addUser'");
+    }
+
     // public static void main(String[] args) {
     // UserList userList = UserList.getInstance();
     // Avatar avatar = new Avatar();

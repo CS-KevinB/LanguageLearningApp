@@ -1,11 +1,13 @@
 package com.narriation;
+
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+
 /**
  * @author Kevin Buie
- * Creates a Multiple Choice Question for the user
+ *         Creates a Multiple Choice Question for the user
  */
 
 public class MultipleChoiceQuestion implements Question {
@@ -14,7 +16,7 @@ public class MultipleChoiceQuestion implements Question {
     private Language language; // reference for pulling similar questions, pass "current language"
     private Phrase phrase;
     private List<String> choices;
-    private String correctAnswer;
+    private int correctAnswer;
 
     /**
      * Creates a multiple choice question
@@ -40,30 +42,33 @@ public class MultipleChoiceQuestion implements Question {
     public String getQuestion() {
         StringBuilder question = new StringBuilder("Select the correct translation for : \"");
         question.append(convertPhraseToString(phrase, false)).append("\"\n");
-        for(int i = 0; i < choices.size(); i++) {
+        for (int i = 0; i < choices.size(); i++) {
             question.append(i + 1).append(". ").append(choices.get(i)).append("\n");
         }
 
         return question.toString();
-    }   
-
+    }
 
     public void generateQuestion() {
         Random r = new Random();
         ArrayList<Phrase> allPhrases = language.getPhrases();
-        
+
         String correctAnswerStr = convertPhraseToString(phrase, true);
         choices.add(correctAnswerStr);
 
-        while(choices.size() < NUMBER_OF_CHOICES) {
+        while (choices.size() < NUMBER_OF_CHOICES) {
             Phrase randomPhrase = allPhrases.get(r.nextInt(allPhrases.size()));
             String translatedStr = convertPhraseToString(randomPhrase, true);
-            if(!choices.contains(translatedStr) && !randomPhrase.equals(phrase)) {
+            if (!choices.contains(translatedStr) && !randomPhrase.equals(phrase)) {
                 choices.add(translatedStr);
             }
         }
         Collections.shuffle(choices);
-        this.correctAnswer = correctAnswerStr;
+
+        for (int i = 0; i < choices.size(); i++) {
+            if (choices.get(i).equals(correctAnswerStr))
+                this.correctAnswer = i + 1;
+        }
     }
 
     private String convertPhraseToString(Phrase phrase, boolean isEnglish) {
@@ -97,7 +102,7 @@ public class MultipleChoiceQuestion implements Question {
      * @return returns the correct answer
      */
     public String getAnswer() {
-        return correctAnswer.toString();
+        return Integer.toString(correctAnswer);
     }
 
     /**
@@ -113,6 +118,7 @@ public class MultipleChoiceQuestion implements Question {
 
     /**
      * Gets the phrase that the question is based on
+     * 
      * @return Returns the phrase
      */
     public Phrase getPhrase() {

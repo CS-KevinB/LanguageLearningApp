@@ -212,11 +212,14 @@ public class Facade {
             Lesson lesson = new Lesson(this.currentUser.getUserProgress(currentLanguage), this.currentLanguage);
             ArrayList<Question> questions = lesson.getQuestions();
 
+            System.out.println("SIZE:" + questions.size());
+
             for (Question question : questions) {
                 System.out.println(question.getQuestion());
                 String input = keyboard.nextLine();
                 if (question.isCorrect(input)) {
                     this.currentUser.getUserProgress(this.currentLanguage).countCorrectPhrase(question.getPhrase());
+                    lesson.increaseScore();
                     System.out.println("Correct! Great work! Your score is now " + lesson.getScore());
                 } else {
                     System.out.println("Oh no, that was incorrect. Keep going!");
@@ -236,7 +239,7 @@ public class Facade {
         if (currentLanguage != null) {
             return currentLanguage;
         } else {
-            return this.getCurrentUser().getUserProgress().get(0).getLanguage();
+            return this.currentUser.getUserProgress().get(0).getLanguage();
         }
     }
 

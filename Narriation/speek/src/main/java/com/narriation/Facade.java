@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.UUID;
 import org.json.simple.parser.ParseException;
@@ -88,8 +88,8 @@ public class Facade {
     public boolean createUser(UUID id, String firstName, String lastName, String username,
             String password, String emailAddress, String birthdayStr, Avatar avatar,
             ArrayList<User> friends, int points, UserProgress userProgress) {
-        return users.addUser(id, firstName, lastName, username, password, birthdayStr,
-                emailAddress, avatar, friends, points, userProgress);
+        return users.addUser(id, firstName, lastName, username, password,
+                emailAddress, avatar, new Date(), friends, points, userProgress);
     }
 
     /**

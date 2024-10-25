@@ -10,7 +10,7 @@ import java.util.UUID;
 public class WritingQuestion implements Question {
     private Phrase phrase;
     private String questionString;
-    private String answerString;
+    private String answer;
 
     // temporary main
     public static void main(String[] args) {
@@ -18,7 +18,9 @@ public class WritingQuestion implements Question {
         Phrase phrase = Facade.getInstance().getLanguages().getLanguageByUUID(id).getPhrases().get(2);
         WritingQuestion writingQ = new WritingQuestion(phrase);
         System.out.println(writingQ);
-        System.out.println(writingQ.isCorrect("leche"));
+        String userInput = "leche";
+        System.out.println(
+                "If the user writes \"" + userInput + "\", the answer would be " + writingQ.isCorrect(userInput));
     }
 
     /**
@@ -38,14 +40,12 @@ public class WritingQuestion implements Question {
         // english phrase
         int phraseLength = phrase.getEnglishPhrase().size();
         StringBuilder englishStr = new StringBuilder();
-        int pointer = 0;
 
-        while (pointer < phraseLength) {
+        for (int i = 0; i < phraseLength; i++) {
             if (englishStr.length() > 0) {
                 englishStr.append(" ");
             }
-            englishStr.append(this.phrase.getEnglishPhrase().get(pointer).getEnglishWord());
-            pointer++;
+            englishStr.append(this.phrase.getEnglishPhrase().get(i).getEnglishWord());
         }
 
         // translated phrase
@@ -53,22 +53,19 @@ public class WritingQuestion implements Question {
         int answerIndex = r.nextInt(phraseLength);
 
         StringBuilder translatedStr = new StringBuilder();
-        pointer = 0;
-
-        while (pointer < phraseLength) {
+        for (int i = 0; i < phraseLength; i++) {
             if (translatedStr.length() > 0) {
                 translatedStr.append(" ");
             }
-            if (pointer == answerIndex) {
+            if (i == answerIndex) {
                 translatedStr.append("__________");
             } else {
-                translatedStr.append(this.phrase.getTranslatedPhrase().get(pointer).getTranslatedWord());
+                translatedStr.append(this.phrase.getTranslatedPhrase().get(i).getTranslatedWord());
             }
-            pointer++;
         }
 
         this.questionString = englishStr.toString() + " = " + translatedStr.toString();
-        this.answerString = this.phrase.getTranslatedPhrase().get(answerIndex).getTranslatedWord();
+        this.answer = this.phrase.getTranslatedPhrase().get(answerIndex).getTranslatedWord();
     }
 
     /**
@@ -95,7 +92,7 @@ public class WritingQuestion implements Question {
      * @return returns the answer
      */
     public String getAnswer() {
-        return answerString;
+        return this.answer;
     }
 
     /**
@@ -106,10 +103,10 @@ public class WritingQuestion implements Question {
      * @return returns a boolean if the answer is correct or not
      */
     public boolean isCorrect(String input) {
-        return input.equals(answerString);
+        return input.equals(this.answer);
     }
 
     public String toString() {
-        return "Question: " + this.questionString + " | Answer: " + this.answerString;
+        return "Question: " + this.questionString + " | Answer: " + this.answer;
     }
 }

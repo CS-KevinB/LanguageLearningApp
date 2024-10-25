@@ -86,10 +86,10 @@ public class Facade {
      * @return returns a boolean if the user was created
      */
     public boolean createUser(UUID id, String firstName, String lastName, String username,
-            String password, String emailAddress, Date birthday, Avatar avatar,
+            String password, String emailAddress, String birthdayStr, Avatar avatar,
             ArrayList<User> friends, int points, UserProgress userProgress) {
-        return users.addUser(id, firstName, lastName, username, password,
-                emailAddress, birthday, avatar, friends, points, userProgress);
+        return users.addUser(id, firstName, lastName, username, password, birthdayStr,
+                emailAddress, avatar, friends, points, userProgress);
     }
 
     /**
@@ -103,12 +103,18 @@ public class Facade {
      * @return returns a boolean if the account was created
      */
     public boolean createAccount(String firstName, String lastName, String userName, String password,
-            java.util.Date birthday, String email) {
+            String birthdayStr, String email) {
 
         if (users.getUser(userName) != null) {
             System.out.println(userName + " already exists");
             return false;
         }
+        java.util.Date birthdayUtil = DataLoader.convertStringToDate(birthdayStr);
+        if (birthdayUtil == null) {
+            System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+            return false;
+        }
+        java.sql.Date birthday = new java.sql.Date(birthdayUtil.getTime());
         UUID id = UUID.randomUUID();
         Avatar avatar = new Avatar();
         ArrayList<User> friends = new ArrayList<>();

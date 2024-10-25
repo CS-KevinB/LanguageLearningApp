@@ -42,15 +42,15 @@ public class User {
      * @param userProgress tracks the user's progress
      */
     public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
-            Date birtday,
+            Date birthday,
             Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
 
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
-        this.emailAddress = emailAddress;
         this.password = password;
+        this.emailAddress = emailAddress;
         this.birthday = birthday;
         this.avatar = avatar;
         this.friends = new ArrayList<User>();
@@ -263,9 +263,9 @@ public class User {
      * 
      * @return returns the birthday
      */
-    // public Date getBirthday() {
-    // return birthday;
-    // }
+    public Date getBirthday() {
+        return birthday;
+    }
 
     /**
      * Sets the birthday of the user
@@ -379,4 +379,5 @@ public class User {
                 + this.birthday + " | Avatar: " + this.avatar + " | Points: " + this.points + " | User Progress: "
                 + this.userProgress;
     }
+
 }

@@ -48,24 +48,18 @@ public class UserList {
     }
 
     // addUser Method to test DataWriter
-    public boolean addUser(String firstName, String lastName, String username, String password, Date birthday,
-            String emailAddress) {
-
-        UUID id = UUID.randomUUID();
-        Avatar avatar = new Avatar();
-        ArrayList<User> friends = new ArrayList<>();
-        int points = 0;
-        UserProgress userProgress = new UserProgress();
+    public boolean addUser(UUID id, String firstName, String lastName, String userName, String password,
+            String emailAddress, Date birthday, Avatar avatar, ArrayList<User> friends, int points,
+            UserProgress userProgress) {
 
         for (User user : users) {
-            if (user.getUsername().equals(username) || user.getEmailAddress().equals(emailAddress)) {
+            if (user.getUsername().equals(userName) || user.getEmailAddress().equals(emailAddress)) {
                 return false;
             }
         }
 
-        User newUser = new User(id, firstName, lastName, username, password, emailAddress, birthday, avatar, friends,
-                points,
-                userProgress);
+        User newUser = new User(id, firstName, lastName, userName, password, emailAddress, birthday, avatar, friends,
+                points, userProgress);
         users.add(newUser);
         return saveUsers();
     }
@@ -87,7 +81,7 @@ public class UserList {
      * @return returns a boolean if the user was added
      */
     public boolean addUser(UUID id, String firstName, String lastName, String username,
-            String password, String emailAddress, Avatar avatar, java.util.Date birthday,
+            String password, String emailAddress, Avatar avatar, Date birthday,
             ArrayList<User> friends, int points, UserProgress userProgress) {
         for (User user : users) {
             if (user.getUsername().equals(username)
@@ -138,7 +132,7 @@ public class UserList {
             String password, String emailAddress, Date birthday, Avatar avatar,
             ArrayList<User> friends, int points, UserProgress userProgress) {
         User user = new User(id, firstName, lastName, username, password,
-                emailAddress, avatar, friends, points, userProgress);
+                emailAddress, birthday, avatar, friends, points, userProgress);
         for (int i = 0; i < users.size(); i++) {
             if (user.equals(users.get(i))) {
                 users.set(i, user);

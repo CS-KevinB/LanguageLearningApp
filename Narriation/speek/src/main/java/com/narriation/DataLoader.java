@@ -216,12 +216,12 @@ public class DataLoader extends DataConstants {
     /**
      * Converts a String data type to the Date data type
      * 
-     * @param str Takes a String of format yyyy-MM-dd
+     * @param birthday Takes a String of format yyyy-MM-dd
      * @return Returns a Date object
      */
-    private static Date convertStringToDate(String str) {
-        SimpleDateFormat simpleDate = new SimpleDateFormat(DATE_FORMAT);
-        Date date = null;
+    public static Date convertStringToDate(String str) {
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date date = null;
         try {
             date = simpleDate.parse(str);
         } catch (ParseException e) {

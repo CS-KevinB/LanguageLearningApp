@@ -97,11 +97,14 @@ public class LanguageAppUI {
      * Creates an account for the user
      */
     private void createAccount() {
+        String firstName = getField("First Name");
+        String lastName = getField("Last Name");
         String username = getField("Username");
         String password = getField("Password");
+        String birthday = getField("Birthday");
         String email = getField("Email");
 
-        if (facade.createAccount(username, password, email)) {
+        if (facade.createAccount(firstName, lastName, username, password, email, birthday)) {
             System.out.println("Account successfully created!");
         } else {
             System.out.println("Account already exists. Please try logging in.");

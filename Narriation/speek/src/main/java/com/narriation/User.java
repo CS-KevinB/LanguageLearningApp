@@ -50,7 +50,7 @@ public class User {
         this.username = username;
         this.emailAddress = emailAddress;
         this.password = password;
-        this.birthday = null;
+        this.birthday = birthday;
         this.avatar = avatar;
         this.friends = new ArrayList<User>();
         this.points = 0;

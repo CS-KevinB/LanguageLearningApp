@@ -54,7 +54,6 @@ public class DataWriter extends DataConstants {
     @SuppressWarnings("unchecked")
     public static JSONObject getUserJSON(User user) {
         JSONObject userDetails = new JSONObject();
-
         userDetails.put(USER_ID, user.getUUID().toString());
         userDetails.put(USER_FIRST_NAME, user.getFirstName());
         userDetails.put(USER_LAST_NAME, user.getLastName());
@@ -77,9 +76,35 @@ public class DataWriter extends DataConstants {
         }
         userDetails.put(FRIENDS, friendsArray);
 
-        // User Progress
+        JSONArray userProgressArray = new JSONArray();
+        for (UserProgress progress : user.getUserProgress()) {
+            JSONObject progressJSON = createProgressJSON(progress);
+            userProgressArray.add(progressJSON);
+        }
+        userDetails.put(USERPROGRESS, userProgressArray);
 
+        return userDetails;
     }
+
+    // private static JSONObject createProgressJSON(UserProgress progress) {
+    // JSONObject progressJSON = new JSONObject();
+    // progressJSON.put(USERPROGRESS_LANGUAGE,
+    // progress.getLanguage().getUUID().toString());
+    // progressJSON.put(USERPROGRESS_DIFFICULTY, progress.getDifficulty());
+    // progressJSON.put(USERPROGRESS_CURRENTSTORY, progress.getCurrentStory());
+
+    // // Phrase progress
+    // JSONArray phraseProgressArray = new JSONArray();
+    // for (HashMap.Entry<Phrase, Integer> entry :
+    // progress.getPhraseProgress().entrySet()) {
+    // JSONObject phraseProgress = new JSONObject();
+    // phraseProgress.put(USERPROGRESS_PHRASEPROGRESS_PHRASE,
+    // entry.getKey().getId().toString());
+    // phraseProgress.put(USERPROGRESS_PHRASEPROGRESS_INTEGER, entry.getValue());
+    // phraseProgressArray.add(phraseProgress);
+    // }
+    // progressJSON.put(USERPROGRESS_PHRASEPROGRESS, phraseProgressArray);
+    // Word progress
 
     public static void main(String[] args) {
         UserList users = UserList.getInstance();

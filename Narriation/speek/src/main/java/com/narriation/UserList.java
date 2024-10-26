@@ -166,6 +166,15 @@ public class UserList {
         return users;
     }
 
+    public ArrayList<UserProgress> getUserProgress() {
+        ArrayList<UserProgress> usersProgress = new ArrayList<>();
+        for (User user : users) {
+            usersProgress.add(user.getUserProgress(user.getUserProgress(user.getLanguage()).getLanguage()));
+        }
+        return usersProgress;
+
+    }
+
     // public static void main(String[] args) {
     // UserList userList = UserList.getInstance();
     // Avatar avatar = new Avatar();

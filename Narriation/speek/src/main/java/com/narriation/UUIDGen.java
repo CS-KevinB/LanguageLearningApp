@@ -1,3 +1,4 @@
+package com.narriation;
 import java.util.UUID;
 
 public class UUIDGen {

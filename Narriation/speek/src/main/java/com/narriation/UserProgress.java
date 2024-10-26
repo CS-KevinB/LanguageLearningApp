@@ -1,10 +1,7 @@
 package com.narriation;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Defines a class for user progress
@@ -148,14 +145,27 @@ public class UserProgress {
      * @return A string of phrases that the user is struggling with
      */
     public String displayHardPhrases() {
-        String hardPhrases = "";
-        ArrayList<Phrase> phrases = this.language.getPhrases();
+        StringBuilder hardPhrases = new StringBuilder();
+        ArrayList<Phrase> phrases = this.getPhraseList();
         for (Phrase phrase : phrases) {
-            if (this.getPhraseProgress(phrase) < 1) {
-                hardPhrases += phrase + " " + this.getPhraseProgress(phrase) + "\n";
+            if (this.phraseProgress.get(phrase) < 3) {
+                hardPhrases.append(phrase.toString());
+                hardPhrases.append(this.phraseProgressToString(phrase));
             }
         }
-        return hardPhrases;
+        return hardPhrases.toString();
+    }
+
+    public ArrayList<Phrase> getPhraseList() {
+        ArrayList<Phrase> phraseList = new ArrayList<>();
+        for (Phrase phrase : this.phraseProgress.keySet()) {
+            phraseList.add(phrase);
+        }
+        return phraseList;
+    }
+
+    public String phraseProgressToString(Phrase phrase) {
+        return "| Current Score: " + this.getPhraseProgress(phrase) + "\n";
     }
 
 }

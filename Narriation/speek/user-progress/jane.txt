@@ -1,26 +1,3 @@
 Problem Phrases:
-ID: ca0f8b81-6a16-4a44-96a0-b4fc8cb2e8d2
-  ENGLISH: [EN: bad | XX: mala | Pronunciation: mahl-ah | Part of Speech: ADJECTIVE | Gender: FEMININE
-, EN: milk | XX: leche | Pronunciation: leh-che | Part of Speech: NOUN | Gender: FEMININE
-]
-  TRNSLTD: [EN: milk | XX: leche | Pronunciation: leh-che | Part of Speech: NOUN | Gender: FEMININE
-, EN: bad | XX: mala | Pronunciation: mahl-ah | Part of Speech: ADJECTIVE | Gender: FEMININE
-]
-
- 0
-
-Problem Words:
-EN: good | XX: buenos | Pronunciation: bwen-ose | Part of Speech: ADJECTIVE | Gender: MASCULINE
- 0
-EN: good | XX: buenas | Pronunciation: bwen-ahs | Part of Speech: ADJECTIVE | Gender: FEMININE
- 0
-EN: morning | XX: días | Pronunciation: dee-ahs | Part of Speech: NOUN | Gender: MASCULINE
- 0
-EN: night | XX: noches | Pronunciation: noh-chey | Part of Speech: NOUN | Gender: FEMININE
- 0
-EN: bye | XX: adiós | Pronunciation: bwen-ose | Part of Speech: INTERJECTION | Gender: NEITHER
- 0
-EN: milk | XX: leche | Pronunciation: leh-che | Part of Speech: NOUN | Gender: FEMININE
- 0
-EN: bad | XX: mala | Pronunciation: mahl-ah | Part of Speech: ADJECTIVE | Gender: FEMININE
- 0
+good morning | Current Score: 2
+good night | Current Score: 1

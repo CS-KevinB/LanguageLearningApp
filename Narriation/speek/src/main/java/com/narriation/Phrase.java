@@ -80,8 +80,11 @@ public class Phrase {
      * @return returns the phrase as a string
      */
     public String toString() {
-        return "ID: " + this.id + "\n  ENGLISH: " + this.englishPhrase + "\n  TRNSLTD: " + this.translatedPhrase
-                + "\n\n";
+        String toReturn = "";
+        for (Word word : this.englishPhrase) {
+            toReturn += word.getEnglishWord() + " ";
+        }
+        return toReturn;
     }
 
     /**

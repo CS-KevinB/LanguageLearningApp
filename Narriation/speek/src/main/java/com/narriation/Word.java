@@ -105,19 +105,16 @@ public class Word {
 
     /**
      * Returns a formatted string for the word
-     * 
-     * @return String formatted (EN word) (translated word) (pronounciation) (part
-     *         of speech) (gender)
+     * @return String formatted (EN word) (translated word)
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("EN: ").append(englishWord != null ? englishWord : "null");
-        sb.append(" | XX: ").append(translatedWord != null ? translatedWord : "null");
-        sb.append(" | Pronunciation: ").append(pronunciation != null ? pronunciation : "null");
-        sb.append(" | Part of Speech: ").append(partOfSpeech != null ? partOfSpeech.toString() : "null");
-        sb.append(" | Gender: ").append(gender != null ? gender.toString() : "null");
+        sb.append("\nSpanish: ");
+        sb.append(translatedWord != null ? translatedWord : "null");
         sb.append("\n");
-
+        sb.append("English: ");
+        sb.append(englishWord != null ? englishWord : "null");
+        sb.append("\n\n");
         return sb.toString();
     }
 

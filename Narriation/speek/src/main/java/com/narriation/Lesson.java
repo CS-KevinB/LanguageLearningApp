@@ -11,6 +11,7 @@ import software.amazon.awssdk.services.polly.endpoints.internal.Value.Array;
  * @author Risha Patel
  */
 public class Lesson {
+    private static int NUMBER_OF_TIMES_PHRASE_SEEN = 1;
     public static final int NUMBER_OF_QUESTIONS = 5;
     private UserProgress userProgress;
     private ArrayList<Question> questions;

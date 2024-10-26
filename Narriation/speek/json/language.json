@@ -54,7 +54,7 @@
       {
         "uuid": "a52257bc-23e1-4338-a846-9b765f1d1b5e",
         "englishWord": "bye",
-        "translatedWord": "adiós",
+        "translatedWord": "adios",
         "pronunciation": "bwen-ose",
         "gender": "NEITHER",
         "partOfSpeech": "INTERJECTION",
@@ -99,7 +99,7 @@
       {
         "uuid": "ffadad91-dab8-42df-8903-31f78f3e8bda",
         "englishWord": "birthday",
-        "translatedWord": "cumpleaños",
+        "translatedWord": "cumpleanos",
         "pronunciation": "koom-pleh-ah-nyos",
         "gender": "MASCULINE",
         "partOfSpeech": "NOUN",
@@ -108,7 +108,7 @@
       {
         "uuid": "5d3b8903-8f77-4a98-bf9f-6a3b726761f2",
         "englishWord": "where",
-        "translatedWord": "dónde",
+        "translatedWord": "donde",
         "pronunciation": "dohn-deh",
         "gender": "NEUTER",
         "partOfSpeech": "ADVERB",
@@ -126,7 +126,7 @@
       {
         "uuid": "21d4c41a-3347-4fc4-9e63-8c21d2e7f07d",
         "englishWord": "bathroom",
-        "translatedWord": "baño",
+        "translatedWord": "bano",
         "pronunciation": "bahn-yoh",
         "gender": "MASCULINE",
         "partOfSpeech": "NOUN",
@@ -171,7 +171,7 @@
       {
         "uuid": "fdfbc8b7-9139-437b-8e17-e02dbb0d6a17",
         "englishWord": "day",
-        "translatedWord": "día",
+        "translatedWord": "dia",
         "pronunciation": "dee-ah",
         "gender": "MASCULINE",
         "partOfSpeech": "NOUN",
@@ -180,7 +180,7 @@
       {
         "uuid": "d94c7e5f-48c8-441f-87c8-64f6e773d99c",
         "englishWord": "is",
-        "translatedWord": "está",
+        "translatedWord": "esta",
         "pronunciation": "ehs-tah",
         "gender": "NEITHER",
         "partOfSpeech": "VERB",

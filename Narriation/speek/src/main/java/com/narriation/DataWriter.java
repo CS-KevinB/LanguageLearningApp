@@ -134,21 +134,21 @@ public class DataWriter extends DataConstants {
         languageJSON.put(LANGUAGE_ID, language.getUUID());
         languageJSON.put(LANGUAGE_NAME, language.getLanguage());
 
-        // Stories
+        // Add stories
         JSONArray storiesJSON = new JSONArray();
         for (Story story : language.getStories()) {
             storiesJSON.add(createStoryJSON(story));
         }
         languageJSON.put(LANGUAGE_STORIES, storiesJSON);
 
-        // Words
+        // Add Words
         JSONArray wordsJSON = new JSONArray();
         for (Word word : language.getWords()) {
             wordsJSON.add(createWordJSON(word));
         }
         languageJSON.put(LANGUAGE_WORDS, wordsJSON);
 
-        // Phrases
+        // Add Phrases
         JSONArray phrasesJSON = new JSONArray();
         for (Phrase phrase : language.getPhrases()) {
             phrasesJSON.add(createPhraseJSON(phrase));
@@ -176,7 +176,7 @@ public class DataWriter extends DataConstants {
     @SuppressWarnings("unchecked")
     private static JSONObject createWordJSON(Word word) {
         JSONObject wordJSON = new JSONObject();
-        wordJSON.put(WORD_ID, word.getUUID().toString());
+        wordJSON.put(WORD_ID, word.getUUID());
         wordJSON.put(WORD_INENGLISH, word.getEnglishWord());
         wordJSON.put(WORD_INTARGETLANGUAGE, word.getTranslatedWord());
         wordJSON.put(WORD_PRONUNCIATION, word.getPronunciation());
@@ -192,20 +192,20 @@ public class DataWriter extends DataConstants {
     @SuppressWarnings("unchecked")
     private static JSONObject createPhraseJSON(Phrase phrase) {
         JSONObject phraseJSON = new JSONObject();
-        phraseJSON.put(PHRASE_ID, phrase.getUUID().toString());
+        phraseJSON.put(PHRASE_ID, phrase.getUUID());
         phraseJSON.put(PHRASE_DIFFICULTY, phrase.getDifficulty());
 
         // English Phrase
         JSONArray englishPhraseArray = new JSONArray();
         for (Word word : phrase.getEnglishPhrase()) {
-            englishPhraseArray.add(word.getUUID().toString());
+            englishPhraseArray.add(word.getUUID());
         }
         phraseJSON.put(PHRASE_IN_ENGLISH, englishPhraseArray);
 
         // Translated Phrase
         JSONArray translatedPhraseArray = new JSONArray();
         for (Word word : phrase.getTranslatedPhrase()) {
-            translatedPhraseArray.add(word.getUUID().toString());
+            translatedPhraseArray.add(word.getUUID());
         }
         phraseJSON.put(PHRASE_IN_TARGET_LANGUAGE, translatedPhraseArray);
 

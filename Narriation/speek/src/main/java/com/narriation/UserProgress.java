@@ -69,6 +69,10 @@ public class UserProgress {
         return wordProgress;
     }
 
+    public int getWordProgress(Word word) {
+        return this.wordProgress.getOrDefault(word, 0);
+    }
+
     // public void setWordProgress(Word word) {
     // this.wordProgress.put(word, wordProgress.get(word) + 1);
     // }
@@ -89,6 +93,10 @@ public class UserProgress {
      */
     public HashMap<Phrase, Integer> getPhraseProgress() {
         return phraseProgress;
+    }
+
+    public int getPhraseProgress(Phrase phrase) {
+        return this.phraseProgress.getOrDefault(phrase, 0);
     }
 
     /**
@@ -132,22 +140,6 @@ public class UserProgress {
                 + this.currentStory
                 + " | Phrase Progress (Language:Score)" + this.phraseProgress
                 + " | " + this.wordProgress;
-    }
-
-    /**
-     * Gets the words that the user is struggling with
-     * 
-     * @return A string of words that the user is struggling with
-     */
-    public String displayHardWords() {
-        String hardWords = "";
-        ArrayList<Word> words = this.language.getWords();
-        for (Word word : words) {
-            if (this.getWordProgress(word) < 1) {
-                hardWords += word + " " + this.getWordProgress(word) + "\n";
-            }
-        }
-        return hardWords;
     }
 
     /**

@@ -232,6 +232,10 @@ public class DataWriter extends DataConstants {
     }
 
     public static void main(String[] args) {
+        ArrayList<Language> languages = DataLoader.getLanguages();
+        boolean languageSaved = saveLanguages(languages);
+        System.out.println(languageSaved ? "Languages saved successfully!" : "Failed to save languages");
+
         ArrayList<User> users = UserList.getInstance().getUsers();
         if (users == null || users.isEmpty()) {
             System.out.println("No users available to save.");
@@ -239,10 +243,6 @@ public class DataWriter extends DataConstants {
             boolean userSaved = saveUsers(users);
             System.out.println(userSaved ? "Users saved successfully!" : "Failed to saveusers");
         }
-
-        ArrayList<Language> languages = DataLoader.getLanguages();
-        boolean languageSaved = saveLanguages(languages);
-        System.out.println(languageSaved ? "Languages saved successfully!" : "Failed to save languages");
 
         ArrayList<UserProgress> userProgress = UserList.getInstance().getUsersProgress();
         boolean userProgressSaved = saveUserProgress(userProgress);

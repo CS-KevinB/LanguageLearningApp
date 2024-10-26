@@ -28,7 +28,7 @@ public class TrueFalseQuestion implements Question {
     }
 
     public String getQuestion() {
-        return englishStr;
+        return englishStr + " Enter True or False";
     }
 
     /**
@@ -47,7 +47,6 @@ public class TrueFalseQuestion implements Question {
     public void generateQuestion() {
         Random r = new Random();
         boolean ansBool = r.nextBoolean();
-        System.out.println("Answer = " + ansBool);
 
         // build the question string
 

@@ -220,11 +220,10 @@ public class Facade {
      * Starts the lesson
      */
     public void startLesson() {
+        System.out.println("Please turn up your volume for the listening questions!");
         if (this.currentUser != null && this.currentLanguage != null) {
             Lesson lesson = new Lesson(this.currentUser.getUserProgress(currentLanguage), this.currentLanguage);
             ArrayList<Question> questions = lesson.getQuestions();
-
-            System.out.println("SIZE:" + questions.size());
 
             for (Question question : questions) {
                 System.out.println(question.getQuestion());
@@ -276,11 +275,6 @@ public class Facade {
             progress += "Problem Phrases:\n" + currentUser.getUserProgress(currentLanguage).displayHardPhrases();
         } else {
             progress += "No Problem Phrases!\n";
-        }
-        if (currentUser.getUserProgress(currentLanguage).displayHardWords() != "") {
-            progress += "\nProblem Words:\n" + currentUser.getUserProgress(currentLanguage).displayHardWords();
-        } else {
-            progress += "\nNo Problem Words!";
         }
         return progress;
     }

@@ -341,7 +341,7 @@ public class User {
             if (progress.getLanguage().equals(language))
                 return progress;
         }
-        System.out.println("No progress found for" + language);
+        System.out.println("No progress found for " + language);
         return null;
     }
 

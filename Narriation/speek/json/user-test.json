@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [{"birthday":"Wed May 14 00:00:00 EDT 2003","firstName":"Jane","lastName":"Doe","password":"doe","emailAddress":"JaneDoe@gmail.com","userProgress":[{"difficulty":1,"phraseProgress":[{"phrase":"18b497a2-41fd-426d-aa09-aadbcda407b2","integer":1},{"phrase":"77879555-3098-4a9f-8c23-c348a62e2b65","integer":2}],"currentStory":Title: Good night Marco!
+=======
+[{"birthday":"Wed May 14 00:00:00 EDT 2003","firstName":"Jane","lastName":"Doe","password":"doe","emailAddress":"JaneDoe@gmail.com","userProgress":[{"difficulty":1,"phraseProgress":[{"phrase":"77879555-3098-4a9f-8c23-c348a62e2b65","integer":3},{"phrase":"ca0f8b81-6a16-4a44-96a0-b4fc8cb2e8d2","integer":1},{"phrase":"18b497a2-41fd-426d-aa09-aadbcda407b2","integer":2}],"currentStory":Title: Good night Marco!
+>>>>>>> 42231594a304c1355270457626d9fa10ba45f109
  English Story: It's time to go to sleep. Drink a glass of milk and good night, Marco!
  Spanish Story: Es hora de irse a dormir. Bebe un vaso de leche y ¡buenas noches, Marco!
 

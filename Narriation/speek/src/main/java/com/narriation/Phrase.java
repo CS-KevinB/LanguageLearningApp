@@ -3,8 +3,6 @@ package com.narriation;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import software.amazon.awssdk.services.polly.endpoints.internal.Value.Str;
-
 /**
  * The phrase class contains lists of words for each phrase
  * and feedback
@@ -24,7 +22,6 @@ public class Phrase {
      * @param englishPhrase    - list of words for the english phrase
      * @param translatedPhrase - list of words for the translated phrase
      */
-
     public Phrase(String feedback, ArrayList<Word> englishPhrase, ArrayList<Word> translatedPhrase, int difficulty) {
         this.id = UUID.randomUUID();
         this.englishPhrase = englishPhrase;
@@ -67,21 +64,17 @@ public class Phrase {
         return translatedPhrase;
     }
 
-    // TODO: TEST THIS!!!
-    public void phraseSeen() {
-        // UserProgress userProgress =
-        // Facade.getInstance().getCurrentUser().getUserProgress();
-        // userProgress.incrementPhraseSeenCounter(this);
-    }
-
     /**
      * Creates a string representation of the phrase
      * 
      * @return returns the phrase as a string
      */
     public String toString() {
-        return "ID: " + this.id + "\n  ENGLISH: " + this.englishPhrase + "\n  TRNSLTD: " + this.translatedPhrase
-                + "\n\n";
+        String toReturn = "";
+        for (Word word : this.englishPhrase) {
+            toReturn += word.getEnglishWord() + " ";
+        }
+        return toReturn;
     }
 
     /**
@@ -93,6 +86,10 @@ public class Phrase {
         return difficulty;
     }
 
+    /**
+     * Gets the UUID of the phrase
+     * @return The UUID of the phrase
+     */
     public UUID getUUID() {
         return this.id;
     }

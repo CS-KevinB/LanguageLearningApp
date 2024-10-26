@@ -9,7 +9,7 @@ import org.json.simple.parser.ParseException;
  */
 public class LanguageAppUI {
     private static final String WELCOME_MESSAGE = "Welcome to the Language Learning App!";
-    private String[] mainMenuOptions = { "Create Account", "Login", "Start Lesson", "View Progress", "Print Progress",
+    private String[] mainMenuOptions = { "Create Account", "Login", "Start Lesson", "Read a Story", "View Progress", "Print Progress",
             "Logout" };
     private Scanner scanner;
     private Facade facade;
@@ -73,13 +73,16 @@ public class LanguageAppUI {
                     startLesson();
                     break;
                 case 3:
-                    System.out.println(this.facade.displayProgress());
+                    this.facade.startStory();
                     break;
                 case 4:
+                    System.out.println(this.facade.displayProgress());
+                    break;
+                case 5:
                     this.facade.printProgress();
                     System.out.println("A file has been created in the Narriation/speek/user-progress folder!");
                     break;
-                case 5:
+                case 6:
                     logout();
                     loggedIn = false;
 
@@ -122,13 +125,22 @@ public class LanguageAppUI {
      */
     private int getUserCommand(int numCommands) {
         System.out.print("What would you like to do?: ");
-        String input = scanner.nextLine();
+        String inputStr = scanner.nextLine();
+        int input;
+
+        // check if the value is a number
+        try {
+            input = Integer.parseInt(inputStr);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+
         if (facade.getCurrentUser() != null) {
-            int command = Integer.parseInt(input) + 1;
+            int command = input + 1;
             if (command >= 0 && command < numCommands)
                 return command;
         } else {
-            int command = Integer.parseInt(input) - 1;
+            int command = input - 1;
             if (command >= 0 && command < numCommands)
                 return command;
         }
@@ -175,7 +187,7 @@ public class LanguageAppUI {
             User currentUser = facade.getCurrentUser();
             System.out.println("Login successful! Welcome, " + username);
         } else {
-            System.out.println("Invalid username. Please try again.");
+            System.out.println("Invalid credentials. Please try again.");
         }
     }
 

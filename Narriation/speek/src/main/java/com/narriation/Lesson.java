@@ -11,6 +11,7 @@ import software.amazon.awssdk.services.polly.endpoints.internal.Value.Array;
  * @author Risha Patel
  */
 public class Lesson {
+    public static final int NUMBER_OF_TIMES_PHRASE_SEEN = 2;
     public static final int NUMBER_OF_QUESTIONS = 5;
     private UserProgress userProgress;
     private ArrayList<Question> questions;
@@ -45,7 +46,8 @@ public class Lesson {
         // difficulty
         for (int i = 0; i < allPhrases.size() && selectedPhrases.size() < NUMBER_OF_QUESTIONS; i++) {
             Phrase phrase = allPhrases.get(i);
-            if (phrase.getDifficulty() == userDifficulty)
+            if (phrase.getDifficulty() == userDifficulty
+                    && userProgress.getPhraseProgress(phrase) < NUMBER_OF_TIMES_PHRASE_SEEN)
                 selectedPhrases.add(phrase);
         }
 

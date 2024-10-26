@@ -97,6 +97,7 @@ public class ListeningQuestion implements Question {
      * Plays the audio for the listening question
      */
     public void playAudio() {
+        System.out.println("Listen to the following question");
         Narriator.playSound(question);
     }
 

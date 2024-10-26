@@ -1,10 +1,7 @@
 package com.narriation;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Defines a class for user progress
@@ -95,6 +92,11 @@ public class UserProgress {
         return phraseProgress;
     }
 
+    /**
+     * Gets the progress of a phrase
+     * @param phrase The phrase to get the progress for
+     * @return The progress of the phrase
+     */
     public int getPhraseProgress(Phrase phrase) {
         return this.phraseProgress.getOrDefault(phrase, 0);
     }
@@ -148,14 +150,36 @@ public class UserProgress {
      * @return A string of phrases that the user is struggling with
      */
     public String displayHardPhrases() {
-        String hardPhrases = "";
-        ArrayList<Phrase> phrases = this.language.getPhrases();
+        StringBuilder hardPhrases = new StringBuilder();
+        ArrayList<Phrase> phrases = this.getPhraseList();
         for (Phrase phrase : phrases) {
-            if (this.getPhraseProgress(phrase) < 1) {
-                hardPhrases += phrase + " " + this.getPhraseProgress(phrase) + "\n";
+            if (this.phraseProgress.get(phrase) < 1) {
+                hardPhrases.append(phrase.toString());
+                hardPhrases.append(this.phraseProgressToString(phrase));
             }
         }
-        return hardPhrases;
+        return hardPhrases.toString();
+    }
+
+    /**
+     * Gets the list of phrases that the user has seen
+     * @return returns the list of phrases the user has seen
+     */
+    public ArrayList<Phrase> getPhraseList() {
+        ArrayList<Phrase> phraseList = new ArrayList<>();
+        for (Phrase phrase : this.phraseProgress.keySet()) {
+            phraseList.add(phrase);
+        }
+        return phraseList;
+    }
+
+    /**
+     * Gets the phrase progress as a string
+     * @param phrase The phrase to get the progress for
+     * @return The phrase progress as a string
+     */
+    public String phraseProgressToString(Phrase phrase) {
+        return "| Current Score: " + this.getPhraseProgress(phrase) + "\n";
     }
 
 }

@@ -127,6 +127,10 @@ public class Word {
         return difficulty;
     }
 
+    /**
+     * Gets the gender of the word
+     * @return returns the gender
+     */
     public Gender getGender() {
         return this.gender;
     }

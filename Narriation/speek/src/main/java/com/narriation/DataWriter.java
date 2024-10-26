@@ -101,7 +101,7 @@ public class DataWriter extends DataConstants {
         JSONObject progressJSON = new JSONObject();
         progressJSON.put(USERPROGRESS_LANGUAGE, progress.getLanguage().getUUID().toString());
         progressJSON.put(USERPROGRESS_DIFFICULTY, progress.getDifficulty());
-        progressJSON.put(USERPROGRESS_CURRENTSTORY, progress.getCurrentStory());
+        progressJSON.put(USERPROGRESS_CURRENTSTORY, progress.getCurrentStoryIndex());
 
         // Phrase Progress to JSON
         JSONArray phraseProgressArray = new JSONArray();

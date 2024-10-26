@@ -9,7 +9,8 @@ import org.json.simple.parser.ParseException;
  */
 public class LanguageAppUI {
     private static final String WELCOME_MESSAGE = "Welcome to the Language Learning App!";
-    private String[] mainMenuOptions = { "Create Account", "Login", "Start Lesson", "View Progress", "Print Progress", "Logout" };
+    private String[] mainMenuOptions = { "Create Account", "Login", "Start Lesson", "View Progress", "Print Progress",
+            "Logout" };
     private Scanner scanner;
     private Facade facade;
 
@@ -63,8 +64,6 @@ public class LanguageAppUI {
                     // Lesson
                     // Story
 
-                    
-
                     // System.out.println("AFTER: "
                     // +
                     // this.facade.getCurrentUser().getUserProgress(language).getPhraseProgress(phrase));
@@ -83,7 +82,7 @@ public class LanguageAppUI {
                 case 5:
                     logout();
                     loggedIn = false;
-                    
+
                     break;
             }
         }
@@ -102,14 +101,14 @@ public class LanguageAppUI {
      */
     private void displayMainMenu() {
         System.out.println("\n************ Main Menu *************");
-        if(facade.getCurrentUser() == null) {
+        if (facade.getCurrentUser() == null) {
             for (int i = 0; i < 2; i++) {
-                System.out.println((i+1) + ". " + mainMenuOptions[i]);
+                System.out.println((i + 1) + ". " + mainMenuOptions[i]);
             }
             System.out.println("\n");
         } else {
             for (int i = 2; i < mainMenuOptions.length; i++) {
-                System.out.println((i-1) + ". " + mainMenuOptions[i]);
+                System.out.println((i - 1) + ". " + mainMenuOptions[i]);
             }
             System.out.println("\n");
         }

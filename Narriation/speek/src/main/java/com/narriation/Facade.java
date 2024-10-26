@@ -88,7 +88,7 @@ public class Facade {
             String password, String emailAddress, String birthdayStr, Avatar avatar,
             ArrayList<User> friends, int points, UserProgress userProgress) {
         return users.addUser(id, firstName, lastName, username, password,
-                emailAddress, new Date(), avatar,friends, points, userProgress);
+                emailAddress, new Date(), avatar, friends, points, userProgress);
     }
 
     /**

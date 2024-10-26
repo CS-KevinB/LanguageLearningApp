@@ -9,7 +9,7 @@ import org.json.simple.parser.ParseException;
  */
 public class LanguageAppUI {
     private static final String WELCOME_MESSAGE = "Welcome to the Language Learning App!";
-    private String[] mainMenuOptions = { "Create Account", "Login", "Start Lesson", "View Progress", "Print Progress",
+    private String[] mainMenuOptions = { "Create Account", "Login", "Start Lesson", "Read a Story", "View Progress", "Print Progress",
             "Logout" };
     private Scanner scanner;
     private Facade facade;
@@ -73,13 +73,16 @@ public class LanguageAppUI {
                     startLesson();
                     break;
                 case 3:
-                    System.out.println(this.facade.displayProgress());
+                    this.facade.startStory();
                     break;
                 case 4:
+                    System.out.println(this.facade.displayProgress());
+                    break;
+                case 5:
                     this.facade.printProgress();
                     System.out.println("A file has been created in the Narriation/speek/user-progress folder!");
                     break;
-                case 5:
+                case 6:
                     logout();
                     loggedIn = false;
 

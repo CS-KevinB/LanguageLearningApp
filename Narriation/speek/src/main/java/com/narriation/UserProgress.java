@@ -148,7 +148,7 @@ public class UserProgress {
         StringBuilder hardPhrases = new StringBuilder();
         ArrayList<Phrase> phrases = this.getPhraseList();
         for (Phrase phrase : phrases) {
-            if (this.phraseProgress.get(phrase) < 3) {
+            if (this.phraseProgress.get(phrase) < 1) {
                 hardPhrases.append(phrase.toString());
                 hardPhrases.append(this.phraseProgressToString(phrase));
             }

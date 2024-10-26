@@ -3,6 +3,7 @@ package com.narriation;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -120,8 +121,6 @@ public class DataWriter extends DataConstants {
         // Phrase Progress to JSON
         JSONArray phraseProgressArray = new JSONArray();
         for (HashMap.Entry<Phrase, Integer> entry : progress.getPhraseProgress().entrySet()) {
-            // Phrase phrase = entry.getKey();
-            // int progress = entry.getValue();
             JSONObject phraseEntry = new JSONObject();
             phraseEntry.put(USERPROGRESS_PHRASEPROGRESS_PHRASE, entry.getKey().getUUID().toString());
             phraseEntry.put(USERPROGRESS_PHRASEPROGRESS_INTEGER, entry.getValue());
@@ -141,9 +140,6 @@ public class DataWriter extends DataConstants {
 
         return progressJSON;
     }
-
-    // Phrase progress to JSON
-    private static JSONObject createPhraseProgressJSON(HashMap<Phrase, Integer> phraseProgress) {
 
     /**
      * Converts Language object to JSON format.
@@ -244,6 +240,10 @@ public class DataWriter extends DataConstants {
         ArrayList<Language> languages = DataLoader.getLanguages();
         boolean languageSaved = saveLanguages(languages);
         System.out.println(languageSaved ? "Languages saved successfully!" : "Failed to save languages");
+
+        ArrayList<UserProgress> userProgress = UserList.getInstance().getUserProgress();
+        boolean userProgressSaved = saveUserProgress(userProgress);
+        System.out.println(userProgressSaved ? "User progress saved successfully!" : "Failed to save user progress");
     }
 
 }

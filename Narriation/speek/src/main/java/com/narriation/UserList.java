@@ -14,31 +14,20 @@ public class UserList {
     private static UserList userList;
     private ArrayList<User> users;
 
+    /**
+     * The singleton constructor for UserList
+     */
     private UserList() {
         users = DataLoader.getUsers();
     }
 
+    /**
+     * Adds a user to the user list
+     * @param user
+     */
     public void addUser(User user) {
         users.add(user);
     }
-
-    // private UserList() {
-    // users = DataLoader.getUsers();
-    // }
-
-    /**
-     * Creates a private user list to store all the users
-     */
-    // private UserList() {
-    // users = new ArrayList<>();
-    // // Manually add users
-    // users.add(new User(UUID.randomUUID(), "John", "Doe", "jdoe", "p123",
-    // "johndoe@email.com",
-    // new Date(0), new Avatar(), new ArrayList<>(), 0, new UserProgress()));
-    // users.add(new User(UUID.randomUUID(), "Jane", "Smith", "jsmith", "p123",
-    // "janesmith@email.com",
-    // new Date(0), new Avatar(), new ArrayList<>(), 0, new UserProgress()));
-    // }
 
     /**
      * Gets the instance of the user list
@@ -55,54 +44,16 @@ public class UserList {
     public boolean addUser(UUID id, String firstName, String lastName, String userName, String password,
             String emailAddress, Date birthday, Avatar avatar, ArrayList<User> friends, int points,
             UserProgress userProgress) {
-
         for (User user : users) {
             if (user.getUsername().equals(userName) || user.getEmailAddress().equals(emailAddress)) {
                 return false;
             }
         }
-
         User newUser = new User(id, firstName, lastName, userName, password, emailAddress, birthday, avatar, friends,
                 points, userProgress);
         users.add(newUser);
         return saveUsers();
     }
-
-    // /**
-    // * Adds a user to the user list
-    // *
-    // * @param id takes in the id of the user
-    // * @param firstName takes in the first name of the user
-    // * @param lastName takes in the last name of the user
-    // * @param username takes in the username of the user
-    // * @param password takes in the password of the user
-    // * @param emailAddress takes in the email address of the user
-    // * @param birthday takes in the birthday of the user
-    // * @param avatar takes in the avatar of the user (default unless changed)
-    // * @param friends takes in the friends of the user if they have any
-    // * @param points sets up a point system for the user
-    // * @param userProgress tracks the user's progress
-    // * @return returns a boolean if the user was added
-    // */
-    // public boolean addUser(UUID id, String firstName, String lastName, String
-    // username,
-    // String password, String emailAddress, Avatar avatar, Date birthday,
-    // ArrayList<User> friends, int points, UserProgress userProgress) {
-    // for (User user : users) {
-    // if (user.getUsername().equals(username)
-    // || user.getEmailAddress().equals(emailAddress))
-    // return false; // User already exists
-    // }
-
-    // // Add the new user to the list
-    // User newUser = new User(id, firstName, lastName, username, password,
-    // emailAddress, birthday, avatar, friends,
-    // points,
-    // userProgress);
-    // users.add(newUser);
-    // return saveUsers();
-
-    // }
 
     /**
      * Gets a user by their username
@@ -174,25 +125,4 @@ public class UserList {
         return usersProgress;
 
     }
-
-    // public static void main(String[] args) {
-    // UserList userList = UserList.getInstance();
-    // Avatar avatar = new Avatar();
-    // UserProgress userProgress = new UserProgress();
-    // @SuppressWarnings("deprecation")
-    // Date birthday = new Date(2003, 05, 14);
-    // ArrayList<User> friends = new ArrayList<>();
-    // @SuppressWarnings("deprecation")
-    // Date birthday2 = new Date(2000, 9, 11);
-
-    // friends.add(User("081a004b-3306-4975-9520-2437276c600a", "Julie", "Adams",
-    // "adamsj", "Jul!e@dam$", "JulieAdams@gmail.com", birthday2, avatar,
-    // languages))
-
-    // System.out.println(userList.addUser("a9fc5c37-053b-479e-9741-7f0bb0e525ae",
-    // "Jane", "Doe", "JDOE46", "Columb!aSC", "JaneDoe@gmail.com", birthday, avatar,
-    // "3085ad7f-139c-4d3e-85e6-52cc0d028a29",
-    // "081a004b-3306-4975-9520-2437276c600a", 0, userProgress));
-
-    // }
 }

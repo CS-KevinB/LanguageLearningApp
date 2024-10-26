@@ -3,7 +3,6 @@ package com.narriation;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.UUID;
-import java.util.HashMap;
 
 /**
  * The RegisteredUser class extends UserList and contains list of registered
@@ -44,7 +43,6 @@ public class User {
     public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
             Date birthday,
             Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
-
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -75,7 +73,6 @@ public class User {
      */
     public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
             Date birthday, Avatar avatar, int points, ArrayList<UserProgress> userProgress) {
-
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -345,6 +342,10 @@ public class User {
         return null;
     }
 
+    /**
+     * Gets the user progress
+     * @return the user progress
+     */
     public ArrayList<UserProgress> getUserProgress() {
         return this.userProgress;
     }

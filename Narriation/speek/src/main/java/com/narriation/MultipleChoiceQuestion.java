@@ -49,6 +49,9 @@ public class MultipleChoiceQuestion implements Question {
         return question.toString();
     }
 
+    /**
+     * Generates the multiple choice question
+     */
     public void generateQuestion() {
         Random r = new Random();
         ArrayList<Phrase> allPhrases = language.getPhrases();
@@ -71,6 +74,12 @@ public class MultipleChoiceQuestion implements Question {
         }
     }
 
+    /**
+     * Converts the phrase to a string
+     * @param phrase Takes the phrase in order to convert
+     * @param isEnglish Tells weather the phrase is in english or not
+     * @return the phrase as a string
+     */
     private String convertPhraseToString(Phrase phrase, boolean isEnglish) {
         ArrayList<Word> phraseArr;
         StringBuilder str = new StringBuilder();

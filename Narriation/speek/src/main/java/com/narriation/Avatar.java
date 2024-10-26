@@ -55,6 +55,7 @@ public class Avatar {
         }
         return false;
     }
+    
     /**
      * Sets the character's hat to a passed in parameter
      * @param character A value in the CharacterOptions enum 

@@ -70,7 +70,7 @@ public class ListeningQuestion implements Question {
      */
     public String getQuestion() {
         this.playAudio();
-        return "Repeat the phrase: ";
+        return "Type the phrase: ";
     }
 
     /**
@@ -97,7 +97,6 @@ public class ListeningQuestion implements Question {
      * Plays the audio for the listening question
      */
     public void playAudio() {
-        System.out.println(question);
         Narriator.playSound(question);
     }
 

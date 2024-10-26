@@ -28,7 +28,7 @@ public class TrueFalseQuestion implements Question {
     }
 
     public String getQuestion() {
-        return englishStr;
+        return englishStr + " Enter True or False";
     }
 
     /**

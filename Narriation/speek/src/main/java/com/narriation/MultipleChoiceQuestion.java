@@ -40,7 +40,7 @@ public class MultipleChoiceQuestion implements Question {
      * @return returns the question
      */
     public String getQuestion() {
-        StringBuilder question = new StringBuilder("Select the correct translation for : \"");
+        StringBuilder question = new StringBuilder("Select the correct translation by typing the matching number for : \"");
         question.append(convertPhraseToString(phrase, false)).append("\"\n");
         for (int i = 0; i < choices.size(); i++) {
             question.append(i + 1).append(". ").append(choices.get(i)).append("\n");

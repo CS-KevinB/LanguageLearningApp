@@ -92,6 +92,12 @@ public class UserProgress {
         return phraseProgress;
     }
 
+    /**
+     * Gets the progress of a phrase
+     * 
+     * @param phrase The phrase to get the progress for
+     * @return The progress of the phrase
+     */
     public int getPhraseProgress(Phrase phrase) {
         return this.phraseProgress.getOrDefault(phrase, 0);
     }
@@ -127,6 +133,10 @@ public class UserProgress {
         return stories.get(currentStory);
     }
 
+    public int getCurrentStoryIndex() {
+        return this.currentStory;
+    }
+
     /**
      * Gets a string representation of the user progress
      * 
@@ -156,6 +166,11 @@ public class UserProgress {
         return hardPhrases.toString();
     }
 
+    /**
+     * Gets the list of phrases that the user has seen
+     * 
+     * @return returns the list of phrases the user has seen
+     */
     public ArrayList<Phrase> getPhraseList() {
         ArrayList<Phrase> phraseList = new ArrayList<>();
         for (Phrase phrase : this.phraseProgress.keySet()) {
@@ -164,6 +179,12 @@ public class UserProgress {
         return phraseList;
     }
 
+    /**
+     * Gets the phrase progress as a string
+     * 
+     * @param phrase The phrase to get the progress for
+     * @return The phrase progress as a string
+     */
     public String phraseProgressToString(Phrase phrase) {
         return "| Current Score: " + this.getPhraseProgress(phrase) + "\n";
     }

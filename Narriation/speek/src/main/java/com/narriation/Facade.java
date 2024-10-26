@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.Date;
 import java.util.UUID;
-import org.json.simple.parser.ParseException;
-import software.amazon.awssdk.services.polly.endpoints.internal.Value.Str;
 
 /**
  * @author kinsawills

@@ -10,6 +10,7 @@ public class Story {
     private String title;
     private String englishStory;
     private String spanishStory;
+    private int currentStoryIndex;
 
     /**
      * Constructor for story class
@@ -35,6 +36,10 @@ public class Story {
     public String getSpanishStory() {
         return spanishStory;
     }
+
+    // public int getCurrentStoryIndex() {
+    // return this.currentStoryIndex;
+    // }
 
     /**
      * To string method in order to test the story

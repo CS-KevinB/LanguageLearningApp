@@ -184,7 +184,7 @@ public class LanguageAppUI {
             User currentUser = facade.getCurrentUser();
             System.out.println("Login successful! Welcome, " + username);
         } else {
-            System.out.println("Invalid username. Please try again.");
+            System.out.println("Invalid credentials. Please try again.");
         }
     }
 

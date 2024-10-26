@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-[{"birthday":"Wed May 14 00:00:00 EDT 2003","firstName":"Jane","lastName":"Doe","password":"doe","emailAddress":"JaneDoe@gmail.com","userProgress":[],"avatar":{"character":"LLAMA","hat":"NONE"},"uuid":"a9fc5c37-053b-479e-9741-7f0bb0e525ae","friends":["081a004b-3306-4975-9520-2437276c600a"],"username":"jane","points":0},{"birthday":"Mon Aug 21 00:00:00 EDT 1961","firstName":"John","lastName":"Griffen","password":"J0hnG342","emailAddress":"JohnGriffen@gmail.com","userProgress":[],"avatar":{"character":"GIRAFFE","hat":"NONE"},"uuid":"c5c93174-01f6-4dfc-aba2-14aa61c6696b","friends":["081a004b-3306-4975-9520-2437276c600a"],"username":"GriffenJ61","points":0},{"birthday":"Mon Sep 11 00:00:00 EDT 2000","firstName":"Julie","lastName":"Adams","password":"Jul!e@dam$","emailAddress":"JulieAdams@gmail.com","userProgress":[],"avatar":{"character":"LIZARD","hat":"NONE"},"uuid":"081a004b-3306-4975-9520-2437276c600a","friends":["c5c93174-01f6-4dfc-aba2-14aa61c6696b","a9fc5c37-053b-479e-9741-7f0bb0e525ae"],"username":"adamsj","points":0}]
-=======
-[{"birthday":"Wed May 14 00:00:00 EDT 2003","firstName":"Jane","lastName":"Doe","password":"doe","emailAddress":"JaneDoe@gmail.com","userProgress":[{"difficulty":1,"phraseProgress":[{"phrase":"18b497a2-41fd-426d-aa09-aadbcda407b2","integer":1},{"phrase":"77879555-3098-4a9f-8c23-c348a62e2b65","integer":2}],"currentStory":Title: Good night Marco!
+[{"birthday":"Wed May 14 00:00:00 EDT 2003","firstName":"Jane","lastName":"Doe","password":"doe","emailAddress":"JaneDoe@gmail.com","userProgress":[{"difficulty":1,"phraseProgress":[{"phrase":"77879555-3098-4a9f-8c23-c348a62e2b65","integer":2},{"phrase":"18b497a2-41fd-426d-aa09-aadbcda407b2","integer":1}],"currentStory":Title: Good night Marco!
  English Story: It's time to go to sleep. Drink a glass of milk and good night, Marco!
  Spanish Story: Es hora de irse a dormir. Bebe un vaso de leche y ¡buenas noches, Marco!
 
@@ -14,4 +11,3 @@
  Spanish Story: Es hora de irse a dormir. Bebe un vaso de leche y ¡buenas noches, Marco!
 
 ,"language":"3085ad7f-139c-4d3e-85e6-52cc0d028a29","wordProgress":[{"integer":0,"word":"00a54e77-b9af-4068-ace0-7bc4bda3b744"}]}],"avatar":{"character":"LIZARD","hat":"NONE"},"uuid":"081a004b-3306-4975-9520-2437276c600a","friends":["c5c93174-01f6-4dfc-aba2-14aa61c6696b","a9fc5c37-053b-479e-9741-7f0bb0e525ae"],"username":"adamsj","points":0}]
->>>>>>> edb79075d4172591eb61d1ea3afd8ab341824c49

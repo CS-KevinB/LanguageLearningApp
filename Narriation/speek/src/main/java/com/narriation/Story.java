@@ -25,18 +25,34 @@ public class Story {
         this.spanishStory = spanishStory;
     }
 
+    /**
+     * Gets the title of the story
+     * @return the title of the story
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Gets the english story
+     * @return the english story
+     */
     public String getEnglishStory() {
         return englishStory;
     }
 
+    /**
+     * Gets the spanish story
+     * @return the spanish story
+     */
     public String getSpanishStory() {
         return spanishStory;
     }
 
+    /**
+     * Gets the current story's index
+     * @return the index of the current story
+     */
     public int getCurrentStoryIndex() {
         return this.currentStoryIndex;
     }
@@ -51,7 +67,6 @@ public class Story {
 
     /**
      * Displays the story
-     * 
      * @return Returns the story as a string
      */
     public String displayStory() {

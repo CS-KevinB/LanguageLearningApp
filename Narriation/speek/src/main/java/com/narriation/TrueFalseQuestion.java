@@ -1,7 +1,6 @@
 package com.narriation;
 
 import java.util.Random;
-import java.util.UUID;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +8,6 @@ import java.util.ArrayList;
  *         Creates a true or false type of question
  */
 public class TrueFalseQuestion implements Question {
-
     private Language language; // reference for pulling similar questions, pass "current language"
     private Phrase phrase;
     private String englishStr;
@@ -27,23 +25,33 @@ public class TrueFalseQuestion implements Question {
         this.generateQuestion();
     }
 
+    /**
+     * Gets the question
+     * @retyrn returns the true/false question
+     */
     public String getQuestion() {
         return englishStr + " Enter True or False";
     }
 
     /**
      * Takes the word and returns it as a question to the user
-     * 
      * @return returns the question
      */
     public String getEnglishStr() {
         return this.englishStr;
     }
 
+    /**
+     * Gets the translated question
+     * @return the translated question
+     */
     public String getTranslatedStr() {
         return this.translatedStr;
     }
 
+    /**
+     * Generates a question
+     */
     public void generateQuestion() {
         Random r = new Random();
         boolean ansBool = r.nextBoolean();
@@ -76,6 +84,12 @@ public class TrueFalseQuestion implements Question {
         this.isMatch = ansBool;
     }
 
+    /**
+     * Converts the phrase to a string
+     * @param phrase the phrase to convert
+     * @param isEnglish whether or not the phrase is in english
+     * @return The phrase as a string
+     */
     private String convertPhraseToString(Phrase phrase, boolean isEnglish) {
         ArrayList<Word> phraseArr;
         StringBuilder str = new StringBuilder();

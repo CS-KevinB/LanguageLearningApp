@@ -51,9 +51,9 @@ public class DataWriter extends DataConstants {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public static boolean saveUserProgress(ArrayList<UserProgress> userProgress) {
         JSONArray userProgressJSON = new JSONArray();
-        // Iterate through the user progress and convert each to JSON
         for (UserProgress progress : userProgress) {
             userProgressJSON.add(createProgressJSON(progress));
         }
@@ -74,6 +74,7 @@ public class DataWriter extends DataConstants {
     @SuppressWarnings("unchecked")
     private static JSONObject createUserJSON(User user) {
         JSONObject userJSON = new JSONObject();
+        System.out.println("Generated JSON for user: " + userJSON.toJSONString());
         userJSON.put(USER_ID, user.getUUID());
         userJSON.put(USER_FIRST_NAME, user.getFirstName());
         userJSON.put(USER_LAST_NAME, user.getLastName());
@@ -122,7 +123,7 @@ public class DataWriter extends DataConstants {
         JSONArray phraseProgressArray = new JSONArray();
         for (HashMap.Entry<Phrase, Integer> entry : progress.getPhraseProgress().entrySet()) {
             JSONObject phraseEntry = new JSONObject();
-            phraseEntry.put(USERPROGRESS_PHRASEPROGRESS_PHRASE, entry.getKey().getUUID().toString());
+            phraseEntry.put(USERPROGRESS_PHRASEPROGRESS_PHRASE, entry.getKey().getUUID());
             phraseEntry.put(USERPROGRESS_PHRASEPROGRESS_INTEGER, entry.getValue());
             phraseProgressArray.add(phraseEntry);
         }
@@ -132,7 +133,7 @@ public class DataWriter extends DataConstants {
         JSONArray wordProgressArray = new JSONArray();
         for (HashMap.Entry<Word, Integer> entry : progress.getWordProgress().entrySet()) {
             JSONObject wordEntry = new JSONObject();
-            wordEntry.put(USERPROGRESS_WORDPROGRESS_WORD, entry.getKey().getUUID().toString());
+            wordEntry.put(USERPROGRESS_WORDPROGRESS_WORD, entry.getKey().getUUID());
             wordEntry.put(USERPROGRESS_WORDPROGRESS_INTEGER, entry.getValue());
             wordProgressArray.add(wordEntry);
         }
@@ -241,7 +242,7 @@ public class DataWriter extends DataConstants {
         boolean languageSaved = saveLanguages(languages);
         System.out.println(languageSaved ? "Languages saved successfully!" : "Failed to save languages");
 
-        ArrayList<UserProgress> userProgress = UserList.getInstance().getUserProgress();
+        ArrayList<UserProgress> userProgress = UserList.getInstance().getUsersProgress();
         boolean userProgressSaved = saveUserProgress(userProgress);
         System.out.println(userProgressSaved ? "User progress saved successfully!" : "Failed to save user progress");
     }

@@ -166,10 +166,10 @@ public class UserList {
         return users;
     }
 
-    public ArrayList<UserProgress> getUserProgress() {
+    public ArrayList<UserProgress> getUsersProgress() {
         ArrayList<UserProgress> usersProgress = new ArrayList<>();
         for (User user : users) {
-            usersProgress.add(user.getUserProgress(user.getUserProgress(user.getLanguage()).getLanguage()));
+            usersProgress.addAll(user.getUserProgress());
         }
         return usersProgress;
 

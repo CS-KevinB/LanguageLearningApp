@@ -81,6 +81,7 @@ public class DataWriter extends DataConstants {
         for (UserProgress progress : userProgress) {
             userProgressJSON.add(createProgressJSON(progress));
         }
+        // return userProgressJSON;
         try (FileWriter file = new FileWriter("Narriation\\speek\\json\\user-progress.json")) {
             file.write(userProgressJSON.toJSONString());
             file.flush();
@@ -183,9 +184,9 @@ public class DataWriter extends DataConstants {
     @SuppressWarnings("unchecked")
     private static JSONObject createStoryJSON(Story story) {
         JSONObject storyJSON = new JSONObject();
-        storyJSON.put(STORY_TITLE, story.getTitle());
-        storyJSON.put(STORY_ENGLISHSTORY, story.getEnglishStory());
-        storyJSON.put(STORY_SPANISHSTORY, story.getSpanishStory());
+        storyJSON.put(STORY_TITLE, story.getTitle().toString());
+        storyJSON.put(STORY_ENGLISHSTORY, story.getEnglishStory().toString());
+        storyJSON.put(STORY_SPANISHSTORY, story.getSpanishStory().toString());
         return storyJSON;
     }
 

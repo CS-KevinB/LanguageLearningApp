@@ -220,6 +220,7 @@ public class DataWriter extends DataConstants {
             boolean userSaved = saveUsers(users);
             System.out.println(userSaved ? "Users saved successfully!" : "Failed to saveusers");
         }
+
         ArrayList<Language> languages = DataLoader.getLanguages();
         boolean languageSaved = saveLanguages(languages);
         System.out.println(languageSaved ? "Languages saved successfully!" : "Failed to save languages");

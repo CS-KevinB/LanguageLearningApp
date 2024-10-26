@@ -47,7 +47,6 @@ public class TrueFalseQuestion implements Question {
     public void generateQuestion() {
         Random r = new Random();
         boolean ansBool = r.nextBoolean();
-        System.out.println("Answer = " + ansBool);
 
         // build the question string
 

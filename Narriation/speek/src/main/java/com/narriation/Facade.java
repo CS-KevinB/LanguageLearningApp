@@ -224,8 +224,6 @@ public class Facade {
             Lesson lesson = new Lesson(this.currentUser.getUserProgress(currentLanguage), this.currentLanguage);
             ArrayList<Question> questions = lesson.getQuestions();
 
-            System.out.println("SIZE:" + questions.size());
-
             for (Question question : questions) {
                 System.out.println(question.getQuestion());
                 String input = keyboard.nextLine();

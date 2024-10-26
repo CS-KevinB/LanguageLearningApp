@@ -233,6 +233,7 @@ public class Facade {
                     lesson.increaseScore();
                     System.out.println("Correct! Great work! Your score is now " + lesson.getScore());
                 } else {
+                    this.currentUser.getUserProgress(this.currentLanguage).countIncorrectPhrase(question.getPhrase());
                     System.out.println("Oh no, that was incorrect. Keep going!");
                 }
             }

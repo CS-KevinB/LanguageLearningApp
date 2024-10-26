@@ -220,6 +220,7 @@ public class Facade {
      * Starts the lesson
      */
     public void startLesson() {
+        System.out.println("Please turn up your volume for the listening questions!");
         if (this.currentUser != null && this.currentLanguage != null) {
             Lesson lesson = new Lesson(this.currentUser.getUserProgress(currentLanguage), this.currentLanguage);
             ArrayList<Question> questions = lesson.getQuestions();

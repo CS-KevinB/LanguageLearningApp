@@ -94,6 +94,7 @@ public class UserProgress {
 
     /**
      * Gets the progress of a phrase
+     * 
      * @param phrase The phrase to get the progress for
      * @return The progress of the phrase
      */
@@ -132,6 +133,10 @@ public class UserProgress {
         return stories.get(currentStory);
     }
 
+    public int getCurrentStoryIndex() {
+        return this.currentStory;
+    }
+
     /**
      * Gets a string representation of the user progress
      * 
@@ -163,6 +168,7 @@ public class UserProgress {
 
     /**
      * Gets the list of phrases that the user has seen
+     * 
      * @return returns the list of phrases the user has seen
      */
     public ArrayList<Phrase> getPhraseList() {
@@ -175,6 +181,7 @@ public class UserProgress {
 
     /**
      * Gets the phrase progress as a string
+     * 
      * @param phrase The phrase to get the progress for
      * @return The phrase progress as a string
      */

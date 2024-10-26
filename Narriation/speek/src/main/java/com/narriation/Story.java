@@ -37,9 +37,9 @@ public class Story {
         return spanishStory;
     }
 
-    public int getCurrentStoryIndex() {
-        return this.currentStoryIndex;
-    }
+    // public int getCurrentStoryIndex() {
+    // return this.currentStoryIndex;
+    // }
 
     /**
      * To string method in order to test the story

@@ -69,6 +69,10 @@ public class UserProgress {
         return wordProgress;
     }
 
+    public int getWordProgress(Word word) {
+        return this.wordProgress.getOrDefault(word, 0);
+    }
+
     // public void setWordProgress(Word word) {
     // this.wordProgress.put(word, wordProgress.get(word) + 1);
     // }
@@ -89,6 +93,10 @@ public class UserProgress {
      */
     public HashMap<Phrase, Integer> getPhraseProgress() {
         return phraseProgress;
+    }
+
+    public int getPhraseProgress(Phrase phrase) {
+        return this.phraseProgress.getOrDefault(phrase, 0);
     }
 
     /**

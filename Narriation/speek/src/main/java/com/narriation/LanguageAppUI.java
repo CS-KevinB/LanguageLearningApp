@@ -189,7 +189,6 @@ public class LanguageAppUI {
         }
 
         User createdUser = facade.createAccount(firstName, lastName, userName, password, birthdayStr, email, language);
-        System.out.println("MY USER:" + createdUser);
 
         if (createdUser == null) {
             System.out.println("User not created. Try again!");

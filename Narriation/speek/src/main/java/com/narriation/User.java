@@ -333,10 +333,15 @@ public class User {
      * @return returns the user progress
      */
     public UserProgress getUserProgress(Language language) {
+        if (this.userProgress == null) {
+            System.out.println("User has no progress");
+            return null;
+        }
         for (UserProgress progress : this.userProgress) {
             if (progress.getLanguage().equals(language))
                 return progress;
         }
+        System.out.println("No progress found for" + language);
         return null;
     }
 

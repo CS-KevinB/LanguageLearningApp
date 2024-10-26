@@ -65,8 +65,8 @@ public class UserProgress {
      * @param word takes in the word to get the progress for
      * @return returns the progress
      */
-    public int getWordProgress(Word word) {
-        return this.wordProgress.getOrDefault(word, 0);
+    public HashMap<Word, Integer> getWordProgress() {
+        return wordProgress;
     }
 
     // public void setWordProgress(Word word) {
@@ -87,8 +87,8 @@ public class UserProgress {
      * 
      * @return returns the progress
      */
-    public int getPhraseProgress(Phrase phrase) {
-        return phraseProgress.getOrDefault(phrase, 0);
+    public HashMap<Phrase, Integer> getPhraseProgress() {
+        return phraseProgress;
     }
 
     /**

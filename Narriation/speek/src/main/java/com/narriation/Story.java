@@ -24,6 +24,18 @@ public class Story {
         this.spanishStory = spanishStory;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getEnglishStory() {
+        return englishStory;
+    }
+
+    public String getSpanishStory() {
+        return spanishStory;
+    }
+
     /**
      * To string method in order to test the story
      */

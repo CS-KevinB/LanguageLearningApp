@@ -1,1 +1,57 @@
-[{"birthday":"Wed May 14 00:00:00 EDT 2003","firstName":"Jane","lastName":"Doe","password":"doe","emailAddress":"JaneDoe@gmail.com","userProgress":[],"avatar":{"character":"LLAMA","hat":"NONE"},"uuid":"a9fc5c37-053b-479e-9741-7f0bb0e525ae","friends":["081a004b-3306-4975-9520-2437276c600a"],"username":"jane","points":0},{"birthday":"Mon Aug 21 00:00:00 EDT 1961","firstName":"John","lastName":"Griffen","password":"J0hnG342","emailAddress":"JohnGriffen@gmail.com","userProgress":[],"avatar":{"character":"GIRAFFE","hat":"NONE"},"uuid":"c5c93174-01f6-4dfc-aba2-14aa61c6696b","friends":["081a004b-3306-4975-9520-2437276c600a"],"username":"GriffenJ61","points":0},{"birthday":"Mon Sep 11 00:00:00 EDT 2000","firstName":"Julie","lastName":"Adams","password":"Jul!e@dam$","emailAddress":"JulieAdams@gmail.com","userProgress":[],"avatar":{"character":"LIZARD","hat":"NONE"},"uuid":"081a004b-3306-4975-9520-2437276c600a","friends":["c5c93174-01f6-4dfc-aba2-14aa61c6696b","a9fc5c37-053b-479e-9741-7f0bb0e525ae"],"username":"adamsj","points":0}]
+[
+    {
+        "birthday": "Wed May 14 00:00:00 EDT 2003",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "password": "doe",
+        "emailAddress": "JaneDoe@gmail.com",
+        "userProgress": [],
+        "avatar": {
+            "character": "LLAMA",
+            "hat": "NONE"
+        },
+        "uuid": "a9fc5c37-053b-479e-9741-7f0bb0e525ae",
+        "friends": [
+            "081a004b-3306-4975-9520-2437276c600a"
+        ],
+        "username": "jane",
+        "points": 0
+    },
+    {
+        "birthday": "Mon Aug 21 00:00:00 EDT 1961",
+        "firstName": "John",
+        "lastName": "Griffen",
+        "password": "J0hnG342",
+        "emailAddress": "JohnGriffen@gmail.com",
+        "userProgress": [],
+        "avatar": {
+            "character": "GIRAFFE",
+            "hat": "NONE"
+        },
+        "uuid": "c5c93174-01f6-4dfc-aba2-14aa61c6696b",
+        "friends": [
+            "081a004b-3306-4975-9520-2437276c600a"
+        ],
+        "username": "GriffenJ61",
+        "points": 0
+    },
+    {
+        "birthday": "Mon Sep 11 00:00:00 EDT 2000",
+        "firstName": "Julie",
+        "lastName": "Adams",
+        "password": "Jul!e@dam$",
+        "emailAddress": "JulieAdams@gmail.com",
+        "userProgress": [],
+        "avatar": {
+            "character": "LIZARD",
+            "hat": "NONE"
+        },
+        "uuid": "081a004b-3306-4975-9520-2437276c600a",
+        "friends": [
+            "c5c93174-01f6-4dfc-aba2-14aa61c6696b",
+            "a9fc5c37-053b-479e-9741-7f0bb0e525ae"
+        ],
+        "username": "adamsj",
+        "points": 0
+    }
+]

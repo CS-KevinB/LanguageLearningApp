@@ -45,10 +45,18 @@ public class Language {
         return phrases;
     }
 
+    /**
+     * Gets the array list of words for the language
+     * @return the array list of words
+     */
     public ArrayList<Word> getWords() {
         return words;
     }
 
+    /**
+     * Gets the name of the language
+     * @return the name of the language
+     */
     public String getLanguage() {
         return nameOfLanguage;
     }
@@ -71,6 +79,9 @@ public class Language {
         return stories;
     }
 
+    /**
+     * Override toString to return the language as a string
+     */
     public String toString() {
         return "ID: " + this.id + "\n  Language: " + this.nameOfLanguage + "\n  Words: " + this.words + "\n  Phrases: "
                 + this.phrases + "\n  Stories: " + this.stories;

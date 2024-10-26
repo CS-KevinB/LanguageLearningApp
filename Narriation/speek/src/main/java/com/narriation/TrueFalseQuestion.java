@@ -70,7 +70,7 @@ public class TrueFalseQuestion implements Question {
             } while (randPhrase == this.phrase);
             isMatch = this.convertPhraseToString(randPhrase, true);
         }
-        this.englishStr = question + " = " + isMatch + "?";
+        this.englishStr = "Does \"" + question + "\" translate to \"" + isMatch + "\"?";
 
         // set answer
         this.isMatch = ansBool;

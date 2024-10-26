@@ -33,6 +33,7 @@ public class DataWriter extends DataConstants {
             e.printStackTrace();
             return false;
         }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -80,7 +81,7 @@ public class DataWriter extends DataConstants {
         for (UserProgress progress : userProgress) {
             userProgressJSON.add(createProgressJSON(progress));
         }
-        try (FileWriter file = new FileWriter("Narriation/speek/json/user-progress.json")) {
+        try (FileWriter file = new FileWriter("Narriation\\speek\\json\\user-progress.json")) {
             file.write(userProgressJSON.toJSONString());
             file.flush();
             return true;

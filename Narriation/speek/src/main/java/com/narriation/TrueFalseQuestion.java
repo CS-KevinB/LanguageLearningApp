@@ -28,7 +28,7 @@ public class TrueFalseQuestion implements Question {
     }
 
     public String getQuestion() {
-        return englishStr;
+        return englishStr + " Enter True or False";
     }
 
     /**
@@ -60,7 +60,8 @@ public class TrueFalseQuestion implements Question {
             ArrayList<Phrase> phrases = language.getPhrases();
             int index = r.nextInt(phrases.size());
 
-            System.out.println(ansBool); // TEST make sure this doesn't mess up our answer
+            // System.out.println(ansBool); // TEST make sure this doesn't mess up our
+            // answer
 
             Phrase randPhrase;
             do {
@@ -119,7 +120,7 @@ public class TrueFalseQuestion implements Question {
      * @return returns a boolean if the answer is correct
      */
     public boolean isCorrect(String input) {
-        return getAnswer().equals(input);
+        return getAnswer().equalsIgnoreCase(input);
     }
 
     /**

@@ -50,6 +50,23 @@ public class DataWriter extends DataConstants {
         }
     }
 
+    public static boolean saveUserProgress(ArrayList<UserProgress> userProgress) {
+        JSONArray userProgressJSON = new JSONArray();
+        // Iterate through the user progress and convert each to JSON
+        for (UserProgress progress : userProgress) {
+            userProgressJSON.add(createProgressJSON(progress));
+        }
+        try (FileWriter file = new FileWriter("Narriation/speek/json/user-progress.json")) {
+            file.write(userProgressJSON.toJSONString());
+            file.flush();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
     /**
      * Converts a User object to JSON format.
      */

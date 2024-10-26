@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -276,11 +278,26 @@ public class Facade {
     public String displayProgress() {
         String progress = "";
         if (currentUser.getUserProgress(currentLanguage).displayHardPhrases() != "") {
-            progress += "Problem Phrases:\n" + currentUser.getUserProgress(currentLanguage).displayHardPhrases();
+            progress += "Problem Phrases:\n" + currentUser.getUserProgress(currentLanguage).displayHardPhrases() + "\n";
         } else {
             progress += "No Problem Phrases!\n";
         }
-        return progress;
+        return progress + getPercentageThroughCourse();
+    }
+
+    public String getPercentageThroughCourse() {
+        int numerator = 0;
+        HashMap<Phrase, Integer> progress = currentUser.getUserProgress(currentLanguage).getPhraseProgress();
+
+        for (Map.Entry<Phrase, Integer> entry : progress.entrySet()) {
+            if (entry.getValue() >= 1) {
+                numerator++;
+            }
+        }
+
+        int denominator = currentLanguage.getPhrases().size();
+        double percentage = ((double) numerator / denominator) * 100;
+        return "You've completed " + percentage + "% of the course.";
     }
 
     /**

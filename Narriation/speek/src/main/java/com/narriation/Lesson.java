@@ -45,7 +45,7 @@ public class Lesson {
         // difficulty
         for (int i = 0; i < allPhrases.size() && selectedPhrases.size() < NUMBER_OF_QUESTIONS; i++) {
             Phrase phrase = allPhrases.get(i);
-            if (phrase.getDifficulty() == userDifficulty)
+            if (phrase.getDifficulty() == userDifficulty && userProgress.getPhraseProgress(phrase) < 2)
                 selectedPhrases.add(phrase);
         }
 

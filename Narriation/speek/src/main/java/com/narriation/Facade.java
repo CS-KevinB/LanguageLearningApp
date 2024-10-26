@@ -11,6 +11,8 @@ import java.util.UUID;
  * @author kinsawills
  */
 public class Facade {
+    public static final int NUMBER_OF_TIMES_PHRASE_SEEN = 1;
+
     private static Facade facade;
     private static Scanner keyboard = new Scanner(System.in);
     private User currentUser;
@@ -219,10 +221,11 @@ public class Facade {
     /**
      * Starts the lesson
      */
-    public void startLesson() {
+    public void startLesson(int threshold) {
         System.out.println("Please turn up your volume for the listening questions!");
         if (this.currentUser != null && this.currentLanguage != null) {
-            Lesson lesson = new Lesson(this.currentUser.getUserProgress(currentLanguage), this.currentLanguage);
+            Lesson lesson = new Lesson(this.currentUser.getUserProgress(currentLanguage), this.currentLanguage,
+                    threshold);
             ArrayList<Question> questions = lesson.getQuestions();
 
             for (Question question : questions) {

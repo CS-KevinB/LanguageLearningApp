@@ -9,8 +9,11 @@ import org.json.simple.parser.ParseException;
  * Creates a UI for the language learning app
  */
 public class LanguageAppUI {
+    public static final int NUMBER_OF_TIMES_PHRASE_SEEN_FOR_NORMAL_LESSON = 1;
+    public static final int NUMBER_OF_TIMES_PHRASE_SEEN_FOR_REVIEW_LESSON = 0;
     private static final String WELCOME_MESSAGE = "Welcome to the Language Learning App!";
-    private String[] mainMenuOptions = { "Create Account", "Login", "Start Lesson", "Read a Story", "View Progress",
+    private String[] mainMenuOptions = { "Create Account", "Login", "Start Lesson", "Review Lesson", "Read a Story",
+            "View Progress",
             "Print Progress",
             "Logout" };
     private Scanner scanner;
@@ -75,16 +78,19 @@ public class LanguageAppUI {
                     startLesson();
                     break;
                 case 3:
-                    this.facade.startStory();
+                    reviewLesson();
                     break;
                 case 4:
-                    System.out.println(this.facade.displayProgress());
+                    this.facade.startStory();
                     break;
                 case 5:
+                    System.out.println(this.facade.displayProgress());
+                    break;
+                case 6:
                     this.facade.printProgress();
                     System.out.println("A file has been created in the Narriation/speek/user-progress folder!");
                     break;
-                case 6:
+                case 7:
                     logout();
                     loggedIn = false;
 
@@ -98,7 +104,11 @@ public class LanguageAppUI {
      * Starts the lesson from the facade
      */
     private void startLesson() {
-        facade.startLesson();
+        facade.startLesson(NUMBER_OF_TIMES_PHRASE_SEEN_FOR_NORMAL_LESSON);
+    }
+
+    private void reviewLesson() {
+        facade.startLesson(NUMBER_OF_TIMES_PHRASE_SEEN_FOR_REVIEW_LESSON);
     }
 
     /**

@@ -11,7 +11,6 @@ import software.amazon.awssdk.services.polly.endpoints.internal.Value.Array;
  * @author Risha Patel
  */
 public class Lesson {
-    public static final int NUMBER_OF_TIMES_PHRASE_SEEN = 1;
     public static final int NUMBER_OF_QUESTIONS = 5;
     private UserProgress userProgress;
     private ArrayList<Question> questions;
@@ -27,7 +26,14 @@ public class Lesson {
     public Lesson(UserProgress userProgress, Language language) {
         this.userProgress = userProgress;
         this.language = language;
-        this.questions = this.generateQuestions(NUMBER_OF_QUESTIONS);
+        this.questions = this.generateQuestions(NUMBER_OF_QUESTIONS, NUMBER_OF_TIMES_PHRASE_SEEN);
+        this.score = 0;
+    }
+
+    public Lesson(UserProgress userProgress, Language language, int thresholdForTimesPhrasesSeen) {
+        this.userProgress = userProgress;
+        this.language = language;
+        this.questions = this.generateQuestions(NUMBER_OF_QUESTIONS, thresholdForTimesPhrasesSeen);
         this.score = 0;
     }
 
@@ -37,7 +43,7 @@ public class Lesson {
      * @param numOfQuestions determiens how many questions to generate
      * @return returns the questions in a list
      */
-    public ArrayList<Question> generateQuestions(int numOfQuestions) {
+    public ArrayList<Question> generateQuestions(int numOfQuestions, int threshold) {
         ArrayList<Phrase> allPhrases = language.getPhrases();
         ArrayList<Phrase> selectedPhrases = new ArrayList<Phrase>();
         int userDifficulty = userProgress.getDifficulty();
@@ -47,7 +53,7 @@ public class Lesson {
         for (int i = 0; i < allPhrases.size() && selectedPhrases.size() < NUMBER_OF_QUESTIONS; i++) {
             Phrase phrase = allPhrases.get(i);
             if (phrase.getDifficulty() == userDifficulty
-                    && userProgress.getPhraseProgress(phrase) < NUMBER_OF_TIMES_PHRASE_SEEN)
+                    && userProgress.getPhraseProgress(phrase) < threshold)
                 selectedPhrases.add(phrase);
         }
 

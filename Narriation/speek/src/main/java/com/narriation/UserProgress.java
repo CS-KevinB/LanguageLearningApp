@@ -87,8 +87,8 @@ public class UserProgress {
      * 
      * @return returns the progress
      */
-    public int getPhraseProgress(Phrase phrase) {
-        return phraseProgress.getOrDefault(phrase, 0);
+    public HashMap<Phrase, Integer> getPhraseProgress() {
+        return phraseProgress;
     }
 
     /**

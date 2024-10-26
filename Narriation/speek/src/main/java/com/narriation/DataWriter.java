@@ -117,7 +117,7 @@ public class DataWriter extends DataConstants {
         progressJSON.put(USERPROGRESS_DIFFICULTY, progress.getDifficulty());
         progressJSON.put(USERPROGRESS_CURRENTSTORY, progress.getCurrentStory());
 
-        // Phrase Progress JSON
+        // Phrase Progress to JSON
         JSONArray phraseProgressArray = new JSONArray();
         for (HashMap.Entry<Phrase, Integer> entry : progress.getPhraseProgress().entrySet()) {
             // Phrase phrase = entry.getKey();
@@ -141,6 +141,9 @@ public class DataWriter extends DataConstants {
 
         return progressJSON;
     }
+
+    // Phrase progress to JSON
+    private static JSONObject createPhraseProgressJSON(HashMap<Phrase, Integer> phraseProgress) {
 
     /**
      * Converts Language object to JSON format.

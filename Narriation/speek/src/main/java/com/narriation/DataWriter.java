@@ -15,6 +15,7 @@ import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
 
+    // USERS
     @SuppressWarnings("unchecked")
     public static boolean saveUsers(ArrayList<User> users) {
         UserList user = UserList.getInstance();
@@ -34,43 +35,6 @@ public class DataWriter extends DataConstants {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    public static boolean saveLanguages(ArrayList<Language> languages) {
-        JSONArray languagesJSON = new JSONArray();
-        for (Language language : languages) {
-            languagesJSON.add(createLanguageJSON(language));
-        }
-
-        try (FileWriter file = new FileWriter("Narriation/speek/json/language-test.json")) {
-            file.write(languagesJSON.toJSONString());
-            file.flush();
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public static boolean saveUserProgress(ArrayList<UserProgress> userProgress) {
-        JSONArray userProgressJSON = new JSONArray();
-        for (UserProgress progress : userProgress) {
-            userProgressJSON.add(createProgressJSON(progress));
-        }
-        try (FileWriter file = new FileWriter("Narriation/speek/json/user-progress.json")) {
-            file.write(userProgressJSON.toJSONString());
-            file.flush();
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-
-    }
-
-    /**
-     * Converts a User object to JSON format.
-     */
     @SuppressWarnings("unchecked")
     private static JSONObject createUserJSON(User user) {
         JSONObject userJSON = new JSONObject();
@@ -105,8 +69,26 @@ public class DataWriter extends DataConstants {
             userProgressArray.add(createProgressJSON(progress));
         }
         userJSON.put(USERPROGRESS, userProgressArray);
+        userJSON.put(USER_POINTS, user.getPoints());
 
         return userJSON;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static boolean saveUserProgress(ArrayList<UserProgress> userProgress) {
+        JSONArray userProgressJSON = new JSONArray();
+        for (UserProgress progress : userProgress) {
+            userProgressJSON.add(createProgressJSON(progress));
+        }
+        try (FileWriter file = new FileWriter("Narriation/speek/json/user-progress.json")) {
+            file.write(userProgressJSON.toJSONString());
+            file.flush();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     /**
@@ -140,6 +122,24 @@ public class DataWriter extends DataConstants {
         progressJSON.put(USERPROGRESS_WORDPROGRESS, wordProgressArray);
 
         return progressJSON;
+    }
+
+    // LANGUAGES
+    @SuppressWarnings("unchecked")
+    public static boolean saveLanguages(ArrayList<Language> languages) {
+        JSONArray languagesJSON = new JSONArray();
+        for (Language language : languages) {
+            languagesJSON.add(createLanguageJSON(language));
+        }
+
+        try (FileWriter file = new FileWriter("Narriation/speek/json/language-test.json")) {
+            file.write(languagesJSON.toJSONString());
+            file.flush();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**

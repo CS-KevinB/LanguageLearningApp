@@ -2,8 +2,6 @@ package com.narriation;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Date;
-import org.json.simple.parser.ParseException;
 
 /**
  * Creates a UI for the language learning app

@@ -1,6 +1,7 @@
 package com.narriation;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.Date;
 import org.json.simple.parser.ParseException;
 
@@ -9,7 +10,8 @@ import org.json.simple.parser.ParseException;
  */
 public class LanguageAppUI {
     private static final String WELCOME_MESSAGE = "Welcome to the Language Learning App!";
-    private String[] mainMenuOptions = { "Create Account", "Login", "Start Lesson", "Read a Story", "View Progress", "Print Progress",
+    private String[] mainMenuOptions = { "Create Account", "Login", "Start Lesson", "Read a Story", "View Progress",
+            "Print Progress",
             "Logout" };
     private Scanner scanner;
     private Facade facade;
@@ -158,10 +160,34 @@ public class LanguageAppUI {
         String birthdayStr = getField("Birthday (yyyy-MM-dd)");
         String email = getField("Email");
 
-        if (facade.createAccount(firstName, lastName, userName, password, birthdayStr, email)) {
-            System.out.println("Account successfully created!");
+        System.out.println("Select the language you want to learn");
+        ArrayList<Language> languages = LanguageList.getInstance().getLanguages();
+        for (int i = 0; i < languages.size(); i++) {
+            System.out.println((i + 1) + ". " + languages.get(i).getLanguage());
+        }
+        String languageStr = getField("Enter the number of your language choice");
+        int languageIndex;
+        Language language = languages.get(0);
+        try {
+            languageIndex = Integer.parseInt(languageStr) - 1;
+            if (languageIndex <= languages.size()) {
+                language = languages.get(languageIndex);
+            } else {
+                System.out.println("Number " + languageIndex + " does not exist. Setting to default language, "
+                        + languages.get(0).getLanguage());
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Setting to default language, " + languages.get(0).getLanguage());
+        }
+
+        User createdUser = facade.createAccount(firstName, lastName, userName, password, birthdayStr, email, language);
+        System.out.println("MY USER:" + createdUser);
+
+        if (createdUser == null) {
+            System.out.println("User not created. Try again!");
         } else {
-            System.out.println("Account already exists. Please try logging in.");
+            facade.login(createdUser.getUsername(), createdUser.getPassword());
+            System.out.println("Account successfully created! Logging in as " + createdUser.getFirstName());
         }
     }
 

@@ -42,7 +42,7 @@ public class User {
      */
     public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
             Date birthday,
-            Avatar avatar, ArrayList<User> friends, int points, UserProgress userProgress) {
+            Avatar avatar, ArrayList<User> friends, int points, ArrayList<UserProgress> userProgress) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -53,7 +53,7 @@ public class User {
         this.avatar = avatar;
         this.friends = new ArrayList<User>();
         this.points = 0;
-        this.userProgress = new ArrayList<UserProgress>();
+        this.userProgress = userProgress;
     }
 
     /**
@@ -344,6 +344,7 @@ public class User {
 
     /**
      * Gets the user progress
+     * 
      * @return the user progress
      */
     public ArrayList<UserProgress> getUserProgress() {

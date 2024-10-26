@@ -26,7 +26,7 @@ public class DataWriter extends DataConstants {
             usersJSON.add(createUserJSON(u));
         }
 
-        try (FileWriter file = new FileWriter("Narriation/speek/json/user-test.json")) {
+        try (FileWriter file = new FileWriter("Narriation/speek/json/user.json")) {
             file.write(usersJSON.toJSONString());
             file.flush();
             return true;
@@ -41,7 +41,6 @@ public class DataWriter extends DataConstants {
     private static JSONObject createUserJSON(User user) {
         JSONObject userJSON = new JSONObject();
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println("Generated JSON for user: " + userJSON.toJSONString());
         userJSON.put(USER_ID, user.getUUID().toString());
         userJSON.put(USER_FIRST_NAME, user.getFirstName());
         userJSON.put(USER_LAST_NAME, user.getLastName());
@@ -136,7 +135,7 @@ public class DataWriter extends DataConstants {
             languagesJSON.add(createLanguageJSON(language));
         }
 
-        try (FileWriter file = new FileWriter("Narriation/speek/json/language-test.json")) {
+        try (FileWriter file = new FileWriter("Narriation/speek/json/language.json")) {
             file.write(languagesJSON.toJSONString());
             file.flush();
             return true;

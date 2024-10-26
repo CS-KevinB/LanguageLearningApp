@@ -99,30 +99,32 @@ public class Facade {
      * @param email     requires the email
      * @return returns a boolean if the account was created
      */
-    public boolean createAccount(String firstName, String lastName, String userName, String password,
-            String birthdayStr, String email) {
+    public User createAccount(String firstName, String lastName, String userName, String password,
+            String birthdayStr, String email, Language language) {
 
         if (users.getUser(userName) != null) {
             System.out.println(userName + " already exists");
-            return false;
+            return null;
         }
         java.util.Date birthdayUtil = DataLoader.convertStringToDate(birthdayStr);
         if (birthdayUtil == null) {
             System.out.println("Invalid date format. Please use yyyy-MM-dd.");
-            return false;
+            return null;
         }
         java.sql.Date birthday = new java.sql.Date(birthdayUtil.getTime());
         UUID id = UUID.randomUUID();
         Avatar avatar = new Avatar();
         ArrayList<User> friends = new ArrayList<>();
         int points = 0;
-        UserProgress userProgress = new UserProgress(Facade.getInstance().getLanguage());
+        UserProgress userProgress = new UserProgress(language);
+        ArrayList<UserProgress> userProgressList = new ArrayList<UserProgress>();
+        userProgressList.add(userProgress);
 
         User user = new User(id, firstName, lastName, userName, password, email, birthday, avatar, friends, points,
-                userProgress);
+                userProgressList);
         users.addUser(user);
         users.saveUsers();
-        return true;
+        return user;
     }
 
     /**

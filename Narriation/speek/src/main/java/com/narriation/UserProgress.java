@@ -20,7 +20,7 @@ public class UserProgress {
      */
     public UserProgress(Language language) {
         this.language = language;
-        this.difficulty = 0;
+        this.difficulty = 1;
         this.currentStory = 0;
         this.phraseProgress = new HashMap<Phrase, Integer>();
         this.wordProgress = new HashMap<Word, Integer>();
@@ -45,6 +45,7 @@ public class UserProgress {
 
     /**
      * Gets the language
+     * 
      * @return the language
      */
     public Language getLanguage() {
@@ -72,6 +73,7 @@ public class UserProgress {
 
     /**
      * Gets the word progress
+     * 
      * @param word the word to get the progress for
      * @return the progress
      */

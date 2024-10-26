@@ -23,6 +23,7 @@ public class UserList {
 
     /**
      * Adds a user to the user list
+     * 
      * @param user
      */
     public void addUser(User user) {
@@ -49,8 +50,11 @@ public class UserList {
                 return false;
             }
         }
+        ArrayList<UserProgress> newUserProgress = new ArrayList<UserProgress>();
+        newUserProgress.add(userProgress);
+
         User newUser = new User(id, firstName, lastName, userName, password, emailAddress, birthday, avatar, friends,
-                points, userProgress);
+                points, newUserProgress);
         users.add(newUser);
         return saveUsers();
     }
@@ -88,8 +92,11 @@ public class UserList {
     public boolean editUser(UUID id, String firstName, String lastName, String username,
             String password, String emailAddress, Date birthday, Avatar avatar,
             ArrayList<User> friends, int points, UserProgress userProgress) {
+
+        ArrayList<UserProgress> newUserProgress = new ArrayList<UserProgress>();
+        newUserProgress.add(userProgress);
         User user = new User(id, firstName, lastName, username, password,
-                emailAddress, birthday, avatar, friends, points, userProgress);
+                emailAddress, birthday, avatar, friends, points, newUserProgress);
         for (int i = 0; i < users.size(); i++) {
             if (user.equals(users.get(i))) {
                 users.set(i, user);

@@ -1,7 +1,6 @@
 package com.narriation;
 
 import java.util.Random;
-import java.util.UUID;
 
 /**
  * @author Kevin Buie
@@ -23,6 +22,9 @@ public class WritingQuestion implements Question {
         this.generateQuestion();
     }
 
+    /**
+     * Generates the question
+     */
     public void generateQuestion() {
         Random r = new Random();
 
@@ -86,10 +88,18 @@ public class WritingQuestion implements Question {
         return getAnswer().equals(input);
     }
 
+    /**
+     * The question as a string
+     * @return the question
+     */
     public String toString() {
         return "Question: " + this.questionString + " | Answer: " + this.answer;
     }
 
+    /**
+     * Gets the phrase that the question is based on
+     * @return Returns the phrase
+     */
     public Phrase getPhrase() {
         return this.phrase;
     }

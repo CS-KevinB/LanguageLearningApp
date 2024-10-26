@@ -275,11 +275,6 @@ public class Facade {
         } else {
             progress += "No Problem Phrases!\n";
         }
-        if (currentUser.getUserProgress(currentLanguage).displayHardWords() != "") {
-            progress += "\nProblem Words:\n" + currentUser.getUserProgress(currentLanguage).displayHardWords();
-        } else {
-            progress += "\nNo Problem Words!";
-        }
         return progress;
     }
 

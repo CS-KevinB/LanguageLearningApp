@@ -1,5 +1,6 @@
 package com.narriation;
 
+import java.text.SimpleDateFormat;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class DataWriter extends DataConstants {
     @SuppressWarnings("unchecked")
     private static JSONObject createUserJSON(User user) {
         JSONObject userJSON = new JSONObject();
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
         System.out.println("Generated JSON for user: " + userJSON.toJSONString());
         userJSON.put(USER_ID, user.getUUID().toString());
         userJSON.put(USER_FIRST_NAME, user.getFirstName());
@@ -46,7 +48,7 @@ public class DataWriter extends DataConstants {
         userJSON.put(USER_USERNAME, user.getUsername());
         userJSON.put(USER_PASSWORD, user.getPassword());
         userJSON.put(USER_EMAIL, user.getEmailAddress());
-        userJSON.put(USER_BIRTHDAY, user.getBirthday().toString());
+        userJSON.put(USER_BIRTHDAY, simpleDate.format(user.getBirthday()));
         userJSON.put(FRIENDS, user.getFriends());
         userJSON.put(USERPROGRESS, user.getUserProgress());
         userJSON.put(USER_POINTS, user.getPoints());

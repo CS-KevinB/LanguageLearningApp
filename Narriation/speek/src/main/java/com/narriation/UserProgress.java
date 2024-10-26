@@ -43,6 +43,10 @@ public class UserProgress {
         this.wordProgress = wordProgress;
     }
 
+    /**
+     * Gets the language
+     * @return the language
+     */
     public Language getLanguage() {
         return this.language;
     }
@@ -66,13 +70,14 @@ public class UserProgress {
         return wordProgress;
     }
 
+    /**
+     * Gets the word progress
+     * @param word the word to get the progress for
+     * @return the progress
+     */
     public int getWordProgress(Word word) {
         return this.wordProgress.getOrDefault(word, 0);
     }
-
-    // public void setWordProgress(Word word) {
-    // this.wordProgress.put(word, wordProgress.get(word) + 1);
-    // }
 
     /**
      * Updates the word progress of the user

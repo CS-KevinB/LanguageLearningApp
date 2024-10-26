@@ -60,7 +60,8 @@ public class TrueFalseQuestion implements Question {
             ArrayList<Phrase> phrases = language.getPhrases();
             int index = r.nextInt(phrases.size());
 
-            System.out.println(ansBool); // TEST make sure this doesn't mess up our answer
+            // System.out.println(ansBool); // TEST make sure this doesn't mess up our
+            // answer
 
             Phrase randPhrase;
             do {

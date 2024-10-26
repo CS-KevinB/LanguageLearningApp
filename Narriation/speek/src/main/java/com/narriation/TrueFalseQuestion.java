@@ -119,7 +119,7 @@ public class TrueFalseQuestion implements Question {
      * @return returns a boolean if the answer is correct
      */
     public boolean isCorrect(String input) {
-        return getAnswer().equals(input);
+        return getAnswer().equalsIgnoreCase(input);
     }
 
     /**

@@ -122,13 +122,22 @@ public class LanguageAppUI {
      */
     private int getUserCommand(int numCommands) {
         System.out.print("What would you like to do?: ");
-        String input = scanner.nextLine();
+        String inputStr = scanner.nextLine();
+        int input;
+
+        // check if the value is a number
+        try {
+            input = Integer.parseInt(inputStr);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+
         if (facade.getCurrentUser() != null) {
-            int command = Integer.parseInt(input) + 1;
+            int command = input + 1;
             if (command >= 0 && command < numCommands)
                 return command;
         } else {
-            int command = Integer.parseInt(input) - 1;
+            int command = input - 1;
             if (command >= 0 && command < numCommands)
                 return command;
         }

@@ -70,7 +70,7 @@ public class ListeningQuestion implements Question {
      */
     public String getQuestion() {
         this.playAudio();
-        return "Type the phrase: ";
+        return "Type the phrase in Spanish: ";
     }
 
     /**

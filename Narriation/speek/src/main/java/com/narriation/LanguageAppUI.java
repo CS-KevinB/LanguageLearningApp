@@ -2,8 +2,6 @@ package com.narriation;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Date;
-import org.json.simple.parser.ParseException;
 
 /**
  * Creates a UI for the language learning app
@@ -191,7 +189,6 @@ public class LanguageAppUI {
         }
 
         User createdUser = facade.createAccount(firstName, lastName, userName, password, birthdayStr, email, language);
-        System.out.println("MY USER:" + createdUser);
 
         if (createdUser == null) {
             System.out.println("User not created. Try again!");

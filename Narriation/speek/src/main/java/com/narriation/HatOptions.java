@@ -1,6 +1,8 @@
 package com.narriation;
+
 /**
  * Enumeration for an avatar's hat options
+ * 
  * @author Christian Ruff
  */
 public enum HatOptions {
@@ -13,8 +15,10 @@ public enum HatOptions {
 
     /**
      * Accepts a string and returns the HatOptions enum that matches
+     * 
      * @param str Exact name of the corresponding enum
-     * @return Returns the corresponding enum if a match is found, ELSE returns default
+     * @return Returns the corresponding enum if a match is found, ELSE returns
+     *         default
      */
     public static HatOptions getValue(String str) {
         for (int i = 0; i < HatOptions.values().length; i++) {

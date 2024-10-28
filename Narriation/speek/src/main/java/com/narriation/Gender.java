@@ -1,9 +1,10 @@
 package com.narriation;
+
 /**
  * @author Kevin Buie
- * Creates the Gender Enumerations
+ *         Creates the Gender Enumerations
  */
-public enum Gender{
+public enum Gender {
     MASCULINE,
     FEMININE,
     NEITHER

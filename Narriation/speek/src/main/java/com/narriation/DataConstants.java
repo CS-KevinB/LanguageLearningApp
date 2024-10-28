@@ -1,5 +1,10 @@
 package com.narriation;
 
+/**
+ * DataConstants class contains constants that are used in the DataLoader and
+ * DataWriter classes to read and write data
+ */
+
 public abstract class DataConstants {
     protected static final String USER_FILE_NAME = "./Narriation/speek/json/user.json";
     protected static final String USER_ID = "uuid";

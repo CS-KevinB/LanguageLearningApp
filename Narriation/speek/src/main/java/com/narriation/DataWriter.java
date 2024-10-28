@@ -9,14 +9,19 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
- * DataWriter class saves list of registered users
+ * DataWriter class saves list of registered users and their progress
  * 
  * @author Risha Patel
  */
 
 public class DataWriter extends DataConstants {
 
-    // USERS
+    /**
+     * Saves the users to the json file
+     * 
+     * @param users - ArrayList of users
+     * @return - boolean representing the success of the operation
+     */
     @SuppressWarnings("unchecked")
     public static boolean saveUsers(ArrayList<User> users) {
         UserList user = UserList.getInstance();
@@ -37,6 +42,12 @@ public class DataWriter extends DataConstants {
 
     }
 
+    /**
+     * Creates a JSON object from a user
+     * 
+     * @param user - User object
+     * @return - JSON object representing the user
+     */
     @SuppressWarnings("unchecked")
     private static JSONObject createUserJSON(User user) {
         JSONObject userJSON = new JSONObject();
@@ -76,6 +87,12 @@ public class DataWriter extends DataConstants {
         return userJSON;
     }
 
+    /**
+     * Saves the user progress to the json file
+     * 
+     * @param userProgress - ArrayList of user progress objects
+     * @return - boolean representing that the user progress was saved successfully
+     */
     @SuppressWarnings("unchecked")
     public static boolean saveUserProgress(ArrayList<UserProgress> userProgress) {
         JSONArray userProgressJSON = new JSONArray();
@@ -95,7 +112,10 @@ public class DataWriter extends DataConstants {
     }
 
     /**
-     * Converts UserProgress object to JSON format.
+     * Converts UserProgress object to JSON format
+     * 
+     * @param progress - UserProgress object
+     * @return - JSON object representing the user progress
      */
     @SuppressWarnings("unchecked")
     private static JSONObject createProgressJSON(UserProgress progress) {
@@ -127,6 +147,14 @@ public class DataWriter extends DataConstants {
         return progressJSON;
     }
 
+    /**
+     * Saves the languages to the json file
+     * 
+     * @param languages - ArrayList of languages
+     * @return - boolean representing that the languages were saved successfully
+     * 
+     */
+
     // LANGUAGES
     @SuppressWarnings("unchecked")
     public static boolean saveLanguages(ArrayList<Language> languages) {
@@ -146,7 +174,10 @@ public class DataWriter extends DataConstants {
     }
 
     /**
-     * Converts Language object to JSON format.
+     * Converts Language object to JSON format
+     * 
+     * @param language - Language object
+     * @return - JSON object representing the language
      */
     @SuppressWarnings("unchecked")
     private static JSONObject createLanguageJSON(Language language) {
@@ -180,7 +211,10 @@ public class DataWriter extends DataConstants {
     }
 
     /**
-     * Converts Story object to JSON format.
+     * Converts Story object to JSON format
+     *
+     * @param story - Story object to be converted
+     * @return - JSON object representing the story
      */
     @SuppressWarnings("unchecked")
     private static JSONObject createStoryJSON(Story story) {
@@ -192,7 +226,10 @@ public class DataWriter extends DataConstants {
     }
 
     /**
-     * Converts Word object to JSON format.
+     * Converts Word object to JSON format
+     * 
+     * @param word - Word object to be converted
+     * @return - JSON object representing the word
      */
     @SuppressWarnings("unchecked")
     private static JSONObject createWordJSON(Word word) {
@@ -208,7 +245,10 @@ public class DataWriter extends DataConstants {
     }
 
     /**
-     * Converts Phrase object to JSON format.
+     * Converts Phrase object to JSON format
+     * 
+     * @param phrase - Phrase object to be converted
+     * @return - JSON object representing the phrase
      */
     @SuppressWarnings("unchecked")
     private static JSONObject createPhraseJSON(Phrase phrase) {
@@ -231,24 +271,6 @@ public class DataWriter extends DataConstants {
         phraseJSON.put(PHRASE_IN_TARGET_LANGUAGE, translatedPhraseArray);
 
         return phraseJSON;
-    }
-
-    public static void main(String[] args) {
-        ArrayList<Language> languages = DataLoader.getLanguages();
-        boolean languageSaved = saveLanguages(languages);
-        System.out.println(languageSaved ? "Languages saved successfully!" : "Failed to save languages");
-
-        ArrayList<User> users = UserList.getInstance().getUsers();
-        if (users == null || users.isEmpty()) {
-            System.out.println("No users available to save.");
-        } else {
-            boolean userSaved = saveUsers(users);
-            System.out.println(userSaved ? "Users saved successfully!" : "Failed to saveusers");
-        }
-
-        ArrayList<UserProgress> userProgress = UserList.getInstance().getUsersProgress();
-        boolean userProgressSaved = saveUserProgress(userProgress);
-        System.out.println(userProgressSaved ? "User progress saved successfully!" : "Failed to save user progress");
     }
 
 }

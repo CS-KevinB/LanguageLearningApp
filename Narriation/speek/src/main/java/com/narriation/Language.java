@@ -47,6 +47,7 @@ public class Language {
 
     /**
      * Gets the array list of words for the language
+     * 
      * @return the array list of words
      */
     public ArrayList<Word> getWords() {
@@ -55,6 +56,7 @@ public class Language {
 
     /**
      * Gets the name of the language
+     * 
      * @return the name of the language
      */
     public String getLanguage() {

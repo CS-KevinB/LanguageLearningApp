@@ -1,0 +1,13 @@
+Problem Phrases:
+happy life | Current Score: -1
+where is the bathroom | Current Score: -1
+the house is red | Current Score: -1
+bad milk | Current Score: -1
+have a good day | Current Score: -1
+happy birthday | Current Score: -1
+my house is your house | Current Score: -1
+good morning | Current Score: -1
+where is the library | Current Score: -1
+good night | Current Score: -1
+
+You've completed 0.0% of the course.

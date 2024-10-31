@@ -1,8 +1,10 @@
 package com.narriation;
 
 import java.text.SimpleDateFormat;
+import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.json.simple.JSONArray;
@@ -100,7 +102,8 @@ public class DataWriter extends DataConstants {
             userProgressJSON.add(createProgressJSON(progress));
         }
         // return userProgressJSON;
-        try (FileWriter file = new FileWriter("Narriation\\speek\\json\\user-progress.json")) {
+        String path = getFileWritingPath(USER_FILE_NAME, USER_FILE_NAME_JSON);
+        try (FileWriter file = new FileWriter(path)) {
             file.write(userProgressJSON.toJSONString());
             file.flush();
             return true;
@@ -272,5 +275,19 @@ public class DataWriter extends DataConstants {
 
         return phraseJSON;
     }
+
+    private static String getFileWritingPath(String PATH_NAME, String JUNIT_PATH_NAME) {
+		try {
+			if(isJUnitTest()){
+				URI url = DataWriter.class.getResource(JUNIT_PATH_NAME).toURI();
+				return url.getPath();
+			} else {
+				return PATH_NAME;
+			}
+		} catch(Exception e){
+			System.out.println("Difficulty getting resource path");
+			return "";
+		}
+	}
 
 }

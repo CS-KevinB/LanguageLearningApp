@@ -1,6 +1,9 @@
 package com.narriation;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -24,10 +27,9 @@ public class DataLoader extends DataConstants {
 
     // LANGUAGES
     public static ArrayList<Language> getLanguages() {
+        BufferedReader reader = getReaderFromFile(LANGUAGE_FILE_NAME, LANGUAGE_FILE_NAME_JSON);
         try {
-            FileReader reader = new FileReader(LANGUAGE_FILE_NAME);
             JSONArray languageJSON = (JSONArray) new JSONParser().parse(reader);
-
             for (int i = 0; i < languageJSON.size(); i++) {
                 JSONObject currentLang = (JSONObject) languageJSON.get(i);
 
@@ -40,6 +42,7 @@ public class DataLoader extends DataConstants {
 
                 languagesArr.add(new Language(lessonID, nameOfLanguage, words, phrases, stories));
             }
+            reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -145,8 +148,8 @@ public class DataLoader extends DataConstants {
     // USERS
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
+        BufferedReader reader = getReaderFromFile(USER_FILE_NAME, USER_FILE_NAME_JSON);
         try {
-            FileReader reader = new FileReader("Narriation/speek/json/user.json");
             JSONArray peopleJSON = (JSONArray) new JSONParser().parse(reader);
             HashMap<User, ArrayList<UUID>> friendsHash = new HashMap<User, ArrayList<UUID>>();
 
@@ -198,7 +201,7 @@ public class DataLoader extends DataConstants {
                     }
                 }
             }
-
+            reader.close();
             return users;
         } catch (Exception e) {
             e.printStackTrace();
@@ -369,4 +372,24 @@ public class DataLoader extends DataConstants {
         }
         return null;
     }
+
+    private static BufferedReader getReaderFromFile(String fileName, String jsonFileName){
+        try {
+            if(isJUnitTest()){
+                InputStream inputStream = DataLoader.class.getResourceAsStream(jsonFileName);
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                return new BufferedReader(inputStreamReader);
+            } else {
+                FileReader reader = new FileReader(fileName);
+                return new BufferedReader(reader);
+            }
+        } catch(Exception e){
+            System.out.println("Can't load");
+            return null;
+        }
+            
+    }
 }
+
+
+

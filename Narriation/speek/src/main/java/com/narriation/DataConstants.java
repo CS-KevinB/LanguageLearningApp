@@ -62,4 +62,13 @@ public abstract class DataConstants {
     protected static final String USERPROGRESS_WORDPROGRESS_INTEGER = "integer";
 
     protected static final String EXERCISE_INDEX = "index";
+
+    public static boolean isJUnitTest() {  
+		for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
+		  if (element.getClassName().startsWith("org.junit.")) {
+			return true;
+		  }           
+		}
+		return false;
+	  }
 }

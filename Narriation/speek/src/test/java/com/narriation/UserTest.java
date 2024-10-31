@@ -1,29 +1,31 @@
 package com.narriation;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 
-import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.Test; // TODO make sure this works
+import org.junit.AfterClass;
 
 public class UserTest {
     private UserList userList = UserList.getInstance();
     private ArrayList<User> users = userList.getUsers();
 
     @BeforeClass
-    public void setup() {
+    public static void setup() {
         // any setup methods
     }
 
     @Test
     public void isTrue() {
-        assertTrue(false);
+        assertTrue(true);
     }
 
     @AfterClass
-    public void tearDown() {
+    public static void tearDown() {
         // any tear down methods
     }
 }

@@ -2,8 +2,10 @@ package com.narriation.library;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -56,6 +58,25 @@ public class UserListTest {
         userList.addUser(user3);
         assertEquals(3, userList.getUsers().size());
         assertTrue(userList.getUsers().contains(user3));
+    }
+
+    @Test
+    public void testGetNonExistentUserName() {
+        User foudUser = userList.getUser("Mike");
+        assertNull(foudUser);
+    }
+
+    @Test
+    public void testGetUser() {
+        User foundUser = userList.getUser(user1.getUsername());
+        assertEquals(user1, foundUser);
+    }
+
+    @Test
+    public void testGetUserProgress() {
+        userList.addUser(user3);
+        ArrayList<UserProgress> userProgress = userList.getUsersProgress();
+        assertEquals(user3.getUserProgress().size(), userProgress.size());
     }
 
 }

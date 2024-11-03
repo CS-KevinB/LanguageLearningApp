@@ -1,4 +1,4 @@
-package library;
+package com.narriation.library;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -52,7 +52,7 @@ public class FacadeTest {
         assertTrue(loggedIn);
     }
 
-    @Test 
+    @Test
     public void testAddAccountTakenUsername() {
         Facade facade = Facade.getInstance();
         String firstName = "First Name";
@@ -63,9 +63,8 @@ public class FacadeTest {
         String email = "Email";
         ArrayList<Language> languages = LanguageList.getInstance().getLanguages();
         Language language = languages.get(0);
-        User user =facade.createAccount(firstName, lastName, userName, password, birthdayStr, email, language);
+        User user = facade.createAccount(firstName, lastName, userName, password, birthdayStr, email, language);
         assertNull(user);
     }
-
 
 }

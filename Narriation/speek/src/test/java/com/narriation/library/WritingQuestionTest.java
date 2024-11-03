@@ -1,7 +1,8 @@
 /**
  * @author Kevin Buie
  */
-package com.narriation;
+package com.narriation.library;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -10,6 +11,13 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.narriation.Gender;
+import com.narriation.PartOfSpeech;
+import com.narriation.Phrase;
+import com.narriation.Word;
+import com.narriation.WritingQuestion;
+
 public class WritingQuestionTest {
     private WritingQuestion writingQuestion;
     private Phrase phrase;
@@ -18,13 +26,13 @@ public class WritingQuestionTest {
     public void setup() {
         ArrayList<Word> englishPhrase = new ArrayList<>();
         ArrayList<Word> translatedPhrase = new ArrayList<>();
-        
+
         englishPhrase.add(new Word("hello", "hola", "oh-lah", PartOfSpeech.NOUN, Gender.NEITHER, 1));
         englishPhrase.add(new Word("friend", "amigo", "ah-mee-go", PartOfSpeech.NOUN, Gender.MASCULINE, 1));
-        
+
         translatedPhrase.add(new Word("hello", "hola", "oh-lah", PartOfSpeech.NOUN, Gender.NEITHER, 1));
         translatedPhrase.add(new Word("friend", "amigo", "ah-mee-go", PartOfSpeech.NOUN, Gender.MASCULINE, 1));
-        
+
         phrase = new Phrase("greeting", englishPhrase, translatedPhrase, 1);
         writingQuestion = new WritingQuestion(phrase);
     }
@@ -33,11 +41,10 @@ public class WritingQuestionTest {
     public void testGenerateQuestion() {
         String question = writingQuestion.getQuestion();
         System.out.println("Generated Question: " + question);
-    
+
         assertTrue(
-            (question.contains("hello") || question.contains("__________")) &&
-            (question.contains("amigo") || question.contains("__________"))
-        );
+                (question.contains("hello") || question.contains("__________")) &&
+                        (question.contains("amigo") || question.contains("__________")));
     }
 
     @Test
@@ -59,4 +66,3 @@ public class WritingQuestionTest {
         assertTrue(output.contains("Answer:"));
     }
 }
-

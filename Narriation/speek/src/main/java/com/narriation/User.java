@@ -91,8 +91,11 @@ public class User {
      * 
      * @param firstName takes in the first name of the user
      * @param lastName  takes in the last name of the user
+     * @param string2
+     * @param i
+     * @param string
      */
-    public User(String firstName, String lastName) {
+    public User(String firstName, String lastName, String string, int i, String string2) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

@@ -11,12 +11,5 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class UserListTest {
-    private UserList userList = UserList.getInstance();
-    private ArrayList<User> users = userList.getUsers();
 
-    @Before
-    
-        
-
-    
 }

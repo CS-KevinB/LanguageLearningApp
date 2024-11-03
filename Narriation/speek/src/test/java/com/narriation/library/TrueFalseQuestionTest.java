@@ -1,8 +1,6 @@
-/**
- * @author Kevin Buie
- */
 package com.narriation.library;
 
+import org.junit.Before;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -13,6 +11,9 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.UUID;
 
 import com.narriation.Gender;
 import com.narriation.Language;

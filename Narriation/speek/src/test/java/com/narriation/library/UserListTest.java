@@ -1,4 +1,4 @@
-package com.narriation;
+package com.narriation.library;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

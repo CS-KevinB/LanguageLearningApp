@@ -24,26 +24,21 @@ public class LessonTest {
 
     @Before
     public void setUp() {
-        // Create dummy language
         UUID languageId = UUID.randomUUID();
         ArrayList<Word> words = new ArrayList<>();
         ArrayList<Phrase> phrases = new ArrayList<>();
         ArrayList<Story> stories = new ArrayList<>();
         language = new Language(languageId, "Spanish", words, phrases, stories);
 
-        // Create dummy user progress
         userProgress = new UserProgress(language);
 
-        // Create a lesson
         lesson = new Lesson(userProgress, language);
     }
 
     @Test
     public void testGenerateQuestions() {
-        // Assuming you have some phrases added to the language and user progress updated
         ArrayList<Question> questions = lesson.getQuestions();
         assertEquals(Lesson.NUMBER_OF_QUESTIONS, questions.size());
-        // You can also add more specific assertions based on the type of questions generated
     }
 
     @Test
@@ -54,7 +49,7 @@ public class LessonTest {
 
     @Test
     public void testDecreaseScore() {
-        lesson.increaseScore(); // Increase score first
+        lesson.increaseScore(); 
         lesson.decreaseScore();
         assertEquals("0 / 0", lesson.getScore());
     }
@@ -66,5 +61,4 @@ public class LessonTest {
         assertEquals("1 / 0", lesson.getScore());
     }
 
-    // Add more tests as necessary based on the functionality of Lesson and UserProgress
 }

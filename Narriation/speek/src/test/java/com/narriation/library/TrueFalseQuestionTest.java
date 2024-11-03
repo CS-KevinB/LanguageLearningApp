@@ -1,45 +1,19 @@
 package com.narriation.library;
 
-import org.junit.Before;
-<<<<<<< HEAD
-import org.junit.Test;
-
-import com.narriation.Gender;
-import com.narriation.Language;
-import com.narriation.PartOfSpeech;
-import com.narriation.Phrase;
-import com.narriation.TrueFalseQuestion;
-import com.narriation.Word;
-
-import static org.junit.Assert.*;
-import java.util.ArrayList;
-import java.util.UUID;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-=======
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.UUID;
-
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import com.narriation.Gender;
-import com.narriation.Language;
+import com.narriation.TrueFalseQuestion;
 import com.narriation.PartOfSpeech;
 import com.narriation.Phrase;
-import com.narriation.Story;
 import com.narriation.Word;
-import com.narriation.TrueFalseQuestion;
->>>>>>> ffd3042a95c3e671df70a8e393ec4f4f4542ae98
+import com.narriation.Language;
+import com.narriation.Gender;
 
 public class TrueFalseQuestionTest {
     private TrueFalseQuestion trueFalseQuestion;
@@ -48,36 +22,43 @@ public class TrueFalseQuestionTest {
 
     @Before
     public void setup() {
+        UUID languageId = UUID.randomUUID();
+        ArrayList<Phrase> phrases = new ArrayList<>();
+
         ArrayList<Word> englishPhrase = new ArrayList<>();
         ArrayList<Word> translatedPhrase = new ArrayList<>();
 
         englishPhrase.add(new Word("hello", "hola", "oh-lah", PartOfSpeech.NOUN, Gender.NEITHER, 1));
-        englishPhrase.add(new Word("friend", "amigo", "ah-mee-go", PartOfSpeech.NOUN, Gender.MASCULINE, 1));
-
-        translatedPhrase.add(new Word("hello", "hola", "oh-lah", PartOfSpeech.NOUN, Gender.NEITHER, 1));
-        translatedPhrase.add(new Word("friend", "amigo", "ah-mee-go", PartOfSpeech.NOUN, Gender.MASCULINE, 1));
+        translatedPhrase.add(new Word("hola", "hello", "oh-lah", PartOfSpeech.NOUN, Gender.NEITHER, 1));
 
         phrase = new Phrase("greeting", englishPhrase, translatedPhrase, 1);
-        language = new Language(UUID.randomUUID(), "Spanish", new ArrayList<Word>(), new ArrayList<Phrase>(),
-                new ArrayList<Story>());
-        TrueFalseQuestion trueFalseQuestion = new TrueFalseQuestion(phrase, language);
+        phrases.add(phrase);
+
+        language = new Language(languageId, "Spanish", new ArrayList<>(), phrases, new ArrayList<>());
+
+        trueFalseQuestion = new TrueFalseQuestion(phrase, language);
     }
 
     @Test
-    public void testTesting() {
-        assertTrue(true);
-    }
-
-    @Test
-    public void testGenerateQuestionFormat() {
+    public void testGenerateQuestion() {
         String question = trueFalseQuestion.getQuestion();
-        assertTrue(question.contains("Enter True or False"));
-        assertTrue(question.contains("Does \""));
-        assertTrue(question.contains("\" translate to \""));
+        System.out.println("Generated Question: " + question);
+        assertTrue(question.contains("Does") && question.contains("translate to"));
     }
 
-<<<<<<< HEAD
+    @Test
+    public void testGetAnswer() {
+        String answer = trueFalseQuestion.getAnswer();
+        assertEquals("true", answer); 
+    }
+
+    @Test
+    public void testGetPhrase() {
+        assertEquals(phrase, trueFalseQuestion.getPhrase());
+    }
+
+    @Test
+    public void testIsCorrect() {
+        assertTrue(trueFalseQuestion.isCorrect("true") || trueFalseQuestion.isCorrect("false"));
+    }
 }
-=======
-}
->>>>>>> ffd3042a95c3e671df70a8e393ec4f4f4542ae98

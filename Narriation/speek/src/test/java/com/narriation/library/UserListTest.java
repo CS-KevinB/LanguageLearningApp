@@ -21,20 +21,22 @@ import com.narriation.UserList;
 import com.narriation.UserProgress;
 
 public class UserListTest {
-    private ArrayList<Language> languages = DataLoader.getLanguages();
-    private UserList userList = UserList.getInstance();
-    private ArrayList<User> users = userList.getUsers();
-    private User user = new User(UUID.randomUUID(), "Jhon", "Doe", "jDoe",
-            "do", "jdoe@gmail.com",
-            new Date(), new Avatar(), 0, new ArrayList<UserProgress>());
-    private User friend = new User(UUID.randomUUID(), "Jhon", "smith", "jSmith",
-            "smith", "jsmith@gmail.com",
-            new Date(), new Avatar(), 0, new ArrayList<UserProgress>());
+    private UserList userList;
+    private ArrayList<User> users;
+    private User user;
+    private User friend;
 
-    @BeforeClass
-    public static void setup() {
-        UserList userList = UserList.getInstance();
-        userList.getUsers().clear();
+    @Before
+    public void setup() {
+
+        userList = UserList.getInstance();
+        users = userList.getUsers();
+        users.clear();
+        user = new User(UUID.randomUUID(), "John", "Doe", "jDoe", "do", "jdoe@gmail.com",
+                new Date(), new Avatar("CharacterA", "HatA"), 0, new ArrayList<UserProgress>());
+
+        friend = new User(UUID.randomUUID(), "Jane", "Smith", "jSmith", "smith", "jsmith@gmail.com",
+                new Date(), new Avatar("CharacterB", "HatB"), 0, new ArrayList<UserProgress>());
     }
 
     @Test
@@ -44,12 +46,9 @@ public class UserListTest {
 
     @Test
     public void testAddUser() {
-        if (!users.contains(user)) {
-            userList.addUser(user);
-            assertTrue(users.contains(user));
-        } else {
-            assertTrue(false);
-        }
+
+        userList.addUser(user);
+        assertTrue(users.contains(user));
     }
 
 }

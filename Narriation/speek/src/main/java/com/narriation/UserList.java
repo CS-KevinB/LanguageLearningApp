@@ -19,6 +19,9 @@ public class UserList {
      */
     private UserList() {
         users = DataLoader.getUsers();
+        if (users == null) {
+            users = new ArrayList<>();
+        }
     }
 
     /**

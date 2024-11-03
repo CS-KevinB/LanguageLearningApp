@@ -2,6 +2,7 @@ package com.narriation.library;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Array;
@@ -10,7 +11,6 @@ import java.util.Date;
 import java.util.UUID;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.narriation.Avatar;
@@ -21,20 +21,30 @@ import com.narriation.UserList;
 import com.narriation.UserProgress;
 
 public class UserListTest {
-    private ArrayList<Language> languages = DataLoader.getLanguages();
-    private UserList userList = UserList.getInstance();
-    private ArrayList<User> users = userList.getUsers();
-    private User user = new User(UUID.randomUUID(), "Jhon", "Doe", "jDoe",
-            "do", "jdoe@gmail.com",
-            new Date(), new Avatar(), 0, new ArrayList<UserProgress>());
-    private User friend = new User(UUID.randomUUID(), "Jhon", "smith", "jSmith",
-            "smith", "jsmith@gmail.com",
-            new Date(), new Avatar(), 0, new ArrayList<UserProgress>());
+    private UserList userList;
+    private ArrayList<User> users;
+    private User user1;
+    private User user2;
+    private User user3;
 
-    @BeforeClass
-    public static void setup() {
-        UserList userList = UserList.getInstance();
+    @Before
+    public void setup() {
+
+        userList = UserList.getInstance();
         userList.getUsers().clear();
+
+        user1 = new User(UUID.randomUUID(), "John", "Doe", "jDoe", "doe", "jdoe@gmail.com",
+                new Date(), new Avatar(), 0, new ArrayList<UserProgress>());
+
+        user2 = new User(UUID.randomUUID(), "Jane", "Smith", "jSmith", "smith", "jsmith@gmail.com",
+                new Date(), new Avatar(), 0, new ArrayList<UserProgress>());
+
+        user3 = new User(UUID.randomUUID(), "Jane", "Doe", "jhoneD", "123", "jane@gmail.com",
+                new Date(), new Avatar(), 0, new ArrayList<UserProgress>());
+
+        userList.addUser(user1);
+        userList.addUser(user2);
+        // userList.addUser(user3);
     }
 
     @Test
@@ -44,12 +54,29 @@ public class UserListTest {
 
     @Test
     public void testAddUser() {
-        if (!users.contains(user)) {
-            userList.addUser(user);
-            assertTrue(users.contains(user));
-        } else {
-            assertTrue(false);
-        }
+        assertEquals(2, userList.getUsers().size());
+        userList.addUser(user3);
+        assertEquals(3, userList.getUsers().size());
+        assertTrue(userList.getUsers().contains(user3));
+    }
+
+    @Test
+    public void testGetNonExistentUserName() {
+        User foudUser = userList.getUser("Mike");
+        assertNull(foudUser);
+    }
+
+    @Test
+    public void testGetUser() {
+        User foundUser = userList.getUser(user1.getUsername());
+        assertEquals(user1, foundUser);
+    }
+
+    @Test
+    public void testGetUserProgress() {
+        userList.addUser(user3);
+        ArrayList<UserProgress> userProgress = userList.getUsersProgress();
+        assertEquals(user3.getUserProgress().size(), userProgress.size());
     }
 
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import com.narriation.Gender;
 import com.narriation.Language;
@@ -25,7 +26,7 @@ public class MultipleChoiceQuestionTest {
     private Phrase phrase;
     private Language language;
 
-    @Before
+    @BeforeClass
     public void setup() {
         ArrayList<Word> englishPhrase = new ArrayList<>();
         ArrayList<Word> translatedPhrase = new ArrayList<>();

@@ -10,8 +10,12 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.narriation.Avatar;
+import com.narriation.DataLoader;
+import com.narriation.Language;
 import com.narriation.User;
 import com.narriation.UserList;
+import com.narriation.UserProgress;
 
 import org.junit.BeforeClass;
 import org.junit.AfterClass;

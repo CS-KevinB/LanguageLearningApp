@@ -192,14 +192,12 @@ public class Facade {
      * Reads and displays the current story
      */
     public void startStory() {
-        // TODO remove Facade
         System.out.println(currentUser.getUserProgress(currentLanguage).getCurrentStory().displayStory());
         currentUser.getUserProgress(currentLanguage).getCurrentStory().speakStory();
     }
 
     /**
      * Sets the current language
-     * 
      * @param language requires the language in order to set
      * @return returns a boolean if the language was set
      */
@@ -213,7 +211,6 @@ public class Facade {
 
     /**
      * Gets the current language
-     * 
      * @return returns the current language
      */
     public Language getCurrentLanguage() {
@@ -249,7 +246,6 @@ public class Facade {
 
     /**
      * Gets the language
-     * 
      * @return returns the language
      */
     public Language getLanguage() {
@@ -285,6 +281,10 @@ public class Facade {
         return progress + getPercentageThroughCourse();
     }
 
+    /**
+     * Gets the percentage of the user through the course
+     * @return The percentage of the user through the course
+     */
     public String getPercentageThroughCourse() {
         int numerator = 0;
         HashMap<Phrase, Integer> progress = currentUser.getUserProgress(currentLanguage).getPhraseProgress();
@@ -302,7 +302,6 @@ public class Facade {
 
     /**
      * Create a text file with the user's current progress
-     * 
      * @return A boolean if the file was created successfully
      */
     public boolean printProgress() {

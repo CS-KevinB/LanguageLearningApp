@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 /**
  * Defines a class for user progress
- * 
  * @author christianruff
  */
 public class UserProgress {
@@ -28,7 +27,6 @@ public class UserProgress {
 
     /**
      * Creates a user progress with the parameters
-     * 
      * @param difficulty     takes in the difficulty of the user
      * @param currentStory   takes in the current story of the user
      * @param phraseProgress takes in the phrase progress of the user
@@ -45,7 +43,6 @@ public class UserProgress {
 
     /**
      * Gets the language
-     * 
      * @return the language
      */
     public Language getLanguage() {
@@ -54,7 +51,6 @@ public class UserProgress {
 
     /**
      * Gets the difficulty of the user
-     * 
      * @return returns the difficulty
      */
     public int getDifficulty() {
@@ -63,7 +59,6 @@ public class UserProgress {
 
     /**
      * Gets the word progress of the user
-     * 
      * @param word takes in the word to get the progress for
      * @return returns the progress
      */
@@ -73,7 +68,6 @@ public class UserProgress {
 
     /**
      * Gets the word progress
-     * 
      * @param word the word to get the progress for
      * @return the progress
      */
@@ -83,7 +77,6 @@ public class UserProgress {
 
     /**
      * Updates the word progress of the user
-     * 
      * @param word takes in the word to update the progress for
      */
     public void updateWordProgress(Word word) {
@@ -92,7 +85,6 @@ public class UserProgress {
 
     /**
      * Gets the phrase progress of the user
-     * 
      * @return returns the progress
      */
     public HashMap<Phrase, Integer> getPhraseProgress() {
@@ -101,7 +93,6 @@ public class UserProgress {
 
     /**
      * Gets the progress of a phrase
-     * 
      * @param phrase The phrase to get the progress for
      * @return The progress of the phrase
      */
@@ -111,18 +102,15 @@ public class UserProgress {
 
     /**
      * Counts the correct phrase of the user
-     * 
      * @param phrase takes in the phrase to count the progress for
      */
     public void countCorrectPhrase(Phrase phrase) {
         int currentCount = this.phraseProgress.getOrDefault(phrase, 0);
         phraseProgress.put(phrase, currentCount + 1);
-
     }
 
     /**
      * Counts the incorrect phrase of the user
-     * 
      * @param phrase takes in the phrase to count the progress for
      */
     public void countIncorrectPhrase(Phrase phrase) {
@@ -132,7 +120,6 @@ public class UserProgress {
 
     /**
      * Gets the current story of the user
-     * 
      * @return returns the current story
      */
     public Story getCurrentStory() {
@@ -146,7 +133,6 @@ public class UserProgress {
 
     /**
      * Gets a string representation of the user progress
-     * 
      * @return returns the string
      */
     public String toString() {
@@ -158,7 +144,6 @@ public class UserProgress {
 
     /**
      * Gets the phrases that the user is struggling with
-     * 
      * @return A string of phrases that the user is struggling with
      */
     public String displayHardPhrases() {
@@ -175,7 +160,6 @@ public class UserProgress {
 
     /**
      * Gets the list of phrases that the user has seen
-     * 
      * @return returns the list of phrases the user has seen
      */
     public ArrayList<Phrase> getPhraseList() {
@@ -188,7 +172,6 @@ public class UserProgress {
 
     /**
      * Gets the phrase progress as a string
-     * 
      * @param phrase The phrase to get the progress for
      * @return The phrase progress as a string
      */

@@ -49,7 +49,8 @@ public class UserList {
             String emailAddress, Date birthday, Avatar avatar, ArrayList<User> friends, int points,
             UserProgress userProgress) {
         for (User user : users) {
-            if (user.getUsername().equals(userName) || user.getEmailAddress().equals(emailAddress)) {
+            if (user.getUsername().equals(userName) || user.getEmailAddress().equals(emailAddress)
+                    || user.getUsername() == null || user.getUsername().isEmpty()) {
                 return false;
             }
         }

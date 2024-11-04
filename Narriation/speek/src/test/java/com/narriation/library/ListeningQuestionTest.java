@@ -24,7 +24,6 @@ public class ListeningQuestionTest {
 
     @Before
     public void setup() {
-        // Create example words for the phrase
         ArrayList<Word> englishPhrase = new ArrayList<>();
         ArrayList<Word> translatedPhrase = new ArrayList<>();
 
@@ -34,7 +33,6 @@ public class ListeningQuestionTest {
         translatedPhrase.add(new Word("hola", "hello", "oh-lah", PartOfSpeech.NOUN, Gender.NEITHER, 1));
         translatedPhrase.add(new Word("amigo", "friend", "ah-mee-go", PartOfSpeech.NOUN, Gender.MASCULINE, 1));
 
-        // Initialize the phrase for the listening question
         phrase = new Phrase("greeting", englishPhrase, translatedPhrase, 1);
         listeningQuestion = new ListeningQuestion(phrase);
     }

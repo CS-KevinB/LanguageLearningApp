@@ -36,20 +36,13 @@ public class DataWriterTest {
         DataWriter.saveUsers(userList);
     }
 
-    @After
-    public void tearDown() {
-        UserList.getInstance().getUsers();
-        userList.clear();
-        DataWriter.saveUsers(userList);
-    }
-
     @Test
     public void testWritingZeroUsers() {
         assertEquals(0, userList.size());
     }
 
     @Test
-    void testWritingFiveUsers() {
+    public void testWritingFiveUsers() {
         userList.add(new User("asmith", "Amy", "Smith", 19, "803-454-3344"));
         userList.add(new User("bsmith", "Amy", "Smith", 19, "803-454-3344"));
         userList.add(new User("csmith", "Amy", "Smith", 19, "803-454-3344"));
@@ -60,17 +53,24 @@ public class DataWriterTest {
     }
 
     @Test
-    void testWritingEmptyUser() {
+    public void testWritingEmptyUser() {
         userList.add(new User("", "", "", 0, ""));
         DataWriter.saveUsers(userList);
         assertEquals("", DataLoader.getUsers().get(0).getUsername());
     }
 
     @Test
-    void testWritingNullUser() {
+    public void testWritingNullUser() {
         userList.add(new User(null, "", "", 0, ""));
         DataWriter.saveUsers(userList);
         assertEquals(null, DataLoader.getUsers().get(0).getUsername());
+    }
+
+    @After
+    public void tearDown() {
+        UserList.getInstance().getUsers();
+        userList.clear();
+        DataWriter.saveUsers(userList);
     }
 
 }

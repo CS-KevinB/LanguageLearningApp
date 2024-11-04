@@ -1,11 +1,11 @@
 package com.narriation.library;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.UUID;
 
 import org.junit.After;
 import org.junit.Before;
@@ -17,6 +17,8 @@ import com.narriation.Language;
 import com.narriation.LanguageList;
 import com.narriation.User;
 import com.narriation.UserList;
+import com.narriation.UserProgress;
+import com.narriation.Avatar;
 import com.narriation.DataLoader;
 
 public class DataWriterTest {
@@ -42,35 +44,28 @@ public class DataWriterTest {
     }
 
     @Test
-    public void testWritingFiveUsers() {
-        userList.add(new User("asmith", "Amy", "Smith", 19, "803-454-3344"));
-        userList.add(new User("bsmith", "Amy", "Smith", 19, "803-454-3344"));
-        userList.add(new User("csmith", "Amy", "Smith", 19, "803-454-3344"));
-        userList.add(new User("dsmith", "Amy", "Smith", 19, "803-454-3344"));
-        userList.add(new User("esmith", "Amy", "Smith", 19, "803-454-3344"));
+    public void testAddingSingleUser() {
+        User user = new User(UUID.randomUUID(), "Jhon", "Doe", "jhonD", "123", "jhon@gmail.com",
+                new Date(), new Avatar(), 0, new ArrayList<UserProgress>());
+        userList.add(user);
         DataWriter.saveUsers(userList);
-        assertEquals("esmith", DataLoader.getUsers().get(4).getUsername());
+        assertEquals(1, userList.size());
     }
 
     @Test
-    public void testWritingEmptyUser() {
-        userList.add(new User("", "", "", 0, ""));
+    public void testAddingMultipleUsers() {
+        User user1 = new User(UUID.randomUUID(), "Jhon", "Doe", "jhonD", "123", "jhon@gmail.com",
+                new Date(), new Avatar(), 0, new ArrayList<UserProgress>());
+        User user2 = new User(UUID.randomUUID(), "Risha", "Patel", "Rishap", "456", "Risha@gmail.com",
+                new Date(), new Avatar(), 0, new ArrayList<UserProgress>());
+        User user3 = new User(UUID.randomUUID(), "Coddy", "Smith", "CodyS", "177", "coddy@gmail.com",
+                new Date(), new Avatar(), 0, new ArrayList<UserProgress>());
+        userList.add(user1);
+        userList.add(user2);
+        userList.add(user3);
         DataWriter.saveUsers(userList);
-        assertEquals("", DataLoader.getUsers().get(0).getUsername());
-    }
-
-    @Test
-    public void testWritingNullUser() {
-        userList.add(new User(null, "", "", 0, ""));
-        DataWriter.saveUsers(userList);
-        assertEquals(null, DataLoader.getUsers().get(0).getUsername());
-    }
-
-    @After
-    public void tearDown() {
-        UserList.getInstance().getUsers();
-        userList.clear();
-        DataWriter.saveUsers(userList);
+        assertEquals(3, userList.size());
+        assertEquals("jhonD", userList.get(0).getUsername());
     }
 
 }

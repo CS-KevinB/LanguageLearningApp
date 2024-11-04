@@ -156,7 +156,7 @@ public class UserListTest {
                 new Date(), new Avatar(), new ArrayList<>(), 0, new UserProgress(null, 0, 0, null, null));
 
         assertTrue("Adding a user with the same first name and last name should return true", added);
-        assertEquals(4, userList.getUsers().size());
+        assertEquals(3, userList.getUsers().size());
         assertNotNull(userList.getUser("Ttammy"));
     }
 

@@ -98,7 +98,7 @@ public class UserListTest {
                 0,
                 new UserProgress(null, 0, 0, null, null));
         assertTrue(edited);
-        // Verify the user's details were updated correctly
+
         User updatedUser = userList.getUser("janedoe");
         assertNotNull(updatedUser);
         assertEquals("Jane", updatedUser.getFirstName());
@@ -113,7 +113,6 @@ public class UserListTest {
 
     @Test
     public void testGetUsersProgressForMultipleUsers() {
-        // Add progress to user1 and user2
         user1.getUserProgress().add(new UserProgress(null, 50, 100, null, null));
         user2.getUserProgress().add(new UserProgress(null, 30, 100, null, null));
 
@@ -146,11 +145,12 @@ public class UserListTest {
 
     @Test
     public void testAddUserWithSameFirstNameAndLastName() {
-        Language language = new Language(UUID.randomUUID(), "null", null, null, null);
+        Language language = new Language(UUID.randomUUID(), "Spanish", null, null, null);
 
         UserProgress progress = new UserProgress(language, 0, 0, null, null);
         ArrayList<UserProgress> userProgressList = new ArrayList<>();
         userProgressList.add(progress);
+
         boolean added = userList.addUser(
                 UUID.randomUUID(), "Tammy", "Tammy", "Ttammy", "123", "Tammy@gmail.com",
                 new Date(), new Avatar(), new ArrayList<>(), 0, new UserProgress(null, 0, 0, null, null));

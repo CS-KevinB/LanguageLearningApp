@@ -73,6 +73,10 @@ public class User {
      */
     public User(UUID id, String firstName, String lastName, String username, String password, String emailAddress,
             Date birthday, Avatar avatar, int points, ArrayList<UserProgress> userProgress) {
+        if (username == null || username.equals("")) {
+            throw new IllegalArgumentException("Invalid parameter provided.");
+        }
+        
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

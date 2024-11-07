@@ -47,4 +47,12 @@ public class LanguageList {
         }
         return null;
     }
+
+    public void clear() {
+        languageList.languages.clear();
+    }
+
+    public void add(Language language) {
+        languageList.languages.add(language);
+    }
 }

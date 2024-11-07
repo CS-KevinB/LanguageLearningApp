@@ -33,6 +33,10 @@ public class UserList {
         users.add(user);
     }
 
+    public void clear() {
+        this.users.clear();
+    }
+
     /**
      * Gets the instance of the user list
      * 

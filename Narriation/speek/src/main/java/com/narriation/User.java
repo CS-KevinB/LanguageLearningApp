@@ -124,7 +124,7 @@ public class User {
      * @param friend takes in the friend to add
      */
     public void addFriend(User friend) {
-        if (friend == null) {
+        if (friend == null || this.friends.contains(friend)) {
             System.out.println("Friend not found!");
             return;
         }

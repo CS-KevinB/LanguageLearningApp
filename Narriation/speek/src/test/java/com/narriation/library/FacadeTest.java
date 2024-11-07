@@ -6,15 +6,38 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.UUID;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.narriation.Avatar;
+import com.narriation.DataLoader;
 import com.narriation.Facade;
 import com.narriation.Language;
 import com.narriation.LanguageList;
+import com.narriation.Phrase;
 import com.narriation.User;
+import com.narriation.UserList;
+import com.narriation.UserProgress;
 
 public class FacadeTest {
+    private ArrayList<Language> languages = DataLoader.getLanguages();
+    private UserList userList = UserList.getInstance();
+    private ArrayList<User> users = userList.getUsers();
+    private User user = new User(UUID.randomUUID(), "Jane", "Doe", "jane",
+            "doe", "jane@gmail.com",
+            new Date(), new Avatar(), 0, new ArrayList<UserProgress>());
+
+    @Before
+    public void setup() {
+        userList.clear();
+        userList.addUser(user);
+    }
+
     @Test
     public void testTesting() {
         assertTrue(true);

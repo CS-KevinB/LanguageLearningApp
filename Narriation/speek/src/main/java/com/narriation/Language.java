@@ -81,6 +81,10 @@ public class Language {
         return stories;
     }
 
+    public void addPhrases(ArrayList<Phrase> phrases) {
+        this.phrases.addAll(phrases);
+    }
+
     /**
      * Override toString to return the language as a string
      */

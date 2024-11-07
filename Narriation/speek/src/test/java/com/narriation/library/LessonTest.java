@@ -1,19 +1,21 @@
 package com.narriation.library;
 
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.UUID;
+
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.narriation.Gender;
 import com.narriation.Language;
 import com.narriation.Lesson;
+import com.narriation.PartOfSpeech;
 import com.narriation.Phrase;
 import com.narriation.Question;
 import com.narriation.Story;
 import com.narriation.UserProgress;
 import com.narriation.Word;
-
-import java.util.ArrayList;
-import java.util.UUID;
 
 public class LessonTest {
     private UserProgress userProgress;
@@ -27,8 +29,25 @@ public class LessonTest {
         ArrayList<Phrase> phrases = new ArrayList<>();
         ArrayList<Story> stories = new ArrayList<>();
         language = new Language(languageId, "Spanish", words, phrases, stories);
-
         userProgress = new UserProgress(language);
+
+        // creating test words
+        Word word = new Word("a", "b", "c", PartOfSpeech.ADJECTIVE, Gender.NEITHER, 0);
+        ArrayList<Word> wordList = new ArrayList<Word>();
+
+        Phrase phrA = new Phrase(UUID.randomUUID(), wordList, wordList, 1);
+        Phrase phrB = new Phrase(UUID.randomUUID(), wordList, wordList, 1);
+        Phrase phrC = new Phrase(UUID.randomUUID(), wordList, wordList, 1);
+        Phrase phrD = new Phrase(UUID.randomUUID(), wordList, wordList, 1);
+        Phrase phrE = new Phrase(UUID.randomUUID(), wordList, wordList, 1);
+
+        phrases.add(phrA);
+        phrases.add(phrB);
+        phrases.add(phrC);
+        phrases.add(phrD);
+        phrases.add(phrE);
+
+        this.language.addPhrases(phrases);
 
         lesson = new Lesson(userProgress, language);
     }

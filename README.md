@@ -10,3 +10,6 @@ Scenarios Video: https://youtu.be/Oj0m6aMXzK4
 Prototype: https://mockitt.wondershare.com/proto/design/pb2m37mg4fejgb3qt
 
 Prototype Video: https://youtu.be/RCqbD4eLfh0
+
+This was a group project originally built with the quad squad.
+Original repo: https://github.com/christianruff/CSCE247-LanguageLearningApp-Final
